@@ -1,0 +1,39 @@
+# --- BẮT ĐẦU CUỘC HỘI THOẠI ---
+# --- KIỂM TRA NGAY LẬP TỨC ---
+if {PlayerHasBlade} == true:
+	# --- Nhánh 1: NGƯỜI CHƠI ĐÃ CÓ KIẾM ---
+	Mushroom: A, Foxy! Chào cậu!
+	Foxy: Chào ngài Nấm.
+	Mushroom: Ta thấy cậu vẫn đang giữ thanh kiếm đó cẩn thận. Tốt lắm!
+	Mushroom: Đi vào rừng bây giờ trông cậu đã an toàn hơn nhiều rồi đấy.
+	Foxy: Vâng, tất cả là nhờ ngài.
+	Mushroom: Cẩn thận nhé! Chúc may mắn!
+	Foxy: Tạm biệt ngài!
+
+else:
+	# --- Nhánh 2: NGƯỜI CHƠI CHƯA CÓ KIẾM ---
+	Mushroom: Foxy! Dừng lại một chút!
+	Foxy: Chào ngài Nấm. Có chuyện gì vậy?
+	Mushroom: Ta thấy cậu đang đi về phía khu rừng... nhưng cậu không mang theo vũ khí nào cả!
+	Foxy: Ờ... Vâng, tôi đang hơi vội.
+	Mushroom: Vội cũng không được! Cậu có biết khu rừng đó nguy hiểm thế nào không? Đi tay không là tự sát đấy!
+	Mushroom: Ta có thứ này. Nó là một thanh kiếm cũ của ta, nhưng vẫn còn tốt chán.
+	Mushroom: Nó sẽ giúp cậu an toàn hơn. Cậu có muốn nhận nó không?
+	
+	
+	- "Tuyệt vời! Tôi sẽ nhận nó!":
+		Mushroom: Tốt lắm! Một lựa chọn khôn ngoan.
+		Mushroom: Đây, cầm lấy đi.
+		do GameManager.collect_blade()
+		Foxy: Cảm ơn ngài rất nhiều! Tôi sẽ trân trọng nó!
+		Mushroom: Giờ thì hãy cẩn thận.
+		Foxy: Tôi sẽ ghi nhớ! Tạm biệt ngài!
+	- "Cảm ơn ngài, nhưng tôi tự lo được.":
+		Mushroom: ...Cậu chắc chứ?
+		Foxy: Tôi có cách của riêng mình. Tôi sẽ ổn thôi.
+		Mushroom: Thật là một cậu cáo liều lĩnh. Thôi được, ta đã cố khuyên rồi.
+		Mushroom: Chúc may mắn... cậu sẽ cần đấy.
+		Foxy: Tạm biệt ngài.
+end
+
+# --- KẾT THÚC HỘI THOẠI ---

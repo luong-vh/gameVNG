@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=4 uid="uid://cse8m3ao6w5ao"]
+
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_1f3o5"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="1_w3aqi"]
+[ext_resource type="PackedScene" uid="uid://c8iyq6ukbtgdh" path="res://levels/objects/palm_tree_1.tscn" id="3_kh2fj"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_np4on"]
+[ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="3_pfwq7"]
+[ext_resource type="PackedScene" uid="uid://duhxq1mn2hmtf" path="res://levels/objects/platforms/path_moving_platform.tscn" id="4_8a3cw"]
+[ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="6_pupqp"]
+[ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="7_1f3o5"]
+[ext_resource type="PackedScene" uid="uid://4abnqea6jimr" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="8_lg0vp"]
+[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_43d8r"]
+[ext_resource type="PackedScene" uid="uid://bkd3v4srk0anx" path="res://levels/objects/platforms/interacted_moving_platform.tscn" id="12_pfwq7"]
+[ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="13_pfwq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
+size = Vector2(84, 14)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_1f3o5")
+
+[node name="Door" parent="." instance=ExtResource("10_43d8r")]
+position = Vector2(206, 244)
+target_stage = "uid://cse8m3ao6w5ao"
+target_door = "Door2"
+
+[node name="Door2" parent="." instance=ExtResource("10_43d8r")]
+position = Vector2(836, 246)
+target_stage = "uid://cse8m3ao6w5ao"
+
+[node name="World" type="TileMapLayer" parent="."]
+position = Vector2(14, -10)
+tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAPAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAA=")
+tile_set = ExtResource("3_pfwq7")
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Platforms"]
+position = Vector2(680, 134)
+
+[node name="MovingPlatform" type="Sprite2D" parent="Platforms/AnimatableBody2D"]
+texture = ExtResource("3_np4on")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_pupqp")
+
+[node name="Path2D" parent="Platforms" instance=ExtResource("4_8a3cw")]
+position = Vector2(-59, -78)
+
+[node name="PalmTree1" parent="." instance=ExtResource("3_kh2fj")]
+position = Vector2(389, 164)
+
+[node name="Npcs" type="Node2D" parent="."]
+
+[node name="Mushroom" parent="Npcs" instance=ExtResource("7_1f3o5")]
+position = Vector2(336, 181)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="." instance=ExtResource("6_pupqp")]
+position = Vector2(603, 229)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("6_pupqp")]
+position = Vector2(686, 111)
+checkpoint_id = "2"
+
+[node name="ManualMovingPlatform" parent="." instance=ExtResource("8_lg0vp")]
+position = Vector2(54, 147)
+
+[node name="Player" parent="." instance=ExtResource("1_w3aqi")]
+
+[node name="Blade" type="Node" parent="."]
+
+[node name="InteractedMovingPlatform" parent="." instance=ExtResource("12_pfwq7")]
+position = Vector2(-3, -13)
+
+[node name="BladePickup" parent="." instance=ExtResource("13_pfwq7")]
+position = Vector2(108, 234)

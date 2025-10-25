@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dctrtbmnbrt1j"]
+
+[ext_resource type="Texture2D" uid="uid://3618lytb7nnv" path="res://assets/monsters/mushroom/mushroom_01.png" id="1_80kq2"]
+[ext_resource type="Script" uid="uid://cnpe6ngndwpfr" path="res://scenes/npcs/mushroom.gd" id="1_o7alk"]
+[ext_resource type="Texture2D" uid="uid://bqgmklofxv0qi" path="res://assets/monsters/mushroom/mushroom_02.png" id="2_o7alk"]
+[ext_resource type="Texture2D" uid="uid://cghgcxg1pvwd6" path="res://assets/monsters/mushroom/mushroom_03.png" id="3_a8gqk"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/interactive_area_2d.gd" id="4_4v02b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2k2xe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_80kq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o7alk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a8gqk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_o7alk"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	play(\"idle\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80kq2"]
+
+[node name="Mushroom" type="Node2D"]
+script = ExtResource("1_o7alk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_2k2xe")
+animation = &"idle"
+frame_progress = 0.597652
+script = SubResource("GDScript_o7alk")
+
+[node name="InteractiveArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_4v02b")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_80kq2")
+
+[connection signal="interacted" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interacted"]

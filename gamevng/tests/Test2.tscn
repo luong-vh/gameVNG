@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://dauf7stoh21r7"]
+
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_y6gll"]
+[ext_resource type="Texture2D" uid="uid://btp5ilp1lfg4s" path="res://icon.svg" id="2_xvtvn"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_4v8fn"]
+[ext_resource type="PackedScene" uid="uid://duhxq1mn2hmtf" path="res://levels/objects/platforms/path_moving_platform.tscn" id="4_xltpe"]
+[ext_resource type="PackedScene" uid="uid://c8iyq6ukbtgdh" path="res://levels/objects/palm_tree_1.tscn" id="5_xh3se"]
+[ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="6_nikbb"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="7_sfuiw"]
+[ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="8_25w68"]
+[ext_resource type="PackedScene" uid="uid://4abnqea6jimr" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="9_olj2x"]
+[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_1ama6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ok4yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh2fj"]
+size = Vector2(917, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_np4on"]
+size = Vector2(216, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
+size = Vector2(84, 14)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_y6gll")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="World"]
+position = Vector2(422, 256)
+scale = Vector2(7.20313, 0.171875)
+texture = ExtResource("2_xvtvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon"]
+position = Vector2(-58.5856, -1489.45)
+scale = Vector2(0.138829, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon/StaticBody2D"]
+position = Vector2(421.5, 256)
+shape = SubResource("RectangleShape2D_kh2fj")
+
+[node name="Icon2" type="Sprite2D" parent="World"]
+position = Vector2(345.25, 192)
+scale = Vector2(1.70703, 0.171875)
+texture = ExtResource("2_xvtvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon2"]
+position = Vector2(-202.252, -1117.09)
+scale = Vector2(0.585813, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon2/StaticBody2D"]
+position = Vector2(345, 191)
+shape = SubResource("RectangleShape2D_np4on")
+
+[node name="Icon3" type="Sprite2D" parent="World"]
+position = Vector2(-28, 136)
+rotation = -1.57079
+scale = Vector2(1.70703, 0.171875)
+texture = ExtResource("2_xvtvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon3"]
+position = Vector2(-202.252, -1117.09)
+scale = Vector2(0.585813, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon3/StaticBody2D"]
+position = Vector2(345, 191)
+shape = SubResource("RectangleShape2D_np4on")
+
+[node name="Icon4" type="Sprite2D" parent="World"]
+position = Vector2(871, 137)
+rotation = -1.57079
+scale = Vector2(1.70703, 0.171875)
+texture = ExtResource("2_xvtvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon4"]
+position = Vector2(-202.252, -1117.09)
+scale = Vector2(0.585813, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon4/StaticBody2D"]
+position = Vector2(345, 191)
+shape = SubResource("RectangleShape2D_np4on")
+
+[node name="Door" parent="." instance=ExtResource("10_1ama6")]
+position = Vector2(836, 245)
+target_stage = "uid://cse8m3ao6w5ao"
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Platforms"]
+position = Vector2(680, 134)
+
+[node name="MovingPlatform" type="Sprite2D" parent="Platforms/AnimatableBody2D"]
+texture = ExtResource("3_4v8fn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_pupqp")
+
+[node name="Path2D" parent="Platforms" instance=ExtResource("4_xltpe")]
+
+[node name="PalmTree1" parent="." instance=ExtResource("5_xh3se")]
+position = Vector2(389, 164)
+
+[node name="PalmTree2" parent="." instance=ExtResource("5_xh3se")]
+position = Vector2(256, 166)
+
+[node name="PalmTree3" parent="." instance=ExtResource("5_xh3se")]
+position = Vector2(655, 229)
+
+[node name="Npcs" type="Node2D" parent="."]
+
+[node name="Mushroom" parent="Npcs" instance=ExtResource("6_nikbb")]
+position = Vector2(336, 181)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="." instance=ExtResource("8_25w68")]
+position = Vector2(603, 229)
+
+[node name="ManualMovingPlatform" parent="." instance=ExtResource("9_olj2x")]
+position = Vector2(54, 147)
+move_distance = 200.0
+acceleration = 100.0
+
+[node name="Player" parent="." instance=ExtResource("7_sfuiw")]
