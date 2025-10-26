@@ -1,7 +1,10 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://gmsitsyww3ne"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://gmsitsyww3ne"]
 
 [ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
+[ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="3_fgag5"]
+[ext_resource type="PackedScene" uid="uid://ccufub3modpkh" path="res://levels/objects/tree/palm_tree_2.tscn" id="4_7a5rw"]
+[ext_resource type="PackedScene" uid="uid://cv4jotkxsk4xd" path="res://levels/objects/tree/palm_tree_3.tscn" id="5_6kw8m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x61fc"]
 texture = ExtResource("1_6gm7o")
@@ -384,8 +387,14 @@ texture_region_size = Vector2i(32, 32)
 16:4/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_utk31"]
-resource_name = "Spike"
+resource_name = "Trap"
 scenes/1/scene = ExtResource("2_6gm7o")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_k86ad"]
+resource_name = "Tree"
+scenes/1/scene = ExtResource("3_fgag5")
+scenes/2/scene = ExtResource("4_7a5rw")
+scenes/3/scene = ExtResource("5_6kw8m")
 
 [resource]
 tile_size = Vector2i(32, 32)
@@ -395,3 +404,4 @@ terrain_set_0/terrain_0/name = "Land"
 terrain_set_0/terrain_0/color = Color(0.501961, 1, 0.25098, 1)
 sources/0 = SubResource("TileSetAtlasSource_x61fc")
 sources/1 = SubResource("TileSetScenesCollectionSource_utk31")
+sources/2 = SubResource("TileSetScenesCollectionSource_k86ad")

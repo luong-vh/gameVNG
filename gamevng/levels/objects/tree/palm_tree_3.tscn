@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cv4jotkxsk4xd"]
 
 [ext_resource type="Texture2D" uid="uid://d1jboc5q1i0tj" path="res://assets/island/front_palm_trees/front_palm_tree_right.png" id="1_6o8na"]
-[ext_resource type="PackedScene" uid="uid://dij6v6kxanlup" path="res://scenes/levels/island/objects/tree/top_palm_tree.tscn" id="2_78r5h"]
+[ext_resource type="PackedScene" uid="uid://dij6v6kxanlup" path="res://levels/objects/tree/top_palm_tree.tscn" id="2_78r5h"]
 
 [node name="PalmTree3" type="Node2D"]
 

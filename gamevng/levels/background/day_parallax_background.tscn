@@ -38,19 +38,18 @@ func _process(delta: float) -> void:
 "
 
 [node name="DayParallaxBackground" type="ParallaxBackground"]
-visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.001, 0.8)
 motion_mirroring = Vector2(767, 0)
 
 [node name="SkySprite2D" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(278, 168)
+position = Vector2(417, -11)
 scale = Vector2(26.125, 20.531)
 texture = ExtResource("1_jiyjy")
 
 [node name="SeaSkySprite2D" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(-1, 57)
+position = Vector2(0, 57)
 scale = Vector2(2, 2)
 texture = ExtResource("2_wpyic")
 centered = false
@@ -73,6 +72,7 @@ position = Vector2(94, 249)
 scale = Vector2(2, 2)
 
 [node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="."]
+position = Vector2(60, -2)
 motion_scale = Vector2(0.001, 0.8)
 motion_mirroring = Vector2(510, 0)
 script = SubResource("GDScript_bfafv")
