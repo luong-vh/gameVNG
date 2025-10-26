@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://be5f4grcqhwu4"]
+
+[ext_resource type="Texture2D" uid="uid://c1we0skf1h1t3" path="res://assets/day_night/SkysAndClouds/Clouds 3/2.png" id="1_vou31"]
+[ext_resource type="Texture2D" uid="uid://64iyhjky5e57" path="res://assets/day_night/SkysAndClouds/Clouds 3/additional_sky.png" id="2_hllnw"]
+[ext_resource type="Texture2D" uid="uid://da220rsnqgrrv" path="res://assets/day_night/SkysAndClouds/Clouds 3/1.png" id="3_k08vf"]
+[ext_resource type="Texture2D" uid="uid://ck8762h1hy2cf" path="res://assets/island/background/additional_water.png" id="4_seqea"]
+[ext_resource type="PackedScene" uid="uid://bvvj4dsl6jbp8" path="res://levels/objects/water/water_reflect_big.tscn" id="5_kxyou"]
+[ext_resource type="PackedScene" uid="uid://us66wa7b4yfu" path="res://levels/objects/water/water_reflect_medium.tscn" id="6_y7cfa"]
+[ext_resource type="PackedScene" uid="uid://bertuencn41e7" path="res://levels/objects/water/water_reflect_small.tscn" id="7_gdnd1"]
+[ext_resource type="Texture2D" uid="uid://m5yds3bm8pou" path="res://assets/island/background/big_clouds.png" id="8_0kojk"]
+[ext_resource type="Texture2D" uid="uid://ci5tpl05cnmra" path="res://assets/island/background/small_cloud_1.png" id="9_76gim"]
+[ext_resource type="Texture2D" uid="uid://1t3pkyls8wyt" path="res://assets/island/background/small_cloud_2.png" id="10_qmvyt"]
+[ext_resource type="Texture2D" uid="uid://dcvs45slp2tv3" path="res://assets/island/background/small_cloud_3.png" id="11_b0qlw"]
+[ext_resource type="PackedScene" uid="uid://bnfbhm0egq6eb" path="res://levels/objects/tree/decorative_palm_tree_1.tscn" id="12_fxj1u"]
+
+[sub_resource type="GDScript" id="GDScript_bfafv"]
+resource_name = "ParallaxLayerCloud"
+script/source = "extends ParallaxLayer
+
+func _process(delta: float) -> void:
+	motion_offset.x -= delta*20
+"
+
+[sub_resource type="GDScript" id="GDScript_j4ikx"]
+resource_name = "ParallaxLayerSmallCloud"
+script/source = "extends ParallaxLayer
+
+@export var speed: float = 50.0  # pixels per second
+@export var reset_x: float = -3000  # move back after leaving screen
+@export var start_x: float = 3000   # start position on the right
+
+func _process(delta: float) -> void:
+	# Move the layer left
+	motion_offset.x -= speed * delta
+	
+	# Loop when layer reaches the reset position
+	if motion_offset.x < reset_x:
+		motion_offset.x += start_x
+"
+
+[node name="NightParallaxBackground" type="ParallaxBackground"]
+
+[node name="MoonParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(0, 40)
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(700, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="MoonParallaxLayer"]
+z_index = 5
+position = Vector2(322, 131)
+texture = ExtResource("1_vou31")
+
+[node name="SkyParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(700, 0)
+
+[node name="SkySprite2D" type="Sprite2D" parent="SkyParallaxLayer"]
+position = Vector2(278, 168)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("2_hllnw")
+
+[node name="SeaSkySprite2D" type="Sprite2D" parent="SkyParallaxLayer"]
+position = Vector2(-1, 57)
+scale = Vector2(2, 2)
+texture = ExtResource("3_k08vf")
+centered = false
+
+[node name="WaterSprite2D" type="Sprite2D" parent="SkyParallaxLayer"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+position = Vector2(378, 322)
+scale = Vector2(23.969, 5.969)
+texture = ExtResource("4_seqea")
+
+[node name="WaterParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.8)
+motion_mirroring = Vector2(650, 0)
+
+[node name="WaterReflectBig" parent="WaterParallaxLayer" instance=ExtResource("5_kxyou")]
+position = Vector2(438, 241)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectMedium" parent="WaterParallaxLayer" instance=ExtResource("6_y7cfa")]
+position = Vector2(145, 233)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectSmall" parent="WaterParallaxLayer" instance=ExtResource("7_gdnd1")]
+position = Vector2(676, 252)
+scale = Vector2(2, 2)
+
+[node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(510, 0)
+script = SubResource("GDScript_bfafv")
+
+[node name="BigClouds" type="Sprite2D" parent="ParallaxLayerBigCloud"]
+position = Vector2(0, 111)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("8_0kojk")
+centered = false
+
+[node name="ParallaxLayerSmallCloud1" type="ParallaxLayer" parent="."]
+visible = false
+position = Vector2(-2, -8)
+motion_scale = Vector2(0.001, 1)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="ParallaxLayerSmallCloud1"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("9_76gim")
+
+[node name="ParallaxLayerSmallCloud2" type="ParallaxLayer" parent="."]
+visible = false
+position = Vector2(19, -44)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="ParallaxLayerSmallCloud2"]
+position = Vector2(82, 131)
+texture = ExtResource("10_qmvyt")
+
+[node name="ParallaxLayerSmallCloud3" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="ParallaxLayerSmallCloud3"]
+position = Vector2(-170, 176)
+texture = ExtResource("11_b0qlw")
+
+[node name="TreeParallaxLayer" type="ParallaxLayer" parent="."]
+modulate = Color(0.385493, 0.385492, 0.385492, 0.772549)
+position = Vector2(4, -6)
+motion_scale = Vector2(0.8, 0.9)
+
+[node name="DecorativePalmTree1" parent="TreeParallaxLayer" instance=ExtResource("12_fxj1u")]
+position = Vector2(765, 283)
+
+[node name="DecorativePalmTree2" parent="TreeParallaxLayer" instance=ExtResource("12_fxj1u")]
+position = Vector2(316, 281)
+scale = Vector2(-1, 1)
+
+[node name="DecorativePalmTree3" parent="TreeParallaxLayer" instance=ExtResource("12_fxj1u")]
+position = Vector2(214, 286)

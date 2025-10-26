@@ -1,0 +1,257 @@
+[gd_scene load_steps=19 format=4 uid="uid://bks7qwxjmvjxu"]
+
+[ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/Player.tscn" id="2_dwsf3"]
+[ext_resource type="Texture2D" uid="uid://dcrnqve71d36p" path="res://assets/island/background/additional_sky.png" id="3_5usqu"]
+[ext_resource type="Texture2D" uid="uid://bqde0l4at7gv8" path="res://assets/island/background/bg_image.png" id="4_bfafv"]
+[ext_resource type="Texture2D" uid="uid://ck8762h1hy2cf" path="res://assets/island/background/additional_water.png" id="5_rltkt"]
+[ext_resource type="Texture2D" uid="uid://m5yds3bm8pou" path="res://assets/island/background/big_clouds.png" id="6_bfafv"]
+[ext_resource type="PackedScene" uid="uid://bvvj4dsl6jbp8" path="res://levels/objects/water/water_reflect_big.tscn" id="6_wxig3"]
+[ext_resource type="PackedScene" uid="uid://us66wa7b4yfu" path="res://levels/objects/water/water_reflect_medium.tscn" id="7_586f6"]
+[ext_resource type="Texture2D" uid="uid://ci5tpl05cnmra" path="res://assets/island/background/small_cloud_1.png" id="7_j4ikx"]
+[ext_resource type="PackedScene" uid="uid://bertuencn41e7" path="res://levels/objects/water/water_reflect_small.tscn" id="8_gi8ev"]
+[ext_resource type="Texture2D" uid="uid://1t3pkyls8wyt" path="res://assets/island/background/small_cloud_2.png" id="8_t1ot5"]
+[ext_resource type="Texture2D" uid="uid://dcvs45slp2tv3" path="res://assets/island/background/small_cloud_3.png" id="9_f47qk"]
+[ext_resource type="PackedScene" uid="uid://bnfbhm0egq6eb" path="res://levels/objects/tree/decorative_palm_tree_1.tscn" id="10_f47qk"]
+[ext_resource type="Texture2D" uid="uid://c1we0skf1h1t3" path="res://assets/day_night/SkysAndClouds/Clouds 3/2.png" id="14_e0w38"]
+[ext_resource type="Texture2D" uid="uid://64iyhjky5e57" path="res://assets/day_night/SkysAndClouds/Clouds 3/additional_sky.png" id="14_wrqy7"]
+[ext_resource type="Texture2D" uid="uid://da220rsnqgrrv" path="res://assets/day_night/SkysAndClouds/Clouds 3/1.png" id="15_e0w38"]
+
+[sub_resource type="GDScript" id="GDScript_bfafv"]
+resource_name = "ParallaxLayerCloud"
+script/source = "extends ParallaxLayer
+
+func _process(delta: float) -> void:
+	motion_offset.x -= delta*20
+"
+
+[sub_resource type="GDScript" id="GDScript_j4ikx"]
+resource_name = "ParallaxLayerSmallCloud"
+script/source = "extends ParallaxLayer
+
+@export var speed: float = 50.0  # pixels per second
+@export var reset_x: float = -3000  # move back after leaving screen
+@export var start_x: float = 3000   # start position on the right
+
+func _process(delta: float) -> void:
+	# Move the layer left
+	motion_offset.x -= speed * delta
+	
+	# Loop when layer reaches the reset position
+	if motion_offset.x < reset_x:
+		motion_offset.x += start_x
+"
+
+[node name="Stage" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(86, -34)
+color = Color(0.24596, 0.177168, 0.309235, 1)
+
+[node name="World" type="TileMapLayer" parent="."]
+position = Vector2(220, 68)
+tile_map_data = PackedByteArray("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")
+tile_set = ExtResource("1_33rtp")
+
+[node name="Player" parent="." instance=ExtResource("2_dwsf3")]
+position = Vector2(267, 289)
+
+[node name="DayParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="DayParallaxBackground"]
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(767, 0)
+
+[node name="SkySprite2D" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayer"]
+position = Vector2(278, 168)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("3_5usqu")
+
+[node name="SeaSkySprite2D" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayer"]
+position = Vector2(-1, 57)
+scale = Vector2(2, 2)
+texture = ExtResource("4_bfafv")
+centered = false
+
+[node name="WaterSprite2D" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayer"]
+position = Vector2(384.5, 404.5)
+scale = Vector2(23.969, 5.969)
+texture = ExtResource("5_rltkt")
+
+[node name="WaterReflectBig" parent="DayParallaxBackground/ParallaxLayer" instance=ExtResource("6_wxig3")]
+position = Vector2(288, 240)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectMedium" parent="DayParallaxBackground/ParallaxLayer" instance=ExtResource("7_586f6")]
+position = Vector2(541, 235)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectSmall" parent="DayParallaxBackground/ParallaxLayer" instance=ExtResource("8_gi8ev")]
+position = Vector2(94, 249)
+scale = Vector2(2, 2)
+
+[node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="DayParallaxBackground"]
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(510, 0)
+script = SubResource("GDScript_bfafv")
+
+[node name="BigClouds" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayerBigCloud"]
+position = Vector2(0, 111)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_bfafv")
+centered = false
+
+[node name="ParallaxLayerSmallCloud1" type="ParallaxLayer" parent="DayParallaxBackground"]
+position = Vector2(-2, -8)
+motion_scale = Vector2(0.001, 1)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayerSmallCloud1"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("7_j4ikx")
+
+[node name="ParallaxLayerSmallCloud2" type="ParallaxLayer" parent="DayParallaxBackground"]
+position = Vector2(19, -44)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayerSmallCloud2"]
+position = Vector2(82, 131)
+texture = ExtResource("8_t1ot5")
+
+[node name="ParallaxLayerSmallCloud3" type="ParallaxLayer" parent="DayParallaxBackground"]
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="DayParallaxBackground/ParallaxLayerSmallCloud3"]
+position = Vector2(-170, 176)
+texture = ExtResource("9_f47qk")
+
+[node name="TreeParallaxLayer" type="ParallaxLayer" parent="DayParallaxBackground"]
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(4, -6)
+motion_scale = Vector2(0.8, 0.9)
+
+[node name="DecorativePalmTree1" parent="DayParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(765, 283)
+
+[node name="DecorativePalmTree2" parent="DayParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(316, 281)
+scale = Vector2(-1, 1)
+
+[node name="DecorativePalmTree3" parent="DayParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(214, 286)
+
+[node name="NightParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="MoonParallaxLayer" type="ParallaxLayer" parent="NightParallaxBackground"]
+position = Vector2(0, 40)
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(700, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="NightParallaxBackground/MoonParallaxLayer"]
+z_index = 5
+position = Vector2(322, 131)
+texture = ExtResource("14_e0w38")
+
+[node name="SkyParallaxLayer" type="ParallaxLayer" parent="NightParallaxBackground"]
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(700, 0)
+
+[node name="SkySprite2D" type="Sprite2D" parent="NightParallaxBackground/SkyParallaxLayer"]
+position = Vector2(278, 168)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("14_wrqy7")
+
+[node name="SeaSkySprite2D" type="Sprite2D" parent="NightParallaxBackground/SkyParallaxLayer"]
+position = Vector2(-1, 57)
+scale = Vector2(2, 2)
+texture = ExtResource("15_e0w38")
+centered = false
+
+[node name="WaterSprite2D" type="Sprite2D" parent="NightParallaxBackground/SkyParallaxLayer"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+position = Vector2(378, 322)
+scale = Vector2(23.969, 5.969)
+texture = ExtResource("5_rltkt")
+
+[node name="WaterParallaxLayer" type="ParallaxLayer" parent="NightParallaxBackground"]
+motion_scale = Vector2(0.2, 0.8)
+motion_mirroring = Vector2(650, 0)
+
+[node name="WaterReflectBig" parent="NightParallaxBackground/WaterParallaxLayer" instance=ExtResource("6_wxig3")]
+position = Vector2(438, 241)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectMedium" parent="NightParallaxBackground/WaterParallaxLayer" instance=ExtResource("7_586f6")]
+position = Vector2(145, 233)
+scale = Vector2(2, 2)
+
+[node name="WaterReflectSmall" parent="NightParallaxBackground/WaterParallaxLayer" instance=ExtResource("8_gi8ev")]
+position = Vector2(676, 252)
+scale = Vector2(2, 2)
+
+[node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="NightParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.001, 0.8)
+motion_mirroring = Vector2(510, 0)
+script = SubResource("GDScript_bfafv")
+
+[node name="BigClouds" type="Sprite2D" parent="NightParallaxBackground/ParallaxLayerBigCloud"]
+position = Vector2(0, 111)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_bfafv")
+centered = false
+
+[node name="ParallaxLayerSmallCloud1" type="ParallaxLayer" parent="NightParallaxBackground"]
+visible = false
+position = Vector2(-2, -8)
+motion_scale = Vector2(0.001, 1)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="NightParallaxBackground/ParallaxLayerSmallCloud1"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("7_j4ikx")
+
+[node name="ParallaxLayerSmallCloud2" type="ParallaxLayer" parent="NightParallaxBackground"]
+visible = false
+position = Vector2(19, -44)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="NightParallaxBackground/ParallaxLayerSmallCloud2"]
+position = Vector2(82, 131)
+texture = ExtResource("8_t1ot5")
+
+[node name="ParallaxLayerSmallCloud3" type="ParallaxLayer" parent="NightParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="NightParallaxBackground/ParallaxLayerSmallCloud3"]
+position = Vector2(-170, 176)
+texture = ExtResource("9_f47qk")
+
+[node name="TreeParallaxLayer" type="ParallaxLayer" parent="NightParallaxBackground"]
+modulate = Color(0.385493, 0.385492, 0.385492, 0.772549)
+position = Vector2(4, -6)
+motion_scale = Vector2(0.8, 0.9)
+
+[node name="DecorativePalmTree1" parent="NightParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(765, 283)
+
+[node name="DecorativePalmTree2" parent="NightParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(316, 281)
+scale = Vector2(-1, 1)
+
+[node name="DecorativePalmTree3" parent="NightParallaxBackground/TreeParallaxLayer" instance=ExtResource("10_f47qk")]
+position = Vector2(214, 286)
