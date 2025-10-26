@@ -57,6 +57,9 @@ func invulnerable()->void:
 	invulnerable_timer.start()
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("switch_day_night"):
+		DayNightManager.switch_state()
+	
 	if invulnerable_timer.is_stopped():
 		is_invulnerable = false
 	if Input.is_action_just_pressed("attack"):

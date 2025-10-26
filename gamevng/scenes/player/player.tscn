@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=46 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
@@ -29,13 +29,14 @@
 [ext_resource type="Texture2D" uid="uid://d0jfmp24jrfcy" path="res://assets/foxy/fox_hat_blade/fox_run_3.png" id="17_bbmj2"]
 [ext_resource type="Texture2D" uid="uid://ce35c6mn7dcok" path="res://assets/foxy/fox_hat_blade/fox_run_4.png" id="18_kxw46"]
 [ext_resource type="Script" uid="uid://2kcb4amemhdj" path="res://scenes/player/states/hurt.gd" id="20_8ydkj"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="20_uniwh"]
-[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="21_3j4b4"]
+[ext_resource type="Script" path="res://scripts/hit_area_2d.gd" id="20_uniwh"]
+[ext_resource type="Script" path="res://scripts/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
-[ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="39_7obkq"]
+[ext_resource type="Script" path="res://scripts/node2d_factory.gd" id="39_7obkq"]
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
@@ -218,7 +219,6 @@ size = Vector2(10.75, 20.5)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_wodsf")
-metadata/_custom_type_script = "uid://w7xdmsdvf5vd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
@@ -227,6 +227,8 @@ shape = SubResource("CapsuleShape2D_oul6g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -61)
+drag_top_margin = 0.5
+drag_bottom_margin = 0.5
 
 [node name="Direction" type="Node2D" parent="."]
 
@@ -246,7 +248,6 @@ animation = &"attack"
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("21_3j4b4")
-metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
 position = Vector2(-1, -16)
@@ -296,3 +297,9 @@ script = ExtResource("26_6cv16")
 [node name="InvulnerableTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.744523, 0.271152, 0.0717807, 1)
+shadow_enabled = true
+texture = ExtResource("40_u3hyo")
+texture_scale = 0.8
