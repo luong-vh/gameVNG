@@ -61,6 +61,9 @@ func disable_check_player_in_sight() -> void:
 	if(detect_player_area != null):
 		detect_player_area.get_node("CollisionShape2D").disabled = true
 
+func despawn():
+	pass
+
 func _on_body_entered(_body: CharacterBody2D) -> void:
 	found_player = _body
 	_on_player_in_sight(_body.global_position)

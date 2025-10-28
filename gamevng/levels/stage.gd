@@ -1,5 +1,7 @@
 extends Node
 
+@export var default_day_night_state: DayNightManager.DayNightState
+
 func _enter_tree() -> void:
 	# Handle portal spawning first
 	GameManager.current_stage = self

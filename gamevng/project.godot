@@ -54,6 +54,11 @@ project/assembly_name="gameVNG"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[global_group]
+
+Player=""
+Enemy=""
+
 [input]
 
 dialogic_default_action={
