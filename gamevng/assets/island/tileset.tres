@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://gmsitsyww3ne"]
 
-[ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
+[ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/init_assets/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="3_fgag5"]
 [ext_resource type="PackedScene" uid="uid://ccufub3modpkh" path="res://levels/objects/tree/palm_tree_2.tscn" id="4_7a5rw"]

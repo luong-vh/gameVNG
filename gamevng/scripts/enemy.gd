@@ -14,6 +14,7 @@ func _ready() -> void:
 	_init_ray_cast()
 	_init_detect_player_area()
 	_init_hurt_area()
+	EnemyManager.register_enemy(self)
 	super._ready()
 	pass
 
