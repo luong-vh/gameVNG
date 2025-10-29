@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=3 uid="uid://bl6utmk1aha7e"]
+
+[ext_resource type="Script" uid="uid://dbgiyl0026ew0" path="res://scenes/enemies/barrel/barrel.gd" id="1_i7h58"]
+[ext_resource type="Texture2D" uid="uid://de0p6wfv2rc7g" path="res://assets/monsters/barrel/barrel_atk_01.png" id="2_4dri8"]
+[ext_resource type="Texture2D" uid="uid://2igv4kkux8c6" path="res://assets/monsters/barrel/barrel_atk_02.png" id="3_nl6lh"]
+[ext_resource type="Texture2D" uid="uid://lxyxy6hj6rja" path="res://assets/monsters/barrel/barrel_atk_03.png" id="4_2htbe"]
+[ext_resource type="Texture2D" uid="uid://c2c1sjpl4vgrq" path="res://assets/monsters/barrel/barrel_atk_04.png" id="5_mnaa3"]
+[ext_resource type="Texture2D" uid="uid://b564c7jpiwbh0" path="res://assets/monsters/barrel/barrel_atk_05.png" id="6_gxw43"]
+[ext_resource type="Texture2D" uid="uid://dfnk2rp7cs1vg" path="res://assets/monsters/barrel/barrel_01.png" id="7_rtqs6"]
+[ext_resource type="Texture2D" uid="uid://bwg8hpav3cy74" path="res://assets/monsters/barrel/barrel_02.png" id="8_2dm8y"]
+[ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="9_1looq"]
+[ext_resource type="PackedScene" uid="uid://3kmj4h1hyx1t" path="res://scenes/enemies/barrel/bullet.tscn" id="10_63lj3"]
+[ext_resource type="Script" uid="uid://bmtpgbas1bknb" path="res://scenes/enemies/barrel/barrel_states/idle.gd" id="11_of2bq"]
+[ext_resource type="Script" uid="uid://dk7uwwn10v2sc" path="res://scenes/enemies/barrel/red_attack.gd" id="12_i7h58"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpg65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4dri8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nl6lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2htbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mnaa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gxw43")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rtqs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2dm8y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsoae"]
+size = Vector2(21, 22)
+
+[node name="Red_Barrel" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_i7h58")
+metadata/_custom_type_script = "uid://s4xx82espxdt"
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
+modulate = Color(0.982825, 0, 0.0115265, 1)
+sprite_frames = SubResource("SpriteFrames_vpg65")
+animation = &"attack"
+frame_progress = 0.740867
+
+[node name="BulletFactory" type="Marker2D" parent="Direction"]
+position = Vector2(11, 2)
+script = ExtResource("9_1looq")
+product_packed_scene = ExtResource("10_63lj3")
+target_container_name = &"Bullet"
+
+[node name="Bullet" type="Node" parent="Direction/BulletFactory"]
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("11_of2bq")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Attack" type="Node" parent="States"]
+script = ExtResource("12_i7h58")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_nsoae")
