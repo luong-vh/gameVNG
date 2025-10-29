@@ -14,9 +14,12 @@ func _ready() -> void:
 	_init_ray_cast()
 	_init_detect_player_area()
 	_init_hurt_area()
+	_add_into_enemy_manager()
 	super._ready()
 	pass
 
+func _exit_tree() -> void:
+	_delete_from_enemy_manager()
 
 #init ray cast to check wall and fall
 func _init_ray_cast():
@@ -82,3 +85,19 @@ func _on_player_not_in_sight():
 
 func _take_damage_from_dir(_damage_dir: Vector2, _damage: float):
 	fsm.current_state.take_damage(_damage_dir, _damage)
+
+func change_to_day_behavior():
+	push_error("%s must implement 'change_to_day_behavior()'!" % self)
+	assert(false, "Abstract method called")
+
+func change_to_night_behavior():
+	push_error("%s must implement 'change_to_night_behavior()'!" % self)
+	assert(false, "Abstract method called")
+
+func _add_into_enemy_manager():
+	push_error("%s must implement '_add_into_enemy_manager()'!" % self)
+	assert(false, "Abstract method called")
+
+func _delete_from_enemy_manager():
+	push_error("%s must implement '_delete_from_enemy_manager()'!" % self)
+	assert(false, "Abstract method called")
