@@ -1,6 +1,7 @@
 extends PlayerState
 
 func _enter() -> void:
+	obj.jump_count = obj.max_jump_amount
 	#Change animation to run
 	obj.change_animation("run")
 	pass
