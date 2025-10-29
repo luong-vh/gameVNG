@@ -3,6 +3,7 @@ extends PlayerState
 ## Idle state for player character
 
 func _enter() -> void:
+	obj.jump_count = obj.max_jump_amount
 	obj.change_animation("idle")
 
 func _update(_delta: float) -> void:

@@ -8,7 +8,14 @@ func _enter() -> void:
 func _update(_delta: float) -> void:
 	#Control moving
 	var is_moving: bool = control_moving()
-	#If on floor change to idle if not moving and not jumping
-	if obj.is_on_floor() and not is_moving:
-		change_state(fsm.states.idle)
+	
+	var is_jumping = control_jump()
+	
+	if obj.is_near_wall() and not obj.is_on_floor():
+		change_state(fsm.states.wallcling)
+	
+	if obj.is_on_floor():
+		obj.jump_count = obj.max_jump_amount
+		if not is_moving and not is_jumping:
+			change_state(fsm.states.idle)
 	pass
