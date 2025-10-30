@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://cg6boeqvkapvi"]
+[gd_scene load_steps=12 format=4 uid="uid://cg6boeqvkapvi"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_d7xxl"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_tw7yl"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="3_5j4xa"]
 [ext_resource type="Material" uid="uid://chpym7klyx71s" path="res://assets/shaders/fog/fog_shader_material.tres" id="4_3y4se"]
-[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="5_bkwg0"]
+[ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="6_b82yb"]
+[ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="7_w747j"]
 
 [sub_resource type="GDScript" id="GDScript_3y4se"]
 script/source = "extends Sprite2D
@@ -145,6 +146,7 @@ metadata/_custom_type_script = "uid://btaxxiktfmkyr"
 position = Vector2(208, 168)
 
 [node name="LightMaskDisplay" type="Sprite2D" parent="Camera2D" node_paths=PackedStringArray("light_viewport")]
+visible = false
 position = Vector2(-238, -465)
 script = SubResource("GDScript_3y4se")
 light_viewport = NodePath("../../SubViewportContainer/LightCaptureViewport")
@@ -181,16 +183,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_3y4se")
+expand_mode = 5
 script = SubResource("GDScript_bkwg0")
 light_capture = NodePath("../../SubViewportContainer/LightCaptureViewport")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(94, 115)
-texture = ExtResource("5_bkwg0")
-texture_scale = 0.5
+[node name="NightParallaxBackground" parent="." instance=ExtResource("7_w747j")]
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(358, 123)
-energy = 0.5
-texture = ExtResource("5_bkwg0")
-texture_scale = 0.8
+[node name="PalmTree1" parent="." instance=ExtResource("6_b82yb")]
+position = Vector2(155, 275)
+
+[node name="PalmTree2" parent="." instance=ExtResource("6_b82yb")]
+position = Vector2(335, 275)

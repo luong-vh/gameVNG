@@ -39,6 +39,7 @@ shader_parameter/location_fade = 0.8
 shader_parameter/thickness = 2.0
 shader_parameter/light_clear_intensity = 0.8
 shader_parameter/light_falloff = 2.0
+shader_parameter/light_mask_offset = Vector2(0, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_m15xn")
