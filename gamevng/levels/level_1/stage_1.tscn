@@ -1,17 +1,51 @@
-[gd_scene load_steps=7 format=4 uid="uid://bks7qwxjmvjxu"]
+[gd_scene load_steps=13 format=4 uid="uid://bks7qwxjmvjxu"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_m15xn"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="2_dwsf3"]
+[ext_resource type="PackedScene" uid="uid://skb6e3wnqm5n" path="res://levels/shaders/fog_texture_rect.tscn" id="2_l0tc7"]
+[ext_resource type="Shader" uid="uid://cp84hwbmkaxt6" path="res://assets/shaders/fog/fog.gdshader" id="3_7xf2g"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="3_ux4o0"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="4_m15xn"]
 [ext_resource type="PackedScene" uid="uid://cbukj8uhircrx" path="res://levels/objects/portal/day_night_portal.tscn" id="6_8s8sm"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="7_cpvyx"]
+[ext_resource type="Script" uid="uid://tjw5m5i1hxsd" path="res://scripts/shaders/LightCaptureViewport.gd" id="10_7xf2g"]
+
+[sub_resource type="GDScript" id="GDScript_7xf2g"]
+resource_name = "light_mask"
+script/source = "extends Sprite2D
+@export var light_viewport: SubViewport
+@export var opacity: float = 0.5
+
+func _ready():
+	# Reparent to camera if not already
+	var camera = get_viewport().get_camera_2d()
+	if camera and get_parent() != camera:
+		reparent(camera)
+	
+	centered = true
+	position = Vector2.ZERO  # Relative to camera
+	modulate.a = opacity
+
+func _physics_process(delta: float) -> void:
+	texture = light_viewport.get_texture()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmkvs"]
+resource_local_to_scene = true
+shader = ExtResource("3_7xf2g")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/location_fade = 0.8
+shader_parameter/thickness = 2.0
+shader_parameter/light_clear_intensity = 0.8
+shader_parameter/light_falloff = 2.0
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_m15xn")
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
+color = Color(0.247059, 0.176471, 0.309804, 1)
 
 [node name="World" type="TileMapLayer" parent="."]
 position = Vector2(220, 68)
@@ -22,11 +56,49 @@ tile_set = ExtResource("1_33rtp")
 z_index = 2
 position = Vector2(267, 289)
 max_jump_amount = 2
+movement_speed = 100.0
 
 [node name="DayParallaxBackground" parent="." instance=ExtResource("3_ux4o0")]
+visible = false
 
 [node name="NightParallaxBackground" parent="." instance=ExtResource("4_m15xn")]
 visible = false
 
 [node name="DayNightPortal" parent="." instance=ExtResource("6_8s8sm")]
 position = Vector2(140, 258)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(246, 232)
+
+[node name="TestImage" type="Sprite2D" parent="." node_paths=PackedStringArray("light_viewport")]
+visible = false
+light_mask = 3
+position = Vector2(828, 178)
+script = SubResource("GDScript_7xf2g")
+light_viewport = NodePath("../CanvasLayer/SubViewportContainer/LightCaptureViewport")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(191, 115)
+texture = ExtResource("7_cpvyx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FogTextureRect" parent="CanvasLayer" node_paths=PackedStringArray("light_capture") instance=ExtResource("2_l0tc7")]
+material = SubResource("ShaderMaterial_nmkvs")
+offset_left = 1.0
+offset_top = 0.0
+offset_right = 1.0
+offset_bottom = 0.0
+expand_mode = 1
+light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LightCaptureViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 0
+script = ExtResource("10_7xf2g")
+metadata/_custom_type_script = "uid://tjw5m5i1hxsd"

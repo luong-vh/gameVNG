@@ -1,4 +1,5 @@
 extends Node
+class_name Stage
 
 @export var default_day_night_state: DayNightManager.DayNightState
 
