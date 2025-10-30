@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://cg6boeqvkapvi"]
+[gd_scene load_steps=9 format=4 uid="uid://cg6boeqvkapvi"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_d7xxl"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_tw7yl"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="3_5j4xa"]
-[ext_resource type="PackedScene" uid="uid://dy5n8ltemy2s6" path="res://levels/shaders/fog/fog_overlay.tscn" id="4_b82yb"]
-[ext_resource type="Script" uid="uid://bus13p431f8ht" path="res://levels/shaders/light_capture_viewport.gd" id="5_w747j"]
+[ext_resource type="PackedScene" uid="uid://dy5n8ltemy2s6" path="res://shaders/fog/fog_overlay.tscn" id="4_b82yb"]
+[ext_resource type="Script" uid="uid://bus13p431f8ht" path="res://shaders/light_capture_viewport.gd" id="5_w747j"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="6_b82yb"]
+[ext_resource type="PackedScene" uid="uid://c7ofbg8xuykwo" path="res://shaders/darkness/darkness_overlay.tscn" id="6_eiv20"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="7_w747j"]
 
 [node name="Test3" type="Node"]
@@ -26,6 +27,7 @@ position = Vector2(220, 279)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FogOverlay" parent="CanvasLayer" node_paths=PackedStringArray("camera", "light_capture") instance=ExtResource("4_b82yb")]
+visible = false
 camera = NodePath("../../Camera2D")
 light_capture = NodePath("../LightCaptureViewport")
 
@@ -33,6 +35,10 @@ light_capture = NodePath("../LightCaptureViewport")
 handle_input_locally = false
 render_target_update_mode = 0
 script = ExtResource("5_w747j")
+
+[node name="DarknessOverlay" parent="CanvasLayer" node_paths=PackedStringArray("camera", "light_capture") instance=ExtResource("6_eiv20")]
+camera = NodePath("../../Camera2D")
+light_capture = NodePath("../LightCaptureViewport")
 
 [node name="NightParallaxBackground" parent="." instance=ExtResource("7_w747j")]
 

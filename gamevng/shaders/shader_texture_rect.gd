@@ -7,4 +7,4 @@ func _process(delta: float) -> void:
 		var light_texture = light_capture.get_texture()
 		material.set_shader_parameter("light_mask", light_texture)
 	else:
-		push_warning("Fog: No LightCaptureViewport found!")
+		push_warning("No LightCaptureViewport found!")

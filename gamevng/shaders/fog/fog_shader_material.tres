@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://chpym7klyx71s"]
 
-[ext_resource type="Shader" uid="uid://cp84hwbmkaxt6" path="res://assets/shaders/fog/fog.gdshader" id="1_6d4la"]
+[ext_resource type="Shader" uid="uid://cp84hwbmkaxt6" path="res://shaders/light_shader.gdshader" id="1_6d4la"]
 
 [resource]
 resource_local_to_scene = true

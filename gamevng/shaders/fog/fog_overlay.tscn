@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dy5n8ltemy2s6"]
 
-[ext_resource type="Material" uid="uid://chpym7klyx71s" path="res://assets/shaders/fog/fog_shader_material.tres" id="1_emnfd"]
-[ext_resource type="Script" uid="uid://cv78c5m0r5ovh" path="res://levels/shaders/fog/fog_control.gd" id="1_fkdpv"]
-[ext_resource type="Script" uid="uid://d22hlpd1iyg1h" path="res://levels/shaders/fog/fog_texture_rect.gd" id="2_fkdpv"]
+[ext_resource type="Material" uid="uid://chpym7klyx71s" path="res://shaders/fog/fog_shader_material.tres" id="1_emnfd"]
+[ext_resource type="Script" uid="uid://cv78c5m0r5ovh" path="res://shaders/texture_control.gd" id="1_fkdpv"]
+[ext_resource type="Script" uid="uid://d22hlpd1iyg1h" path="res://shaders/shader_texture_rect.gd" id="2_fkdpv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5j4xa"]
 noise_type = 4
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fkdpv")
 
-[node name="FogTextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = ExtResource("1_emnfd")
 layout_mode = 1

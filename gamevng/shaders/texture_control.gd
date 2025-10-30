@@ -14,7 +14,7 @@ func _ready() -> void:
 	if not light_capture:
 		push_warning("Light Capture Viewport have not been assign")
 	
-	fog_texture = $FogTextureRect
+	fog_texture = $TextureRect
 	
 	fog_texture.light_capture = light_capture
 	
