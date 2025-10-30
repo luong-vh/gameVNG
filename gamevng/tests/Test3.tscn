@@ -1,142 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://cg6boeqvkapvi"]
+[gd_scene load_steps=8 format=4 uid="uid://cg6boeqvkapvi"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_d7xxl"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_tw7yl"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="3_5j4xa"]
-[ext_resource type="Material" uid="uid://chpym7klyx71s" path="res://assets/shaders/fog/fog_shader_material.tres" id="4_3y4se"]
+[ext_resource type="PackedScene" uid="uid://dy5n8ltemy2s6" path="res://levels/shaders/fog/fog_overlay.tscn" id="4_b82yb"]
+[ext_resource type="Script" uid="uid://bus13p431f8ht" path="res://levels/shaders/light_capture_viewport.gd" id="5_w747j"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="6_b82yb"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="7_w747j"]
-
-[sub_resource type="GDScript" id="GDScript_3y4se"]
-script/source = "extends Sprite2D
-@export var light_viewport: SubViewport
-@export var opacity: float = 0.5
-
-func _ready():
-	# Reparent to camera if not already
-	var camera = get_viewport().get_camera_2d()
-	if camera and get_parent() != camera:
-		reparent(camera)
-	
-	centered = true
-	position = Vector2.ZERO  # Relative to camera
-	modulate.a = opacity
-
-func _physics_process(delta: float) -> void:
-	texture = light_viewport.get_texture()
-"
-
-[sub_resource type="GDScript" id="GDScript_5j4xa"]
-script/source = "extends SubViewport
-@export var target_scene: Stage  # assign \"World\" here
-@export var follow_camera: Camera2D  # assign main Camera2D
-
-# Editable light circle parameters
-@export var circle_size: int = 512
-@export var falloff: float = 4.0
-@export var brightness: float = 1.0
-
-var cam: Camera2D
-var light_circles: Array = []
-
-func _ready():
-	size = get_viewport().size
-	render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	
-	# Black background
-	var bg := ColorRect.new()
-	bg.color = Color.BLACK
-	bg.size = size
-	add_child(bg)
-	
-	# Camera
-	cam = Camera2D.new()
-	add_child(cam)
-	cam.make_current()
-	
-	if follow_camera:
-		var remote := RemoteTransform2D.new()
-		remote.remote_path = cam.get_path()
-		follow_camera.add_child(remote)
-	
-	# Find ALL lights recursively
-	if target_scene:
-		var all_lights = get_all_lights(target_scene)
-		print(\"Found \", all_lights.size(), \" lights\")
-		for light in all_lights:
-			var circle = create_light_circle(light)
-			add_child(circle)
-			light_circles.append({\"sprite\": circle, \"light\": light})
-
-func get_all_lights(node: Node) -> Array[Light2D]:
-	var lights: Array[Light2D] = []
-	
-	if node is Light2D and node.enabled and node.visible:
-		lights.append(node)
-	
-	for child in node.get_children():
-		lights.append_array(get_all_lights(child))
-	
-	return lights
-
-func create_light_circle(light: PointLight2D) -> Sprite2D:
-	var circle := Sprite2D.new()
-	
-	# Create a radial gradient texture
-	var img := Image.create(512, 512, false, Image.FORMAT_RGBA8)
-	var center := Vector2(256, 256)
-	
-	for x in range(512):
-		for y in range(512):
-			var dist = Vector2(x, y).distance_to(center)
-			var max_dist = 256.0
-			
-			var intensity = clamp(1.0 - (dist / max_dist), 0.0, 1.0)
-			intensity = pow(intensity, 2.0)
-			
-			var alpha = intensity * light.energy
-			img.set_pixel(x, y, Color(1, 1, 1, alpha))
-	
-	circle.texture = ImageTexture.create_from_image(img)
-	circle.position = light.global_position
-	
-	# Use light's actual texture scale directly
-	circle.scale = Vector2.ONE * light.texture_scale
-	
-	return circle
-
-func _process(delta: float) -> void:
-	# Update circle positions and properties
-	for item in light_circles:
-		item[\"sprite\"].position = item[\"light\"].global_position
-		item[\"sprite\"].scale = Vector2.ONE * item[\"light\"].texture_scale * 200.0 / (circle_size / 2.0)
-		item[\"sprite\"].modulate.a = clamp(item[\"light\"].energy * brightness, 0.0, 1.0)
-		item[\"sprite\"].visible = item[\"light\"].enabled and item[\"light\"].visible
-"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5j4xa"]
-noise_type = 4
-seed = 1
-frequency = 0.0168
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3y4se"]
-seamless = true
-normalize = false
-noise = SubResource("FastNoiseLite_5j4xa")
-
-[sub_resource type="GDScript" id="GDScript_bkwg0"]
-resource_name = "fog_texture"
-script/source = "extends TextureRect
-
-@export var light_capture: SubViewport
-
-func _process(delta: float) -> void:
-	if light_capture:
-		var light_texture = light_capture.get_texture()
-		material.set_shader_parameter(\"light_mask\", light_texture)
-	else:
-		push_warning(\"Fog: No LightCaptureViewport found!\")
-"
 
 [node name="Test3" type="Node"]
 script = ExtResource("1_tw7yl")
@@ -145,47 +15,24 @@ metadata/_custom_type_script = "uid://btaxxiktfmkyr"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(208, 168)
 
-[node name="LightMaskDisplay" type="Sprite2D" parent="Camera2D" node_paths=PackedStringArray("light_viewport")]
-visible = false
-position = Vector2(-238, -465)
-script = SubResource("GDScript_3y4se")
-light_viewport = NodePath("../../SubViewportContainer/LightCaptureViewport")
-
 [node name="World" type="TileMapLayer" parent="."]
 position = Vector2(8, 2)
 tile_map_data = PackedByteArray("AAAOAAcAAAABAAEAAAAOAAgAAAABAAEAAAANAAgAAAAAAAEAAAANAAcAAAAAAAEAAAAOAAMAAAABAAEAAAANAAMAAAAAAAEAAAAOAAYAAAABAAEAAAAOAAUAAAABAAEAAAAOAAQAAAABAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAANAAYAAAAAAAEAAAAAAAkAAAABAAQAAAABAAkAAAABAAQAAAACAAkAAAABAAQAAAADAAkAAAABAAQAAAAEAAkAAAABAAQAAAAFAAkAAAABAAQAAAAGAAkAAAABAAQAAAAHAAkAAAABAAQAAAAIAAkAAAABAAQAAAAJAAkAAAABAAQAAAAKAAkAAAABAAQAAAALAAkAAAABAAQAAAAMAAkAAAABAAQAAAANAAkAAAAKAAQAAAAOAAkAAAABAAIAAAAPAAkAAAACAAIAAAAPAAgAAAACAAEAAAAPAAcAAAACAAEAAAAPAAYAAAACAAEAAAAPAAUAAAACAAEAAAAPAAQAAAACAAEAAAAOAAIAAAABAAEAAAAPAAIAAAACAAEAAAAPAAMAAAACAAEAAAAPAAEAAAACAAEAAAAPAAAAAAACAAAAAAAOAAAAAAABAAAAAAANAAAAAAAKAAMAAAAMAAAAAAABAAQAAAALAAAAAAABAAQAAAAKAAAAAAABAAQAAAAJAAAAAAABAAQAAAAIAAAAAAABAAQAAAAHAAAAAAABAAQAAAAGAAAAAAABAAQAAAAFAAAAAAABAAQAAAAEAAAAAAABAAQAAAADAAAAAAABAAQAAAACAAAAAAABAAQAAAABAAAAAAABAAQAAAAAAAAAAAABAAQAAAD//wAAAAAJAAMAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAEAAAD+/wIAAAAAAAEAAAD+/wMAAAAAAAEAAAD+/wQAAAAAAAEAAAD+/wUAAAAAAAEAAAD+/wYAAAAAAAEAAAD+/wcAAAAAAAEAAAD+/wgAAAAAAAEAAAD+/wkAAAAAAAIAAAD//wkAAAAJAAQAAAAOAAEAAAABAAEAAAANAAIAAAAAAAEAAAANAAEAAAAAAAEAAAD//wgAAAACAAEAAAD//wcAAAACAAEAAAD//wYAAAACAAEAAAD//wUAAAACAAEAAAD//wQAAAACAAEAAAD//wMAAAACAAEAAAD//wIAAAACAAEAAAD//wEAAAACAAEAAAA=")
 tile_set = ExtResource("1_d7xxl")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="LightCaptureViewport" type="SubViewport" parent="SubViewportContainer" node_paths=PackedStringArray("target_scene", "follow_camera")]
-handle_input_locally = false
-render_target_update_mode = 0
-script = SubResource("GDScript_5j4xa")
-target_scene = NodePath("../..")
-follow_camera = NodePath("../../Camera2D")
-circle_size = 1000
 
 [node name="Player" parent="." instance=ExtResource("3_5j4xa")]
 position = Vector2(220, 279)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="FogTextureRect" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("light_capture")]
-texture_repeat = 2
-material = ExtResource("4_3y4se")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("NoiseTexture2D_3y4se")
-expand_mode = 5
-script = SubResource("GDScript_bkwg0")
-light_capture = NodePath("../../SubViewportContainer/LightCaptureViewport")
+[node name="FogOverlay" parent="CanvasLayer" node_paths=PackedStringArray("camera", "light_capture") instance=ExtResource("4_b82yb")]
+camera = NodePath("../../Camera2D")
+light_capture = NodePath("../LightCaptureViewport")
+
+[node name="LightCaptureViewport" type="SubViewport" parent="CanvasLayer"]
+handle_input_locally = false
+render_target_update_mode = 0
+script = ExtResource("5_w747j")
 
 [node name="NightParallaxBackground" parent="." instance=ExtResource("7_w747j")]
 

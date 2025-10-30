@@ -332,4 +332,4 @@ light_mask = 2
 color = Color(0.429824, 0.206476, 0.0871724, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
-texture_scale = 2.8
+texture_scale = 1.5

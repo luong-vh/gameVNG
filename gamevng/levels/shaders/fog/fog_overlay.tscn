@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy5n8ltemy2s6"]
+
+[ext_resource type="Material" uid="uid://chpym7klyx71s" path="res://assets/shaders/fog/fog_shader_material.tres" id="1_emnfd"]
+[ext_resource type="Script" uid="uid://cv78c5m0r5ovh" path="res://levels/shaders/fog/fog_control.gd" id="1_fkdpv"]
+[ext_resource type="Script" uid="uid://d22hlpd1iyg1h" path="res://levels/shaders/fog/fog_texture_rect.gd" id="2_fkdpv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5j4xa"]
+noise_type = 4
+seed = 1
+frequency = 0.0168
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3y4se"]
+seamless = true
+normalize = false
+noise = SubResource("FastNoiseLite_5j4xa")
+
+[node name="FogOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fkdpv")
+
+[node name="FogTextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = ExtResource("1_emnfd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -105.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_3y4se")
+expand_mode = 5
+script = ExtResource("2_fkdpv")
