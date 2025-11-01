@@ -255,13 +255,13 @@ drag_bottom_margin = 0.5
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_wva7c")
-animation = &"wall_cling"
+animation = &"dead"
 
 [node name="BladeAnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"wall_cling"
+animation = &"dead"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 2
@@ -273,7 +273,8 @@ position = Vector2(-1, -16)
 shape = SubResource("CapsuleShape2D_yj68g")
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_mask = 13
+collision_layer = 2
+collision_mask = 16
 script = ExtResource("20_uniwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
