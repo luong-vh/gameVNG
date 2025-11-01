@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbv8fk33ttryo" path="res://scenes/enemies/barrel/bullet.gd" id="1_btuxj"]
 [ext_resource type="Texture2D" uid="uid://bh8lwuu75mk5h" path="res://assets/monsters/barrel/barrel_bullet.png" id="1_hqm2c"]
-[ext_resource type="Script" uid="uid://blaq187q37lgy" path="res://scripts/hit_area_2d.gd" id="2_btuxj"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="2_btuxj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8ymv"]
 radius = 4.0
@@ -11,17 +11,16 @@ radius = 4.0
 radius = 4.0
 
 [node name="Bullet" type="RigidBody2D"]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_btuxj")
 
 [node name="HitArea2D" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 3
 script = ExtResource("2_btuxj")
 damage = 3
-metadata/_custom_type_script = "uid://blaq187q37lgy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
 position = Vector2(1, 1)

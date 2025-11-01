@@ -8,6 +8,7 @@ var down_ray_cast: RayCast2D;
 
 @export var detection_range: float = 150
 var detect_player_ray: RayCast2D;
+
 # detect player area
 var detect_player_area: Area2D;
 var found_player: Player = null
