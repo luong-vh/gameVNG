@@ -23,6 +23,7 @@ func get_all_enemies() -> Array:
 	for type_name in enemies_by_type.keys():
 		all += enemies_by_type[type_name]
 	return all
+	
 func _day_night_changed(new_state):
 	if new_state == DayNightManager.DayNightState.DAY:
 		for type_name in enemies_by_type.keys():
