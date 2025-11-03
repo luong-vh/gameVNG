@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cse8m3ao6w5ao"]
+[gd_scene load_steps=19 format=4 uid="uid://cse8m3ao6w5ao"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_1f3o5"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="1_w3aqi"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="14_n7xbj"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="15_yvf08"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="16_1bkwy"]
+[ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="17_m1svg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
 size = Vector2(84, 14)
@@ -95,3 +96,6 @@ position = Vector2(120, 68)
 
 [node name="Starfish" parent="." instance=ExtResource("16_1bkwy")]
 position = Vector2(150, 229)
+
+[node name="Barrel" parent="." instance=ExtResource("17_m1svg")]
+position = Vector2(15, 230)
