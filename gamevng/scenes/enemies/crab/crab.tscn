@@ -58,7 +58,7 @@ size = Vector2(43, 27)
 size = Vector2(40, 27)
 
 [node name="Crab" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("1_v3jfl")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -73,8 +73,8 @@ sprite_frames = SubResource("SpriteFrames_tgm84")
 animation = &"dead"
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("5_v3jfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]

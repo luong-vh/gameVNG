@@ -87,7 +87,7 @@ radius = 14.0
 height = 32.0
 
 [node name="Starfish" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("1_wmhok")
 movement_speed = 50.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
@@ -119,8 +119,8 @@ position = Vector2(15, 5)
 target_position = Vector2(0, 18)
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_layer = 8
-collision_mask = 6
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("7_0cqwv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
@@ -130,7 +130,7 @@ shape = SubResource("CapsuleShape2D_aatoi")
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("14_wmhok")
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
