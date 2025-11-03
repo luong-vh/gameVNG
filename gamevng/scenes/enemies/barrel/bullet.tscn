@@ -12,13 +12,13 @@ radius = 4.0
 
 [node name="Bullet" type="RigidBody2D"]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 5
 gravity_scale = 0.0
 script = ExtResource("1_btuxj")
 
 [node name="HitArea2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("2_btuxj")
 damage = 3
 

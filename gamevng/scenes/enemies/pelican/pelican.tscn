@@ -51,7 +51,7 @@ animations = [{
 size = Vector2(21, 22)
 
 [node name="Pelican" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 8
 script = ExtResource("1_2wr8p")
 movement_speed = 10.0
 gravity = 0.0
