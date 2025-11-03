@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjhvpst8uvjab"]
+[gd_scene load_steps=16 format=3 uid="uid://bl6utmk1aha7e"]
 
 [ext_resource type="Script" uid="uid://dbgiyl0026ew0" path="res://scenes/enemies/barrel/barrel.gd" id="1_t8iir"]
 [ext_resource type="Texture2D" uid="uid://de0p6wfv2rc7g" path="res://assets/monsters/barrel/barrel_atk_01.png" id="2_pdnpt"]
@@ -11,7 +11,8 @@
 [ext_resource type="Script" uid="uid://bmtpgbas1bknb" path="res://scenes/enemies/barrel/barrel_states/idle.gd" id="9_sq6do"]
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="9_td13d"]
 [ext_resource type="PackedScene" uid="uid://3kmj4h1hyx1t" path="res://scenes/enemies/barrel/bullet.tscn" id="10_ac5fs"]
-[ext_resource type="Script" uid="uid://c1nkorhxjkfuc" path="res://scenes/enemies/barrel/barrel_states/attack.gd" id="10_bh1st"]
+[ext_resource type="Script" uid="uid://c1nkorhxjkfuc" path="res://scenes/enemies/barrel/barrel_states/day_attack.gd" id="10_bh1st"]
+[ext_resource type="Script" uid="uid://dk7uwwn10v2sc" path="res://scenes/enemies/barrel/barrel_states/night_attack.gd" id="12_td13d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vpg65"]
 animations = [{
@@ -51,7 +52,7 @@ animations = [{
 size = Vector2(21, 22)
 
 [node name="Barrel" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 0
 script = ExtResource("1_t8iir")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -60,13 +61,15 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_vpg65")
 animation = &"attack"
-frame_progress = 0.762269
+frame_progress = 0.0260101
 
 [node name="BulletFactory" type="Marker2D" parent="Direction"]
 position = Vector2(11, 2)
 script = ExtResource("9_td13d")
 product_packed_scene = ExtResource("10_ac5fs")
-target_container_name = &"Bullets"
+target_container_name = &"Bullet"
+
+[node name="Bullet" type="Node" parent="Direction/BulletFactory"]
 
 [node name="States" type="Node" parent="."]
 
@@ -74,7 +77,11 @@ target_container_name = &"Bullets"
 script = ExtResource("9_sq6do")
 metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
-[node name="Attack" type="Node" parent="States"]
+[node name="Night_Attack" type="Node" parent="States"]
+script = ExtResource("12_td13d")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Day_Attack" type="Node" parent="States"]
 script = ExtResource("10_bh1st")
 metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 

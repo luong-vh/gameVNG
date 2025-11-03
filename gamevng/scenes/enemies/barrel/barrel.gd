@@ -8,6 +8,10 @@ const type ="BARREL"
 @export var bullet_speed : float = 300
 @onready var bullet_factory = $Direction/BulletFactory
 
+@export var day_color = Color(1,1,1,1)
+@export var night_color = Color(1,0,0,1)
+var behavior ="DAY"
+
 func _ready() -> void:
 	super._ready()
 	fsm = FSM.new(self, $States, $States/Idle)
@@ -25,8 +29,11 @@ func _delete_from_enemy_manager():
 
 func change_to_day_behavior():
 	print("[%s] Changed behavior to DAY" %self)
-	#Todo: Implememt logic to change behavior
-
+	behavior = "DAY"
+	$Direction/AnimatedSprite2D.modulate = day_color
+	fsm.change_state(fsm.states.idle)
 func change_to_night_behavior():
 	print("[%s] Changed behavior to Night" %self)
-	#Todo: Implememt logic to change behavior
+	behavior = "NIGHT"
+	$Direction/AnimatedSprite2D.modulate = night_color
+	fsm.change_state(fsm.states.idle)
