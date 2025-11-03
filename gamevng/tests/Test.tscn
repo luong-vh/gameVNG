@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cse8m3ao6w5ao"]
+[gd_scene load_steps=21 format=4 uid="uid://cse8m3ao6w5ao"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_1f3o5"]
 [ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="1_w3aqi"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="15_yvf08"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="16_1bkwy"]
 [ext_resource type="PackedScene" uid="uid://bxvc68rg33rgc" path="res://scenes/puzzle/pressure_plate/pressure_plate.tscn" id="17_m1svg"]
+[ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/puzzle/spider/spider.tscn" id="18_lyvmt"]
 [ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
@@ -35,7 +36,7 @@ position = Vector2(836, 246)
 target_stage = "uid://cse8m3ao6w5ao"
 
 [node name="World" type="TileMapLayer" parent="."]
-position = Vector2(14, -10)
+position = Vector2(-22, -21)
 tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAPAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAAHAAcABAAAAAAAAQA=")
 tile_set = ExtResource("3_pfwq7")
 
@@ -56,7 +57,7 @@ position = Vector2(-59, -78)
 [node name="Npcs" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Npcs" instance=ExtResource("7_1f3o5")]
-position = Vector2(336, 181)
+position = Vector2(305, 171)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -99,7 +100,14 @@ position = Vector2(120, 68)
 position = Vector2(150, 229)
 
 [node name="PressurePlate" parent="." instance=ExtResource("17_m1svg")]
-position = Vector2(401, 178)
+position = Vector2(401, 166)
+
+[node name="Spider" parent="." instance=ExtResource("18_lyvmt")]
+position = Vector2(891, 132)
+
+[node name="Spider2" parent="." instance=ExtResource("18_lyvmt")]
+position = Vector2(827, -55)
 
 [node name="Seesaw" parent="." instance=ExtResource("18_u76d5")]
-position = Vector2(705, 229)
+position = Vector2(723, 213)
+max_rotation_angle = 20.0

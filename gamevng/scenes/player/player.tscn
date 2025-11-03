@@ -234,10 +234,12 @@ size = Vector2(10.75, 20.5)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-collision_mask = 17
+collision_mask = 41
 script = ExtResource("1_wodsf")
 wall_friction = 500.0
 wall_slide_speed = 100.0
+max_jump_amount = 2
+max_health = 100000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
@@ -264,7 +266,7 @@ sprite_frames = SubResource("SpriteFrames_ge24q")
 animation = &"dead"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("21_3j4b4")
 
@@ -273,7 +275,7 @@ position = Vector2(-1, -16)
 shape = SubResource("CapsuleShape2D_yj68g")
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 16
 script = ExtResource("20_uniwh")
 

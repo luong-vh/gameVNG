@@ -73,7 +73,7 @@ sprite_frames = SubResource("SpriteFrames_tgm84")
 animation = &"dead"
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_v3jfl")
 
