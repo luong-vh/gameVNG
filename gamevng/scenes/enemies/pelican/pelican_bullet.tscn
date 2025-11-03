@@ -10,12 +10,12 @@
 
 [node name="Pelican_Bullet" type="RigidBody2D"]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("1_ox40g")
 
 [node name="HitArea2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("2_k6etb")
 damage = 3
 

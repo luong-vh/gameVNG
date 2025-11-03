@@ -6,4 +6,7 @@ func _enter()->void:
 	timer = 1.5
 func _update(delta: float)->void:
 	if update_timer(delta):
-		change_state(fsm.states.attack)
+		if obj.behavior == "DAY":
+			change_state(fsm.states.day_attack)
+		else:
+			change_state(fsm.states.night_attack)
