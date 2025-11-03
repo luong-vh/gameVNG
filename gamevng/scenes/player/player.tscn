@@ -37,7 +37,7 @@
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
 [ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
-[ext_resource type="Texture2D" uid="uid://cwhw5ainaheeg" path="res://assets/day_night/light.png" id="40_u3hyo"]
+[ext_resource type="Texture2D" uid="uid://dyy3sqb26dhm2" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
@@ -232,11 +232,14 @@ height = 34.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(10.75, 20.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
+collision_mask = 41
 script = ExtResource("1_wodsf")
 wall_friction = 500.0
 wall_slide_speed = 100.0
+max_jump_amount = 2
+max_health = 100000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
