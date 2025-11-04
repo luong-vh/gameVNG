@@ -336,7 +336,6 @@ light_mask = 2
 color = Color(0.429824, 0.206476, 0.0871724, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
-
 texture_scale = 1.5
 
 [node name="CheckLeft" type="RayCast2D" parent="."]
@@ -348,4 +347,3 @@ collision_mask = 64
 position = Vector2(0, -12)
 target_position = Vector2(15, 0)
 collision_mask = 64
-
