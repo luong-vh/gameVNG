@@ -247,7 +247,9 @@ position = Vector2(-1, -14)
 shape = SubResource("CapsuleShape2D_oul6g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(1, -61)
+enabled = false
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
 
@@ -330,10 +332,12 @@ wait_time = 0.3
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.744523, 0.271152, 0.0717807, 1)
+light_mask = 2
+color = Color(0.429824, 0.206476, 0.0871724, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
-texture_scale = 0.8
+
+texture_scale = 1.5
 
 [node name="CheckLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -12)
@@ -344,3 +348,4 @@ collision_mask = 64
 position = Vector2(0, -12)
 target_position = Vector2(15, 0)
 collision_mask = 64
+

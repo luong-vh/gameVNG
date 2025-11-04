@@ -78,7 +78,7 @@ motion_mirroring = Vector2(510, 0)
 script = SubResource("GDScript_bfafv")
 
 [node name="BigClouds" type="Sprite2D" parent="ParallaxLayerBigCloud"]
-position = Vector2(0, 111)
+position = Vector2(0, 109)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("7_ww2nl")
 centered = false

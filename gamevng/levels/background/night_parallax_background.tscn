@@ -139,6 +139,7 @@ position = Vector2(-170, 176)
 texture = ExtResource("11_b0qlw")
 
 [node name="TreeParallaxLayer" type="ParallaxLayer" parent="."]
+visible = false
 modulate = Color(0.385493, 0.385492, 0.385492, 0.772549)
 position = Vector2(4, -6)
 motion_scale = Vector2(0.8, 0.9)
