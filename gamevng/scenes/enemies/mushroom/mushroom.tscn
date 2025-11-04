@@ -55,4 +55,3 @@ shape = SubResource("CapsuleShape2D_46kqx")
 
 [node name="Run" type="Node" parent="States"]
 script = ExtResource("5_n3qvj")
-metadata/_custom_type_script = "uid://dl66bcp7k508p"

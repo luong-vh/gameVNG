@@ -18,12 +18,9 @@ func _ready() -> void:
 	_init_ray_cast()
 	_init_detect_player_area()
 	_init_hurt_area()
-<<<<<<< HEAD
-	EnemyManager.register_enemy(self)
-=======
+
 	_add_into_enemy_manager()
 	player = GameManager.player
->>>>>>> 9b76a46d7c3aa59720745ab6e4276c65ed77620c
 	super._ready()
 	pass
 

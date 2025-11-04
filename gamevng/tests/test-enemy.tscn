@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="2_w4chf"]
-[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_krcem"]
+[ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="3_krcem"]
 
 [node name="Test-enemy" type="Node2D"]
 
