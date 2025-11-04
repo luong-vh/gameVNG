@@ -104,8 +104,8 @@ func load_state(data: Dictionary) -> void:
 			collect_blade()
 	
 	if data.has("health"):
-		print("loaded health")
 		health = data["health"][0]
+		print("loaded health %d" %health)
 	fsm.change_state(fsm.states.idle)
 
 func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:

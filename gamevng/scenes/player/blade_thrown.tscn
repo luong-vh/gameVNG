@@ -48,8 +48,8 @@ _data = {
 }
 
 [node name="BladeThrown" type="RigidBody2D"]
-collision_layer = 32
-collision_mask = 5
+collision_layer = 0
+collision_mask = 9
 gravity_scale = 0.0
 script = ExtResource("1_ai2qu")
 
@@ -57,7 +57,8 @@ script = ExtResource("1_ai2qu")
 shape = SubResource("CircleShape2D_uivlu")
 
 [node name="HitArea2D" type="Area2D" parent="."]
-collision_mask = 5
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("2_qu6kr")
 damage = 10
 
@@ -72,3 +73,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_dnwl8")
 }
 autoplay = "new_animation"
+
+[connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]

@@ -1,21 +1,36 @@
 extends Node
 
-var enemies: Array = []
+var enemies_by_type: Dictionary = {}
 
 func _ready() -> void:
-	GameManager.stage_changed.connect(_on_stage_changed)
-	_init_enemy_list()
-	pass
+	DayNightManager.state_changed.connect(_day_night_changed)
 
-func on_enemy_died():
-	pass
+func add_enemy(enemy, type_name: String):
+	if not enemies_by_type.has(type_name):
+		enemies_by_type[type_name] = []
+	enemies_by_type[type_name].append(enemy)
 
-func _init_enemy_list():
-	enemies = get_tree().get_nodes_in_group("Enemy")
-	pass
+func remove_enemy(enemy, type_name: String):
+	if enemies_by_type.has(type_name):
+		enemies_by_type[type_name].erase(enemy)
+		if enemies_by_type[type_name].is_empty():
+			enemies_by_type.erase(type_name)
 
-func _on_stage_changed(new_stage_path: String):
-	_init_enemy_list()
+func get_all_by_type(type_name: String) -> Array:
+	return enemies_by_type.get(type_name, [])
 
-func _on_day_night_changed(new_stage: DayNightManager.DayNightState):
-	pass
+func get_all_enemies() -> Array:
+	var all = []
+	for type_name in enemies_by_type.keys():
+		all += enemies_by_type[type_name]
+	return all
+	
+func _day_night_changed(new_state):
+	if new_state == DayNightManager.DayNightState.DAY:
+		for type_name in enemies_by_type.keys():
+			for enemy in enemies_by_type[type_name]:
+				enemy.change_to_day_behavior()
+	else:
+		for type_name in enemies_by_type.keys():
+			for enemy in enemies_by_type[type_name]:
+				enemy.change_to_night_behavior()

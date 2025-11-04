@@ -14,7 +14,7 @@ var day_color   = Color("#ffffff")
 signal state_changed(new_state : DayNightState)
 
 func _ready():
-	_apply_state(current_state)
+	call_deferred("_init_state")
 
 func switch_state():
 	if current_state == DayNightState.DAY:
@@ -22,7 +22,10 @@ func switch_state():
 	else:
 		current_state = DayNightState.DAY
 	_apply_state(current_state)
-	emit_signal("state_changed", current_state)
+	
+
+func _init_state():
+	_apply_state(current_state)
 
 func _apply_state(state : DayNightState) -> void:
 	if not day_bg or not night_bg or not canvas_modulate:
@@ -37,3 +40,5 @@ func _apply_state(state : DayNightState) -> void:
 			day_bg.visible = false
 			night_bg.visible = true
 			canvas_modulate.color = night_color
+	
+	emit_signal("state_changed", current_state)
