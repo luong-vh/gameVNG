@@ -1,4 +1,5 @@
 extends Node
+
 var enemies_by_type: Dictionary = {}
 
 func _ready() -> void:
