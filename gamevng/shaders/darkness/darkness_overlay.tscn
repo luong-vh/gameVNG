@@ -15,6 +15,7 @@ normalize = false
 noise = SubResource("FastNoiseLite_5j4xa")
 
 [node name="DarknessOverlay" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +27,7 @@ script = ExtResource("1_q8mkb")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = ExtResource("2_1bhlw")
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -3,7 +3,7 @@ render_mode blend_mix;
 
 uniform vec4 base_color : source_color;
 uniform float location_fade : hint_range(0.0, 1.0) = 1.0;
-uniform float thickness : hint_range(0.0, 3.0) = 1.5;
+uniform float thickness : hint_range(0.0, 10.0) = 1.5;
 
 // Light mask texture from SubViewport
 uniform sampler2D light_mask : hint_default_black;
@@ -22,7 +22,8 @@ void fragment() {
     vec3 fog_color = mix(fog_color_3, mix(fog_color_1, fog_color_2, 0.5), 0.7);
 
     // --- Sample the light mask with offset ---
-    float light_amount = texture(light_mask, UV + light_mask_offset).r;
+    vec2 mask_uv = (FRAGCOORD.xy - light_mask_offset) / vec2(textureSize(light_mask, 0));
+    float light_amount = texture(light_mask, mask_uv).r;
     light_amount = pow(light_amount, light_falloff);
 
     // --- Smooth aggressive thinning ---
