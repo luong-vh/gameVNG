@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cejkt1laxfevg"]
 
 [ext_resource type="Script" uid="uid://cgv36di8c6ct7" path="res://scenes/player/blade_thrown.gd" id="1_ai2qu"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="2_qu6kr"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_qu6kr"]
 [ext_resource type="Texture2D" uid="uid://bng34woae2g8q" path="res://assets/foxy/blade/blade_throw_1.png" id="3_ll4hm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uivlu"]

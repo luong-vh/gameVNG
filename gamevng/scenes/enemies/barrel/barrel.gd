@@ -12,9 +12,33 @@ const type ="BARREL"
 @export var night_color = Color(1,0,0,1)
 var behavior ="DAY"
 
+@export_category("Push Settings")
+@export var push_speed_multiplier: float = 0.7  # Player chậm lại
+
+var raycast_right: RayCast2D
+var raycast_left: RayCast2D
+
 func _ready() -> void:
 	super._ready()
 	fsm = FSM.new(self, $States, $States/Idle)
+	if has_node("CheckLeft"):
+		raycast_left = $CheckLeft
+	if has_node("CheckRight"):
+		raycast_right = $CheckRight
+		
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+
+func try_to_push(velocity_x: float,delta: float) ->float:
+	if velocity_x == 0:
+		return 0
+	var raycast = raycast_right if velocity_x > 0 else raycast_left
+	if raycast.is_colliding():
+		return 0
+	else:
+		position.x += velocity_x * push_speed_multiplier * delta
+		return velocity_x * push_speed_multiplier
+
 
 func fire() -> void:
 	var bullet :=bullet_factory.create() as RigidBody2D

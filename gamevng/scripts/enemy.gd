@@ -24,7 +24,8 @@ func _ready() -> void:
 	super._ready()
 	pass
 
-	
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 func _exit_tree() -> void:
 	_delete_from_enemy_manager()
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://cbukj8uhircrx"]
 
 [ext_resource type="Script" uid="uid://bdru6uxwhudg7" path="res://levels/objects/portal/day_night_portal.gd" id="1_5fjro"]
-[ext_resource type="Texture2D" uid="uid://np34i8jkhdv5" path="res://assets/island/objects/portal/Purple Portal Sprite Sheet.png" id="2_lgpjx"]
-[ext_resource type="Script" path="res://scripts/interactive_area_2d.gd" id="5_ra7gs"]
+[ext_resource type="Texture2D" uid="uid://b1umbkrajotj6" path="res://assets/island/objects/portal/Purple Portal Sprite Sheet.png" id="2_lgpjx"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="5_ra7gs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgpjx"]
 atlas = ExtResource("2_lgpjx")
