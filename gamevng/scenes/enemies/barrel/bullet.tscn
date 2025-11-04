@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbv8fk33ttryo" path="res://scenes/enemies/barrel/bullet.gd" id="1_btuxj"]
 [ext_resource type="Texture2D" uid="uid://bh8lwuu75mk5h" path="res://assets/monsters/barrel/barrel_bullet.png" id="1_hqm2c"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="2_btuxj"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_btuxj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8ymv"]
 radius = 4.0

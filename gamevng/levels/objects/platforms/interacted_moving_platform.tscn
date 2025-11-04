@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mcl8ndpqmouo" path="res://levels/objects/platforms/follow_node.gd" id="1_gse7u"]
 [ext_resource type="Script" uid="uid://dmuhm4cchql0u" path="res://levels/objects/platforms/interacted_moving_platform.gd" id="1_lwpqe"]
 [ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="2_r7o4r"]
-[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/interactive_area_2d.gd" id="3_r7o4r"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="3_r7o4r"]
 
 [sub_resource type="Curve2D" id="Curve2D_lg0vp"]
 _data = {

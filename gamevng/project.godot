@@ -129,6 +129,7 @@ switch_day_night={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="enemy hurtbox"
 2d_physics/layer_6="item"
+2d_physics/layer_7="pushable object"
 
 [rendering]
 

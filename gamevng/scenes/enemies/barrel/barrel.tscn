@@ -49,10 +49,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsoae"]
-size = Vector2(21, 22)
+size = Vector2(21, 19)
 
 [node name="Barrel" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 64
 script = ExtResource("1_t8iir")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -86,5 +86,13 @@ script = ExtResource("10_bh1st")
 metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_nsoae")
+
+[node name="CheckRight" type="RayCast2D" parent="."]
+target_position = Vector2(12, 0)
+collision_mask = 65
+
+[node name="CheckLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-12, 0)
+collision_mask = 65
