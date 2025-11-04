@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhcpoitvikaaa"]
+
+[ext_resource type="Shader" uid="uid://cp84hwbmkaxt6" path="res://shaders/light_shader.gdshader" id="1_ivdw3"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ivdw3")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/location_fade = 1.0
+shader_parameter/thickness = 5.0
+shader_parameter/light_clear_intensity = 2.0
+shader_parameter/light_falloff = 1.0
+shader_parameter/light_mask_offset = Vector2(0, 0.02)
