@@ -56,7 +56,6 @@ func control_jump() -> bool:
 	return false
 
 func control_wall_cling(delta: float) -> bool:
-	print(obj.velocity.y)
 	var collision = obj.wall_checker.get_collision_normal()
 	var wall_dir = int(collision.x)
 	

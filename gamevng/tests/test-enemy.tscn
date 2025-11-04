@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=4 uid="uid://sncgrntejqtw"]
+[gd_scene load_steps=7 format=4 uid="uid://x18ct0xrj08p"]
 
+[ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="2_w4chf"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_krcem"]
+[ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="4_pa22l"]
+[ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="5_5jyel"]
 
 [node name="Test-enemy" type="Node2D"]
+script = ExtResource("1_5jyel")
 
 [node name="World" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAEAAAABAAQAAAACAAEAAAABAAMAAAACAAEAAAABAAUAAAACAAEAAAABAAYAAAACAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAcAAAAAAAIAAAABAAcAAAAJAAQAAAACAAcAAAABAAQAAAADAAcAAAABAAQAAAAEAAcAAAABAAQAAAAFAAcAAAABAAQAAAAGAAcAAAABAAQAAAAHAAcAAAABAAQAAAAIAAcAAAABAAQAAAAJAAcAAAABAAQAAAAKAAcAAAABAAQAAAALAAcAAAABAAQAAAAMAAcAAAABAAQAAAANAAcAAAABAAQAAAAOAAcAAAABAAQAAAAPAAcAAAABAAQAAAAQAAcAAAABAAQAAAARAAcAAAABAAQAAAASAAcAAAABAAQAAAATAAcAAAABAAQAAAAUAAcAAAABAAQAAAAFAAQAAAAAAAQAAAAGAAQAAAAKAAQAAAAHAAQAAAABAAIAAAAIAAQAAAABAAIAAAAJAAQAAAACAAIAAAAJAAMAAAACAAAAAAAIAAMAAAABAAAAAAAHAAMAAAAJAAAAAAAGAAMAAAAAAAAAAAAHAAIAAAAEAAAAAAAQAAUAAAAAAAQAAAARAAUAAAAMAAQAAAASAAUAAAABAAQAAAATAAUAAAACAAQAAAARAAQAAAAEAAAAAAAVAAcAAAABAAQAAAAWAAcAAAABAAQAAAAXAAcAAAABAAQAAAAYAAcAAAABAAQAAAAZAAcAAAABAAQAAAAaAAcAAAAQAAQAAAAaAAYAAAAEAAEAAAAaAAUAAAAEAAEAAAAaAAQAAAAEAAEAAAAaAAMAAAAEAAEAAAAaAAIAAAAEAAEAAAAaAAEAAAAEAAAAAAA=")
@@ -15,3 +19,10 @@ position = Vector2(378, 209)
 
 [node name="Player" parent="." instance=ExtResource("3_krcem")]
 position = Vector2(199, 212)
+
+[node name="DayParallaxBackground" parent="." instance=ExtResource("4_pa22l")]
+
+[node name="NightParallaxBackground" parent="." instance=ExtResource("5_5jyel")]
+visible = false
+
+[node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
