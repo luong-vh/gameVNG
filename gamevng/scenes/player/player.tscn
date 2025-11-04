@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=47 format=3 uid="uid://blup0u1mhu0vu"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
@@ -36,7 +36,8 @@
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="39_7obkq"]
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
-[ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="40_u3hyo"]
+[ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
+[ext_resource type="Texture2D" uid="uid://dyy3sqb26dhm2" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
@@ -116,6 +117,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bjvpn")
+}],
+"loop": true,
+"name": &"wall_cling",
 "speed": 5.0
 }]
 
@@ -206,6 +215,14 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_6cv16")
+}],
+"loop": true,
+"name": &"wall_cling",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yj68g"]
@@ -215,10 +232,14 @@ height = 34.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
 size = Vector2(10.75, 20.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-collision_mask = 17
+collision_mask = 41
 script = ExtResource("1_wodsf")
+wall_friction = 500.0
+wall_slide_speed = 100.0
+max_jump_amount = 2
+max_health = 100000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
@@ -236,16 +257,16 @@ drag_bottom_margin = 0.5
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_wva7c")
-animation = &"idle"
+animation = &"dead"
 
 [node name="BladeAnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"attack"
+animation = &"dead"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("21_3j4b4")
 
@@ -254,7 +275,8 @@ position = Vector2(-1, -16)
 shape = SubResource("CapsuleShape2D_yj68g")
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
-collision_mask = 13
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("20_uniwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
@@ -266,6 +288,11 @@ position = Vector2(0, -14)
 script = ExtResource("39_7obkq")
 product_packed_scene = ExtResource("40_vo27k")
 target_container_name = &"Blade"
+
+[node name="WallChecker" type="RayCast2D" parent="Direction"]
+position = Vector2(0, -12)
+rotation = -1.5708
+target_position = Vector2(0, 13)
 
 [node name="States" type="Node" parent="."]
 
@@ -287,15 +314,19 @@ script = ExtResource("42_xcnuv")
 [node name="Hurt" type="Node" parent="States"]
 script = ExtResource("20_8ydkj")
 
-[node name="Timer" type="Timer" parent="States/Hurt"]
-wait_time = 0.5
-one_shot = true
-
 [node name="Attack" type="Node" parent="States"]
 script = ExtResource("26_6cv16")
 
+[node name="WallCling" type="Node" parent="States"]
+script = ExtResource("40_genst")
+metadata/_custom_type_script = "uid://crb5af1mrgpm1"
+
 [node name="InvulnerableTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="LockInputTimer" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://cse8m3ao6w5ao"]
+[gd_scene load_steps=21 format=4 uid="uid://cse8m3ao6w5ao"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_1f3o5"]
-[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/Player.tscn" id="1_w3aqi"]
+[ext_resource type="PackedScene" uid="uid://blup0u1mhu0vu" path="res://scenes/player/player.tscn" id="1_w3aqi"]
 [ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_np4on"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="3_pfwq7"]
 [ext_resource type="PackedScene" uid="uid://duhxq1mn2hmtf" path="res://levels/objects/platforms/path_moving_platform.tscn" id="4_8a3cw"]
@@ -13,6 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://bkd3v4srk0anx" path="res://levels/objects/platforms/interacted_moving_platform.tscn" id="12_pfwq7"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="13_pfwq7"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="13_yvf08"]
+[ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="14_n7xbj"]
+[ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="15_yvf08"]
+[ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="16_1bkwy"]
+[ext_resource type="PackedScene" uid="uid://bxvc68rg33rgc" path="res://scenes/puzzle/pressure_plate/pressure_plate.tscn" id="17_m1svg"]
+[ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/puzzle/spider/spider.tscn" id="18_lyvmt"]
+[ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
 size = Vector2(84, 14)
@@ -30,8 +36,8 @@ position = Vector2(836, 246)
 target_stage = "uid://cse8m3ao6w5ao"
 
 [node name="World" type="TileMapLayer" parent="."]
-position = Vector2(14, -10)
-tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAPAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAA=")
+position = Vector2(-22, -21)
+tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAPAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAAHAAcABAAAAAAAAQA=")
 tile_set = ExtResource("3_pfwq7")
 
 [node name="Platforms" type="Node2D" parent="."]
@@ -51,7 +57,7 @@ position = Vector2(-59, -78)
 [node name="Npcs" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Npcs" instance=ExtResource("7_1f3o5")]
-position = Vector2(336, 181)
+position = Vector2(305, 171)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -81,3 +87,27 @@ position = Vector2(108, 234)
 visible = false
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="Crab" parent="." instance=ExtResource("14_n7xbj")]
+position = Vector2(69, 230)
+
+[node name="Pelican" parent="." instance=ExtResource("15_yvf08")]
+position = Vector2(120, 68)
+
+[node name="Starfish" parent="." instance=ExtResource("16_1bkwy")]
+position = Vector2(150, 229)
+
+[node name="PressurePlate" parent="." instance=ExtResource("17_m1svg")]
+position = Vector2(401, 166)
+
+[node name="Spider" parent="." instance=ExtResource("18_lyvmt")]
+position = Vector2(891, 132)
+
+[node name="Spider2" parent="." instance=ExtResource("18_lyvmt")]
+position = Vector2(827, -55)
+
+[node name="Seesaw" parent="." instance=ExtResource("18_u76d5")]
+position = Vector2(723, 213)
+max_rotation_angle = 20.0
