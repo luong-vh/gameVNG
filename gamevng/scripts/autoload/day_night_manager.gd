@@ -16,6 +16,7 @@ signal state_changed(new_state : DayNightState)
 func _ready():
 	call_deferred("_init_state")
 
+
 func switch_state():
 	if current_state == DayNightState.DAY:
 		current_state = DayNightState.NIGHT
