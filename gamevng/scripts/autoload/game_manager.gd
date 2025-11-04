@@ -57,7 +57,7 @@ func save_checkpoint(checkpoint_id: String) -> void:
 	checkpoint_data[checkpoint_id] = {
 		"player_state":player_state_dict,
 		"stage_path": current_stage.scene_file_path,
-		"enemies":EnemyManager.get_enemies_state()
+		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", checkpoint_id)
 
