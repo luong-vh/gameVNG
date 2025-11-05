@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf5x1gwia088r"]
+[gd_scene load_steps=11 format=3 uid="uid://cf5x1gwia088r"]
 
 [ext_resource type="Script" uid="uid://cyyhrg35ietek" path="res://scenes/enemies/mushroom/mushroom.gd" id="1_i5i4k"]
 [ext_resource type="Texture2D" uid="uid://3618lytb7nnv" path="res://assets/monsters/mushroom/mushroom_01.png" id="2_i5i4k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cghgcxg1pvwd6" path="res://assets/monsters/mushroom/mushroom_03.png" id="4_hxhl5"]
 [ext_resource type="Script" uid="uid://j2ic31mnax7" path="res://scenes/enemies/mushroom/run.gd" id="5_n3qvj"]
 [ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="6_1lu8u"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="7_pdypp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o81i0"]
 animations = [{
@@ -23,6 +24,9 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysheg"]
+radius = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_46kqx"]
 radius = 12.0
@@ -46,6 +50,16 @@ target_position = Vector2(14, 0)
 [node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
 position = Vector2(14, -4)
 target_position = Vector2(0, 20)
+
+[node name="HurtArea2D" type="Area2D" parent="Direction"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("7_pdypp")
+metadata/_custom_type_script = "uid://csu2b21cwchqw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_ysheg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
