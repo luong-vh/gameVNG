@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://c4e6ge7r8xgur" path="res://assets/monsters/turtle/turtle_blue_05.png" id="6_wo108"]
 [ext_resource type="Texture2D" uid="uid://d2or146oiejqd" path="res://assets/monsters/turtle/turtle_blue_walk_01.png" id="7_onwmk"]
 [ext_resource type="Texture2D" uid="uid://db1tktag0awmd" path="res://assets/monsters/turtle/turtle_blue_walk_02.png" id="8_lp12n"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="9_miu7q"]
-[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="10_nefbx"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="9_miu7q"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="10_nefbx"]
 [ext_resource type="Script" uid="uid://iakeja5i1vuj" path="res://scenes/enemies/turtle/run.gd" id="11_mu50o"]
 [ext_resource type="Script" uid="uid://c4lyumbeffqyv" path="res://scenes/enemies/turtle/hide.gd" id="12_ertew"]
 [ext_resource type="Script" uid="uid://dlpoiketrof1l" path="res://scenes/enemies/turtle/in_shell.gd" id="13_wo108"]
@@ -100,7 +100,7 @@ radius = 14.0
 height = 28.0
 
 [node name="Turtle" type="CharacterBody2D"]
-collision_layer = 8
+collision_layer = 72
 script = ExtResource("1_mu50o")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -160,3 +160,11 @@ metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 [node name="Emerge" type="Node" parent="States"]
 script = ExtResource("14_onwmk")
 metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="CheckRight" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+collision_mask = 64
+
+[node name="CheckLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)
+collision_mask = 64

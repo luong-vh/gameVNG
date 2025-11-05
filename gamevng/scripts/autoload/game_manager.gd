@@ -9,6 +9,9 @@ var current_stage = ""
 var player: Player = null
 var stage_path
 var _target_portal_name
+
+signal stage_changed(new_stage_path)
+
 func _ready() -> void:
 	# Load checkpoint data when game starts
 	load_checkpoint_data()
@@ -17,6 +20,7 @@ func _ready() -> void:
 
 func able_to_control_player():
 	player.set_physics_process(true)
+
 func teleport() -> void:
 	target_portal_name = _target_portal_name
 	var scene_id = ResourceUID.text_to_id(stage_path)
@@ -25,15 +29,18 @@ func teleport() -> void:
 	
 	if scene_path != current_stage.scene_file_path:
 		get_tree().change_scene_to_file(stage_path)
+		emit_signal("stage_changed", stage_path)
 	else:
 		respawn_at_portal()
 	SceneTransition.fade_from_black()
+
 #change stage by path and target portal name
 func change_stage(_stage_path: String, __target_portal_name: String = "") -> void:
 	SceneTransition.fade_to_black()
 	stage_path = _stage_path
 	_target_portal_name = __target_portal_name
 	player.set_physics_process(false)
+
 #call from dialogic
 func call_from_dialogic(msg:String = ""):
 	#Dialogic.VAR["PlayerScore"] = 30
@@ -57,7 +64,7 @@ func save_checkpoint(checkpoint_id: String) -> void:
 	checkpoint_data[checkpoint_id] = {
 		"player_state":player_state_dict,
 		"stage_path": current_stage.scene_file_path,
-		"enemies":EnemyManager.get_enemies_state()
+		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", checkpoint_id)
 
@@ -125,8 +132,10 @@ func clear_checkpoint_data() -> void:
 	checkpoint_data.clear()
 	SaveSystem.delete_save_file()
 	print("All checkpoint data cleared")
+
 func reload_current_scene() -> void:
 	current_stage.reload()
+
 func collect_blade() -> void:
 	player.collected_blade()
 	Dialogic.VAR["PlayerHasBlade"] = true

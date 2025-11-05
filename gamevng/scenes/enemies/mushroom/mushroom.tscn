@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cghgcxg1pvwd6" path="res://assets/monsters/mushroom/mushroom_03.png" id="4_hxhl5"]
 [ext_resource type="Script" uid="uid://j2ic31mnax7" path="res://scenes/enemies/mushroom/run.gd" id="5_n3qvj"]
 [ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="6_1lu8u"]
-[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="7_pdypp"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="7_pdypp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o81i0"]
 animations = [{
@@ -33,6 +33,7 @@ radius = 12.0
 height = 26.0
 
 [node name="Mushroom" type="CharacterBody2D"]
+collision_layer = 8
 script = ExtResource("1_i5i4k")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 

@@ -19,3 +19,7 @@ func _on_anim_finished():
 			anim.disconnect("animation_finished", Callable(self, "_on_anim_finished"))
 		
 		fsm.change_state(fsm.states.inshell)  
+
+func take_damage(_dir, _dmg):
+	# ignore damage when inside shell
+	pass

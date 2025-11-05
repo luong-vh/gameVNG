@@ -74,8 +74,10 @@ func take_damage(damage) -> void:
 	#obj take damage
 	if obj.is_invulnerable:
 		return
-
+	print("health %d" %obj.health)
+	print("damage %d" %damage)
 	obj.take_damage(damage)
+	print("health %d" %obj.health)
 	if obj.health <= 0:
 		change_state(fsm.states.dead)
 	else:

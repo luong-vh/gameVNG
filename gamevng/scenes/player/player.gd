@@ -22,6 +22,9 @@ var wall_checker: RayCast2D
 var jump_count = 1
 @export var max_jump_amount = 1
 
+var raycast_right: RayCast2D
+var raycast_left: RayCast2D
+
 func _ready() -> void:
 	super._ready()
 	set_animated_sprite($Direction/AnimatedSprite2D)
@@ -37,6 +40,11 @@ func _ready() -> void:
 	
 	GameManager.player = self
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
+	
+	if has_node("CheckLeft"):
+		raycast_left = $CheckLeft
+	if has_node("CheckRight"):
+		raycast_right = $CheckRight
 
 func _init_wall_cling():
 	## Setup wall cling
@@ -104,8 +112,8 @@ func load_state(data: Dictionary) -> void:
 			collect_blade()
 	
 	if data.has("health"):
-		print("loaded health")
 		health = data["health"][0]
+		print("loaded health %d" %health)
 	fsm.change_state(fsm.states.idle)
 
 func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:

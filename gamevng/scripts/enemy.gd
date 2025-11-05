@@ -6,6 +6,9 @@ extends BaseCharacter
 var front_ray_cast: RayCast2D;
 var down_ray_cast: RayCast2D;
 
+var spawn_only_at_night: bool = false
+var spawn_point: Vector2
+
 @export var detection_range: float = 150
 var detect_player_ray: RayCast2D;
 
@@ -20,10 +23,12 @@ func _ready() -> void:
 	_init_hurt_area()
 	_add_into_enemy_manager()
 	player = GameManager.player
+	spawn_point = global_position
 	super._ready()
 	pass
 
-	
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 func _exit_tree() -> void:
 	_delete_from_enemy_manager()
 
@@ -67,6 +72,9 @@ func enable_check_player_in_sight() -> void:
 func disable_check_player_in_sight() -> void:
 	if(detect_player_ray != null):
 		detect_player_ray.disabled = true
+
+func despawn():
+	pass
 
 func _on_body_entered(_body: CharacterBody2D) -> void:
 	found_player = _body

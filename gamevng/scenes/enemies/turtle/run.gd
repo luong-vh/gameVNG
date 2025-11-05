@@ -39,8 +39,16 @@ func _start_pause() -> void:
 	obj.velocity.x = 0
 func take_damage(_damage_dir, damage: int) -> void:
 	print("[Run State] Hit → go to HideInShell instead")
-	obj.velocity.x = 250 * _damage_dir.x     
-	obj.velocity.y = -250 
+	var dir_x = _damage_dir.x
+	if abs(dir_x) < 0.2:
+		dir_x = -obj.direction  
+	else:
+		dir_x = -sign(dir_x)  
+	var knock_x := 260.0
+	var knock_y := -240.0
+	obj.velocity.x = knock_x * dir_x
+	obj.velocity.y = knock_y
+
 	await get_tree().create_timer(0.2).timeout
 	obj.take_damage(damage)
 	fsm.change_state(fsm.states.hide)   

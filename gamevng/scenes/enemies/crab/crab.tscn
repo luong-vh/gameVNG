@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://boxmc12qq7a8a" path="res://assets/monsters/crab/crab_hurt_02.png" id="3_tgm84"]
 [ext_resource type="Texture2D" uid="uid://d24uce3wqmwe6" path="res://assets/monsters/crab/crab_02.png" id="3_u0osc"]
 [ext_resource type="Texture2D" uid="uid://dq122qahq1rm2" path="res://assets/monsters/crab/crab_03.png" id="4_stbuj"]
-[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="5_cqyf4"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="5_v3jfl"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="5_cqyf4"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="5_v3jfl"]
 [ext_resource type="Script" uid="uid://b6h0s84d0wudf" path="res://scenes/enemies/states/run.gd" id="7_u0osc"]
 [ext_resource type="Script" uid="uid://d00nnp2h2rx2l" path="res://scenes/enemies/states/hurt.gd" id="10_0ud0h"]
 [ext_resource type="Script" uid="uid://bnrw24s36b20t" path="res://scenes/enemies/states/dead.gd" id="11_tgm84"]
@@ -74,7 +74,7 @@ animation = &"dead"
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("5_v3jfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]

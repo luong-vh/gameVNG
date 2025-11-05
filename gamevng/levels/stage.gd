@@ -1,4 +1,7 @@
 extends Node
+class_name Stage
+
+@export var default_day_night_state: DayNightManager.DayNightState
 
 func _enter_tree() -> void:
 	# Handle portal spawning first

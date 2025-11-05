@@ -6,10 +6,15 @@ func _enter_tree() -> void:
 	
 func _ready() -> void:
 	_init_day_night()
-	
+	for sp in get_tree().get_nodes_in_group("enemy_spawn_points"):
+		print("[SpawnTest] Found spawn point: ", sp)
+		if sp is EnemySpawnPoint:
+			print("[SpawnTest] -> Valid spawn point")
+			EnemyManager.register_spawn_point(sp)
+		else:
+			print("[SpawnTest] -> WRONG NODE, not EnemySpawnPoint")
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
-		
 func reload()-> void:
 	get_tree().reload_current_scene()
 

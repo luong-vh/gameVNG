@@ -29,8 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://d0jfmp24jrfcy" path="res://assets/foxy/fox_hat_blade/fox_run_3.png" id="17_bbmj2"]
 [ext_resource type="Texture2D" uid="uid://ce35c6mn7dcok" path="res://assets/foxy/fox_hat_blade/fox_run_4.png" id="18_kxw46"]
 [ext_resource type="Script" uid="uid://2kcb4amemhdj" path="res://scenes/player/states/hurt.gd" id="20_8ydkj"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/hit_area_2d.gd" id="20_uniwh"]
-[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/hurt_area_2d.gd" id="21_3j4b4"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="39_7obkq"]
@@ -234,12 +234,12 @@ size = Vector2(10.75, 20.5)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-collision_mask = 41
+collision_mask = 33
 script = ExtResource("1_wodsf")
 wall_friction = 500.0
 wall_slide_speed = 100.0
 max_jump_amount = 2
-max_health = 100000
+max_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
@@ -330,7 +330,18 @@ wait_time = 0.3
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.744523, 0.271152, 0.0717807, 1)
+light_mask = 2
+color = Color(0.429824, 0.206476, 0.0871724, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
-texture_scale = 0.8
+texture_scale = 1.5
+
+[node name="CheckLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(-15, 0)
+collision_mask = 64
+
+[node name="CheckRight" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(15, 0)
+collision_mask = 64

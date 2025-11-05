@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://x18ct0xrj08p"]
+[gd_scene load_steps=10 format=4 uid="uid://x18ct0xrj08p"]
 
 [ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="5_5jyel"]
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="7_pxeid"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
+[ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
 
 [node name="Test-enemy" type="Node2D"]
 script = ExtResource("1_5jyel")
@@ -21,6 +22,8 @@ position = Vector2(378, 209)
 
 [node name="Player" parent="." instance=ExtResource("3_krcem")]
 position = Vector2(199, 212)
+collision_mask = 41
+max_health = 100000
 
 [node name="DayParallaxBackground" parent="." instance=ExtResource("4_pa22l")]
 
@@ -29,8 +32,11 @@ visible = false
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 
-[node name="Turtle" parent="." instance=ExtResource("7_pxeid")]
-position = Vector2(569, 208)
-
 [node name="BladePickup" parent="." instance=ExtResource("8_0i4qx")]
 position = Vector2(132, 217)
+
+[node name="EnemySpawnPoint" type="Node2D" parent="." groups=["enemy_spawn_points"]]
+position = Vector2(571, 205)
+script = ExtResource("9_jx3by")
+enemy_scene = ExtResource("7_pxeid")
+metadata/_custom_type_script = "uid://bscbu7r2b67wt"

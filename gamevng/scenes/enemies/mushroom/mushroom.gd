@@ -2,6 +2,8 @@ extends EnemyCharacter
 const type = "MUSHROOM"
 
 @onready var glow_light: Light2D = $GlowLight
+
+
 func _ready() -> void:
 	fsm = FSM.new(self , $States , $States/Run)
 	_add_into_enemy_manager()
