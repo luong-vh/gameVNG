@@ -3,7 +3,6 @@ extends PlayerState
 ## Idle state for player character
 
 func _enter() -> void:
-	obj.jump_count = obj.max_jump_amount
 	obj.change_animation("idle")
 
 func _update(_delta: float) -> void:
@@ -11,6 +10,8 @@ func _update(_delta: float) -> void:
 	control_jump()
 	#Control moving
 	control_moving()
+	
+	control_dash()
 	#If not on floor change to fall
 	if not obj.is_on_floor():
 		change_state(fsm.states.fall)
