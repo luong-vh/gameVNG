@@ -52,6 +52,7 @@ animations = [{
 size = Vector2(21, 19)
 
 [node name="Barrel" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 script = ExtResource("1_t8iir")
 metadata/_custom_type_script = "uid://s4xx82espxdt"

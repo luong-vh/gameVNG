@@ -114,4 +114,4 @@ position = Vector2(723, 213)
 max_rotation_angle = 20.0
 
 [node name="Barrel" parent="." instance=ExtResource("20_e7345")]
-position = Vector2(528, 146)
+position = Vector2(48, 210)
