@@ -16,5 +16,4 @@ func _update(_delta: float) -> void:
 		change_state(fsm.previous_state)
 	
 	if obj.is_on_floor():
-		obj.jump_count = obj.max_jump_amount
 		change_state(fsm.states.idle)

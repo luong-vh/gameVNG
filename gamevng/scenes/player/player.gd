@@ -21,9 +21,17 @@ var wall_checker: RayCast2D
 ## For double jump
 var jump_count = 1
 @export var max_jump_amount = 1
+@onready var jump_particle = $Particle/JumpParticle
 
-var raycast_right: RayCast2D
-var raycast_left: RayCast2D
+## For dash
+@export var dash_time: float = 0.2
+@export var dash_speed := 600.0
+@export var dash_amount: int = 1
+var dash_count:int = 0
+@onready var dash_particle: GPUParticles2D = $Particle/DashParticle
+@onready var dash_timer: Timer = $DashCoolDownTimer
+
+var raycast_pushable: RayCast2D
 
 func _ready() -> void:
 	super._ready()
@@ -41,10 +49,8 @@ func _ready() -> void:
 	GameManager.player = self
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	
-	if has_node("CheckLeft"):
-		raycast_left = $CheckLeft
-	if has_node("CheckRight"):
-		raycast_right = $CheckRight
+	if has_node("Direction/CheckPushable"):
+		raycast_pushable = $Direction/CheckPushable
 
 func _init_wall_cling():
 	## Setup wall cling
@@ -96,6 +102,15 @@ func lock_input() -> bool:
 
 func is_input_lock() -> bool:
 	return lock_input_timer.time_left > 0
+
+func start_dash_cd() -> bool:
+	if dash_timer:
+		dash_timer.start()
+		return true
+	return false
+
+func is_dash_on_cd() -> bool:
+	return dash_timer.time_left > 0
 
 func load_state(data: Dictionary) -> void:
 	"""Load player state from checkpoint data"""

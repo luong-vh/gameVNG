@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
-[ext_resource type="Texture2D" uid="uid://bkabwrpxdc7cc" path="res://assets/foxy/fox_hat_blade/fox_atk_2.png" id="3_j4nxn"]
+[ext_resource type="Texture2D" uid="uid://gusigv886t7r" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
 [ext_resource type="Texture2D" uid="uid://byd3g4nnxwfcq" path="res://assets/foxy/fox_hat_blade/fox_atk_3.png" id="4_28m0y"]
 [ext_resource type="Texture2D" uid="uid://dkd08e8lorvee" path="res://assets/foxy/fox_hat/fox_defeat_1.png" id="4_c35mf"]
 [ext_resource type="Texture2D" uid="uid://brlsobsd6xakk" path="res://assets/foxy/fox_hat/fox_defeat_2.png" id="5_65viv"]
@@ -27,18 +27,25 @@
 [ext_resource type="Texture2D" uid="uid://cr8a68nw3dww1" path="res://assets/foxy/fox_hat_blade/fox_run_2.png" id="16_4hvnv"]
 [ext_resource type="Texture2D" uid="uid://c3p546j150735" path="res://assets/foxy/fox_hat/fox_run_4.png" id="17_1s1yo"]
 [ext_resource type="Texture2D" uid="uid://d0jfmp24jrfcy" path="res://assets/foxy/fox_hat_blade/fox_run_3.png" id="17_bbmj2"]
+[ext_resource type="Texture2D" uid="uid://bxm5opqypse5o" path="res://assets/foxy/fox_hat_blade/fox_attack_extended_2.png" id="17_ttakn"]
 [ext_resource type="Texture2D" uid="uid://ce35c6mn7dcok" path="res://assets/foxy/fox_hat_blade/fox_run_4.png" id="18_kxw46"]
+[ext_resource type="Texture2D" uid="uid://beujkoeirylyh" path="res://assets/foxy/fox_hat_blade/fox_dash_1.png" id="19_ttakn"]
 [ext_resource type="Script" uid="uid://2kcb4amemhdj" path="res://scenes/player/states/hurt.gd" id="20_8ydkj"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
+[ext_resource type="Texture2D" uid="uid://8usoreyem8l6" path="res://assets/foxy/smoke/jump_smoke_1.png" id="35_ds1xl"]
+[ext_resource type="Texture2D" uid="uid://jtpy308mqnwi" path="res://assets/foxy/smoke/jump_smoke_2.png" id="36_1u1sw"]
+[ext_resource type="Texture2D" uid="uid://cbk136ktae42o" path="res://assets/foxy/smoke/jump_smoke_3.png" id="37_2t3bg"]
+[ext_resource type="Texture2D" uid="uid://c8cs1hwh7venp" path="res://assets/foxy/smoke/jump_smoke_4.png" id="38_jrbya"]
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="39_7obkq"]
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
 [ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
 [ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
+[ext_resource type="Script" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
 
@@ -49,6 +56,14 @@ radius = 9.0
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_niom3")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_c35mf")
 }, {
 "duration": 1.0,
@@ -57,7 +72,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_x7c3f")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -76,7 +91,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_g4c7l")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -135,13 +150,21 @@ animations = [{
 "texture": ExtResource("2_6cv16")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_j4nxn")
+"texture": ExtResource("17_ttakn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_28m0y")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_ttakn")
+}],
+"loop": true,
+"name": &"dash",
 "speed": 5.0
 }, {
 "frames": [{
@@ -229,8 +252,34 @@ animations = [{
 radius = 9.0
 height = 34.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tffgl"]
-size = Vector2(10.75, 20.5)
+[sub_resource type="Curve" id="Curve_ttakn"]
+_data = [Vector2(0, 0.696629), 0.0, 0.0, 0, 0, Vector2(0.13913, 0.157303), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rw8a5"]
+curve = SubResource("Curve_ttakn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iwuka"]
+spread = 60.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_rw8a5")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ahqnk"]
+frames = 4
+speed_scale = 8.0
+frame_0/texture = ExtResource("35_ds1xl")
+frame_1/texture = ExtResource("36_1u1sw")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("37_2t3bg")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("38_jrbya")
+frame_3/duration = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vb1ce"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.5
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -257,13 +306,14 @@ drag_bottom_margin = 0.5
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_wva7c")
-animation = &"dead"
+animation = &"jump"
 
 [node name="BladeAnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"dead"
+animation = &"attack"
+frame_progress = 0.75356
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 4
@@ -279,9 +329,8 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource("20_uniwh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
-position = Vector2(17.625, -11.75)
-shape = SubResource("RectangleShape2D_tffgl")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Direction/HitArea2D"]
+polygon = PackedVector2Array(16, -4, 19, -6, 22, -11, 22, -20, 16, -29, 24, -27, 31, -18, 32, -10, 30, -3, 22, 2, 8, -2, 13, -7)
 
 [node name="BladeFactory" type="Marker2D" parent="Direction"]
 position = Vector2(0, -14)
@@ -293,6 +342,32 @@ target_container_name = &"Blade"
 position = Vector2(0, -12)
 rotation = -1.5708
 target_position = Vector2(0, 13)
+
+[node name="CheckPushable" type="RayCast2D" parent="Direction"]
+position = Vector2(0, -12)
+target_position = Vector2(15, 0)
+collision_mask = 64
+
+[node name="Particle" type="Node2D" parent="."]
+
+[node name="DashParticle" type="GPUParticles2D" parent="Particle"]
+z_index = -1
+position = Vector2(0, -14)
+emitting = false
+amount = 50
+texture = ExtResource("2_niom3")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_iwuka")
+
+[node name="JumpParticle" type="GPUParticles2D" parent="Particle"]
+z_index = -1
+position = Vector2(0, 1)
+emitting = false
+amount = 1
+texture = SubResource("AnimatedTexture_ahqnk")
+lifetime = 0.4
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_vb1ce")
 
 [node name="States" type="Node" parent="."]
 
@@ -321,6 +396,10 @@ script = ExtResource("26_6cv16")
 script = ExtResource("40_genst")
 metadata/_custom_type_script = "uid://crb5af1mrgpm1"
 
+[node name="Dash" type="Node" parent="States"]
+script = ExtResource("41_genst")
+metadata/_custom_type_script = "uid://crb5af1mrgpm1"
+
 [node name="InvulnerableTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -329,19 +408,14 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
+[node name="DashCoolDownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 2
+position = Vector2(2, 0)
 color = Color(0.429824, 0.206476, 0.0871724, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
 texture_scale = 1.5
-
-[node name="CheckLeft" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(-15, 0)
-collision_mask = 64
-
-[node name="CheckRight" type="RayCast2D" parent="."]
-position = Vector2(0, -12)
-target_position = Vector2(15, 0)
-collision_mask = 64
