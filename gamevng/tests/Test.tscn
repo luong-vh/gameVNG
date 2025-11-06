@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/puzzle/spider/spider.tscn" id="18_lyvmt"]
 [ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="20_e7345"]
-[ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://scenes/objects/wooden_sign.tscn" id="21_nhw5b"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield-native/spear.tscn" id="21_nhw5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
 size = Vector2(84, 14)
@@ -123,8 +123,7 @@ position = Vector2(723, 213)
 max_rotation_angle = 20.0
 
 [node name="Barrel" parent="." instance=ExtResource("20_e7345")]
-position = Vector2(48, 210)
+position = Vector2(528, 146)
 
-[node name="WoodenSign" parent="." instance=ExtResource("21_nhw5b")]
-position = Vector2(360, 155)
-message = "Press WASD to move!"
+[node name="Spear" parent="." instance=ExtResource("21_nhw5b")]
+position = Vector2(75, 213)

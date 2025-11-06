@@ -11,7 +11,7 @@ func _ready() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
-		
+			
 func reload()-> void:
 	get_tree().reload_current_scene()
 

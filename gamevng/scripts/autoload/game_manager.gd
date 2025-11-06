@@ -13,6 +13,7 @@ var main_camera: Camera2D = null
 var _last_ground_checkpoint: GroundCheckPointArea = null
 
 signal stage_changed(new_stage_path)
+signal earthquake_triggered(strength, duration)
 
 func _ready() -> void:
 	# Load checkpoint data when game starts
