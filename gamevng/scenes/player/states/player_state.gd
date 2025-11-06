@@ -33,7 +33,7 @@ func control_moving() -> bool:
 #Control jumping
 #Return true if jumping
 func control_jump() -> bool:
-	if obj.is_on_floor():
+	if obj.is_on_floor() or obj.is_near_wall():
 		obj.jump_count = obj.max_jump_amount
 	
 	var jumpInput = Input.is_action_just_pressed("jump")
@@ -61,7 +61,6 @@ func control_jump() -> bool:
 	return false
 
 func control_wall_cling(delta: float) -> bool:
-	print(obj.velocity.y)
 	var collision = obj.wall_checker.get_collision_normal()
 	var wall_dir = int(collision.x)
 	
@@ -89,6 +88,22 @@ func control_dash() -> bool:
 		return true
 	
 	return false
+
+func control_attack():
+	if Input.is_action_just_pressed("switch_day_night"):
+		DayNightManager.switch_state()
+	
+	if obj.invulnerable_timer.is_stopped():
+		obj.is_invulnerable = false
+	
+	if Input.is_action_just_pressed("attack"):
+		if obj.can_attack(): 
+			fsm.change_state(fsm.states.attack)
+	
+	if Input.is_action_just_pressed("throw"):
+		if obj.can_attack():
+			obj.throw_blade()
+			obj.change_animation("idle")
 
 func take_damage(damage) -> void:
 	#obj take damage

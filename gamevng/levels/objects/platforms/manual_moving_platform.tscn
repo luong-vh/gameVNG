@@ -1,18 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://4abnqea6jimr"]
+[gd_scene load_steps=4 format=3 uid="uid://g0juxlw4q3td"]
 
-[ext_resource type="Script" uid="uid://qfkvoam3abay" path="res://levels/objects/platforms/manual_moving_platform.gd" id="1_1yy5t"]
-[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="2_e3o0j"]
+[ext_resource type="Script" uid="uid://bmnq7acy8gku3" path="res://levels/objects/platforms/manual_moving_platform.gd" id="1_1yy5t"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="1_io4ca"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhqbk"]
-size = Vector2(86, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yy5t"]
+size = Vector2(85, 15)
 
 [node name="ManualMovingPlatform" type="AnimatableBody2D"]
 script = ExtResource("1_1yy5t")
-move_distance = 50.0
-acceleration = 50.0
 
 [node name="MovingPlatform" type="Sprite2D" parent="."]
-texture = ExtResource("2_e3o0j")
+texture = ExtResource("1_io4ca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_nhqbk")
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_1yy5t")

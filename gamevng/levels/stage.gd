@@ -9,7 +9,6 @@ func _enter_tree() -> void:
 	
 func _ready() -> void:
 	_init_day_night()
-	
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
 		
@@ -31,3 +30,5 @@ func _init_day_night():
 		DayNightManager.canvas_modulate = get_node("DayNightCanvasModulate")
 	else:
 		push_warning("DayNightCanvasModulate node not found")
+	
+	DayNightManager.set_state(default_day_night_state)

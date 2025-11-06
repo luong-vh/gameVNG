@@ -6,6 +6,7 @@ var lock_input_timer: Timer
 ## Player character class that handles movement, combat, and state management
 var is_invulnerable: bool = false
 @onready var invulnerable_timer = $InvulnerableTimer
+var blink_speed: int = 3
 
 @export var throwing_speed: float = 300
 @export var has_blade: bool = false
@@ -47,6 +48,7 @@ func _ready() -> void:
 	_init_wall_cling()
 	
 	GameManager.player = self
+	GameManager.main_camera = $Camera2D
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	
 	if has_node("Direction/CheckPushable"):
@@ -80,6 +82,15 @@ func collect_blade() -> void:
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = true
 
+func throw_blade():
+	has_blade = false
+	Dialogic.VAR["PlayerHasBlade"] = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	var blade := blade_factory.create() as RigidBody2D
+	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
+	blade.apply_impulse(throwing_velocity)
+
+
 func save_state() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
@@ -112,6 +123,10 @@ func start_dash_cd() -> bool:
 func is_dash_on_cd() -> bool:
 	return dash_timer.time_left > 0
 
+func invulnerable()->void:
+	is_invulnerable = true
+	invulnerable_timer.start()
+
 func load_state(data: Dictionary) -> void:
 	"""Load player state from checkpoint data"""
 	#print(data)
@@ -133,30 +148,12 @@ func load_state(data: Dictionary) -> void:
 
 func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:
 	fsm.current_state.take_damage(_damage)
-
-func invulnerable()->void:
-	is_invulnerable = true
-	invulnerable_timer.start()
 	
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("switch_day_night"):
-		DayNightManager.switch_state()
-	
-	if invulnerable_timer.is_stopped():
-		is_invulnerable = false
-	
-	if Input.is_action_just_pressed("attack"):
-		if can_attack(): 
-			fsm.change_state(fsm.states.attack)
-	
-	if Input.is_action_just_pressed("throw"):
-		if can_attack():
-			has_blade = false
-			Dialogic.VAR["PlayerHasBlade"] = false
-			set_animated_sprite($Direction/AnimatedSprite2D)
-			change_animation("idle")
-			var blade := blade_factory.create() as RigidBody2D
-			var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
-			blade.apply_impulse(throwing_velocity)
-			
 	super._physics_process(delta)
+	
+	if invulnerable_timer.time_left > 0:
+		var alpha := 0.5 + 0.5 * sin(invulnerable_timer.time_left * TAU * blink_speed)
+		animated_sprite.modulate.a = alpha
+	else:
+		animated_sprite.modulate.a = 1.0

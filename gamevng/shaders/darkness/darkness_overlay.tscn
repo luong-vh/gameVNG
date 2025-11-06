@@ -1,18 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7ofbg8xuykwo"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ofbg8xuykwo"]
 
 [ext_resource type="Script" uid="uid://cv78c5m0r5ovh" path="res://shaders/texture_control.gd" id="1_q8mkb"]
 [ext_resource type="Material" uid="uid://bhcpoitvikaaa" path="res://shaders/darkness/darkness_shader_material.tres" id="2_1bhlw"]
 [ext_resource type="Script" uid="uid://d22hlpd1iyg1h" path="res://shaders/shader_texture_rect.gd" id="3_t5lp0"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5j4xa"]
-noise_type = 4
-seed = 1
-frequency = 0.0168
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3y4se"]
-seamless = true
-normalize = false
-noise = SubResource("FastNoiseLite_5j4xa")
+[sub_resource type="CanvasTexture" id="CanvasTexture_q8mkb"]
+specular_color = Color(0, 0, 0, 1)
 
 [node name="DarknessOverlay" type="Control"]
 clip_contents = true
@@ -36,6 +29,6 @@ offset_top = -105.0
 offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_3y4se")
+texture = SubResource("CanvasTexture_q8mkb")
 expand_mode = 5
 script = ExtResource("3_t5lp0")

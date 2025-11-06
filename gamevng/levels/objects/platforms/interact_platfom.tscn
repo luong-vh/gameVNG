@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://bs443mpop7gwr"]
+
+[ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/interact_platfom.gd" id="1_uc83e"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="1_wgqlf"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="2_ji5nd"]
+[ext_resource type="PackedScene" uid="uid://btexh48v7tpw6" path="res://levels/objects/platforms/platform_path2D.tscn" id="4_tolak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji5nd"]
+size = Vector2(80, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc83e"]
+size = Vector2(40, 25)
+
+[sub_resource type="Animation" id="Animation_0df40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tolak"]
+resource_name = "move"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_cc8y0"]
+resource_name = "return"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cc8y0"]
+_data = {
+&"RESET": SubResource("Animation_0df40"),
+&"move": SubResource("Animation_tolak"),
+&"return": SubResource("Animation_cc8y0")
+}
+
+[node name="InteractPlatfom" type="Node2D"]
+script = ExtResource("1_uc83e")
+
+[node name="PlatformPath2D" parent="." node_paths=PackedStringArray("platform") instance=ExtResource("4_tolak")]
+platform = NodePath("../AnimatableBody2D")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_wgqlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_ji5nd")
+
+[node name="InteractiveArea2D" type="Area2D" parent="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_ji5nd")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/InteractiveArea2D"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_uc83e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cc8y0")
+}
+autoplay = "RESET"
+
+[connection signal="interacted" from="AnimatableBody2D/InteractiveArea2D" to="." method="_on_interactive_area_2d_interacted"]

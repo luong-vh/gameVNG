@@ -11,6 +11,8 @@ func _update(_delta: float) -> void:
 	
 	control_dash()
 	
+	control_attack()
+	
 	var is_jumping = control_jump()
 	
 	if obj.is_near_wall() and not obj.is_on_floor():

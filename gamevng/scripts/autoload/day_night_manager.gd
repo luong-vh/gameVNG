@@ -27,6 +27,11 @@ func switch_state():
 func _init_state():
 	_apply_state(current_state)
 
+func set_state(state: DayNightState):
+	if state != current_state:
+		current_state = state
+		_apply_state(current_state)
+
 func _apply_state(state : DayNightState) -> void:
 	if not day_bg or not night_bg or not canvas_modulate:
 		return

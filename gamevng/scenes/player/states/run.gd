@@ -1,6 +1,5 @@
 extends PlayerState
 
-
 func _enter() -> void:
 	#Change animation to run
 	obj.change_animation("run")
@@ -16,6 +15,8 @@ func _update(_delta: float):
 		return
 	
 	control_dash()
+	
+	control_attack()
 	
 	#If not on floor change to fall
 	if not obj.is_on_floor():

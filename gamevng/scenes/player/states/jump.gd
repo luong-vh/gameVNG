@@ -13,6 +13,8 @@ func _update(_delta: float):
 	
 	control_dash()
 	
+	control_attack()
+	
 	#If velocity.y is greater than 0 change to fall
 	if obj.is_near_wall() and not obj.is_on_floor():
 		change_state(fsm.states.wallcling)

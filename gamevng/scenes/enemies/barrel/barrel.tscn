@@ -52,7 +52,7 @@ animations = [{
 size = Vector2(21, 19)
 
 [node name="Barrel" type="CharacterBody2D"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.7, 1.7)
 collision_layer = 64
 script = ExtResource("1_t8iir")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
@@ -75,15 +75,12 @@ target_container_name = &"Bullets"
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("9_sq6do")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Night_Attack" type="Node" parent="States"]
 script = ExtResource("12_td13d")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Day_Attack" type="Node" parent="States"]
 script = ExtResource("10_bh1st")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)

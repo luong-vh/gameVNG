@@ -9,6 +9,8 @@ var current_stage = ""
 var player: Player = null
 var stage_path
 var _target_portal_name
+var main_camera: Camera2D = null
+var _last_ground_checkpoint: GroundCheckPointArea = null
 
 signal stage_changed(new_stage_path)
 
@@ -73,6 +75,12 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
 	return {}
+
+func respawn_at_ground_checkpoint():
+	if not _last_ground_checkpoint:
+		return
+	SceneTransition.fade_from_black()
+	player.global_position = _last_ground_checkpoint.global_position
 
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
