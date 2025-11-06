@@ -1,8 +1,9 @@
-[gd_scene load_steps=47 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=48 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
-[ext_resource type="Texture2D" uid="uid://gusigv886t7r" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
+[ext_resource type="Script" uid="uid://bpe8jgiftpqdh" path="res://scenes/player/camera_2d.gd" id="2_genst"]
+[ext_resource type="Texture2D" uid="uid://bkabwrpxdc7cc" path="res://assets/foxy/fox_hat_blade/fox_atk_2.png" id="3_j4nxn"]
 [ext_resource type="Texture2D" uid="uid://byd3g4nnxwfcq" path="res://assets/foxy/fox_hat_blade/fox_atk_3.png" id="4_28m0y"]
 [ext_resource type="Texture2D" uid="uid://dkd08e8lorvee" path="res://assets/foxy/fox_hat/fox_defeat_1.png" id="4_c35mf"]
 [ext_resource type="Texture2D" uid="uid://brlsobsd6xakk" path="res://assets/foxy/fox_hat/fox_defeat_2.png" id="5_65viv"]
@@ -43,7 +44,7 @@
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
 [ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
-[ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="40_u3hyo"]
+[ext_resource type="Texture2D" uid="uid://bxh43o755kc26" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
@@ -299,6 +300,7 @@ shape = SubResource("CapsuleShape2D_oul6g")
 position = Vector2(1, -61)
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
+script = ExtResource("2_genst")
 
 [node name="Direction" type="Node2D" parent="."]
 

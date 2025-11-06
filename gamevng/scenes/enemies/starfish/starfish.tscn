@@ -106,13 +106,12 @@ collide_with_areas = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_ysheg")
-animation = &"dead"
+animation = &"moving"
 
 [node name="FrontRayCast2D" type="RayCast2D" parent="Direction"]
 position = Vector2(0, 5)
 rotation = -1.5708
 target_position = Vector2(0, 30)
-collision_mask = 3
 
 [node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
 position = Vector2(15, 5)

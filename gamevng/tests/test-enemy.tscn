@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://x18ct0xrj08p"]
+[gd_scene load_steps=11 format=4 uid="uid://x18ct0xrj08p"]
 
 [ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="7_pxeid"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
 [ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield-native/spear.tscn" id="10_tsaj6"]
 
 [node name="Test-enemy" type="Node2D"]
 script = ExtResource("1_5jyel")
@@ -40,3 +41,6 @@ position = Vector2(571, 205)
 script = ExtResource("9_jx3by")
 enemy_scene = ExtResource("7_pxeid")
 metadata/_custom_type_script = "uid://bscbu7r2b67wt"
+
+[node name="Spear" parent="." instance=ExtResource("10_tsaj6")]
+position = Vector2(592, 70)

@@ -11,6 +11,7 @@ var stage_path
 var _target_portal_name
 
 signal stage_changed(new_stage_path)
+signal earthquake_triggered(strength, duration)
 
 func _ready() -> void:
 	# Load checkpoint data when game starts
