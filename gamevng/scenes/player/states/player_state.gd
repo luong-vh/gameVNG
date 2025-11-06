@@ -33,6 +33,9 @@ func control_moving() -> bool:
 #Control jumping
 #Return true if jumping
 func control_jump() -> bool:
+	if obj.is_on_floor():
+		obj.jump_count = obj.max_jump_amount
+	
 	var jumpInput = Input.is_action_just_pressed("jump")
 	if jumpInput:
 		#Wall jump
@@ -49,6 +52,8 @@ func control_jump() -> bool:
 		
 		#Normal jump
 		if obj.jump_count > 0:
+			obj.jump_particle.restart()
+			obj.jump_particle.emitting = true
 			obj.jump()
 			obj.jump_count -= 1
 			change_state(fsm.states.jump)
@@ -69,6 +74,20 @@ func control_wall_cling(delta: float) -> bool:
 		return false
 	change_state(fsm.states.wallcling)
 	return true
+
+func control_dash() -> bool:
+	if obj.is_on_floor() or obj.is_near_wall():
+		obj.dash_count = 0
+	
+	if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
+		return false
+	
+	var dash_input = Input.is_action_just_pressed("dash")
+	if dash_input:
+		fsm.change_state(fsm.states.dash)
+		return true
+	
+	return false
 
 func take_damage(damage) -> void:
 	#obj take damage

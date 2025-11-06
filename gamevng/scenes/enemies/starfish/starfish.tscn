@@ -98,7 +98,7 @@ shape = SubResource("CapsuleShape2D_pdypp")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 65)
-collision_mask = 3
+collision_mask = 67
 hit_from_inside = true
 collide_with_areas = true
 
