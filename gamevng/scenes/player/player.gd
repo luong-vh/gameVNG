@@ -21,6 +21,15 @@ var wall_checker: RayCast2D
 ## For double jump
 var jump_count = 1
 @export var max_jump_amount = 1
+@onready var jump_particle = $Particle/JumpParticle
+
+## For dash
+@export var dash_time: float = 0.2
+@export var dash_speed := 600.0
+@export var dash_amount: int = 1
+var dash_count:int = 0
+@onready var dash_particle: GPUParticles2D = $Particle/DashParticle
+@onready var dash_timer: Timer = $DashCoolDownTimer
 
 var raycast_pushable: RayCast2D
 
@@ -93,6 +102,15 @@ func lock_input() -> bool:
 
 func is_input_lock() -> bool:
 	return lock_input_timer.time_left > 0
+
+func start_dash_cd() -> bool:
+	if dash_timer:
+		dash_timer.start()
+		return true
+	return false
+
+func is_dash_on_cd() -> bool:
+	return dash_timer.time_left > 0
 
 func load_state(data: Dictionary) -> void:
 	"""Load player state from checkpoint data"""
