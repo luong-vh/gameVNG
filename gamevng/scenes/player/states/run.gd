@@ -21,7 +21,7 @@ func _update(_delta: float):
 	if not obj.is_on_floor():
 		change_state(fsm.states.fall)
 		return
-	var raycast = obj.raycast_right if obj.direction == 1 else obj.raycast_left
+	var raycast = obj.raycast_pushable
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		obj.velocity.x = collider.try_to_push(obj.velocity.x, _delta)

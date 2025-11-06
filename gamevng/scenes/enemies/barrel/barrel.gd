@@ -28,6 +28,7 @@ func _ready() -> void:
 		
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	move_and_slide()
 
 func try_to_push(velocity_x: float,delta: float) ->float:
 	if velocity_x == 0:

@@ -31,8 +31,7 @@ var dash_count:int = 0
 @onready var dash_particle: GPUParticles2D = $Particle/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
-var raycast_right: RayCast2D
-var raycast_left: RayCast2D
+var raycast_pushable: RayCast2D
 
 func _ready() -> void:
 	super._ready()
@@ -50,10 +49,8 @@ func _ready() -> void:
 	GameManager.player = self
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	
-	if has_node("CheckLeft"):
-		raycast_left = $CheckLeft
-	if has_node("CheckRight"):
-		raycast_right = $CheckRight
+	if has_node("Direction/CheckPushable"):
+		raycast_pushable = $Direction/CheckPushable
 
 func _init_wall_cling():
 	## Setup wall cling
