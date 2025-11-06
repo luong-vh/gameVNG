@@ -32,6 +32,11 @@ var dash_count:int = 0
 @onready var dash_particle: GPUParticles2D = $Particle/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
+@export var look_down_distance = 50.0   # Khoảng cách camera hạ xuống (pixel)
+@export var look_down_forward = 30.0    # Camera tiến lên phía trước
+@export var look_speed = 0.1  
+@export var _target_offset = Vector2(0,-75)
+@onready var camera_2d = $Camera2D
 var raycast_pushable: RayCast2D
 
 func _ready() -> void:
@@ -148,10 +153,21 @@ func load_state(data: Dictionary) -> void:
 
 func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:
 	fsm.current_state.take_damage(_damage)
+
+func handle_look_down(delta):
+	var target_offset = _target_offset
+	
+	# Nếu nhấn giữ phím
+	if Input.is_action_pressed("down"):
+		target_offset.y += look_down_distance   # Hạ camera xuống
+		target_offset.x += look_down_forward * direction   # Camera tiến phía trước
+	
+	# Smooth camera movement
+	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
 	
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	
+	handle_look_down(delta)
 	if invulnerable_timer.time_left > 0:
 		var alpha := 0.5 + 0.5 * sin(invulnerable_timer.time_left * TAU * blink_speed)
 		animated_sprite.modulate.a = alpha
