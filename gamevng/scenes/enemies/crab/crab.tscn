@@ -104,12 +104,9 @@ shape = SubResource("RectangleShape2D_2p33d")
 
 [node name="Run" type="Node" parent="States"]
 script = ExtResource("7_u0osc")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Hurt" type="Node" parent="States"]
 script = ExtResource("10_0ud0h")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource("11_tgm84")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"

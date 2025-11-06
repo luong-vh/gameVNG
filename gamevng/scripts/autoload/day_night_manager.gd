@@ -16,6 +16,7 @@ signal state_changed(new_state : DayNightState)
 func _ready():
 	call_deferred("_init_state")
 
+
 func switch_state():
 	if current_state == DayNightState.DAY:
 		current_state = DayNightState.NIGHT
@@ -28,6 +29,7 @@ func _init_state():
 	_apply_state(current_state)
 
 func _apply_state(state : DayNightState) -> void:
+	print("[DayNightManager] Applying state:", state)
 	if not day_bg or not night_bg or not canvas_modulate:
 		return
 	
@@ -36,9 +38,12 @@ func _apply_state(state : DayNightState) -> void:
 			day_bg.visible = true
 			night_bg.visible = false
 			canvas_modulate.color = day_color
+			print("   → Switched to DAY mode 🌞")
 		DayNightState.NIGHT:
 			day_bg.visible = false
 			night_bg.visible = true
 			canvas_modulate.color = night_color
-	
+			print("   → Switched to NIGHT mode 🌙")
+		_:
+			print("[DayNightManager] ⚠️ Background or modulate node not set yet!")
 	emit_signal("state_changed", current_state)

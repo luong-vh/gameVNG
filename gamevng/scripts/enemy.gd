@@ -6,6 +6,9 @@ extends BaseCharacter
 var front_ray_cast: RayCast2D;
 var down_ray_cast: RayCast2D;
 
+var spawn_only_at_night: bool = false
+var spawn_point: Vector2
+
 @export var detection_range: float = 150
 var detect_player_ray: RayCast2D;
 
@@ -18,9 +21,9 @@ func _ready() -> void:
 	_init_ray_cast()
 	_init_detect_player_area()
 	_init_hurt_area()
-
 	_add_into_enemy_manager()
 	player = GameManager.player
+	spawn_point = global_position
 	super._ready()
 	pass
 
