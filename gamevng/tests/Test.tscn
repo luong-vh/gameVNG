@@ -122,10 +122,4 @@ position = Vector2(48, 210)
 
 [node name="WoodenSign" parent="." instance=ExtResource("21_nhw5b")]
 position = Vector2(360, 155)
-message = "Press WASD to move!
-FUckk
-
-cc
-c
-cc
-"
+message = "Press WASD to move!"
