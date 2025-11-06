@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://gmsitsyww3ne"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://gmsitsyww3ne"]
 
 [ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccufub3modpkh" path="res://levels/objects/tree/palm_tree_2.tscn" id="4_7a5rw"]
 [ext_resource type="PackedScene" uid="uid://cv4jotkxsk4xd" path="res://levels/objects/tree/palm_tree_3.tscn" id="5_6kw8m"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="6_7a5rw"]
+[ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="7_6kw8m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x61fc"]
 texture = ExtResource("1_6gm7o")
@@ -400,6 +401,7 @@ scenes/3/scene = ExtResource("5_6kw8m")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6kw8m"]
 resource_name = "Ob"
 scenes/1/scene = ExtResource("6_7a5rw")
+scenes/4/scene = ExtResource("7_6kw8m")
 
 [resource]
 tile_size = Vector2i(32, 32)

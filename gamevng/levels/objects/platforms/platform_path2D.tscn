@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="1_2myst"]
 
 [sub_resource type="Curve2D" id="Curve2D_61nye"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 681, 1)
+}
+point_count = 2
 
 [node name="PlatformPath2D" type="Path2D"]
 curve = SubResource("Curve2D_61nye")
 script = ExtResource("1_2myst")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(81, 2)
+rotation = 2.68538
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
 remote_path = NodePath("../../EmptyNode")
@@ -16,3 +22,4 @@ update_rotation = false
 update_scale = false
 
 [node name="EmptyNode" type="Node2D" parent="."]
+position = Vector2(81, 2)

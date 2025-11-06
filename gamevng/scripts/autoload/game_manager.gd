@@ -11,7 +11,6 @@ var stage_path
 var _target_portal_name
 var main_camera: Camera2D = null
 var _last_ground_checkpoint: GroundCheckPointArea = null
-
 signal stage_changed(new_stage_path)
 signal earthquake_triggered(strength, duration)
 
@@ -20,11 +19,14 @@ func _ready() -> void:
 	load_checkpoint_data()
 	SceneTransition.fade_to_black_finished.connect(teleport)
 	SceneTransition.fade_from_black_finished.connect(able_to_control_player)
+	
 
 func able_to_control_player():
 	player.set_physics_process(true)
 
 func teleport() -> void:
+	if _target_portal_name == null:
+		return
 	target_portal_name = _target_portal_name
 	var scene_id = ResourceUID.text_to_id(stage_path)
 		# 2. Lấy đường dẫn từ số ID đó
@@ -79,6 +81,8 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 
 func respawn_at_ground_checkpoint():
 	if not _last_ground_checkpoint:
+		return
+	if GameManager.player.health <=0 :
 		return
 	SceneTransition.fade_from_black()
 	player.global_position = _last_ground_checkpoint.global_position
