@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cg6boeqvkapvi"]
+[gd_scene load_steps=8 format=4 uid="uid://cg6boeqvkapvi"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_d7xxl"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_tw7yl"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_5j4xa"]
-[ext_resource type="PackedScene" uid="uid://dy5n8ltemy2s6" path="res://shaders/fog/fog_overlay.tscn" id="4_b82yb"]
-[ext_resource type="Script" uid="uid://bus13p431f8ht" path="res://shaders/light_capture_viewport.gd" id="5_w747j"]
+[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="4_w747j"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="6_b82yb"]
-[ext_resource type="PackedScene" uid="uid://c7ofbg8xuykwo" path="res://shaders/darkness/darkness_overlay.tscn" id="6_eiv20"]
 [ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="7_m0cjy"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="7_w747j"]
 
@@ -27,29 +25,7 @@ texture_scale = 0.6
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="FogOverlay" parent="CanvasLayer" node_paths=PackedStringArray("light_capture") instance=ExtResource("4_b82yb")]
-light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
-texture_visible = false
-
-[node name="DarknessOverlay" parent="CanvasLayer" node_paths=PackedStringArray("light_capture") instance=ExtResource("6_eiv20")]
-light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="LightCaptureViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(480, 270)
-render_target_update_mode = 0
-script = ExtResource("5_w747j")
+[node name="CanvasLayer" parent="." instance=ExtResource("4_w747j")]
 
 [node name="NightParallaxBackground" parent="." instance=ExtResource("7_w747j")]
 

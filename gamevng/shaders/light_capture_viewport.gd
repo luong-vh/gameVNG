@@ -36,7 +36,7 @@ func _ready():
 # Recursive function to find all Light2D nodes
 func get_all_lights(node: Node) -> Array[Light2D]:
 	var lights: Array[Light2D] = []
-	if node is Light2D and node.enabled and node.visible:
+	if node is Light2D:
 		lights.append(node)
 	for child in node.get_children():
 		lights.append_array(get_all_lights(child))

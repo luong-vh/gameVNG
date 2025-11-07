@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs443mpop7gwr"]
+[gd_scene load_steps=18 format=3 uid="uid://2s7si80yuq10"]
 
 [ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/boat.gd" id="1_y7fvp"]
-[ext_resource type="PackedScene" uid="uid://btexh48v7tpw6" path="res://levels/objects/platforms/platform_path2D.tscn" id="2_ahob1"]
+[ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="2_y7fvp"]
 [ext_resource type="Texture2D" uid="uid://crflavbexmqg2" path="res://assets/init_assets/images/boat/boat_body.png" id="3_u1rq4"]
 [ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="4_wf0kx"]
 [ext_resource type="Texture2D" uid="uid://bnyyso8r3xy7h" path="res://assets/init_assets/images/boat/boat_sail_1.png" id="5_neog2"]
@@ -10,11 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://bv2po7d5rema6" path="res://assets/init_assets/images/boat/boat_sail_4.png" id="8_vay1t"]
 [ext_resource type="Texture2D" uid="uid://cbrqqsfiyiei0" path="res://assets/init_assets/images/boat/boat_sail_5.png" id="9_8anmk"]
 
+[sub_resource type="Curve2D" id="Curve2D_61nye"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 681, 1)
+}
+point_count = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji5nd"]
 size = Vector2(85, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uc83e"]
-size = Vector2(85, 12.5)
+size = Vector2(85, 27.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvxbk"]
 animations = [{
@@ -144,8 +150,20 @@ _data = {
 [node name="Boat" type="Node2D"]
 script = ExtResource("1_y7fvp")
 
-[node name="PlatformPath2D" parent="." node_paths=PackedStringArray("platform") instance=ExtResource("2_ahob1")]
+[node name="PlatformPath2D" type="Path2D" parent="." node_paths=PackedStringArray("platform")]
+curve = SubResource("Curve2D_61nye")
+script = ExtResource("2_y7fvp")
 platform = NodePath("../AnimatableBody2D")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PlatformPath2D"]
+rotation = 0.00146843
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlatformPath2D/PathFollow2D"]
+remote_path = NodePath("../../EmptyNode")
+update_rotation = false
+update_scale = false
+
+[node name="EmptyNode" type="Node2D" parent="PlatformPath2D"]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 

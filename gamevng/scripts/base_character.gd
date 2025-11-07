@@ -21,6 +21,8 @@ var _next_animation = null
 var _next_direction: int = 1
 var _next_animated_sprite: AnimatedSprite2D = null
 
+signal died
+
 func _ready() -> void:
 	set_animated_sprite($Direction/AnimatedSprite2D)
 
