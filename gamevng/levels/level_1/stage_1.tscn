@@ -185,10 +185,6 @@ checkpoint_id = "4"
 [node name="Boat" parent="." instance=ExtResource("15_wrqy7")]
 position = Vector2(8280, 300)
 
-[node name="PathFollow2D" parent="Boat/PlatformPath2D" index="0"]
-position = Vector2(0, 0)
-rotation = 0.00146843
-
 [node name="EmptyNode" parent="Boat/PlatformPath2D" index="1"]
 position = Vector2(0, 0)
 
