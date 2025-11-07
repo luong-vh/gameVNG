@@ -1,6 +1,5 @@
 # --- BẮT ĐẦU CUỘC HỘI THOẠI ---
 # --- KIỂM TRA NGAY LẬP TỨC ---
-do GameManager.unable_to_control_player()
 if {PlayerHasBlade} == true:
 	# --- Nhánh 1: NGƯỜI CHƠI ĐÃ CÓ KIẾM ---
 	Mushroom: A, Foxy! Chào cậu!
@@ -35,6 +34,6 @@ else:
 		Mushroom: Thật là một cậu cáo liều lĩnh. Thôi được, ta đã cố khuyên rồi.
 		Mushroom: Chúc may mắn... cậu sẽ cần đấy.
 		Foxy: Tạm biệt ngài.
-do GameManager.able_to_control_player()
+end
 
 # --- KẾT THÚC HỘI THOẠI ---
