@@ -131,9 +131,9 @@ func is_near_wall() -> bool:
 	else:
 		return false
 
-func lock_input() -> bool:
+func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
-		lock_input_timer.start()
+		lock_input_timer.start(length)
 		return true
 	else:
 		return false

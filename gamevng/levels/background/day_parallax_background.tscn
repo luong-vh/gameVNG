@@ -48,6 +48,16 @@ position = Vector2(417, -11)
 scale = Vector2(26.125, 20.531)
 texture = ExtResource("1_jiyjy")
 
+[node name="SkySprite2D2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(417, -666)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("1_jiyjy")
+
+[node name="SkySprite2D3" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(417, -1318)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("1_jiyjy")
+
 [node name="SeaSkySprite2D" type="Sprite2D" parent="ParallaxLayer"]
 position = Vector2(0, 57)
 scale = Vector2(2, 2)

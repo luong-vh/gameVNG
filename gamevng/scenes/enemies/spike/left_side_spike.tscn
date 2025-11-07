@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://de2ep26bq1t6f"]
+[gd_scene load_steps=5 format=3 uid="uid://cvosvspa7nfg3"]
 
-[ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_t07a1"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_5sfix"]
-[ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="3_278ma"]
+[ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_btph7"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_5tus5"]
+[ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="3_y4x1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo1o"]
 size = Vector2(12, 29)
 
 [node name="SidewaySpike" type="Node2D"]
-script = ExtResource("1_t07a1")
+script = ExtResource("1_btph7")
 
 [node name="HitArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("2_5sfix")
+script = ExtResource("2_5tus5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
 position = Vector2(-10, 0)
@@ -21,6 +21,6 @@ shape = SubResource("RectangleShape2D_fpo1o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("3_278ma")
+texture = ExtResource("3_y4x1h")
 
 [connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]

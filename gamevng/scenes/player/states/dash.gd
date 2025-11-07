@@ -17,3 +17,6 @@ func _update(_delta: float) -> void:
 		obj.dash_particle.emitting = false
 		obj.start_dash_cd()
 		change_state(fsm.previous_state)
+
+func _exit():
+	obj.dash_particle.emitting = false
