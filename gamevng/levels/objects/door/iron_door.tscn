@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4e7g1oq7iuw1"]
+
+[ext_resource type="Texture2D" uid="uid://b3g02louyk867" path="res://assets/island/objects/door/iron_door.png" id="1_ri4sf"]
+[ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="2_lr1i5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr1i5"]
+size = Vector2(37, 75)
+
+[sub_resource type="Animation" id="Animation_vnn6m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pxegl"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lr1i5"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnn6m"]
+_data = {
+&"RESET": SubResource("Animation_vnn6m"),
+&"close": SubResource("Animation_pxegl"),
+&"open": SubResource("Animation_lr1i5")
+}
+
+[node name="IronDoor" type="Node2D"]
+
+[node name="PlatformPath2D" type="Path2D" parent="." node_paths=PackedStringArray("platform")]
+script = ExtResource("2_lr1i5")
+platform = NodePath("../AnimatableBody2D")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PlatformPath2D"]
+rotation = 1.60527
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlatformPath2D/PathFollow2D"]
+remote_path = NodePath("../../EmptyNode")
+update_rotation = false
+update_scale = false
+
+[node name="EmptyNode" type="Node2D" parent="PlatformPath2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+z_index = -1
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_lr1i5")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+z_index = -1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_ri4sf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vnn6m")
+}
+autoplay = "RESET"

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp6og5wd5c52b"]
+
+[ext_resource type="PackedScene" uid="uid://dy5n8ltemy2s6" path="res://shaders/fog/fog_overlay.tscn" id="1_8bxmg"]
+[ext_resource type="Script" uid="uid://bw8xhh13e67rd" path="res://shaders/shader_canvas_layer.gd" id="1_75wxb"]
+[ext_resource type="PackedScene" uid="uid://c7ofbg8xuykwo" path="res://shaders/darkness/darkness_overlay.tscn" id="2_75wxb"]
+[ext_resource type="Script" uid="uid://bus13p431f8ht" path="res://shaders/light_capture_viewport.gd" id="3_du5fr"]
+
+[node name="ShaderCanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_75wxb")
+
+[node name="FogOverlay" parent="." node_paths=PackedStringArray("light_capture") instance=ExtResource("1_8bxmg")]
+light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
+texture_visible = false
+
+[node name="DarknessOverlay" parent="." node_paths=PackedStringArray("light_capture") instance=ExtResource("2_75wxb")]
+light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
+texture_visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="LightCaptureViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(480, 270)
+render_target_update_mode = 0
+script = ExtResource("3_du5fr")

@@ -2,6 +2,7 @@ class_name Player
 extends BaseCharacter
 
 var lock_input_timer: Timer
+var light_source: Light2D
 
 ## Player character class that handles movement, combat, and state management
 var is_invulnerable: bool = false
@@ -49,6 +50,9 @@ func _ready() -> void:
 	if has_node("LockInputTimer"):
 		lock_input_timer = get_node("LockInputTimer")
 	
+	if has_node("Light2D"):
+		light_source = get_node("Light2D")
+	
 	_init_hit_hurt_area()
 	_init_wall_cling()
 	
@@ -58,6 +62,9 @@ func _ready() -> void:
 	
 	if has_node("Direction/CheckPushable"):
 		raycast_pushable = $Direction/CheckPushable
+		
+	DayNightManager.state_changed.connect(_day_night_changed)
+	DayNightManager.shader_stage_changed.connect(_shader_changed)
 
 func _init_wall_cling():
 	## Setup wall cling
@@ -77,7 +84,22 @@ func _init_hit_hurt_area():
 		$Direction/HurtArea2D.hurt.connect(_on_hurt_area_2d_hurt)
 	else:
 		print("Fail to init hurt area")
-	
+
+func _day_night_changed(new_state):
+	if light_source:
+		if new_state == DayNightManager.DayNightState.DAY:
+			light_source.enabled = false
+		elif new_state == DayNightManager.DayNightState.NIGHT:
+			light_source.enabled = true
+	pass
+
+func _shader_changed(new_state):
+	if light_source:
+		if new_state == DayNightManager.ShaderState.NONE:
+			light_source.enabled = false
+		else:
+			light_source.enabled = true
+	pass
 
 func can_attack() -> bool:
 	return has_blade

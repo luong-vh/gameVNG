@@ -1,7 +1,6 @@
 class_name EnemyCharacter
 extends BaseCharacter
 
-
 # Raycast check wall and fall
 var front_ray_cast: RayCast2D;
 var down_ray_cast: RayCast2D;

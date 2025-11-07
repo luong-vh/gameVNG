@@ -33,7 +33,9 @@ func _init_day_night():
 		DayNightManager.canvas_modulate = get_node("DayNightCanvasModulate")
 	else:
 		push_warning("DayNightCanvasModulate node not found")
-
+	
+	if has_node("ShaderCanvasLayer"):
+		DayNightManager.shader_canva = get_node("ShaderCanvasLayer")
 
 func _on_load_pressed() -> void:
 	pass # Replace with function body.

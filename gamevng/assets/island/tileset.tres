@@ -1,11 +1,11 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://gmsitsyww3ne"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://gmsitsyww3ne"]
 
 [ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="3_fgag5"]
 [ext_resource type="PackedScene" uid="uid://ccufub3modpkh" path="res://levels/objects/tree/palm_tree_2.tscn" id="4_7a5rw"]
 [ext_resource type="PackedScene" uid="uid://cv4jotkxsk4xd" path="res://levels/objects/tree/palm_tree_3.tscn" id="5_6kw8m"]
-[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="6_7a5rw"]
+[ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="6_6kw8m"]
 [ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="7_6kw8m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x61fc"]
@@ -399,12 +399,65 @@ scenes/2/scene = ExtResource("4_7a5rw")
 scenes/3/scene = ExtResource("5_6kw8m")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6kw8m"]
-resource_name = "Ob"
-scenes/1/scene = ExtResource("6_7a5rw")
+resource_name = "Other"
+scenes/2/scene = ExtResource("6_6kw8m")
 scenes/4/scene = ExtResource("7_6kw8m")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6kw8m"]
+resource_name = "bg"
+texture = ExtResource("1_6gm7o")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+15:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
 
 [resource]
 tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Land"
@@ -413,3 +466,4 @@ sources/0 = SubResource("TileSetAtlasSource_x61fc")
 sources/1 = SubResource("TileSetScenesCollectionSource_utk31")
 sources/2 = SubResource("TileSetScenesCollectionSource_k86ad")
 sources/3 = SubResource("TileSetScenesCollectionSource_6kw8m")
+sources/4 = SubResource("TileSetAtlasSource_6kw8m")
