@@ -41,5 +41,5 @@ sprite_frames = SubResource("SpriteFrames_po20b")
 frame_progress = 0.993937
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-22, -9, -19, -14, -14, -18, 12, -18, 19, -14, 24, -9)
+polygon = PackedVector2Array(-24, -9, -21, -14, -15, -19, 14, -19, 21, -14, 24, -9)
 one_way_collision = true

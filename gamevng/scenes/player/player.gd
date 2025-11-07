@@ -156,13 +156,11 @@ func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:
 
 func handle_look_down(delta):
 	var target_offset = _target_offset
-	
-	# Nếu nhấn giữ phím
+
 	if Input.is_action_pressed("down"):
-		target_offset.y += look_down_distance   # Hạ camera xuống
-		target_offset.x += look_down_forward * direction   # Camera tiến phía trước
-	
-	# Smooth camera movement
+		target_offset.y = _target_offset.y + look_down_distance  # SET thành base + look
+		target_offset.x = _target_offset.x + (look_down_forward * direction)
+
 	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
 	
 func _physics_process(delta: float) -> void:

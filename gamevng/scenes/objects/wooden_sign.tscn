@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dt8fe145l5mol"]
 
-[ext_resource type="Texture2D" uid="uid://c8vpnqe7jsgbl" path="res://assets/more/wooden_sign.png" id="1_4aho2"]
+[ext_resource type="Texture2D" uid="uid://d1nbfjj4hqrpd" path="res://assets/more/wooden_sign.png" id="1_4aho2"]
 [ext_resource type="Script" uid="uid://ct450jp1f0a6m" path="res://scenes/objects/wooden_sign.gd" id="1_mxyh3"]
 [ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="2_qoxdm"]
-[ext_resource type="Texture2D" uid="uid://5j4etqbo15x4" path="res://assets/more/msg_box_tail.png" id="3_m3tmx"]
-[ext_resource type="Texture2D" uid="uid://c5vk4kbqkiyrf" path="res://assets/more/msg_box_body.png" id="4_mxyh3"]
+[ext_resource type="Texture2D" uid="uid://cikni5sf38ucb" path="res://assets/more/msg_box_tail.png" id="3_m3tmx"]
+[ext_resource type="Texture2D" uid="uid://5c6p5058wvqo" path="res://assets/more/msg_box_body.png" id="4_mxyh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3tmx"]
 size = Vector2(108, 32)
@@ -18,7 +18,7 @@ texture_margin_bottom = 10.0
 region_rect = Rect2(0, 0, 64, 33)
 
 [node name="WoodenSign" type="Node2D"]
-z_index = -1
+z_index = 1
 script = ExtResource("1_mxyh3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

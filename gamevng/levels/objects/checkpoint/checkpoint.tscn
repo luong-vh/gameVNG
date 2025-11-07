@@ -73,7 +73,6 @@ size = Vector2(24, 29)
 [node name="Checkpoint" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_4j5vx")
-checkpoint_id = "1"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hr5eo")
