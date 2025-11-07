@@ -13,8 +13,7 @@ curve = SubResource("Curve2D_61nye")
 script = ExtResource("1_2myst")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(81, 2)
-rotation = 2.68538
+rotation = 0.00146843
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
 remote_path = NodePath("../../EmptyNode")
