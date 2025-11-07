@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_m15xn"]
-[ext_resource type="PackedScene" uid="uid://rigrxpe0mc7d" path="res://shaders/shader_canvas_layer.tscn" id="2_66bjg"]
+[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="2_66bjg"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="2_dwsf3"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="3_ux4o0"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="4_m15xn"]
@@ -362,7 +362,6 @@ tile_set = ExtResource("1_33rtp")
 
 [node name="Player" parent="." instance=ExtResource("2_dwsf3")]
 position = Vector2(165, 249)
-has_blade = true
 look_down_distance = 170.0
 look_speed = 0.05
 movement_speed = 150.0
