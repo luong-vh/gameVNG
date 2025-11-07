@@ -3,7 +3,7 @@ extends EnemyCharacter
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const type ="BARREL"
+
 
 @export var bullet_speed : float = 300
 @onready var bullet_factory = $Direction/BulletFactory
@@ -20,6 +20,7 @@ var raycast_left: RayCast2D
 
 func _ready() -> void:
 	super._ready()
+	type = "BARREL"
 	fsm = FSM.new(self, $States, $States/Idle)
 	if has_node("CheckLeft"):
 		raycast_left = $CheckLeft

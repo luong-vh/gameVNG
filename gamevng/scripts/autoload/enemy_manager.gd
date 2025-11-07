@@ -3,6 +3,14 @@ extends Node
 var enemies_by_type: Dictionary = {}
 var night_spawn_points: Array = []
 
+var enemy_scenes := {
+	"": preload("res://scenes/enemies/crab/crab.tscn"),
+	"BARREL": preload("res://scenes/enemies/barrel/barrel.tscn"),
+	"STARFISH": preload("res://scenes/enemies/starfish/starfish.tscn"),
+	"MUSHROOM": preload("res://scenes/enemies/mushroom/mushroom.tscn"),
+	"TURTLE": preload("res://scenes/enemies/turtle/turtle.tscn"),
+	"SPEAR": preload("res://scenes/enemies/shield-native/spear.tscn")
+} #them enemy o day
 
 func _ready() -> void:
 	DayNightManager.state_changed.connect(_day_night_changed)
@@ -47,7 +55,8 @@ func _day_night_changed(new_state):
 			print("[SpawnPoint] -> ", sp)
 			var e = sp.spawn_enemy()
 			if e.spawn_only_at_night:
-				add_enemy(e, e.type)
+				#add_enemy(e, e.type)
+				pass
 			else:
 				pass
 		for type_name in enemies_by_type.keys():
@@ -66,3 +75,36 @@ func print_current_status():
 
 func register_spawn_point(point: EnemySpawnPoint):
 	night_spawn_points.append(point)
+
+
+func save_all() -> Array:
+	var result: Array = []
+	for type_name in enemies_by_type.keys():
+		for enemy in enemies_by_type[type_name]:
+			result.append(enemy.serialize())
+	return result
+
+
+func load_all(saved_enemies: Array) -> void:
+	# Xóa hết enemy hiện tại
+	for e in get_all_enemies():
+		e.queue_free()
+	enemies_by_type.clear()
+
+	# Load từng enemy
+	for e_data in saved_enemies:
+		if e_data.spawn_only_at_night and DayNightManager.is_day() :
+			continue  # bỏ qua nếu đang ban ngày
+
+		var enemy = _spawn_enemy_from_type(e_data.type)
+		if enemy:
+			enemy.apply_serialized(e_data)
+			add_enemy(enemy, e_data.type)
+
+func _spawn_enemy_from_type(t: String):
+	if not enemy_scenes.has(t):
+		push_error("Enemy type not found: " + t)
+		return null
+	var inst = enemy_scenes[t].instantiate()
+	get_tree().current_scene.add_child(inst)
+	return inst

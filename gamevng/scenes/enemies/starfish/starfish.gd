@@ -1,9 +1,10 @@
 extends EnemyCharacter
 
-const type ="STARFISH"
+
 @export var attack_cooldown: float = 0.5
 func _ready() -> void:
 	super._ready()
+	type = "STARFISH"
 	fsm = FSM.new(self, $States, $States/Moving)
 	
 func _physics_process(delta: float) -> void:

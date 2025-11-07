@@ -3,10 +3,11 @@ extends EnemyCharacter
 
 const SPEED = 170.0
 const JUMP_VELOCITY = -400.0
-const type ="CRAB"
+
 
 func _ready()->void:
 	super._ready()
+	type = "CRAB"
 	fsm = FSM.new(self, $States, $States/Run)
 	
 func _add_into_enemy_manager():

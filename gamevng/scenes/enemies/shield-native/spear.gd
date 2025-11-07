@@ -1,6 +1,6 @@
 extends EnemyCharacter
 
-const type ="SPEAR"
+
 @export var attack_cooldown: float = 0.5
 @export var speed = 100 
 
@@ -9,6 +9,7 @@ var original_player_raycast_length: float
 
 func _ready() -> void:
 	super._ready()
+	type = "SPEAR"
 	fsm = FSM.new(self, $States, $States/Moving)
 	
 	#store default speed
