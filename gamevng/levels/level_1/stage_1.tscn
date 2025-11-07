@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bks7qwxjmvjxu"]
+[gd_scene load_steps=22 format=4 uid="uid://bks7qwxjmvjxu"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_m15xn"]
@@ -14,12 +14,23 @@
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="10_y6x6r"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="13_66bjg"]
 [ext_resource type="PackedScene" uid="uid://bs443mpop7gwr" path="res://levels/objects/platforms/Boat.tscn" id="15_wrqy7"]
+[ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="16_e0w38"]
+[ext_resource type="Texture2D" uid="uid://5c6p5058wvqo" path="res://assets/more/msg_box_body.png" id="17_d7x21"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="17_md6n3"]
+[ext_resource type="Texture2D" uid="uid://cikni5sf38ucb" path="res://assets/more/msg_box_tail.png" id="18_h51gi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7xf2g"]
 distance = -41.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ana1o"]
+texture = ExtResource("17_d7x21")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 64, 33)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_m15xn")
@@ -188,6 +199,69 @@ position = Vector2(8280, 300)
 [node name="EmptyNode" parent="Boat/PlatformPath2D" index="1"]
 position = Vector2(0, 0)
 
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Mushroom" parent="NPCs" instance=ExtResource("16_e0w38")]
+position = Vector2(9045, 289)
+
+[node name="DialogBox" type="Control" parent="NPCs/Mushroom"]
+visible = false
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -99.0
+offset_right = 124.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="NPCs/Mushroom/DialogBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 20.0
+offset_right = -50.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ana1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="NPCs/Mushroom/DialogBox/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="NPCs/Mushroom/DialogBox/PanelContainer/MarginContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Press F to talk."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Mushroom/DialogBox"]
+position = Vector2(126, 76)
+texture = ExtResource("18_h51gi")
+
+[node name="Blade" type="Node" parent="."]
+
+[connection signal="interaction_available" from="NPCs/Mushroom/InteractiveArea2D" to="NPCs/Mushroom" method="_on_interactive_area_2d_interaction_available"]
+[connection signal="interaction_unavailable" from="NPCs/Mushroom/InteractiveArea2D" to="NPCs/Mushroom" method="_on_interactive_area_2d_interaction_unavailable"]
+
+[editable path="TutorialSigns/WoodenSign"]
 [editable path="Player"]
 [editable path="Boat"]
 [editable path="Boat/PlatformPath2D"]
+[editable path="NPCs/Mushroom"]

@@ -23,7 +23,9 @@ func _ready() -> void:
 
 func able_to_control_player():
 	player.set_physics_process(true)
-
+	
+func unable_to_control_player():
+	player.set_physics_process(false)
 func teleport() -> void:
 	if _target_portal_name == null:
 		return
@@ -44,7 +46,7 @@ func change_stage(_stage_path: String, __target_portal_name: String = "") -> voi
 	SceneTransition.fade_to_black()
 	stage_path = _stage_path
 	_target_portal_name = __target_portal_name
-	player.set_physics_process(false)
+	unable_to_control_player()
 
 #call from dialogic
 func call_from_dialogic(msg:String = ""):
@@ -150,5 +152,5 @@ func reload_current_scene() -> void:
 	current_stage.reload()
 
 func collect_blade() -> void:
-	player.collected_blade()
+	player.collect_blade()
 	Dialogic.VAR["PlayerHasBlade"] = true
