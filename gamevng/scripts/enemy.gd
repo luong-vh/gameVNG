@@ -9,6 +9,8 @@ var down_ray_cast: RayCast2D;
 var spawn_only_at_night: bool = false
 var spawn_point: Vector2
 
+@export var type: String = ""
+
 @export var detection_range: float = 150
 var detect_player_ray: RayCast2D;
 
@@ -139,3 +141,30 @@ func _add_into_enemy_manager():
 func _delete_from_enemy_manager():
 	push_error("%s must implement '_delete_from_enemy_manager()'!" % self)
 	assert(false, "Abstract method called")
+
+
+func serialize() -> Dictionary:
+	return {
+		"type": type,
+		"position": {
+			"x": global_position.x,
+			"y": global_position.y
+		},
+		"hp": health,
+		"spawn_only_at_night": spawn_only_at_night,
+		"state": fsm.current_state.name,
+	}
+
+func apply_serialized(data: Dictionary) -> void:
+	global_position = Vector2(data.position.x, data.position.y)
+	health = data.hp
+	spawn_only_at_night = data.spawn_only_at_night
+	if data.has("state"):
+		var state_name: String = str(data.state).to_lower()
+		
+		if fsm.states.has(state_name):
+			var state_obj = fsm.states[state_name]
+			fsm.change_state(state_obj)
+		else:
+			push_warning("⚠ FSM state not found: " + state_name)
+	

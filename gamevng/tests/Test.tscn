@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="3_pfwq7"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="6_pupqp"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="7_1f3o5"]
-[ext_resource type="PackedScene" uid="uid://4abnqea6jimr" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="8_lg0vp"]
+[ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="8_lg0vp"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_43d8r"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="12_n7xbj"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="13_pfwq7"]
@@ -50,19 +50,6 @@ texture = ExtResource("3_np4on")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_pupqp")
-
-[node name="Path2D" parent="Platforms"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(-59, -78)
-script = null
 
 [node name="Npcs" type="Node2D" parent="."]
 

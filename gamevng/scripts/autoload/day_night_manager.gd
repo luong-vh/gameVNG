@@ -16,7 +16,10 @@ signal state_changed(new_state : DayNightState)
 func _ready():
 	call_deferred("_init_state")
 
-
+func is_day() -> bool:
+	if current_state == DayNightState.DAY:
+		return true
+	return false
 func switch_state():
 	if current_state == DayNightState.DAY:
 		current_state = DayNightState.NIGHT
@@ -51,4 +54,7 @@ func _apply_state(state : DayNightState) -> void:
 			print("   → Switched to NIGHT mode 🌙")
 		_:
 			print("[DayNightManager] ⚠️ Background or modulate node not set yet!")
+	emit_signal("state_changed", current_state)
+
+func resend_state():
 	emit_signal("state_changed", current_state)

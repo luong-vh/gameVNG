@@ -1,6 +1,6 @@
 extends EnemyCharacter
 
-const type = "TURTLE"
+
 
 @export_category("Push Settings")
 @export var push_speed_multiplier: float = 0.7 
@@ -9,9 +9,9 @@ var raycast_right: RayCast2D
 var raycast_left: RayCast2D
 func _ready() -> void:
 	fsm = FSM.new(self , $States ,$States/Run)
+	type = "TURTLE"
 	spawn_only_at_night = true
 	spawn_point = global_position
-	_add_into_enemy_manager()
 	if has_node("CheckLeft"):
 		raycast_left = $CheckLeft
 	if has_node("CheckRight"):
