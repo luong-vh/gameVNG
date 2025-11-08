@@ -81,7 +81,8 @@ func _init_hit_hurt_area():
 		print("Fail to init hit area")
 	
 	if has_node("Direction/HurtArea2D"):
-		$Direction/HurtArea2D.hurt.connect(_on_hurt_area_2d_hurt)
+		var hurt_area = $Direction/HurtArea2D
+		hurt_area.hurt.connect(_on_hurt_area_2d_hurt)
 	else:
 		print("Fail to init hurt area")
 
@@ -122,7 +123,7 @@ func save_state() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
 		"has_blade": [has_blade],
-		"health": [health]
+		"health": [max_health]
 	}
 
 func is_near_wall() -> bool:

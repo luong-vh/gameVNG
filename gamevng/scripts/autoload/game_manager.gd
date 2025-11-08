@@ -132,6 +132,9 @@ func save_checkpoint_data() -> void:
 	}
 	SaveSystem.save_checkpoint_data(save_data)
 
+func activate_checkpoint():
+	player.health = player.max_health
+
 # Load checkpoint data from persistent storage
 func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
