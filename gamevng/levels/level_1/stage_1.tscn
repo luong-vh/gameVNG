@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://bks7qwxjmvjxu"]
+[gd_scene load_steps=50 format=4 uid="uid://bks7qwxjmvjxu"]
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_m15xn"]
@@ -249,18 +249,28 @@ func _on_area_entered(area: Area2D) -> void:
 	pass
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrqy7"]
-size = Vector2(293, 97.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1rxi"]
+size = Vector2(198, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5tfg"]
+size = Vector2(91, 99)
 
 [sub_resource type="GDScript" id="GDScript_rpm3b"]
 resource_name = "cave_exist_area"
 script/source = "extends Area2D
 
+@export var is_day: bool
 
 func _on_area_entered(area: Area2D) -> void:
-	DayNightManager.set_state(DayNightManager.DayNightState.NIGHT)
+	if is_day:
+		DayNightManager.set_state(DayNightManager.DayNightState.DAY)
+	else:
+		DayNightManager.set_state(DayNightManager.DayNightState.NIGHT)
 	pass
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrqy7"]
+size = Vector2(293, 97.5)
 
 [sub_resource type="GDScript" id="GDScript_lxmcf"]
 resource_name = "mini_boss_control"
@@ -571,8 +581,8 @@ collision_mask = 6
 script = SubResource("GDScript_wrqy7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveEnterArea2D"]
-position = Vector2(8, -15.25)
-shape = SubResource("RectangleShape2D_wrqy7")
+position = Vector2(50, -18.5)
+shape = SubResource("RectangleShape2D_h1rxi")
 
 [node name="CaveEnterArea2D2" type="Area2D" parent="."]
 position = Vector2(8353, 271)
@@ -581,8 +591,8 @@ collision_mask = 6
 script = SubResource("GDScript_wrqy7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveEnterArea2D2"]
-position = Vector2(8, -15.25)
-shape = SubResource("RectangleShape2D_wrqy7")
+position = Vector2(11.5, -22.5)
+shape = SubResource("RectangleShape2D_p5tfg")
 
 [node name="CaveExistArea2D2" type="Area2D" parent="."]
 position = Vector2(9073, 259)
@@ -595,13 +605,14 @@ position = Vector2(102.5, -15.25)
 shape = SubResource("RectangleShape2D_wrqy7")
 
 [node name="CaveExistArea2D3" type="Area2D" parent="."]
-position = Vector2(6755, 37)
+position = Vector2(6743, 36)
 collision_layer = 0
 collision_mask = 6
 script = SubResource("GDScript_rpm3b")
+is_day = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveExistArea2D3"]
-position = Vector2(8, -15.25)
+position = Vector2(102.5, -15.25)
 shape = SubResource("RectangleShape2D_wrqy7")
 
 [node name="MiniBossControl" type="Node2D" parent="." node_paths=PackedStringArray("enemy_list", "door")]
