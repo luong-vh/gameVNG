@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_33rtp"]
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_m15xn"]
-[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="2_66bjg"]
+[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="2_66bjg"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="2_dwsf3"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="3_ux4o0"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="4_m15xn"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://crflavbexmqg2" path="res://assets/init_assets/images/boat/boat_body.png" id="14_lxmcf"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="14_md6n3"]
 [ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="15_5ubvi"]
-[ext_resource type="Texture2D" uid="uid://b3g02louyk867" path="res://assets/island/objects/door/iron_door.png" id="15_d7x21"]
+[ext_resource type="Texture2D" uid="uid://dtk2rfbnt2yay" path="res://assets/island/objects/door/iron_door.png" id="15_d7x21"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="15_wrqy7"]
 [ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="16_e0w38"]
 [ext_resource type="Texture2D" uid="uid://bnyyso8r3xy7h" path="res://assets/init_assets/images/boat/boat_sail_1.png" id="16_rpm3b"]

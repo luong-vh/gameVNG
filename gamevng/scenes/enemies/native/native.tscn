@@ -1,0 +1,120 @@
+[gd_scene load_steps=18 format=3 uid="uid://crcq4c8hqnmt"]
+
+[ext_resource type="Script" uid="uid://tbbx1amj12me" path="res://scenes/enemies/native/native.gd" id="1_gs3wm"]
+[ext_resource type="Texture2D" uid="uid://dnthtmor8kq6c" path="res://assets/monsters/native/native_7.png" id="2_gs3wm"]
+[ext_resource type="Texture2D" uid="uid://7lh6tgqp556u" path="res://assets/monsters/native/native_6.png" id="3_u0koj"]
+[ext_resource type="Texture2D" uid="uid://caisa20irnf8b" path="res://assets/monsters/native/native_9.png" id="4_upl4r"]
+[ext_resource type="Texture2D" uid="uid://q54n330sb8eq" path="res://assets/monsters/native/native_10.png" id="5_jnoti"]
+[ext_resource type="Texture2D" uid="uid://clb0bjovp7t13" path="res://assets/monsters/native/native_11.png" id="6_pe3bm"]
+[ext_resource type="Texture2D" uid="uid://be7t7hl8y4sty" path="res://assets/monsters/native/native_4.png" id="7_1461y"]
+[ext_resource type="Texture2D" uid="uid://csi5qf3e4ombe" path="res://assets/monsters/native/native_1.png" id="8_d4u6i"]
+[ext_resource type="Texture2D" uid="uid://bqhv2mwnlev6k" path="res://assets/monsters/native/native_2.png" id="9_rpxsc"]
+[ext_resource type="Texture2D" uid="uid://c5r0ogtbdb3y3" path="res://assets/monsters/native/native_5.png" id="10_mflj3"]
+[ext_resource type="Texture2D" uid="uid://cvkdm6mr5nnjn" path="res://assets/monsters/native/native_3.png" id="11_o8aiu"]
+[ext_resource type="Texture2D" uid="uid://c2nya8pndev11" path="res://assets/monsters/native/native_8.png" id="12_i1fqc"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="13_4wv6r"]
+[ext_resource type="Script" uid="uid://81a5frjfoovw" path="res://scenes/enemies/native/walk.gd" id="14_u0koj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nraa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gs3wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u0koj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gs3wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u0koj")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_upl4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jnoti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pe3bm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1461y")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_d4u6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rpxsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mflj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_o8aiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1461y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i1fqc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwcqi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tglhi"]
+
+[node name="Native" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_gs3wm")
+metadata/_custom_type_script = "uid://s4xx82espxdt"
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
+sprite_frames = SubResource("SpriteFrames_nraa6")
+animation = &"walk"
+frame = 2
+frame_progress = 0.728844
+
+[node name="HurtArea2D" type="Area2D" parent="Direction"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("13_4wv6r")
+metadata/_custom_type_script = "uid://csu2b21cwchqw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
+shape = SubResource("CapsuleShape2D_gwcqi")
+
+[node name="FrontRayCast2D" type="RayCast2D" parent="Direction"]
+position = Vector2(6, -7)
+target_position = Vector2(21, 1)
+
+[node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
+position = Vector2(9, -8)
+target_position = Vector2(0, 23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_tglhi")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Walk" type="Node" parent="States"]
+script = ExtResource("14_u0koj")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
