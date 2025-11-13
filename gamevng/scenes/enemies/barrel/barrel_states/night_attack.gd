@@ -4,19 +4,28 @@ var phase = 1
 func _enter()->void:
 	obj.change_animation("attack")
 	phase = 1
-	timer =0.6
+	timer = 0.6
+
 func _update(delta: float)->void:
 	if update_timer(delta):
-		if phase <3:
-			_attack()
-			phase += 1
-			timer =0.9
-		else: 
-			if phase ==3 :
+		match phase:
+			1:
+				
 				_attack()
 				phase += 1
-				timer =0.3
-			else:
+				timer = 0.3
+			2:
+				
+				obj.turn_around() 
+				phase += 1
+				timer = 0.3
+			3:
+				
+				_attack()
+				phase += 1
+				timer = 0.3
+			_:
+				
 				change_state(fsm.states.idle)
 func _attack()->void:
 	obj.fire()

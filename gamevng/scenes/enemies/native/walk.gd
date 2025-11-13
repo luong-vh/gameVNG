@@ -1,6 +1,6 @@
 extends EnemyState
 
-@export var patrol_distance: float = 150
+
 @export var pause_time: float = 1.0
 
 var _start_x: float
@@ -22,10 +22,14 @@ func _update(delta : float) -> void:
 	obj.velocity.x = obj.direction * obj.movement_speed * 0.5
 	if _should_turn_around():
 		_start_pause()
+	
+	if obj._is_attack():
+		print("change to throw")
+		change_state(fsm.states.throw)
 
 func _should_turn_around() -> bool:
 	var current_x = obj.global_position.x
-	if abs(current_x - _start_x) >= patrol_distance:
+	if abs(current_x - _start_x) >= obj.move_distance:
 		return true
 	if obj.is_touch_wall():
 		return true

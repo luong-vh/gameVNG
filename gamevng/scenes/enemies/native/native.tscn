@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://crcq4c8hqnmt"]
+[gd_scene load_steps=22 format=3 uid="uid://crcq4c8hqnmt"]
 
 [ext_resource type="Script" uid="uid://tbbx1amj12me" path="res://scenes/enemies/native/native.gd" id="1_gs3wm"]
-[ext_resource type="Texture2D" uid="uid://dnthtmor8kq6c" path="res://assets/monsters/native/native_7.png" id="2_gs3wm"]
 [ext_resource type="Texture2D" uid="uid://7lh6tgqp556u" path="res://assets/monsters/native/native_6.png" id="3_u0koj"]
 [ext_resource type="Texture2D" uid="uid://caisa20irnf8b" path="res://assets/monsters/native/native_9.png" id="4_upl4r"]
 [ext_resource type="Texture2D" uid="uid://q54n330sb8eq" path="res://assets/monsters/native/native_10.png" id="5_jnoti"]
@@ -13,20 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://cvkdm6mr5nnjn" path="res://assets/monsters/native/native_3.png" id="11_o8aiu"]
 [ext_resource type="Texture2D" uid="uid://c2nya8pndev11" path="res://assets/monsters/native/native_8.png" id="12_i1fqc"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="13_4wv6r"]
+[ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="13_u0koj"]
 [ext_resource type="Script" uid="uid://81a5frjfoovw" path="res://scenes/enemies/native/walk.gd" id="14_u0koj"]
+[ext_resource type="PackedScene" uid="uid://daebxh76prtom" path="res://scenes/enemies/native/coconut_native.tscn" id="14_upl4r"]
+[ext_resource type="Script" uid="uid://c1bcy3u2kr35q" path="res://scenes/enemies/native/throw.gd" id="16_pe3bm"]
+[ext_resource type="Script" uid="uid://chrwk70f61jab" path="res://scenes/enemies/native/hurt.gd" id="17_pe3bm"]
+[ext_resource type="Script" uid="uid://cpyfromrv43oi" path="res://scenes/enemies/native/dead.gd" id="18_1461y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nraa6"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_gs3wm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_u0koj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_gs3wm")
-}, {
 "duration": 1.0,
 "texture": ExtResource("3_u0koj")
 }],
@@ -82,15 +77,15 @@ animations = [{
 [node name="Native" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_gs3wm")
+move_distance = 160.0
+detection_range = 300.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="Direction" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_nraa6")
-animation = &"walk"
-frame = 2
-frame_progress = 0.728844
+animation = &"throw"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16
@@ -109,6 +104,13 @@ target_position = Vector2(21, 1)
 position = Vector2(9, -8)
 target_position = Vector2(0, 23)
 
+[node name="CoconutFactory" type="Marker2D" parent="Direction"]
+position = Vector2(17, -15)
+script = ExtResource("13_u0koj")
+product_packed_scene = ExtResource("14_upl4r")
+target_container_name = &"Coconuts"
+metadata/_custom_type_script = "uid://b8m342bxc521g"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_tglhi")
@@ -118,3 +120,19 @@ shape = SubResource("CapsuleShape2D_tglhi")
 [node name="Walk" type="Node" parent="States"]
 script = ExtResource("14_u0koj")
 metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Throw" type="Node" parent="States"]
+script = ExtResource("16_pe3bm")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Hurt" type="Node" parent="States"]
+script = ExtResource("17_pe3bm")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("18_1461y")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="PlayerRayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 65)
+collision_mask = 67
