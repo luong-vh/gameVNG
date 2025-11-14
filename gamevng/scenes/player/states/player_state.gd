@@ -102,8 +102,7 @@ func control_attack():
 	
 	if Input.is_action_just_pressed("throw"):
 		if obj.can_attack():
-			obj.throw_blade()
-			obj.change_animation("idle")
+			fsm.change_state(fsm.states.throw)
 
 func take_damage(damage) -> void:
 	#obj take damage
