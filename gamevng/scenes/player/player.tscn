@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=65 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
 [ext_resource type="Texture2D" uid="uid://dxxswwsashrmo" path="res://assets/foxy/fox_hat_blade/fox_wall_slide.png" id="32_2t3bg"]
+[ext_resource type="Texture2D" uid="uid://ffv1l8lgatl2" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
 [ext_resource type="Texture2D" uid="uid://8usoreyem8l6" path="res://assets/foxy/smoke/jump_smoke_1.png" id="35_ds1xl"]
 [ext_resource type="Texture2D" uid="uid://jtpy308mqnwi" path="res://assets/foxy/smoke/jump_smoke_2.png" id="36_1u1sw"]
 [ext_resource type="Texture2D" uid="uid://cbk136ktae42o" path="res://assets/foxy/smoke/jump_smoke_3.png" id="37_2t3bg"]
@@ -49,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://bsej8x3x778bq" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
+[ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
@@ -144,6 +146,18 @@ animations = [{
 "name": &"wall_cling",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahqnk"]
+atlas = ExtResource("32_jrbya")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb1ce"]
+atlas = ExtResource("32_jrbya")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ncpa"]
+atlas = ExtResource("32_jrbya")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ge24q"]
 animations = [{
@@ -243,6 +257,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ahqnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb1ce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ncpa")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("32_2t3bg")
 }],
 "loop": true,
@@ -316,7 +344,9 @@ animation = &"wall_cling"
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"wall_cling"
+animation = &"throw"
+frame = 2
+frame_progress = 1.0
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 4
@@ -373,6 +403,9 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_vb1ce")
 
 [node name="States" type="Node" parent="."]
+
+[node name="Throw" type="Node" parent="States"]
+script = ExtResource("42_ahqnk")
 
 [node name="Idle" type="Node" parent="States"]
 script = ExtResource("39_art4l")

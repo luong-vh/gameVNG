@@ -111,12 +111,13 @@ func collect_blade() -> void:
 	Dialogic.VAR["PlayerHasBlade"] = true
 
 func throw_blade():
-	has_blade = false
-	Dialogic.VAR["PlayerHasBlade"] = false
-	set_animated_sprite($Direction/AnimatedSprite2D)
 	var blade := blade_factory.create() as RigidBody2D
 	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
 	blade.apply_impulse(throwing_velocity)
+	has_blade = false
+	Dialogic.VAR["PlayerHasBlade"] = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	change_animation("idle")
 
 
 func save_state() -> Dictionary:
