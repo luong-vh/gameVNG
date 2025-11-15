@@ -55,7 +55,10 @@ func control_jump() -> bool:
 			obj.jump_particle.restart()
 			obj.jump_particle.emitting = true
 			obj.jump()
-			obj.jump_count -= 1
+			if obj.is_on_floor() or obj.is_near_wall():
+				obj.jump_count -= obj.normal_jump_cost
+			else:
+				obj.jump_count -= obj.double_jump_cost
 			change_state(fsm.states.jump)
 			return true
 	return false
@@ -90,9 +93,6 @@ func control_dash() -> bool:
 	return false
 
 func control_attack():
-	if Input.is_action_just_pressed("switch_day_night"):
-		DayNightManager.switch_state()
-	
 	if obj.invulnerable_timer.is_stopped():
 		obj.is_invulnerable = false
 	
