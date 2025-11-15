@@ -1,18 +1,25 @@
 class_name Player
 extends BaseCharacter
+## Player character class that handles movement, combat, and state management
 
 var lock_input_timer: Timer
 var light_source: Light2D
 
-## Player character class that handles movement, combat, and state management
+## For invulnerable
 var is_invulnerable: bool = false
 @onready var invulnerable_timer = $InvulnerableTimer
 var blink_speed: int = 3
 
+## For attack
+enum AttackDir { FORWARD, UP, DOWN }
+var attack_direction: AttackDir = AttackDir.FORWARD
 @export var throwing_speed: float = 300
 @export var has_blade: bool = false
-@onready var hit_area_collision
 @onready var blade_factory = $Direction/BladeFactory
+var hit_area_collision
+var pogo_hit_area_collision
+@export var attack_knockback_force: float = 100
+@export var pogo_bounce_force: float = 200.0
 
 ## For wall jump and cling
 var wall_checker: RayCast2D
@@ -35,6 +42,9 @@ var dash_count:int = 0
 @onready var dash_particle: GPUParticles2D = $Particle/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
+## For look down
+var look_down_timer: float = 0.0
+@export var look_down_threshold: float = 0.3
 @export var look_down_distance = 50.0   # Khoảng cách camera hạ xuống (pixel)
 @export var look_down_forward = 30.0    # Camera tiến lên phía trước
 @export var look_speed = 0.1  
@@ -45,7 +55,10 @@ var raycast_pushable: RayCast2D
 func _ready() -> void:
 	super._ready()
 	set_animated_sprite($Direction/AnimatedSprite2D)
-	fsm = FSM.new(self, $States, $States/Idle)
+	fsm = FSM.new(self, $States, $States/Idle)	
+	_init_hit_hurt_area()
+	_init_wall_cling()
+	
 	if has_blade:
 		collect_blade()
 	
@@ -55,16 +68,12 @@ func _ready() -> void:
 	if has_node("Light2D"):
 		light_source = get_node("Light2D")
 	
-	_init_hit_hurt_area()
-	_init_wall_cling()
+	if has_node("Direction/CheckPushable"):
+		raycast_pushable = $Direction/CheckPushable
 	
 	GameManager.player = self
 	GameManager.main_camera = $Camera2D
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
-	
-	if has_node("Direction/CheckPushable"):
-		raycast_pushable = $Direction/CheckPushable
-		
 	DayNightManager.state_changed.connect(_day_night_changed)
 	DayNightManager.shader_stage_changed.connect(_shader_changed)
 
@@ -77,10 +86,20 @@ func _init_wall_cling():
 
 func _init_hit_hurt_area():
 	if has_node("Direction/HitArea2D") and has_node("Direction/HitArea2D/CollisionShape2D"):
+		var hit_area = $Direction/HitArea2D
+		hit_area.hitted.connect(_on_area_hitted)
 		hit_area_collision = $Direction/HitArea2D/CollisionShape2D
 		hit_area_collision.disabled = true
 	else:
 		print("Fail to init hit area")
+	
+	if has_node("Direction/PogoHitArea2D") and has_node("Direction/PogoHitArea2D/CollisionPolygon2D"):
+		var hit_area = $Direction/PogoHitArea2D
+		hit_area.hitted.connect(_on_area_hitted)
+		pogo_hit_area_collision = $Direction/PogoHitArea2D/CollisionPolygon2D
+		pogo_hit_area_collision.disabled = true
+	else:
+		print("Fail to init pogo hit area")
 	
 	if has_node("Direction/HurtArea2D"):
 		var hurt_area = $Direction/HurtArea2D
@@ -107,6 +126,10 @@ func _shader_changed(new_state):
 func can_attack() -> bool:
 	return has_blade
 
+func change_attack_direction(dir: AttackDir):
+	if attack_direction != dir:
+		attack_direction = dir
+
 func collect_blade() -> void:
 	has_blade = true
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
@@ -126,7 +149,6 @@ func throw_blade():
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	change_animation("idle")
 
-
 func save_state() -> Dictionary:
 	return {
 		"position": [global_position.x, global_position.y],
@@ -139,6 +161,9 @@ func is_near_wall() -> bool:
 		return wall_checker.is_colliding()
 	else:
 		return false
+
+func reset_jump_count():
+	jump_count = max_jump_amount
 
 func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
@@ -187,20 +212,57 @@ func load_state(data: Dictionary) -> void:
 func _on_take_damge(_direction: Variant, _damage: Variant) -> void:
 	fsm.current_state.take_damage(_damage)
 
-func handle_look_down(delta):
-	var target_offset = _target_offset
-
-	if Input.is_action_pressed("down"):
-		target_offset.y = _target_offset.y + look_down_distance  # SET thành base + look
-		target_offset.x = _target_offset.x + (look_down_forward * direction)
-
-	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
+func _on_area_hitted(area: Area2D) -> void:
+	if area == null:
+		return
 	
+	var knockback_vector: Vector2 = Vector2.ZERO
+	if area is HurtArea2D:
+		match attack_direction:
+			AttackDir.FORWARD:
+				# Push away from enemy
+				knockback_vector = Vector2(-direction * attack_knockback_force, 0)
+			AttackDir.UP:
+				# Smaller downward recoil
+				knockback_vector = Vector2(0, attack_knockback_force * 0.5)
+			AttackDir.DOWN:
+				knockback_vector = Vector2(0, -pogo_bounce_force)
+	elif area is PogoArea2D:
+		knockback_vector = Vector2(0, -pogo_bounce_force)
+	
+	if knockback_vector != Vector2.ZERO:
+		apply_knockback(knockback_vector, knockback_vector.length())
+
+func apply_knockback(direction: Vector2, force_amount: float) -> void:
+	if direction == Vector2.ZERO:
+		return
+	var knockback = direction.normalized() * force_amount
+	velocity = knockback
+
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	handle_look_down(delta)
+	handle_invulnerable()
+
+func handle_look_down(delta):
+	var target_offset = _target_offset
+
+	if Input.is_action_pressed("down") and is_on_floor():
+		look_down_timer += delta
+		if look_down_timer >= look_down_threshold:
+			target_offset.y = _target_offset.y + look_down_distance  # SET thành base + look
+			target_offset.x = _target_offset.x + (look_down_forward * direction)
+	else:
+		look_down_timer = 0.0
+
+	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
+
+func handle_invulnerable():
 	if invulnerable_timer.time_left > 0:
 		var alpha := 0.5 + 0.5 * sin(invulnerable_timer.time_left * TAU * blink_speed)
 		animated_sprite.modulate.a = alpha
 	else:
 		animated_sprite.modulate.a = 1.0
+	
+	if invulnerable_timer.is_stopped():
+		is_invulnerable = false

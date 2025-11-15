@@ -1,8 +1,8 @@
-[gd_scene load_steps=65 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=68 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
-[ext_resource type="Texture2D" uid="uid://gusigv886t7r" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
+[ext_resource type="Texture2D" uid="uid://d034uuwdpqp00" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
 [ext_resource type="Texture2D" uid="uid://byd3g4nnxwfcq" path="res://assets/foxy/fox_hat_blade/fox_atk_3.png" id="4_28m0y"]
 [ext_resource type="Texture2D" uid="uid://dkd08e8lorvee" path="res://assets/foxy/fox_hat/fox_defeat_1.png" id="4_c35mf"]
 [ext_resource type="Texture2D" uid="uid://brlsobsd6xakk" path="res://assets/foxy/fox_hat/fox_defeat_2.png" id="5_65viv"]
@@ -23,21 +23,23 @@
 [ext_resource type="Texture2D" uid="uid://hu3ckwqk2fux" path="res://assets/foxy/fox_hat/fox_run_1.png" id="14_r7pn3"]
 [ext_resource type="Texture2D" uid="uid://dgis3lall2gw3" path="res://assets/foxy/fox_hat_blade/fox_run_1.png" id="15_5mf0n"]
 [ext_resource type="Texture2D" uid="uid://cyol1va0p6wfj" path="res://assets/foxy/fox_hat/fox_run_2.png" id="15_b8hi5"]
-[ext_resource type="Texture2D" uid="uid://byuyboemq12vy" path="res://assets/foxy/fox_hat/fox_wall_slide.png" id="16_1u1sw"]
+[ext_resource type="Texture2D" uid="uid://cck27cxud76pg" path="res://assets/foxy/fox_hat/fox_wall_slide.png" id="16_1u1sw"]
 [ext_resource type="Texture2D" uid="uid://brnkj48ftl7ii" path="res://assets/foxy/fox_hat/fox_run_3.png" id="16_2uvqg"]
 [ext_resource type="Texture2D" uid="uid://cr8a68nw3dww1" path="res://assets/foxy/fox_hat_blade/fox_run_2.png" id="16_4hvnv"]
 [ext_resource type="Texture2D" uid="uid://c3p546j150735" path="res://assets/foxy/fox_hat/fox_run_4.png" id="17_1s1yo"]
 [ext_resource type="Texture2D" uid="uid://d0jfmp24jrfcy" path="res://assets/foxy/fox_hat_blade/fox_run_3.png" id="17_bbmj2"]
-[ext_resource type="Texture2D" uid="uid://bxm5opqypse5o" path="res://assets/foxy/fox_hat_blade/fox_attack_extended_2.png" id="17_ttakn"]
+[ext_resource type="Texture2D" uid="uid://bas08v0c31mwq" path="res://assets/foxy/fox_hat_blade/fox_attack_extended_2.png" id="17_ttakn"]
 [ext_resource type="Texture2D" uid="uid://ce35c6mn7dcok" path="res://assets/foxy/fox_hat_blade/fox_run_4.png" id="18_kxw46"]
-[ext_resource type="Texture2D" uid="uid://beujkoeirylyh" path="res://assets/foxy/fox_hat_blade/fox_dash_1.png" id="19_ttakn"]
+[ext_resource type="Texture2D" uid="uid://beacllmuax7nf" path="res://assets/foxy/fox_hat_blade/fox_dash_1.png" id="19_ttakn"]
 [ext_resource type="Script" uid="uid://2kcb4amemhdj" path="res://scenes/player/states/hurt.gd" id="20_8ydkj"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
-[ext_resource type="Texture2D" uid="uid://dxxswwsashrmo" path="res://assets/foxy/fox_hat_blade/fox_wall_slide.png" id="32_2t3bg"]
-[ext_resource type="Texture2D" uid="uid://ffv1l8lgatl2" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
+[ext_resource type="Texture2D" uid="uid://bxt55w7idieg5" path="res://assets/init_assets/images/fox_hat_blade/fox_atk_1.png" id="28_upxxc"]
+[ext_resource type="Texture2D" uid="uid://bvk2imq3x67u1" path="res://assets/foxy/fox_hat_blade/fox_pogo.png" id="29_ln3h3"]
+[ext_resource type="Texture2D" uid="uid://8gked3re7cts" path="res://assets/foxy/fox_hat_blade/fox_wall_slide.png" id="32_2t3bg"]
+[ext_resource type="Texture2D" uid="uid://dvo3xt7u0dc1j" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
 [ext_resource type="Texture2D" uid="uid://8usoreyem8l6" path="res://assets/foxy/smoke/jump_smoke_1.png" id="35_ds1xl"]
 [ext_resource type="Texture2D" uid="uid://jtpy308mqnwi" path="res://assets/foxy/smoke/jump_smoke_2.png" id="36_1u1sw"]
 [ext_resource type="Texture2D" uid="uid://cbk136ktae42o" path="res://assets/foxy/smoke/jump_smoke_3.png" id="37_2t3bg"]
@@ -46,12 +48,13 @@
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
 [ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
-[ext_resource type="Texture2D" uid="uid://cwhw5ainaheeg" path="res://assets/day_night/light.png" id="40_u3hyo"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://bsej8x3x778bq" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
+[ext_resource type="Script" uid="uid://cgso7g684x3o6" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 9.0
@@ -240,6 +243,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("28_upxxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ln3h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ln3h3")
+}],
+"loop": false,
+"name": &"pogo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("15_5mf0n")
 }, {
 "duration": 1.0,
@@ -344,8 +361,8 @@ animation = &"wall_cling"
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"throw"
-frame = 2
+animation = &"pogo"
+frame = 1
 frame_progress = 1.0
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
@@ -364,6 +381,15 @@ script = ExtResource("20_uniwh")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Direction/HitArea2D"]
 polygon = PackedVector2Array(16, -4, 19, -6, 22, -11, 22, -20, 16, -29, 24, -27, 31, -18, 32, -10, 30, -3, 22, 2, 8, -2, 13, -7)
+
+[node name="PogoHitArea2D" type="Area2D" parent="Direction"]
+collision_layer = 0
+collision_mask = 17
+script = ExtResource("20_uniwh")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Direction/PogoHitArea2D"]
+polygon = PackedVector2Array(-7, 10, -20, -13, -22, 5, -15, 11, -7, 17, 9, 17, 21, 11, 25, -4, 11, 10)
 
 [node name="BladeFactory" type="Marker2D" parent="Direction"]
 position = Vector2(0, -14)
@@ -434,6 +460,10 @@ metadata/_custom_type_script = "uid://crb5af1mrgpm1"
 
 [node name="Dash" type="Node" parent="States"]
 script = ExtResource("41_genst")
+metadata/_custom_type_script = "uid://crb5af1mrgpm1"
+
+[node name="Pogo" type="Node" parent="States"]
+script = ExtResource("54_uygh0")
 metadata/_custom_type_script = "uid://crb5af1mrgpm1"
 
 [node name="InvulnerableTimer" type="Timer" parent="."]
