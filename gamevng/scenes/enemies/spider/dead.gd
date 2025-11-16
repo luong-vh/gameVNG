@@ -3,6 +3,9 @@ extends EnemyState
 ## Spider Dead state - Tô màu đỏ đậm hơn
 
 func _enter() -> void:
+	print("[Spider/Dead] ENTERING DEAD STATE - Health: ", obj.health)
+	print("[Spider/Dead] Position: ", obj.global_position)
+
 	obj.change_animation("dead")
 
 	# Tô màu đỏ đậm cho sprite
@@ -15,4 +18,5 @@ func _enter() -> void:
 
 func _update(delta: float) -> void:
 	if update_timer(delta):
+		print("[Spider/Dead] QUEUE_FREE - Spider is being removed!")
 		obj.queue_free()

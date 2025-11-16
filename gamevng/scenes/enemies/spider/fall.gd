@@ -8,6 +8,9 @@ func _enter():
 	# Đổi behavior mode
 	obj.behavior_mode = Spider.BehaviorMode.GROUND
 
+	# Bật HitArea2D khi rơi xuống (gây damage liên tục)
+	obj.enable_hit_area()
+
 	# Play falling animation (nếu có)
 	if obj.animated_sprite.sprite_frames.has_animation("fall"):
 		obj.change_animation("fall")

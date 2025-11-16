@@ -27,6 +27,9 @@ func _enter():
 	if obj.pull_detector:
 		obj.pull_detector.enabled = true
 
+	# Tắt HitArea2D khi vào HANG state
+	obj.disable_hit_area()
+
 	# Play idle animation
 	obj.change_animation("idle")
 
@@ -303,12 +306,22 @@ func _change_sub_state(new_sub_state: HangSubState) -> void:
 	print("[Spider/Hang] Sub-state: ", HangSubState.keys()[sub_state], " → ", HangSubState.keys()[new_sub_state])
 	sub_state = new_sub_state
 
-	# Reset timers
+	# Reset timers và control HitArea2D
 	match new_sub_state:
+		HangSubState.IDLE:
+			# Tắt HitArea2D khi IDLE
+			obj.disable_hit_area()
+		HangSubState.PULLING:
+			# Tắt HitArea2D khi đang kéo
+			obj.disable_hit_area()
 		HangSubState.HOLDING:
 			hold_timer = obj.hold_duration
+			# Bật HitArea2D khi HOLDING để gây damage
+			obj.enable_hit_area()
 		HangSubState.COOLDOWN:
 			cooldown_timer = obj.cooldown_duration
+			# Tắt HitArea2D khi COOLDOWN
+			obj.disable_hit_area()
 
 
 func _update_web_line() -> void:

@@ -141,7 +141,6 @@ func _delete_from_enemy_manager():
 	push_error("%s must implement '_delete_from_enemy_manager()'!" % self)
 	assert(false, "Abstract method called")
 
-
 func serialize() -> Dictionary:
 	return {
 		"type": type,

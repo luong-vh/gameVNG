@@ -29,12 +29,19 @@ var initial_hang_position: Vector2  ## Vị trí treo ban đầu
 @onready var pull_detector: RayCast2D = $PullDetector
 @onready var grab_area: Area2D = $GrabArea2D if has_node("GrabArea2D") else null
 @onready var web_line: Line2D = $WebLine if has_node("WebLine") else null
+@onready var hit_area: Area2D = $Direction/HitArea2D if has_node("Direction/HitArea2D") else null
+@onready var hit_collision: CollisionShape2D = $Direction/HitArea2D/CollisionShape2D if has_node("Direction/HitArea2D/CollisionShape2D") else null
 
 
 func _ready() -> void:
+	# QUAN TRỌNG: Phải set type TRƯỚC khi gọi super._ready()
+	# Vì EnemyCharacter._ready() sẽ gọi _add_into_enemy_manager() cần type
+	type = "SPIDER"
+
+	# Gọi parent _ready() (EnemyCharacter sẽ gọi _add_into_enemy_manager())
 	super._ready()
 
-	type = "SPIDER"
+	# Init FSM SAU khi parent ready
 	fsm = FSM.new(self, $States, $States/Hang)  # Default state: Hang
 
 	print("[Spider] Initialized at position: ", global_position)
@@ -48,6 +55,9 @@ func _ready() -> void:
 		print("[Spider] WebLine found! Width: ", web_line.width, " Color: ", web_line.default_color)
 	else:
 		print("[Spider] WARNING: WebLine node NOT found!")
+
+	# Tắt HitArea2D khi khởi tạo (đang treo)
+	disable_hit_area()
 
 	# Kết nối earthquake signal
 	GameManager.earthquake_triggered.connect(_on_earthquake)
@@ -110,3 +120,17 @@ func _is_in_camera() -> bool:
 
 	# Check nếu trong tầm camera (viewport width/2 + buffer)
 	return distance < (viewport_size.x / 2.0) + 100
+
+
+## Helper functions để control HitArea2D
+func enable_hit_area() -> void:
+	"""Bật HitArea2D để gây damage"""
+	if hit_collision:
+		hit_collision.disabled = false
+		print("[Spider] HitArea2D ENABLED - Can deal damage")
+
+func disable_hit_area() -> void:
+	"""Tắt HitArea2D để không gây damage"""
+	if hit_collision:
+		hit_collision.disabled = true
+		print("[Spider] HitArea2D DISABLED - Cannot deal damage")
