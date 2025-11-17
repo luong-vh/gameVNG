@@ -22,9 +22,12 @@ var _next_direction: int = 1
 var _next_animated_sprite: AnimatedSprite2D = null
 
 signal died
+signal healthChanged
 
 func _ready() -> void:
 	set_animated_sprite($Direction/AnimatedSprite2D)
+	health = max_health
+	healthChanged.emit()
 
 func _physics_process(delta: float) -> void:
 	# Animation
