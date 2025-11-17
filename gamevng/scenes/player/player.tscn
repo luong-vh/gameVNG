@@ -1,8 +1,9 @@
-[gd_scene load_steps=65 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=66 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
 [ext_resource type="Texture2D" uid="uid://gusigv886t7r" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
+[ext_resource type="Script" uid="uid://bpe8jgiftpqdh" path="res://scenes/player/camera_2d.gd" id="2_vb1ce"]
 [ext_resource type="Texture2D" uid="uid://byd3g4nnxwfcq" path="res://assets/foxy/fox_hat_blade/fox_atk_3.png" id="4_28m0y"]
 [ext_resource type="Texture2D" uid="uid://dkd08e8lorvee" path="res://assets/foxy/fox_hat/fox_defeat_1.png" id="4_c35mf"]
 [ext_resource type="Texture2D" uid="uid://brlsobsd6xakk" path="res://assets/foxy/fox_hat/fox_defeat_2.png" id="5_65viv"]
@@ -331,6 +332,7 @@ shape = SubResource("CapsuleShape2D_oul6g")
 position = Vector2(1, -61)
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
+script = ExtResource("2_vb1ce")
 
 [node name="Direction" type="Node2D" parent="."]
 

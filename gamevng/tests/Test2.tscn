@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dauf7stoh21r7"]
+[gd_scene load_steps=17 format=3 uid="uid://dauf7stoh21r7"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_y6gll"]
 [ext_resource type="Texture2D" uid="uid://cnfb5y7sdqkf4" path="res://icon.svg" id="2_xvtvn"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="9_olj2x"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_1ama6"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="11_5bf0o"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield-native/spear.tscn" id="12_0hjcb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ok4yu"]
 
@@ -134,3 +135,6 @@ position = Vector2(268, 229)
 position = Vector2(562, 216)
 
 [node name="Bullets" type="Node" parent="."]
+
+[node name="Spear" parent="." instance=ExtResource("12_0hjcb")]
+position = Vector2(726, 220)
