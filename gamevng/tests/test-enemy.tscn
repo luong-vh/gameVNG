@@ -42,7 +42,7 @@ visible = false
 [node name="BladePickup" parent="." instance=ExtResource("8_0i4qx")]
 position = Vector2(132, 217)
 
-[node name="EnemySpawnPoint" type="Node2D" parent="." groups=["enemy_spawn_points"]]
+[node name="EnemySpawnPoint" type="Node2D" parent="." groups=["Enemy Spawn Points"]]
 position = Vector2(571, 205)
 script = ExtResource("9_jx3by")
 enemy_scene = ExtResource("7_pxeid")

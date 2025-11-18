@@ -61,7 +61,8 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 Player=""
 Enemy=""
-enemy_spawn_points=""
+"Enemy Spawn Points"=""
+"Saved Object"=""
 
 [input]
 

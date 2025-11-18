@@ -149,13 +149,6 @@ func throw_blade():
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	change_animation("idle")
 
-func save_state() -> Dictionary:
-	return {
-		"position": [global_position.x, global_position.y],
-		"has_blade": [has_blade],
-		"health": [max_health]
-	}
-
 func is_near_wall() -> bool:
 	if wall_checker:
 		return wall_checker.is_colliding()
@@ -187,6 +180,13 @@ func is_dash_on_cd() -> bool:
 func invulnerable()->void:
 	is_invulnerable = true
 	invulnerable_timer.start()
+
+func save_state() -> Dictionary:
+	return {
+		"position": [global_position.x, global_position.y],
+		"has_blade": [has_blade],
+		"health": [max_health]
+	}
 
 func load_state(data: Dictionary) -> void:
 	"""Load player state from checkpoint data"""
@@ -241,6 +241,10 @@ func apply_knockback(direction: Vector2, force_amount: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	
+	if Input.is_action_just_pressed("switch_day_night"):
+		DayNightManager.switch_state()
+	
 	handle_look_down(delta)
 	handle_invulnerable()
 
