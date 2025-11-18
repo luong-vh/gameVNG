@@ -341,13 +341,15 @@ enabled = false
 
 [node name="Bullets" type="Node" parent="."]
 
+[node name="Blade" type="Node" parent="."]
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Crab" parent="Enemies" instance=ExtResource("10_7xf2g")]
 position = Vector2(1915, 257)
 
 [node name="Barrel" parent="Enemies" instance=ExtResource("13_66bjg")]
-position = Vector2(2271, 219)
+position = Vector2(2273, 218)
 direction = -1
 
 [node name="Barrel2" parent="Enemies" instance=ExtResource("13_66bjg")]

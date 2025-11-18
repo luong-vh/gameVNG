@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqyowuq4myygc"]
+[gd_scene load_steps=17 format=3 uid="uid://cqyowuq4myygc"]
 
 [ext_resource type="Script" uid="uid://b8hn315wfu1hr" path="res://scenes/enemies/crab/crab.gd" id="1_v3jfl"]
 [ext_resource type="Texture2D" uid="uid://div7bok06185o" path="res://assets/monsters/crab/crab_01.png" id="2_2p33d"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b6h0s84d0wudf" path="res://scenes/enemies/states/run.gd" id="7_u0osc"]
 [ext_resource type="Script" uid="uid://d00nnp2h2rx2l" path="res://scenes/enemies/states/hurt.gd" id="10_0ud0h"]
 [ext_resource type="Script" uid="uid://bnrw24s36b20t" path="res://scenes/enemies/states/dead.gd" id="11_tgm84"]
+[ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="12_0ud0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aatoi"]
 size = Vector2(40, 21)
@@ -110,3 +111,9 @@ script = ExtResource("10_0ud0h")
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource("11_tgm84")
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("12_0ud0h")]
+offset_left = -25.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = -15.0

@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 		sprite.global_position = light.global_position
 		
 		var base_scale: float = light.texture_scale
-		var energy_scale: float = clamp(light.energy, 0.1, 8.0)
+		var energy_scale: float = light.energy
 		var desired_scale: float = base_scale * energy_scale
 		var texture_size: float = 0.0
 		if sprite.texture:

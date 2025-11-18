@@ -1,16 +1,21 @@
 extends Node
 
-#target portal name is the name of the portal to which the player will be teleported
-var target_portal_name: String = ""
+
 # Checkpoint system variables
 var current_checkpoint_id: String = ""
 var checkpoint_data: Dictionary = {}
-var current_stage = ""
-var player: Player = null
+
+var current_stage: Stage
 var stage_path
-var _target_portal_name
+
+var player: Player = null
 var main_camera: Camera2D = null
+
+#target portal name is the name of the portal to which the player will be teleported
+var target_portal_name: String = ""
+var _target_portal_name
 var _last_ground_checkpoint: GroundCheckPointArea = null
+
 signal stage_changed(new_stage_path)
 signal earthquake_triggered(strength, duration)
 
@@ -92,7 +97,6 @@ func respawn_at_ground_checkpoint():
 func respawn_at_checkpoint() -> void:
 	if current_checkpoint_id.is_empty():
 		print("No checkpoint available")
-		
 		return
 	
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
@@ -102,15 +106,14 @@ func respawn_at_checkpoint() -> void:
 	
 	# Load the stage if different
 	var checkpoint_stage = checkpoint_info.get("stage_path", "")
-	
 	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
 		return
-		
+	
 	# Can change stage if different but not implemented yet to test
 	#	change_stage(checkpoint_stage, "")
 	#	# Wait for scene to load
 	#	await get_tree().process_frame
-
+	
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")
 		if player_state == null:
@@ -133,7 +136,8 @@ func save_checkpoint_data() -> void:
 	SaveSystem.save_checkpoint_data(save_data)
 
 func activate_checkpoint():
-	player.health = player.max_health
+	#player.health = player.max_health
+	pass
 
 # Load checkpoint data from persistent storage
 func load_checkpoint_data() -> void:

@@ -24,6 +24,8 @@ var wall_checker: RayCast2D
 var jump_count = 1
 @export var max_jump_amount = 1
 @onready var jump_particle = $Particle/JumpParticle
+@export var normal_jump_cost:float = 1
+@export var  double_jump_cost:float = 2
 
 ## For dash
 @export var dash_time: float = 0.2
@@ -82,7 +84,7 @@ func _init_hit_hurt_area():
 	
 	if has_node("Direction/HurtArea2D"):
 		var hurt_area = $Direction/HurtArea2D
-		hurt_area.hurt.connect(_on_hurt_area_2d_hurt)
+		hurt_area.hurt.connect(_on_take_damge)
 	else:
 		print("Fail to init hurt area")
 
@@ -109,14 +111,20 @@ func collect_blade() -> void:
 	has_blade = true
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = true
+	
+func drop_blade():
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	Dialogic.VAR["PlayerHasBlade"] = false
 
 func throw_blade():
-	has_blade = false
-	Dialogic.VAR["PlayerHasBlade"] = false
-	set_animated_sprite($Direction/AnimatedSprite2D)
 	var blade := blade_factory.create() as RigidBody2D
 	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
 	blade.apply_impulse(throwing_velocity)
+	has_blade = false
+	Dialogic.VAR["PlayerHasBlade"] = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	change_animation("idle")
 
 
 func save_state() -> Dictionary:
@@ -168,13 +176,15 @@ func load_state(data: Dictionary) -> void:
 		has_blade = data["has_blade"][0]
 		if has_blade:
 			collect_blade()
+		else:
+			drop_blade()
 	
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)
 	fsm.change_state(fsm.states.idle)
 
-func _on_hurt_area_2d_hurt(_direction: Variant, _damage: Variant) -> void:
+func _on_take_damge(_direction: Variant, _damage: Variant) -> void:
 	fsm.current_state.take_damage(_damage)
 
 func handle_look_down(delta):

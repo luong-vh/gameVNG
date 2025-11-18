@@ -1,27 +1,28 @@
-[gd_scene load_steps=27 format=3 uid="uid://de5jc85hnt3us"]
+[gd_scene load_steps=28 format=3 uid="uid://de5jc85hnt3us"]
 
 [ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield-native/spear.gd" id="1_h56nw"]
-[ext_resource type="Texture2D" uid="uid://dpkgv4m3h1a4e" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
-[ext_resource type="Texture2D" uid="uid://dyy2n4f1se5wm" path="res://assets/monsters/spear/spear_10.png" id="3_m1jvq"]
-[ext_resource type="Texture2D" uid="uid://ceyny6h8xxm1t" path="res://assets/monsters/spear/spear_11.png" id="4_iggd0"]
-[ext_resource type="Texture2D" uid="uid://b61pbo85j5xqd" path="res://assets/monsters/spear/spear_12.png" id="5_6dtt5"]
-[ext_resource type="Texture2D" uid="uid://b2i67hgnupa6s" path="res://assets/monsters/spear/spear_13.png" id="6_syvg3"]
-[ext_resource type="Texture2D" uid="uid://i7b6oquia6br" path="res://assets/monsters/spear/spear_14.png" id="7_57d5w"]
-[ext_resource type="Texture2D" uid="uid://cfueopqys4g7n" path="res://assets/monsters/spear/spear_16.png" id="8_piyiv"]
-[ext_resource type="Texture2D" uid="uid://lm1kjq3so0iu" path="res://assets/monsters/spear/spear_15.png" id="9_dbucr"]
-[ext_resource type="Texture2D" uid="uid://66pcwpygrphb" path="res://assets/monsters/spear/spear_18.png" id="10_mgpqy"]
-[ext_resource type="Texture2D" uid="uid://ctawpvp3syj01" path="res://assets/monsters/spear/spear_1.png" id="11_fqfyp"]
-[ext_resource type="Texture2D" uid="uid://b7mgg7jbn77a" path="res://assets/monsters/spear/spear_2.png" id="12_540c7"]
-[ext_resource type="Texture2D" uid="uid://cjrfl56nsyevo" path="res://assets/monsters/spear/spear_3.png" id="13_rdtqm"]
-[ext_resource type="Texture2D" uid="uid://dqdhfcltqy8ua" path="res://assets/monsters/spear/spear_4.png" id="14_uwao2"]
-[ext_resource type="Texture2D" uid="uid://crwhedosf8f40" path="res://assets/monsters/spear/spear_5.png" id="15_dss4n"]
-[ext_resource type="Texture2D" uid="uid://durltcvmdcp2o" path="res://assets/monsters/spear/spear_17.png" id="16_n087a"]
+[ext_resource type="Texture2D" uid="uid://baax8m15uhp0d" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
+[ext_resource type="Texture2D" uid="uid://bi1t3eyqdia2o" path="res://assets/monsters/spear/spear_10.png" id="3_m1jvq"]
+[ext_resource type="Texture2D" uid="uid://cjgtmh4tjapvf" path="res://assets/monsters/spear/spear_11.png" id="4_iggd0"]
+[ext_resource type="Texture2D" uid="uid://dhwlqia63n8pb" path="res://assets/monsters/spear/spear_12.png" id="5_6dtt5"]
+[ext_resource type="Texture2D" uid="uid://c2f74thko2xva" path="res://assets/monsters/spear/spear_13.png" id="6_syvg3"]
+[ext_resource type="Texture2D" uid="uid://rp6lp0oj0tnw" path="res://assets/monsters/spear/spear_14.png" id="7_57d5w"]
+[ext_resource type="Texture2D" uid="uid://bq8bujlwtlfyy" path="res://assets/monsters/spear/spear_16.png" id="8_piyiv"]
+[ext_resource type="Texture2D" uid="uid://cvosdwwy6vyy8" path="res://assets/monsters/spear/spear_15.png" id="9_dbucr"]
+[ext_resource type="Texture2D" uid="uid://dnuf7p1b6ok81" path="res://assets/monsters/spear/spear_18.png" id="10_mgpqy"]
+[ext_resource type="Texture2D" uid="uid://vvaf8kyiif20" path="res://assets/monsters/spear/spear_1.png" id="11_fqfyp"]
+[ext_resource type="Texture2D" uid="uid://1cgbabquyln2" path="res://assets/monsters/spear/spear_2.png" id="12_540c7"]
+[ext_resource type="Texture2D" uid="uid://ct6tkmwlofyfo" path="res://assets/monsters/spear/spear_3.png" id="13_rdtqm"]
+[ext_resource type="Texture2D" uid="uid://cda7b8ip31b6i" path="res://assets/monsters/spear/spear_4.png" id="14_uwao2"]
+[ext_resource type="Texture2D" uid="uid://beyj7d64r4u1y" path="res://assets/monsters/spear/spear_5.png" id="15_dss4n"]
+[ext_resource type="Texture2D" uid="uid://5jniigbqgbns" path="res://assets/monsters/spear/spear_17.png" id="16_n087a"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="17_yae7c"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="18_eaiw7"]
 [ext_resource type="Script" uid="uid://bkvwda8jyt7c6" path="res://scenes/enemies/shield-native/hurt.gd" id="19_6dtt5"]
 [ext_resource type="Script" uid="uid://goewbrytgpi5" path="res://scenes/enemies/shield-native/attack.gd" id="20_iggd0"]
 [ext_resource type="Script" uid="uid://bnhc4lyol4hck" path="res://scenes/enemies/shield-native/moving.gd" id="20_m1jvq"]
 [ext_resource type="Script" uid="uid://cwg17vxqb45eb" path="res://scenes/enemies/shield-native/dead.gd" id="22_6dtt5"]
+[ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="23_syvg3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4yvhb"]
 animations = [{
@@ -168,3 +169,9 @@ shape = SubResource("CapsuleShape2D_3ew65")
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 65)
 collision_mask = 3
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("23_syvg3")]
+offset_left = -35.0
+offset_top = -36.0
+offset_right = 35.0
+offset_bottom = -28.0
