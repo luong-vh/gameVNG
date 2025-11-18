@@ -58,7 +58,8 @@ func _ready() -> void:
 	_init_hit_hurt_area()
 	_init_wall_cling()
 	
-	GameManager.player = self
+	GameManager.set_player(self)
+	GUIManager.set_max_heart_gui(max_health)
 	GameManager.main_camera = $Camera2D
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	
@@ -182,6 +183,7 @@ func load_state(data: Dictionary) -> void:
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)
+		healthChanged.emit()
 	fsm.change_state(fsm.states.idle)
 
 func _on_take_damge(_direction: Variant, _damage: Variant) -> void:
