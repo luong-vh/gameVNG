@@ -163,7 +163,7 @@ func respawn_at_ground_checkpoint():
 	
 	if player.health <= 0 :
 		return
-	SceneTransition.fade_from_black()
+	GUIManager.fade_from_black()
 	player.lock_input(0.3)
 	player.global_position = _last_ground_checkpoint.global_position
 
