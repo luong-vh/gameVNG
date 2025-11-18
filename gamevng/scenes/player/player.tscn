@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
+[ext_resource type="Script" uid="uid://bpe8jgiftpqdh" path="res://scenes/player/camera_2d.gd" id="2_vb1ce"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
 [ext_resource type="Texture2D" uid="uid://bxt55w7idieg5" path="res://assets/init_assets/images/fox_hat_blade/fox_atk_1.png" id="28_upxxc"]
 [ext_resource type="Texture2D" uid="uid://bvk2imq3x67u1" path="res://assets/foxy/fox_hat_blade/fox_pogo.png" id="29_ln3h3"]
@@ -348,6 +349,7 @@ shape = SubResource("CapsuleShape2D_oul6g")
 position = Vector2(1, -61)
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
+script = ExtResource("2_vb1ce")
 
 [node name="Direction" type="Node2D" parent="."]
 

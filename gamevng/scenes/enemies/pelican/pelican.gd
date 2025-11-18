@@ -3,12 +3,13 @@ extends EnemyCharacter
 
 const SPEED = 30.0
 const JUMP_VELOCITY = -400.0
-const type = "PELICAN"
+
 
 @export var bullet_speed : float = 30
 @onready var bullet_factory = $Direction/BulletFactory
 func _ready()->void:
 	super._ready()
+	type = "PELICAN"
 	fsm = FSM.new(self, $States, $States/Fly)
 
 
