@@ -31,7 +31,6 @@ func switch_state():
 	else:
 		current_state = DayNightState.DAY
 	_apply_state(current_state)
-	
 
 func _init_state():
 	_apply_state(current_state)

@@ -1,6 +1,5 @@
 extends Node
 
-
 # Checkpoint system variables
 var current_checkpoint_id: String = ""
 var checkpoint_data: Dictionary = {}
@@ -77,27 +76,18 @@ func respawn_at_portal() -> bool:
 func save_checkpoint(checkpoint_id: String) -> void:
 	current_checkpoint_id = checkpoint_id
 	var player_state_dict: Dictionary = player.save_state()
+	var stage_state_dict = current_stage.save_stage()
 	checkpoint_data[checkpoint_id] = {
 		"player_state":player_state_dict,
-		"stage_path": current_stage.scene_file_path,
+		"stage_state": stage_state_dict,
 		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", checkpoint_id)
-
 
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
 	return {}
-
-func respawn_at_ground_checkpoint():
-	if not _last_ground_checkpoint:
-		return
-	if player.health <= 0 :
-		return
-	GUIManager.fade_from_black()
-	player.lock_input(0.3)
-	player.global_position = _last_ground_checkpoint.global_position
 
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
@@ -110,15 +100,20 @@ func respawn_at_checkpoint() -> void:
 		print("Checkpoint data not found")
 		return
 	
-	# Load the stage if different
-	var checkpoint_stage = checkpoint_info.get("stage_path", "")
-	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
+	# Load the stage and handle different file path
+	var stage_state = checkpoint_info.get("stage_state")
+	if stage_state and not stage_state["stage_path"].is_empty():
+		if current_stage.scene_file_path != stage_state["stage_path"]:
+			change_stage(stage_state["stage_path"])
+			# Wait for scene to load
+			await get_tree().process_frame
+		
+		if not current_stage.load_state(stage_state):
+			print("Fail to load stage")
+			return
+	else:
+		print("Fail to load stage")
 		return
-	
-	# Can change stage if different but not implemented yet to test
-	#	change_stage(checkpoint_stage, "")
-	#	# Wait for scene to load
-	#	await get_tree().process_frame
 	
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")
@@ -129,6 +124,7 @@ func respawn_at_checkpoint() -> void:
 		return
 	else:
 		print("Player not found for respawn")
+
 #check if there is a checkpoint
 func has_checkpoint() -> bool:
 	return not current_checkpoint_id.is_empty()
@@ -160,9 +156,16 @@ func clear_checkpoint_data() -> void:
 	SaveSystem.delete_save_file()
 	print("All checkpoint data cleared")
 
+func respawn_at_ground_checkpoint():
+	if not _last_ground_checkpoint:
+		player.global_position = Vector2(0,0)
+		return
+	
+	if player.health <= 0 :
+		return
+	SceneTransition.fade_from_black()
+	player.lock_input(0.3)
+	player.global_position = _last_ground_checkpoint.global_position
+
 func reload_current_scene() -> void:
 	current_stage.reload()
-
-func collect_blade() -> void:
-	player.collected_blade()
-	Dialogic.VAR["PlayerHasBlade"] = true
