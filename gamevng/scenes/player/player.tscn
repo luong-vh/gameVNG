@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
+[ext_resource type="Script" uid="uid://bpe8jgiftpqdh" path="res://scenes/player/camera_2d.gd" id="2_vb1ce"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
 [ext_resource type="Texture2D" uid="uid://dxxswwsashrmo" path="res://assets/foxy/fox_hat_blade/fox_wall_slide.png" id="32_2t3bg"]
 [ext_resource type="Texture2D" uid="uid://ffv1l8lgatl2" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
