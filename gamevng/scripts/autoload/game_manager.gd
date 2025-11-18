@@ -21,9 +21,15 @@ signal earthquake_triggered(strength, duration)
 func _ready() -> void:
 	# Load checkpoint data when game starts
 	load_checkpoint_data()
-	SceneTransition.fade_to_black_finished.connect(teleport)
-	SceneTransition.fade_from_black_finished.connect(able_to_control_player)
+	GUIManager.fade_to_black_finished.connect(teleport)
+	GUIManager.fade_from_black_finished.connect(able_to_control_player)
 	
+func set_player(_player: Player):
+	player = _player
+	player.healthChanged.connect(on_player_health_changed)
+
+func on_player_health_changed():
+	GUIManager.update_heart_gui(player.health)
 
 func able_to_control_player():
 	player.set_physics_process(true)
@@ -41,11 +47,11 @@ func teleport() -> void:
 		emit_signal("stage_changed", stage_path)
 	else:
 		respawn_at_portal()
-	SceneTransition.fade_from_black()
+	GUIManager.fade_from_black()
 
 #change stage by path and target portal name
 func change_stage(_stage_path: String, __target_portal_name: String = "") -> void:
-	SceneTransition.fade_to_black()
+	GUIManager.fade_to_black()
 	stage_path = _stage_path
 	_target_portal_name = __target_portal_name
 	player.set_physics_process(false)
@@ -157,7 +163,7 @@ func respawn_at_ground_checkpoint():
 	
 	if player.health <= 0 :
 		return
-	SceneTransition.fade_from_black()
+	GUIManager.fade_from_black()
 	player.lock_input(0.3)
 	player.global_position = _last_ground_checkpoint.global_position
 
