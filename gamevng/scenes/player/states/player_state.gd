@@ -34,7 +34,7 @@ func control_moving() -> bool:
 #Return true if jumping
 func control_jump() -> bool:
 	if obj.is_on_floor() or obj.is_near_wall():
-		obj.jump_count = obj.max_jump_amount
+		obj.reset_jump_count()
 	
 	var jumpInput = Input.is_action_just_pressed("jump")
 	if jumpInput:
@@ -92,17 +92,29 @@ func control_dash() -> bool:
 	
 	return false
 
-func control_attack():
-	if obj.invulnerable_timer.is_stopped():
-		obj.is_invulnerable = false
+func control_attack() -> bool:
+	if (Input.is_action_pressed("down") 
+		and Input.is_action_just_pressed("attack")
+		and not obj.is_on_floor()
+	):
+		if obj.can_attack():
+			obj.change_attack_direction(obj.AttackDir.DOWN)
+			obj.reset_jump_count()
+			fsm.change_state(fsm.states.pogo)
+			return true
 	
 	if Input.is_action_just_pressed("attack"):
-		if obj.can_attack(): 
+		if obj.can_attack():
+			obj.change_attack_direction(obj.AttackDir.FORWARD)
 			fsm.change_state(fsm.states.attack)
+			return true
 	
 	if Input.is_action_just_pressed("throw"):
 		if obj.can_attack():
 			fsm.change_state(fsm.states.throw)
+			return true
+	
+	return false
 
 func take_damage(damage) -> void:
 	#obj take damage
