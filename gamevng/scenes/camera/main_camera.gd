@@ -2,7 +2,7 @@ extends Camera2D
 class_name MainCamera
 
 @export_group("Follow Settings")
-@export var camera_follow_speed: float = 2
+@export var camera_follow_speed: float = 600
 @export var use_smooth_follow: bool = false
 @export var max_distance_horizontal:float = 190.0
 @export var min_distance_horizontal:float = 10
@@ -33,6 +33,7 @@ var _current_look_action: String = ""
 var stop_zone_checks: Dictionary = {}
 var camera_locked:bool = false
 var is_too_far: bool = false
+var past_direction: String
 
 ## Base offset to preserve initial settings
 var _base_offset: Vector2 = Vector2.ZERO
@@ -77,40 +78,83 @@ func handle_follow_player(delta: float) -> void:
 	var target_pos: Vector2 = GameManager.player.global_position
 	var move_vector: Vector2 = target_pos - global_position
 	
+	# Check stop zone status
 	var stop_info = is_in_stop_zone()
+	
+	# Update camera lock state
+	_update_camera_lock_state(stop_info)
+	
+	if stop_info.in_stop_zone:
+		move_vector = _handle_stop_zone_movement(move_vector, stop_info)
+	else:
+		move_vector = _handle_normal_follow(move_vector)
+	
+	# Apply final position update
+	_apply_movement(move_vector, delta)
+
+
+func _update_camera_lock_state(stop_info: Dictionary) -> void:
+	# Check if player is too far
 	if is_player_too_far():
 		camera_locked = false
 		is_too_far = true
 	elif stop_info.in_stop_zone:
 		camera_locked = true
 	
+	var cur_direction = stop_info.direction
+	if past_direction != cur_direction:
+		is_too_far = false
+	past_direction = cur_direction
+	
+	# Handle transition from too far to near
 	if is_too_far and camera_locked:
 		if not is_player_near():
 			camera_locked = false
 		else:
 			is_too_far = false
 	
-	if camera_locked:
-		var normal = stop_info.normal
-		var correction = stop_info.correction
-		
-		# --- BLOCK MOVEMENT INTO THE WALL ---
-		if normal.x != 0 and sign(move_vector.x) == -sign(normal.x):
-			move_vector.x = 0
-		if normal.y != 0 and sign(move_vector.y) == -sign(normal.y):
-			move_vector.y = 0
-		
-		# --- PUSH CAMERA TO THE EXACT EDGE ---
-		if (correction.x < max_distance_horizontal - 20):
-			move_vector += correction
-	
+	# Reset lock if not in stop zone
 	if not stop_info.in_stop_zone:
 		camera_locked = false
+
+
+func _handle_stop_zone_movement(move_vector: Vector2, stop_info: Dictionary) -> Vector2:
+	if not camera_locked:
+		return move_vector
 	
-	# Apply movement
+	var result_vector = move_vector
+	var normal = stop_info.normal
+	
+	# Block movement into the wall
+	if normal.x != 0 and sign(result_vector.x) == -sign(normal.x):
+		result_vector.x = 0
+	if normal.y != 0 and sign(result_vector.y) == -sign(normal.y):
+		result_vector.y = 0
+	
+	# Apply correction to stay within bounds
+	var correction = stop_info.correction
+	if correction.x < max_distance_horizontal:
+		result_vector.x += correction.x
+	if correction.y < max_distance_vertical:
+		result_vector.x += correction.y
+	
+	return result_vector
+
+func _handle_normal_follow(move_vector: Vector2) -> Vector2:
+	# Normal follow behavior - no modifications needed
+	return move_vector
+
+func _apply_movement(move_vector: Vector2, delta: float) -> void:
+	var player_speed = GameManager.player.velocity.length()
+	var dynamic_speed = camera_follow_speed * (1.0 + player_speed / 200.0)
 	var new_pos = global_position + move_vector
+	
 	if use_smooth_follow:
-		global_position = global_position.lerp(new_pos, camera_follow_speed * delta)
+		var distance = global_position.distance_to(new_pos)
+		var progress = clamp(delta * dynamic_speed / distance, 0.0, 1.0)
+		
+		# Just use raw progress, no smoothing
+		global_position = global_position.lerp(new_pos, progress)
 	else:
 		global_position = new_pos
 

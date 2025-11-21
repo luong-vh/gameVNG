@@ -95,7 +95,7 @@ func _day_night_changed(new_state):
 	print_current_status()
 
 func print_current_status():
-	print("[EnemyManager] 🧩 Current enemies:")
+	#print("[EnemyManager] 🧩 Current enemies:")
 	for type_name in enemies_by_type.keys():
 		var names = []
 		for e in enemies_by_type[type_name]:
@@ -104,8 +104,8 @@ func print_current_status():
 				names.append(e.name)
 			else:
 				names.append("[FREED]")
-		print("   • %s: %s" % [type_name, names])
-	print("---------------------------------------------")
+		#print("   • %s: %s" % [type_name, names])
+	#print("---------------------------------------------")
 
 func register_spawn_point(point: EnemySpawnPoint):
 	night_spawn_points.append(point)

@@ -6,6 +6,8 @@
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
 script = ExtResource("1_fckv4")
+camera_follow_speed = 450.0
+look_hold_time = 1.0
 
 [node name="StopZoneCheck" type="Node2D" parent="."]
 
