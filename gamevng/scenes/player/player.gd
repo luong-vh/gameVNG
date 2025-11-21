@@ -42,14 +42,6 @@ var dash_count:int = 0
 @onready var dash_particle: GPUParticles2D = $Particle/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
-## For look down
-var look_down_timer: float = 0.0
-@export var look_down_threshold: float = 0.3
-@export var look_down_distance = 50.0   # Khoảng cách camera hạ xuống (pixel)
-@export var look_down_forward = 30.0    # Camera tiến lên phía trước
-@export var look_speed = 0.1  
-@export var _target_offset = Vector2(0,-75)
-@onready var camera_2d = $Camera2D
 var raycast_pushable: RayCast2D
 
 func _ready() -> void:
@@ -73,7 +65,6 @@ func _ready() -> void:
 	
 	GameManager.set_player(self)
 	GUIManager.set_max_heart_gui(max_health)
-	GameManager.main_camera = $Camera2D
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	DayNightManager.state_changed.connect(_day_night_changed)
 	DayNightManager.shader_stage_changed.connect(_shader_changed)
@@ -247,21 +238,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_day_night"):
 		DayNightManager.switch_state()
 	
-	handle_look_down(delta)
 	handle_invulnerable()
-
-func handle_look_down(delta):
-	var target_offset = _target_offset
-
-	if Input.is_action_pressed("down") and is_on_floor():
-		look_down_timer += delta
-		if look_down_timer >= look_down_threshold:
-			target_offset.y = _target_offset.y + look_down_distance  # SET thành base + look
-			target_offset.x = _target_offset.x + (look_down_forward * direction)
-	else:
-		look_down_timer = 0.0
-
-	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
 
 func handle_invulnerable():
 	if invulnerable_timer.time_left > 0:
