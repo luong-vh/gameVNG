@@ -4,7 +4,7 @@ class_name MainCamera
 @export_group("Follow Settings")
 @export var camera_follow_speed: float = 2
 @export var use_smooth_follow: bool = false
-@export var max_distance_horizontal:float = 200.0
+@export var max_distance_horizontal:float = 190.0
 @export var min_distance_horizontal:float = 10
 @export var max_distance_vertical:float = 100.0
 @export var min_distance_vertical:float = 10
@@ -30,14 +30,8 @@ var _look_hold_timer: float = 0.0
 var _current_look_action: String = ""
 
 ## Follow camera
-enum StopDirection { NONE, UP, DOWN, LEFT, RIGHT }
-var _last_position: Vector2
-@onready var stop_zone_vertical_check: Node = $StopZoneCheck/VerticalCheck
-var vertical_check: Array = []
-@onready var stop_zone_horizontal_check: Node = $StopZoneCheck/HorizontalCheck
-var horizontal_check: Array = []
-var too_far := false
-var camera_locked := false
+var stop_zone_checks: Dictionary = {}
+var camera_locked:bool = false
 var is_too_far: bool = false
 
 ## Base offset to preserve initial settings
@@ -58,17 +52,17 @@ func _ready() -> void:
 		global_position = GameManager.player.global_position
 
 func _init_stop_zone_check():
-	# Get all RayCast2D children for vertical check
-	vertical_check.clear()
-	for child in stop_zone_vertical_check.get_children():
-		if child is RayCast2D:
-			vertical_check.append(child)
-	
-	# Get all RayCast2D children for horizontal check
-	horizontal_check.clear()
-	for child in stop_zone_horizontal_check.get_children():
-		if child is RayCast2D:
-			horizontal_check.append(child)
+	stop_zone_checks.clear()
+	var parent = get_node_or_null("StopZoneCheck")
+	if parent:
+		for dir_node in parent.get_children():
+			if dir_node is Node2D:
+				var dir_name = dir_node.name.replace("Check", "").to_lower()
+				stop_zone_checks[dir_name] = []
+				
+				for child in dir_node.get_children():
+					if child is RayCast2D:
+						stop_zone_checks[dir_name].append(child)
 
 func _physics_process(delta: float) -> void:
 	handle_follow_player(delta)
@@ -84,7 +78,7 @@ func handle_follow_player(delta: float) -> void:
 	var move_vector: Vector2 = target_pos - global_position
 	
 	var stop_info = is_in_stop_zone()
-	if check_player_too_far():
+	if is_player_too_far():
 		camera_locked = false
 		is_too_far = true
 	elif stop_info.in_stop_zone:
@@ -96,21 +90,22 @@ func handle_follow_player(delta: float) -> void:
 		else:
 			is_too_far = false
 	
-	# If locked → block movement based on direction
 	if camera_locked:
-		match stop_info.direction:
-			StopDirection.UP:
-				if move_vector.y < 0: move_vector.y = 0
-			StopDirection.DOWN:
-				if move_vector.y > 0: move_vector.y = 0
-			StopDirection.LEFT:
-				if move_vector.x < 0: move_vector.x = 0
-			StopDirection.RIGHT:
-				if move_vector.x > 0: move_vector.x = 0
+		var normal = stop_info.normal
+		var correction = stop_info.correction
 		
-		# Check if camera has exited zone → unlock
-		if not stop_info.in_stop_zone:
-			camera_locked = false
+		# --- BLOCK MOVEMENT INTO THE WALL ---
+		if normal.x != 0 and sign(move_vector.x) == -sign(normal.x):
+			move_vector.x = 0
+		if normal.y != 0 and sign(move_vector.y) == -sign(normal.y):
+			move_vector.y = 0
+		
+		# --- PUSH CAMERA TO THE EXACT EDGE ---
+		if (correction.x < max_distance_horizontal - 20):
+			move_vector += correction
+	
+	if not stop_info.in_stop_zone:
+		camera_locked = false
 	
 	# Apply movement
 	var new_pos = global_position + move_vector
@@ -119,58 +114,50 @@ func handle_follow_player(delta: float) -> void:
 	else:
 		global_position = new_pos
 
-
 func is_in_stop_zone() -> Dictionary:
-	# Default result
 	var result = {
-		"direction": StopDirection.NONE,
-		"in_stop_zone": false
+		"in_stop_zone": false,
+		"normal": Vector2.ZERO,
+		"correction": Vector2.ZERO,
+		"direction": ""
 	}
 	
-	# Check vertical RayCasts
-	for ray in vertical_check:
-		if ray.is_colliding():
-			var normal = ray.get_collision_normal()
-			# Determine up or down based on normal
-			if normal.y > 0:
-				result.direction = StopDirection.UP
-			elif normal.y < 0:
-				result.direction = StopDirection.DOWN
-			result.in_stop_zone = true
-			return result  # stop at first collision
-	
-	# Check horizontal RayCasts
-	for ray in horizontal_check:
-		if ray.is_colliding():
-			var normal = ray.get_collision_normal()
-			# Determine left or right based on normal
-			if normal.x > 0:
-				result.direction = StopDirection.LEFT
-			elif normal.x < 0:
-				result.direction = StopDirection.RIGHT
-			result.in_stop_zone = true
-			return result  # stop at first collision
-	
+	for dir_name in stop_zone_checks.keys():
+		for ray: RayCast2D in stop_zone_checks[dir_name]:
+			if ray.is_colliding():
+				var hit_point: Vector2 = ray.get_collision_point()
+				result.direction = dir_name
+				result.in_stop_zone = true
+				result.normal = ray.get_collision_normal()
+				
+				var ray_tip: Vector2 = ray.global_position + ray.target_position
+				var correction_vec = Vector2(
+						(hit_point.x - ray_tip.x), 
+						(hit_point.y - ray_tip.y)
+					)
+				result.correction = correction_vec
+				
+				return result  # stop at first collision
 	return result
 
-func check_player_too_far() -> bool:
+
+
+func is_player_too_far() -> bool:
 	var dx = abs(global_position.x - GameManager.player.global_position.x)
 	var dy = abs(global_position.y - GameManager.player.global_position.y)
-	
-	var on_x  = max_distance_horizontal
+
+	var on_x = max_distance_horizontal
 	var off_x = max_distance_horizontal * 0.8
-	
-	var on_y  = max_distance_vertical
+
+	var on_y = max_distance_vertical
 	var off_y = max_distance_vertical * 0.8
-	
-	if too_far:
-		if dx < off_x and dy < off_y:
-			too_far = false
-	else:
-		if dx > on_x or dy > on_y:
-			too_far = true
-	
-	return too_far
+
+	# Hysteresis: return true if outside max, false if inside min
+	if dx > on_x or dy > on_y:
+		return true
+	elif dx < off_x and dy < off_y:
+		return false
+	return false
 
 func is_player_near() -> bool:
 	var dx = abs(global_position.x - GameManager.player.global_position.x)

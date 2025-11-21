@@ -9,32 +9,36 @@ script = ExtResource("1_fckv4")
 
 [node name="StopZoneCheck" type="Node2D" parent="."]
 
-[node name="VerticalCheck" type="Node2D" parent="StopZoneCheck"]
+[node name="UpCheck" type="Node2D" parent="StopZoneCheck"]
 
-[node name="UpRayCast2D" type="RayCast2D" parent="StopZoneCheck/VerticalCheck"]
-target_position = Vector2(0, -100)
+[node name="UpRayCast2D" type="RayCast2D" parent="StopZoneCheck/UpCheck"]
+target_position = Vector2(0, -120)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="DownRayCast2D2" type="RayCast2D" parent="StopZoneCheck/VerticalCheck"]
-target_position = Vector2(0, 100)
+[node name="DownCheck" type="Node2D" parent="StopZoneCheck"]
+
+[node name="DownRayCast2D" type="RayCast2D" parent="StopZoneCheck/DownCheck"]
+target_position = Vector2(0, 120)
 collision_mask = 128
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="HorizontalCheck" type="Node2D" parent="StopZoneCheck"]
+[node name="RightCheck" type="Node2D" parent="StopZoneCheck"]
 
-[node name="RightRayCast2D" type="RayCast2D" parent="StopZoneCheck/HorizontalCheck"]
-target_position = Vector2(200, 0)
+[node name="RightRayCast2D" type="RayCast2D" parent="StopZoneCheck/RightCheck"]
+target_position = Vector2(210, 0)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="LeftRayCast2D2" type="RayCast2D" parent="StopZoneCheck/HorizontalCheck"]
-target_position = Vector2(-200, 0)
+[node name="LeftCheck" type="Node2D" parent="StopZoneCheck"]
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="StopZoneCheck/LeftCheck"]
+target_position = Vector2(-210, 0)
 collision_mask = 128
 collide_with_areas = true
 collide_with_bodies = false
