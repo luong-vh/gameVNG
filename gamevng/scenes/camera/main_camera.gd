@@ -33,7 +33,6 @@ var _current_look_action: String = ""
 var stop_zone_checks: Dictionary = {}
 var camera_locked:bool = false
 var is_too_far: bool = false
-var past_direction: String
 
 ## Base offset to preserve initial settings
 var _base_offset: Vector2 = Vector2.ZERO
@@ -78,14 +77,14 @@ func handle_follow_player(delta: float) -> void:
 	var target_pos: Vector2 = GameManager.player.global_position
 	var move_vector: Vector2 = target_pos - global_position
 	
-	# Check stop zone status
-	var stop_info = is_in_stop_zone()
+	# Check stop zone status - now returns array of all collisions
+	var stop_zones = get_all_stop_zones()
 	
 	# Update camera lock state
-	_update_camera_lock_state(stop_info)
+	_update_camera_lock_state(stop_zones)
 	
-	if stop_info.in_stop_zone:
-		move_vector = _handle_stop_zone_movement(move_vector, stop_info)
+	if stop_zones.size() > 0:
+		move_vector = _handle_stop_zone_movement(move_vector, stop_zones)
 	else:
 		move_vector = _handle_normal_follow(move_vector)
 	
@@ -93,18 +92,13 @@ func handle_follow_player(delta: float) -> void:
 	_apply_movement(move_vector, delta)
 
 
-func _update_camera_lock_state(stop_info: Dictionary) -> void:
+func _update_camera_lock_state(stop_zones: Array) -> void:
 	# Check if player is too far
 	if is_player_too_far():
 		camera_locked = false
 		is_too_far = true
-	elif stop_info.in_stop_zone:
+	elif stop_zones.size() > 0:
 		camera_locked = true
-	
-	var cur_direction = stop_info.direction
-	if past_direction != cur_direction:
-		is_too_far = false
-	past_direction = cur_direction
 	
 	# Handle transition from too far to near
 	if is_too_far and camera_locked:
@@ -114,29 +108,38 @@ func _update_camera_lock_state(stop_info: Dictionary) -> void:
 			is_too_far = false
 	
 	# Reset lock if not in stop zone
-	if not stop_info.in_stop_zone:
+	if stop_zones.size() == 0:
 		camera_locked = false
 
 
-func _handle_stop_zone_movement(move_vector: Vector2, stop_info: Dictionary) -> Vector2:
+func _handle_stop_zone_movement(move_vector: Vector2, stop_zones: Array) -> Vector2:
 	if not camera_locked:
 		return move_vector
 	
 	var result_vector = move_vector
-	var normal = stop_info.normal
+	var total_correction = Vector2.ZERO
 	
-	# Block movement into the wall
-	if normal.x != 0 and sign(result_vector.x) == -sign(normal.x):
-		result_vector.x = 0
-	if normal.y != 0 and sign(result_vector.y) == -sign(normal.y):
-		result_vector.y = 0
+	# Process each stop zone collision
+	for stop_info in stop_zones:
+		var normal = stop_info.normal
+		
+		# Block movement into the wall for this collision
+		if normal.x != 0 and sign(result_vector.x) == -sign(normal.x):
+			result_vector.x = 0
+		if normal.y != 0 and sign(result_vector.y) == -sign(normal.y):
+			result_vector.y = 0
+		
+		# Accumulate corrections from all collisions
+		total_correction += stop_info.correction
 	
-	# Apply correction to stay within bounds
-	var correction = stop_info.correction
-	if correction.x < max_distance_horizontal:
-		result_vector.x += correction.x
-	if correction.y < max_distance_vertical:
-		result_vector.x += correction.y
+	# Apply average correction to stay within bounds
+	if stop_zones.size() > 0:
+		total_correction /= stop_zones.size()
+		
+		if abs(total_correction.x) < max_distance_horizontal:
+			result_vector.x += total_correction.x
+		if abs(total_correction.y) < max_distance_vertical:
+			result_vector.y += total_correction.y
 	
 	return result_vector
 
@@ -158,33 +161,29 @@ func _apply_movement(move_vector: Vector2, delta: float) -> void:
 	else:
 		global_position = new_pos
 
-func is_in_stop_zone() -> Dictionary:
-	var result = {
-		"in_stop_zone": false,
-		"normal": Vector2.ZERO,
-		"correction": Vector2.ZERO,
-		"direction": ""
-	}
+func get_all_stop_zones() -> Array:
+	"""Check all raycasts and return array of all collisions"""
+	var collisions = []
 	
 	for dir_name in stop_zone_checks.keys():
 		for ray: RayCast2D in stop_zone_checks[dir_name]:
 			if ray.is_colliding():
 				var hit_point: Vector2 = ray.get_collision_point()
-				result.direction = dir_name
-				result.in_stop_zone = true
-				result.normal = ray.get_collision_normal()
-				
 				var ray_tip: Vector2 = ray.global_position + ray.target_position
-				var correction_vec = Vector2(
-						(hit_point.x - ray_tip.x), 
-						(hit_point.y - ray_tip.y)
-					)
-				result.correction = correction_vec
 				
-				return result  # stop at first collision
-	return result
-
-
+				var collision_info = {
+					"direction": dir_name,
+					"in_stop_zone": true,
+					"normal": ray.get_collision_normal(),
+					"correction": Vector2(
+						hit_point.x - ray_tip.x,
+						hit_point.y - ray_tip.y
+					)
+				}
+				
+				collisions.append(collision_info)
+	
+	return collisions
 
 func is_player_too_far() -> bool:
 	var dx = abs(global_position.x - GameManager.player.global_position.x)
@@ -232,9 +231,19 @@ func handle_look_offset(delta: float) -> void:
 			
 			# Only activate look after holding for required time
 			if _look_hold_timer >= look_hold_time:
-				if action_pressed == "down":
+				var stop_zones = get_all_stop_zones()
+				var can_look_down = true
+				var can_look_up = true
+				
+				for stop_zone in stop_zones:
+					if stop_zone.direction == "down":
+						can_look_down = false
+					if stop_zone.direction == "up":
+						can_look_up = false
+				
+				if action_pressed == "down" and can_look_down:
 					_target_look_offset = look_offset
-				elif action_pressed == "up":
+				elif action_pressed == "up" and can_look_up:
 					_target_look_offset = -look_offset
 		else:
 			# New action started, reset timer
