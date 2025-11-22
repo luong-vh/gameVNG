@@ -2,6 +2,7 @@ extends Node
 class_name Stage
 
 @export var default_day_night_state: DayNightManager.DayNightState
+@export_range(0, 100, 1) var day_night_switch_limit: int = 2
 
 func _enter_tree() -> void:
 	# Handle portal spawning first
@@ -11,9 +12,6 @@ func _ready() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
-
-func reload()-> void:
-	get_tree().reload_current_scene()
 
 func _init_day_night():
 	if has_node("DayParallaxBackground"):
@@ -33,15 +31,18 @@ func _init_day_night():
 	
 	if has_node("ShaderCanvasLayer"):
 		DayNightManager.shader_canva = get_node("ShaderCanvasLayer")
-	DayNightManager.set_state(default_day_night_state)
+	
+	DayNightManager.set_switch_limit(day_night_switch_limit)
+	DayNightManager.set_day_night_state(default_day_night_state)
 
 func save_stage() -> Dictionary:
 	var saved_node = get_tree().get_nodes_in_group("Saved Object")
 	
 	return {
 		"stage_path": self.scene_file_path,
-		"day_night_state": DayNightManager.current_state,
+		"day_night_state": DayNightManager.current_day_night_state,
 		"shader_state": DayNightManager.current_shader_state,
+		"cur_switch_limit": DayNightManager.switch_limit_count,
 	}
 
 func load_state(data: Dictionary) -> bool:
@@ -52,10 +53,14 @@ func load_state(data: Dictionary) -> bool:
 	
 	if data.has("day_night_state"):
 		var state = data["day_night_state"]
-		DayNightManager.set_state(state)
+		DayNightManager.set_day_night_state(state)
 	
 	if data.has("shader_state"):
 		var state = data["shader_state"]
 		DayNightManager.set_shader_state(state)
+	
+	if data.has("cur_switch_limit"):
+		var limit = data["cur_switch_limit"]
+		DayNightManager.set_limit_count(limit)
 	
 	return true

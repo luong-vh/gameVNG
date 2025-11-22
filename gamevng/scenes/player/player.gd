@@ -236,7 +236,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
 	if Input.is_action_just_pressed("switch_day_night"):
-		DayNightManager.switch_state()
+		DayNightManager.switch_day_night_state()
 	
 	handle_invulnerable()
 
