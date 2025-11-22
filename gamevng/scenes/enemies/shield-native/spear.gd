@@ -31,7 +31,6 @@ func _delete_from_enemy_manager():
 	EnemyManager.remove_enemy(self,type)
 
 func change_to_day_behavior():
-	print("[%s] Changed behavior to DAY" %self)
 	# Restore original speed and detection range
 	speed = original_speed
 	var shape = $PlayerRayCast2D.get_child(0) as CollisionShape2D
@@ -39,7 +38,6 @@ func change_to_day_behavior():
 		shape.shape.size.x = original_player_raycast_length
 
 func change_to_night_behavior():
-	print("[%s] Changed behavior to Night" %self)
 	# Decrease speed and detection range for night
 	speed = original_speed * 0.6 # Reduce speed by 40%
 	var shape = $PlayerRayCast2D.get_child(0) as CollisionShape2D

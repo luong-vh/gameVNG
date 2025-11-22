@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://x18ct0xrj08p"]
+[gd_scene load_steps=12 format=4 uid="uid://x18ct0xrj08p"]
 
 [ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
 [ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
 [ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
+[ext_resource type="PackedScene" uid="uid://b36sp70tti65" path="res://scenes/puzzle/buttons/color_buttons.tscn" id="11_m8cxc"]
 [ext_resource type="PackedScene" uid="uid://crcq4c8hqnmt" path="res://scenes/enemies/native/native.tscn" id="11_wjdv0"]
 
 [node name="Stage" type="Node2D"]
@@ -49,8 +50,10 @@ enemy_scene = ExtResource("7_pxeid")
 
 [node name="Native" parent="." instance=ExtResource("11_wjdv0")]
 position = Vector2(637, 210)
-throw_height = 140
 flight_time = 1.8
 move_distance = 500.0
 
 [node name="Coconuts" type="Node" parent="."]
+
+[node name="ColorButtons" parent="." instance=ExtResource("11_m8cxc")]
+position = Vector2(888, 198)

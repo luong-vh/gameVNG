@@ -1,9 +1,7 @@
 extends EnemyState
 
 func _enter() -> void:
-	print("ENTER MOVING")
 	obj.change_animation("default")
-	pass
 	
 func _update(_delta: float) -> void:
 	obj.velocity.x = obj.movement_speed * obj.direction
