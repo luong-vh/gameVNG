@@ -313,10 +313,13 @@ sprite_frames = SubResource("SpriteFrames_ilmr8")
 animation = &"green_activated"
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/GreenButton"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("12_uoor0")
 metadata/_custom_type_script = "uid://nvuabioddqmj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonManager/GreenButton/InteractiveArea2D"]
+visibility_layer = 3
 shape = SubResource("CapsuleShape2D_rotmb")
 
 [node name="RedButton" type="Node2D" parent="ButtonManager"]
@@ -330,6 +333,8 @@ sprite_frames = SubResource("SpriteFrames_ot3qc")
 animation = &"red_locked"
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/RedButton"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("12_uoor0")
 metadata/_custom_type_script = "uid://nvuabioddqmj"
 
@@ -350,6 +355,8 @@ animation = &"yellow_idle"
 frame_progress = 0.583928
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/YellowButton"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("12_uoor0")
 metadata/_custom_type_script = "uid://nvuabioddqmj"
 
