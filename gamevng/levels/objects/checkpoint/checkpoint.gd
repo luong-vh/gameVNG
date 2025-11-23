@@ -40,6 +40,7 @@ func activate() -> void:
 	_play_active_animation()
 	_confirm_all_saveable_objects()
 	GameManager.save_checkpoint(checkpoint_id)
+	GameManager.save_checkpoint_data()  # Save to persistent storage
 	GameManager.activate_checkpoint()
 	checkpoint_activated.emit(checkpoint_id)
 	print("Checkpoint activated: ", checkpoint_id)

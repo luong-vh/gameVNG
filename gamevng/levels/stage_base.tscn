@@ -10,7 +10,7 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
 
-[node name="Stage3" type="Node2D"]
+[node name="Stage" type="Node2D"]
 script = ExtResource("1_3tob2")
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]

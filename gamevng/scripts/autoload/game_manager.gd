@@ -86,8 +86,7 @@ func save_checkpoint(checkpoint_id: String) -> void:
 		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", checkpoint_id)
-	save_checkpoint_data() 
-	
+
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
