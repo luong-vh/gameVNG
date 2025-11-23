@@ -33,9 +33,12 @@ func control_moving() -> bool:
 #Control jumping
 #Return true if jumping
 func control_jump() -> bool:
+	if obj.is_input_lock():
+		return false
+
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.reset_jump_count()
-	
+
 	var jumpInput = Input.is_action_just_pressed("jump")
 	if jumpInput:
 		#Wall jump
@@ -79,12 +82,15 @@ func control_wall_cling(delta: float) -> bool:
 	return true
 
 func control_dash() -> bool:
+	if obj.is_input_lock():
+		return false
+
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.dash_count = 0
-	
+
 	if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
 		return false
-	
+
 	var dash_input = Input.is_action_just_pressed("dash")
 	if dash_input:
 		fsm.change_state(fsm.states.dash)
@@ -93,7 +99,10 @@ func control_dash() -> bool:
 	return false
 
 func control_attack() -> bool:
-	if (Input.is_action_pressed("down") 
+	if obj.is_input_lock():
+		return false
+
+	if (Input.is_action_pressed("down")
 		and Input.is_action_just_pressed("attack")
 		and not obj.is_on_floor()
 	):
