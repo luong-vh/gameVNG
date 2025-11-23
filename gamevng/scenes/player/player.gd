@@ -16,6 +16,8 @@ var is_invulnerable: bool = false
 enum AttackDir { FORWARD, UP, DOWN }
 var attack_direction: AttackDir = AttackDir.FORWARD
 @export var has_blade: bool = false
+@export var attack_cd_sec: float = 0.3
+@onready var attack_timer := $AttackCoolDownTimer
 @export var throwing_speed: float = 300
 @onready var blade_factory = $Direction/BladeFactory
 var hit_area_collision
@@ -127,8 +129,14 @@ func _shader_changed(new_state):
 			light_source.enabled = true
 	pass
 
+func start_attack_cd() -> bool:
+	if attack_timer:
+		attack_timer.start(attack_cd_sec)
+		return true
+	return false
+
 func can_attack() -> bool:
-	return has_blade
+	return has_blade and attack_timer.time_left <= 0
 
 func change_attack_direction(dir: AttackDir):
 	if attack_direction != dir:

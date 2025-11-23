@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogicStyle" load_steps=19 format=3 uid="uid://deg154drlsvst"]
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=19 format=3 uid="uid://dg66rmlkseqqf"]
 
 [ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn" id="1_8vm66"]
 [ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_bfl7f"]
@@ -11,22 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="9_81ov4"]
 [ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="10_d65ij"]
 
-[sub_resource type="Resource" id="Resource_g52wx"]
+[sub_resource type="Resource" id="Resource_8vm66"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("1_8vm66")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_chukf"]
+[sub_resource type="Resource" id="Resource_bfl7f"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("3_3eep4")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_6rsu8"]
+[sub_resource type="Resource" id="Resource_3eep4"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("4_naml3")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_l8ech"]
+[sub_resource type="Resource" id="Resource_naml3"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("5_4irnu")
 overrides = {
@@ -37,12 +37,12 @@ overrides = {
 "text_use_global_size": "false"
 }
 
-[sub_resource type="Resource" id="Resource_17eq1"]
+[sub_resource type="Resource" id="Resource_4irnu"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("6_if4yg")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_amibd"]
+[sub_resource type="Resource" id="Resource_if4yg"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("7_notge")
 overrides = {
@@ -50,12 +50,12 @@ overrides = {
 "font_size_use_global": "false"
 }
 
-[sub_resource type="Resource" id="Resource_3t3op"]
+[sub_resource type="Resource" id="Resource_notge"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("8_lp1aj")
 overrides = {}
 
-[sub_resource type="Resource" id="Resource_4f12m"]
+[sub_resource type="Resource" id="Resource_lp1aj"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("9_81ov4")
 overrides = {}
@@ -65,14 +65,14 @@ script = ExtResource("10_d65ij")
 name = "dialogic_style"
 layer_list = Array[String](["10", "11", "12", "13", "14", "15", "16"])
 layer_info = {
-"": SubResource("Resource_g52wx"),
-"10": SubResource("Resource_chukf"),
-"11": SubResource("Resource_6rsu8"),
-"12": SubResource("Resource_l8ech"),
-"13": SubResource("Resource_17eq1"),
-"14": SubResource("Resource_amibd"),
-"15": SubResource("Resource_3t3op"),
-"16": SubResource("Resource_4f12m")
+"": SubResource("Resource_8vm66"),
+"10": SubResource("Resource_bfl7f"),
+"11": SubResource("Resource_3eep4"),
+"12": SubResource("Resource_naml3"),
+"13": SubResource("Resource_4irnu"),
+"14": SubResource("Resource_if4yg"),
+"15": SubResource("Resource_notge"),
+"16": SubResource("Resource_lp1aj")
 }
 base_overrides = {}
 layers = Array[ExtResource("2_bfl7f")]([])

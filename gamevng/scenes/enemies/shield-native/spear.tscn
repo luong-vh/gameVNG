@@ -175,3 +175,5 @@ offset_left = -35.0
 offset_top = -36.0
 offset_right = 35.0
 offset_bottom = -28.0
+texture_under = null
+texture_progress = null

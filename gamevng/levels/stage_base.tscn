@@ -25,7 +25,6 @@ z_index = -10
 tile_set = ExtResource("2_ni2fq")
 
 [node name="MainCamera" parent="." instance=ExtResource("4_jcxpg")]
-camera_follow_speed = 500.0
 use_smooth_follow = true
 max_distance_horizontal = 250.0
 min_distance_horizontal = 20.0

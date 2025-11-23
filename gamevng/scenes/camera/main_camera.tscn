@@ -6,7 +6,8 @@
 drag_top_margin = 0.5
 drag_bottom_margin = 0.5
 script = ExtResource("1_fckv4")
-camera_follow_speed = 450.0
+camera_follow_speed = 400.0
+look_offset = 60.0
 look_hold_time = 1.0
 
 [node name="StopZoneCheck" type="Node2D" parent="."]
@@ -14,7 +15,7 @@ look_hold_time = 1.0
 [node name="UpCheck" type="Node2D" parent="StopZoneCheck"]
 
 [node name="UpRayCast2D" type="RayCast2D" parent="StopZoneCheck/UpCheck"]
-target_position = Vector2(0, -120)
+target_position = Vector2(0, -135)
 collision_mask = 128
 hit_from_inside = true
 collide_with_areas = true
@@ -23,7 +24,7 @@ collide_with_bodies = false
 [node name="DownCheck" type="Node2D" parent="StopZoneCheck"]
 
 [node name="DownRayCast2D" type="RayCast2D" parent="StopZoneCheck/DownCheck"]
-target_position = Vector2(0, 120)
+target_position = Vector2(0, 135)
 collision_mask = 128
 collide_with_areas = true
 collide_with_bodies = false
