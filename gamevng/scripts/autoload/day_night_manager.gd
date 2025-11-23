@@ -41,7 +41,7 @@ func set_state(state: DayNightState):
 		_apply_state(current_state)
 
 func _apply_state(state : DayNightState) -> void:
-	print("[DayNightManager] Applying state:", state)
+	#print("[DayNightManager] Applying state:", state)
 	if not day_bg or not night_bg or not canvas_modulate:
 		return
 	
