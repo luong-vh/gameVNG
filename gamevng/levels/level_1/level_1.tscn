@@ -222,8 +222,4 @@ visible = false
 [node name="SubViewportContainer" parent="ShaderCanvasLayer" index="2"]
 stretch = false
 
-[node name="Barrel" parent="." instance=ExtResource("13_1ow6f")]
-position = Vector2(548, 164)
-_next_direction = -1
-
 [editable path="ShaderCanvasLayer"]

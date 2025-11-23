@@ -26,6 +26,7 @@ size = Vector2(84, 14)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_1f3o5")
+level_id = "test"
 
 [node name="Door" parent="." instance=ExtResource("10_43d8r")]
 position = Vector2(206, 244)
@@ -64,7 +65,6 @@ position = Vector2(603, 229)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("6_pupqp")]
 position = Vector2(686, 111)
-checkpoint_id = "2"
 
 [node name="ManualMovingPlatform" parent="." instance=ExtResource("8_lg0vp")]
 position = Vector2(54, 147)
