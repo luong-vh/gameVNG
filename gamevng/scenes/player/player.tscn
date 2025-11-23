@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://hu3ckwqk2fux" path="res://assets/foxy/fox_hat/fox_run_1.png" id="14_r7pn3"]
 [ext_resource type="Texture2D" uid="uid://dgis3lall2gw3" path="res://assets/foxy/fox_hat_blade/fox_run_1.png" id="15_5mf0n"]
 [ext_resource type="Texture2D" uid="uid://cyol1va0p6wfj" path="res://assets/foxy/fox_hat/fox_run_2.png" id="15_b8hi5"]
+[ext_resource type="Texture2D" uid="uid://p6pudqh2xbi8" path="res://assets/foxy/fox_hat/fox_wall_slide.png" id="16_1u1sw"]
 [ext_resource type="Texture2D" uid="uid://brnkj48ftl7ii" path="res://assets/foxy/fox_hat/fox_run_3.png" id="16_2uvqg"]
 [ext_resource type="Texture2D" uid="uid://cr8a68nw3dww1" path="res://assets/foxy/fox_hat_blade/fox_run_2.png" id="16_4hvnv"]
 [ext_resource type="Texture2D" uid="uid://c3p546j150735" path="res://assets/foxy/fox_hat/fox_run_4.png" id="17_1s1yo"]

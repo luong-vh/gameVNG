@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://2s7si80yuq10"]
+[gd_scene load_steps=18 format=3 uid="uid://bs443mpop7gwr"]
 
 [ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/boat.gd" id="1_y7fvp"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="2_y7fvp"]
