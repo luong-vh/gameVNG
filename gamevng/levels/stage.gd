@@ -6,6 +6,8 @@ class_name Stage
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
 
+@export var level :int = 0
+
 func _enter_tree() -> void:
 	# Handle portal spawning first
 	GameManager.current_stage = self

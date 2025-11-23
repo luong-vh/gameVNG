@@ -309,7 +309,7 @@ tile_set = ExtResource("2_dhiy7")
 position = Vector2(9315, 268)
 movement_speed = 150.0
 
-[node name="Light2D" parent="Player" index="6"]
+[node name="Light2D" parent="Player" index="7"]
 enabled = false
 
 [node name="MainCamera" parent="." instance=ExtResource("4_v2gem")]
