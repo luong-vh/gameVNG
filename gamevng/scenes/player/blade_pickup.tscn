@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8ghxmgekqw4a"]
+[gd_scene load_steps=12 format=3 uid="uid://8ghxmgekqw4a"]
 
 [ext_resource type="Script" uid="uid://cr0rdf7knk0sg" path="res://scenes/player/blade_pickup.gd" id="1_g3i0j"]
 [ext_resource type="Texture2D" uid="uid://d0s8rm2fj4wef" path="res://assets/foxy/blade/blade_anim_1.png" id="2_o0qmo"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cpb4wgmvkk3w2" path="res://assets/foxy/blade/blade_anim_3.png" id="4_wyxcl"]
 [ext_resource type="Texture2D" uid="uid://bnm1ol1ugbdsv" path="res://assets/foxy/blade/blade_anim_4.png" id="5_aiacq"]
 [ext_resource type="Texture2D" uid="uid://yv4h8w5hpcyx" path="res://assets/foxy/blade/blade_anim_5.png" id="6_3kpqu"]
+[ext_resource type="Texture2D" uid="uid://bnmm6danq7olv" path="res://assets/init_assets/images/blade/blade_anim_4.png" id="7_ckoyu"]
+[ext_resource type="Texture2D" uid="uid://c8yavtqsutpff" path="res://assets/init_assets/images/blade/blade_anim_3.png" id="8_wyxcl"]
+[ext_resource type="Texture2D" uid="uid://7gky8kgre65u" path="res://assets/init_assets/images/blade/blade_anim_2.png" id="9_aiacq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhm7x"]
 animations = [{
@@ -24,6 +27,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_3kpqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ckoyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wyxcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_aiacq")
 }],
 "loop": true,
 "name": &"default",
@@ -41,7 +53,7 @@ script = ExtResource("1_g3i0j")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_mhm7x")
-frame_progress = 0.460673
+frame_progress = 0.880749
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)

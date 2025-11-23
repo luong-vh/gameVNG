@@ -129,9 +129,10 @@ texture = ExtResource("10_eryh4")
 modulate = Color(1, 1, 1, 0.772549)
 position = Vector2(4, -10)
 motion_scale = Vector2(0.8, 0.9)
+motion_mirroring = Vector2(800, 0)
 
 [node name="DecorativePalmTree1" parent="TreeParallaxLayer" instance=ExtResource("11_vlspt")]
-position = Vector2(765, 283)
+position = Vector2(71, 287)
 
 [node name="DecorativePalmTree2" parent="TreeParallaxLayer" instance=ExtResource("11_vlspt")]
 position = Vector2(316, 281)

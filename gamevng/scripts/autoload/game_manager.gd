@@ -31,6 +31,9 @@ func set_player(_player: Player):
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)
 
+func collect_blade():
+	player.collect_blade()
+
 func able_to_control_player():
 	player.set_physics_process(true)
 
@@ -102,17 +105,16 @@ func respawn_at_checkpoint() -> void:
 	# Load the stage and handle different file path
 	var stage_state = checkpoint_info.get("stage_state")
 	if stage_state and not stage_state["stage_path"].is_empty():
-		if current_stage.scene_file_path != stage_state["stage_path"]:
-			change_stage(stage_state["stage_path"])
-			# Wait for scene to load
-			await get_tree().process_frame
-		
-		if not current_stage.load_state(stage_state):
-			print("Fail to load stage")
-			return
-	else:
 		print("Fail to load stage")
 		return
+		#if current_stage.scene_file_path != stage_state["stage_path"]:
+			#change_stage(stage_state["stage_path"])
+			## Wait for scene to load
+			#await get_tree().process_frame
+		#
+		#if not current_stage.load_state(stage_state):
+			#print("Fail to load stage")
+			#return
 	
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")

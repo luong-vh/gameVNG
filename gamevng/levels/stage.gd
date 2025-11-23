@@ -1,6 +1,7 @@
 extends Node
 class_name Stage
 
+@export var can_switch_day_night: bool = true
 @export var default_day_night_state: DayNightManager.DayNightState
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
@@ -33,6 +34,7 @@ func _init_day_night():
 	if has_node("ShaderCanvasLayer"):
 		DayNightManager.shader_canva = get_node("ShaderCanvasLayer")
 	
+	DayNightManager.set_can_switch_day_night(can_switch_day_night)
 	DayNightManager.set_switch_limit(day_night_switch_limit)
 	DayNightManager.set_day_night_state(default_day_night_state)
 

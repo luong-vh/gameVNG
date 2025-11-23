@@ -12,6 +12,7 @@ var current_day_night_state: DayNightState:
 	get: return _current_day_night_state
 
 var switch_limit: int = 0
+var _can_switch_day_night: bool = true
 var _switch_limit_count: int = 0
 var switch_limit_count: int:
 	get: return _switch_limit_count
@@ -34,7 +35,13 @@ func is_day() -> bool:
 		return true
 	return false
 
+func set_can_switch_day_night(value: bool):
+	_can_switch_day_night = value
+
 func switch_day_night_state():
+	if not _can_switch_day_night:
+		return
+	
 	if _switch_limit_count <= 0:
 		#print("[DayNightManager] Reach switch day night limt")
 		return
