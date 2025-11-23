@@ -35,7 +35,7 @@ func set_max_heart_gui(max :int):
 	_heart_container.set_max_heart(max)
 
 func update_heart_gui(health: int):
-
+	if (health <=0): return
 	var hearts = _heart_container.get_children()
 	if hearts.size() == 0:
 		return

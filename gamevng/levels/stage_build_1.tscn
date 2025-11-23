@@ -290,6 +290,7 @@ b = Vector2(30, -110)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_r5yqc")
+level_id = "build1"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
@@ -309,7 +310,7 @@ tile_set = ExtResource("2_dhiy7")
 position = Vector2(9315, 268)
 movement_speed = 150.0
 
-[node name="Light2D" parent="Player" index="6"]
+[node name="Light2D" parent="Player" index="7"]
 enabled = false
 
 [node name="MainCamera" parent="." instance=ExtResource("4_v2gem")]
@@ -407,23 +408,21 @@ position = Vector2(263, 274)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(1815, 178)
-checkpoint_id = "2"
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(5095, 274)
-checkpoint_id = "3"
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(10214, 274)
-checkpoint_id = "4"
+
+[node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("9_w4q74")]
+position = Vector2(9312, 274)
 
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(7211, 51)
-checkpoint_id = "5"
 
 [node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(7959, -429)
-checkpoint_id = "6"
 
 [node name="WorldBorder" type="Node" parent="."]
 

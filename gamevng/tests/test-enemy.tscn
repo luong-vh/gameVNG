@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://x18ct0xrj08p"]
+[gd_scene load_steps=14 format=4 uid="uid://x18ct0xrj08p"]
 
 [ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="7_pxeid"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
 [ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
-[ext_resource type="PackedScene" uid="uid://bs443mpop7gwr" path="res://levels/objects/platforms/Boat.tscn" id="10_ek7wy"]
-[ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
-[ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="11_wjdv0"]
+[ext_resource type="PackedScene" uid="uid://2s7si80yuq10" path="res://levels/objects/platforms/Boat.tscn" id="10_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://scenes/objects/pistol/pistol.tscn" id="10_tsaj6"]
 [ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://b36sp70tti65" path="res://scenes/puzzle/buttons/color_buttons.tscn" id="11_m8cxc"]
@@ -54,8 +52,10 @@ enemy_scene = ExtResource("7_pxeid")
 [node name="Boat" parent="." instance=ExtResource("10_ek7wy")]
 position = Vector2(155, 45)
 object_id = "1"
+
 [node name="Pistol" parent="." instance=ExtResource("10_tsaj6")]
 position = Vector2(515, 224)
+
 [node name="Native" parent="." instance=ExtResource("11_wjdv0")]
 position = Vector2(637, 210)
 flight_time = 1.8
@@ -65,10 +65,9 @@ move_distance = 500.0
 
 [node name="ColorButtons" parent="." instance=ExtResource("11_m8cxc")]
 position = Vector2(888, 198)
+
 [node name="Checkpoint" parent="." instance=ExtResource("11_wjdv0")]
 position = Vector2(42, 16)
-checkpoint_id = "1"
 
 [node name="Checkpoint2" parent="." instance=ExtResource("11_wjdv0")]
 position = Vector2(879, -15)
-checkpoint_id = "2"

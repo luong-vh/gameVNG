@@ -6,10 +6,12 @@ class_name Stage
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
 
-func _enter_tree() -> void:
-	# Handle portal spawning first
-	GameManager.current_stage = self
+@export var level_id: String = "0"
 
+func _enter_tree() -> void:
+	GameManager.set_current_stage(self, level_id)
+	if level_id == "0":
+		assert(false,"Chưa khai báo level_id cho scene này!")
 func _ready() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
