@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://ci0ucac7lo1ym"]
+
+[ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="1_hm78c"]
+[ext_resource type="Script" uid="uid://bnvlvyfuqpoq8" path="res://levels/objects/door/pressure_plate_door.gd" id="1_nyh03"]
+[ext_resource type="Texture2D" uid="uid://bkles8vi76hp2" path="res://assets/island/objects/door/iron_door.png" id="2_nyh03"]
+
+[sub_resource type="Curve2D" id="Curve2D_nyh03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr1i5"]
+size = Vector2(37, 75)
+
+[sub_resource type="Animation" id="Animation_vnn6m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_pxegl"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lr1i5"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlatformPath2D:process_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnn6m"]
+_data = {
+&"RESET": SubResource("Animation_vnn6m"),
+&"close": SubResource("Animation_pxegl"),
+&"open": SubResource("Animation_lr1i5")
+}
+
+[node name="PressurePlateDoor" type="Node2D"]
+script = ExtResource("1_nyh03")
+
+[node name="PlatformPath2D" type="Path2D" parent="." node_paths=PackedStringArray("platform")]
+curve = SubResource("Curve2D_nyh03")
+script = ExtResource("1_hm78c")
+platform = NodePath("../AnimatableBody2D")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PlatformPath2D"]
+position = Vector2(1, 1)
+rotation = -1.5707964
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlatformPath2D/PathFollow2D"]
+remote_path = NodePath("../../EmptyNode")
+update_rotation = false
+update_scale = false
+
+[node name="EmptyNode" type="Node2D" parent="PlatformPath2D"]
+position = Vector2(1, 1)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+z_index = -1
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_lr1i5")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+z_index = -1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_nyh03")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vnn6m")
+}
+autoplay = "RESET"
