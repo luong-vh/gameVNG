@@ -1,12 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhwtuudiaviff"]
+[gd_scene load_steps=15 format=4 uid="uid://dhwtuudiaviff"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_gwceb"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_l53as"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="3_3sk1a"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="4_08mmt"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_j48du"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_5ot28"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="5_8jbay"]
+[ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="5_la5aw"]
+[ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="5_qbdb0"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_aerfg"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_nmsli"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_la5aw"]
+a = Vector2(-50, 0)
+b = Vector2(600, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_la5aw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
 
@@ -17,12 +27,16 @@ script = ExtResource("1_gwceb")
 position = Vector2(86, -34)
 
 [node name="World" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAoAAAABAAEAAAABAAoAAAABAAEAAAACAAoAAAABAAEAAAADAAoAAAABAAEAAAAEAAoAAAABAAEAAAAFAAoAAAABAAEAAAAGAAoAAAABAAEAAAAHAAoAAAABAAEAAAAIAAoAAAABAAEAAAAJAAoAAAABAAEAAAAKAAoAAAABAAEAAAALAAoAAAABAAEAAAAMAAoAAAABAAEAAAANAAoAAAABAAEAAAAOAAoAAAABAAEAAAAPAAoAAAABAAEAAAD//woAAAABAAEAAAAQAAoAAAABAAEAAAARAAoAAAABAAEAAAASAAoAAAACAAEAAAD//wsAAAABAAIAAAAAAAsAAAABAAIAAAABAAsAAAABAAIAAAACAAsAAAABAAIAAAADAAsAAAABAAIAAAAEAAsAAAABAAIAAAAFAAsAAAABAAIAAAAGAAsAAAABAAIAAAAHAAsAAAABAAIAAAAIAAsAAAABAAIAAAAJAAsAAAABAAIAAAAKAAsAAAABAAIAAAALAAsAAAABAAIAAAAMAAsAAAABAAIAAAANAAsAAAABAAIAAAAOAAsAAAABAAIAAAAPAAsAAAABAAIAAAAQAAsAAAABAAIAAAARAAsAAAABAAIAAAASAAsAAAACAAIAAAD//wkAAAABAAAAAAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAABAAAAAAAIAAkAAAABAAAAAAAJAAkAAAABAAAAAAAKAAkAAAABAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAABAAAAAAAPAAkAAAABAAAAAAAQAAkAAAAHAAEAAAARAAkAAAABAAEAAAASAAkAAAACAAEAAAD+/wkAAAABAAAAAAD+/woAAAABAAEAAAD+/wsAAAABAAIAAAD9/wsAAAABAAIAAAD8/wsAAAABAAIAAAD7/wsAAAABAAIAAAD6/wsAAAABAAIAAAD5/wsAAAABAAIAAAD5/woAAAABAAEAAAD5/wkAAAABAAAAAAD6/wkAAAABAAAAAAD7/wkAAAABAAAAAAD8/wkAAAABAAAAAAD9/wkAAAABAAAAAAD9/woAAAABAAEAAAD8/woAAAABAAEAAAD7/woAAAABAAEAAAD6/woAAAABAAEAAAD4/wkAAAAAAAAAAAD4/woAAAAAAAEAAAD4/wsAAAAAAAIAAAD9/wgAAgAAAAAAAQAOAAgAAgAAAAAAAQAQAAgAAAAAAAAAAAARAAgAAAAJAAAAAAASAAgAAAACAAAAAAARAAcAAAAEAAAAAAA=")
 tile_set = ExtResource("2_l53as")
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.691357, 0.691357, 0.691357, 1)
 z_index = -10
 tile_set = ExtResource("2_l53as")
+
+[node name="Player" parent="." instance=ExtResource("4_j48du")]
+position = Vector2(146, 281)
 
 [node name="MainCamera" parent="." instance=ExtResource("3_3sk1a")]
 camera_follow_speed = 500.0
@@ -35,7 +49,38 @@ min_distance_vertical = 20.0
 
 [node name="TutorialSigns" type="Node2D" parent="Objects"]
 
+[node name="WoodenSign1" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
+position = Vector2(148, 272)
+message = "Xin chào bạn đến với foxy adventure!
+Nhấn phím A, D để di chuyển qua lại."
+
 [node name="Checkpoints" type="Node2D" parent="Objects"]
+
+[node name="Checkpoint1" parent="Objects/Checkpoints" instance=ExtResource("5_la5aw")]
+position = Vector2(196, 272)
+checkpoint_id = "level1_1"
+
+[node name="CameraBorders" type="Node2D" parent="."]
+
+[node name="DownCameraStopZone1" type="Area2D" parent="CameraBorders"]
+position = Vector2(0, 330)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("5_8jbay")
+metadata/_custom_type_script = "uid://baoky30abnb03"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/DownCameraStopZone1"]
+shape = SubResource("SegmentShape2D_la5aw")
+
+[node name="LeftCameraStopZone" type="Area2D" parent="CameraBorders"]
+rotation = 1.5708
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("5_8jbay")
+metadata/_custom_type_script = "uid://baoky30abnb03"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/LeftCameraStopZone"]
+shape = SubResource("WorldBoundaryShape2D_la5aw")
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -46,7 +91,7 @@ min_distance_vertical = 20.0
 [node name="WorldBorder" type="Node" parent="."]
 
 [node name="DownWorldBoder" type="Area2D" parent="WorldBorder"]
-position = Vector2(1, 414)
+position = Vector2(0, 400)
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("4_08mmt")
@@ -55,6 +100,13 @@ metadata/_custom_type_script = "uid://cskdv6tj5dtso"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/DownWorldBoder"]
 shape = SubResource("WorldBoundaryShape2D_aov85")
+
+[node name="LeftWorldBoder" type="StaticBody2D" parent="WorldBorder"]
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/LeftWorldBoder"]
+shape = SubResource("WorldBoundaryShape2D_la5aw")
 
 [node name="DayParallaxBackground" parent="." instance=ExtResource("5_5ot28")]
 

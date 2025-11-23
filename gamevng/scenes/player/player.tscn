@@ -334,7 +334,6 @@ script = ExtResource("1_wodsf")
 wall_friction = 500.0
 wall_slide_speed = 100.0
 max_jump_amount = 2
-_target_offset = Vector2(0, -50)
 max_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -391,16 +390,17 @@ target_container_name = &"Blade"
 [node name="WallChecker" type="RayCast2D" parent="Direction"]
 position = Vector2(0, -12)
 rotation = -1.5708
-target_position = Vector2(0, 13)
+target_position = Vector2(0, 15)
+collision_mask = 256
 
 [node name="CheckPushable" type="RayCast2D" parent="Direction"]
 position = Vector2(0, -12)
 target_position = Vector2(15, 0)
 collision_mask = 64
 
-[node name="Particle" type="Node2D" parent="."]
+[node name="Particles" type="Node2D" parent="Direction"]
 
-[node name="DashParticle" type="GPUParticles2D" parent="Particle"]
+[node name="DashParticle" type="GPUParticles2D" parent="Direction/Particles"]
 z_index = -1
 position = Vector2(0, -14)
 emitting = false
@@ -409,7 +409,7 @@ texture = ExtResource("2_niom3")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_iwuka")
 
-[node name="JumpParticle" type="GPUParticles2D" parent="Particle"]
+[node name="JumpParticle" type="GPUParticles2D" parent="Direction/Particles"]
 z_index = -1
 position = Vector2(0, 1)
 emitting = false

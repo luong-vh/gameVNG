@@ -51,14 +51,20 @@ func control_jump() -> bool:
 			return true
 		
 		#Normal jump
-		if obj.jump_count > 0:
+		if obj.jump_count < obj.max_jump_amount:
+			if not obj.is_on_floor() and obj.is_near_wall():
+				return false
+			
+			if obj.jump_count >= obj.normal_jump_cost and not obj.can_double_jump:
+				return false
+			
 			obj.jump_particle.restart()
 			obj.jump_particle.emitting = true
 			obj.jump()
 			if obj.is_on_floor() or obj.is_near_wall():
-				obj.jump_count -= obj.normal_jump_cost
+				obj.jump_count += obj.normal_jump_cost
 			else:
-				obj.jump_count -= obj.double_jump_cost
+				obj.jump_count += obj.double_jump_cost
 			change_state(fsm.states.jump)
 			return true
 	return false
@@ -79,6 +85,9 @@ func control_wall_cling(delta: float) -> bool:
 	return true
 
 func control_dash() -> bool:
+	if not obj.can_dash:
+		return false
+	
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.dash_count = 0
 	

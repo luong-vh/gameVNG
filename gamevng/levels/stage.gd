@@ -3,11 +3,12 @@ class_name Stage
 
 @export var default_day_night_state: DayNightManager.DayNightState
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
+@export var loading_time_sec: float = 5
 
 func _enter_tree() -> void:
 	# Handle portal spawning first
 	GameManager.current_stage = self
-	
+
 func _ready() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
@@ -61,6 +62,7 @@ func load_state(data: Dictionary) -> bool:
 	
 	if data.has("cur_switch_limit"):
 		var limit = data["cur_switch_limit"]
+		DayNightManager.set_switch_limit(day_night_switch_limit)
 		DayNightManager.set_limit_count(limit)
 	
 	return true
