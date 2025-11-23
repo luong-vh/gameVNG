@@ -14,12 +14,22 @@ size = Vector2(30, 1)
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_fpo1o")
 
-[node name="HitArea2D" type="Area2D" parent="."]
+[node name="PlayerHitArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_sm0o0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitArea2D"]
+position = Vector2(-0.75, 10)
+shape = SubResource("RectangleShape2D_fpo1o")
+
+[node name="EnemyHitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("2_sm0o0")
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitArea2D"]
 position = Vector2(-0.75, 10)
 shape = SubResource("RectangleShape2D_fpo1o")
 
@@ -33,5 +43,3 @@ script = ExtResource("4_0xexh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PogoArea2D"]
 position = Vector2(-1, 15.5)
 shape = SubResource("RectangleShape2D_ch3oq")
-
-[connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]
