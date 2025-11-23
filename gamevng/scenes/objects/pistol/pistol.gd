@@ -4,7 +4,7 @@ class_name Pistol
 @onready var horizontal_bar: ColorRect = $HorizontalBar
 @onready var vertical_bar: ColorRect = $VerticalBar
 @onready var detection_area: Area2D = $DetectionArea
-@onready var states_node: Node = $FSM/States
+
 
 @export_group("Push Settings")
 @export var push_force: float = 600.0  
