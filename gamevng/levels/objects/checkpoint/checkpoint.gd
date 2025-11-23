@@ -9,7 +9,7 @@ class_name Checkpoint
 signal checkpoint_activated(checkpoint_id: String)
 
 
-@export var checkpoint_id: String = ""
+@onready var checkpoint_id: String = name
 
 
 var is_activated: bool = false
@@ -33,8 +33,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 #activate checkpoint
 func activate() -> void:
-	if is_activated:
-		activate_visual_only()
+	if GameManager.get_current_checkpoint_id() == checkpoint_id:
 		return
 	is_activated = true
 	_play_active_animation()
