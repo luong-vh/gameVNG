@@ -5,51 +5,57 @@ extends BaseCharacter
 var lock_input_timer: Timer
 var light_source: Light2D
 
-## For invulnerable
+# --- INVULNERABILITY ---
+@export_category("Invulnerability")
 var is_invulnerable: bool = false
-@onready var invulnerable_timer = $InvulnerableTimer
-var blink_speed: int = 3
+@onready var invulnerable_timer: Timer = $InvulnerableTimer
+@export var blink_speed: int = 3
 
-## For attack
+# --- ATTACK ---
+@export_category("Attack")
 enum AttackDir { FORWARD, UP, DOWN }
 var attack_direction: AttackDir = AttackDir.FORWARD
-@export var throwing_speed: float = 300
 @export var has_blade: bool = false
+@export var attack_cd_sec: float = 0.3
+@onready var attack_timer := $AttackCoolDownTimer
+@export var throwing_speed: float = 300
 @onready var blade_factory = $Direction/BladeFactory
 var hit_area_collision
 var pogo_hit_area_collision
 @export var attack_knockback_force: float = 100
 @export var pogo_bounce_force: float = 200.0
 
-## For wall jump and cling
-var wall_checker: RayCast2D
+# --- WALL JUMP & CLING ---
+@export_category("Wall Jump & Cling")
+@export var can_wall_cling: bool = false
 @export var wall_friction: float = 300.0
 @export var wall_jump_force: float = 120.0
 @export var wall_slide_speed: float = 200.0
+var wall_checker: RayCast2D
 
-## For double jump
+# --- DOUBLE JUMP ---
+@export_category("Double Jump")
+@export var can_double_jump: bool = false
+@export var max_jump_amount: int = 1
 var jump_count = 1
-@export var max_jump_amount = 1
-@onready var jump_particle = $Particle/JumpParticle
-@export var normal_jump_cost:float = 1
-@export var  double_jump_cost:float = 2
+@onready var jump_particle = $Direction/Particles/JumpParticle
+@export var normal_jump_cost: float = 1
+@export var double_jump_cost: float = 2
 
-## For dash
-@export var dash_time: float = 0.2
-@export var dash_speed := 600.0
+# --- DASH ---
+@export_category("Dash")
+@export var can_dash: bool = false
+@export var dash_length: float = 0.2
+@export var dash_speed: float = 600.0
 @export var dash_amount: int = 1
-var dash_count:int = 0
-@onready var dash_particle: GPUParticles2D = $Particle/DashParticle
+@export var between_dash_cd: float = 0.1
+@export var dash_cd: float = 0.4
+var dash_count: int = 0
+@onready var dash_particle: GPUParticles2D = $Direction/Particles/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
-## For look down
-var look_down_timer: float = 0.0
-@export var look_down_threshold: float = 0.3
-@export var look_down_distance = 50.0   # Khoảng cách camera hạ xuống (pixel)
-@export var look_down_forward = 30.0    # Camera tiến lên phía trước
-@export var look_speed = 0.1  
-@export var _target_offset = Vector2(0,-75)
-@onready var camera_2d = $Camera2D
+# --- RAYCASTS ---
+@export_category("Raycasts")
 var raycast_pushable: RayCast2D
 
 func _ready() -> void:
@@ -73,7 +79,6 @@ func _ready() -> void:
 	
 	GameManager.set_player(self)
 	GUIManager.set_max_heart_gui(max_health)
-	GameManager.main_camera = $Camera2D
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
 	DayNightManager.state_changed.connect(_day_night_changed)
 	DayNightManager.shader_stage_changed.connect(_shader_changed)
@@ -124,8 +129,14 @@ func _shader_changed(new_state):
 			light_source.enabled = true
 	pass
 
+func start_attack_cd() -> bool:
+	if attack_timer:
+		attack_timer.start(attack_cd_sec)
+		return true
+	return false
+
 func can_attack() -> bool:
-	return has_blade
+	return has_blade and attack_timer.time_left <= 0
 
 func change_attack_direction(dir: AttackDir):
 	if attack_direction != dir:
@@ -157,7 +168,7 @@ func is_near_wall() -> bool:
 		return false
 
 func reset_jump_count():
-	jump_count = max_jump_amount
+	jump_count = 0
 
 func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
@@ -171,7 +182,10 @@ func is_input_lock() -> bool:
 
 func start_dash_cd() -> bool:
 	if dash_timer:
-		dash_timer.start()
+		if dash_count < dash_amount:
+			dash_timer.start(between_dash_cd)
+		else:
+			dash_timer.start(dash_cd)
 		return true
 	return false
 
@@ -245,23 +259,9 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
 	if Input.is_action_just_pressed("switch_day_night"):
-		DayNightManager.switch_state()
+		DayNightManager.switch_day_night_state()
 	
-	handle_look_down(delta)
 	handle_invulnerable()
-
-func handle_look_down(delta):
-	var target_offset = _target_offset
-
-	if Input.is_action_pressed("down") and is_on_floor():
-		look_down_timer += delta
-		if look_down_timer >= look_down_threshold:
-			target_offset.y = _target_offset.y + look_down_distance  # SET thành base + look
-			target_offset.x = _target_offset.x + (look_down_forward * direction)
-	else:
-		look_down_timer = 0.0
-
-	camera_2d.position = camera_2d.position.lerp(target_offset, look_speed)
 
 func handle_invulnerable():
 	if invulnerable_timer.time_left > 0:

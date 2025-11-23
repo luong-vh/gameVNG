@@ -38,12 +38,23 @@ func activate() -> void:
 		return
 	is_activated = true
 	_play_active_animation()
+	_confirm_all_saveable_objects()
 	GameManager.save_checkpoint(checkpoint_id)
 	GameManager.save_checkpoint_data()  # Save to persistent storage
 	GameManager.activate_checkpoint()
 	checkpoint_activated.emit(checkpoint_id)
 	print("Checkpoint activated: ", checkpoint_id)
 	
+func _confirm_all_saveable_objects() -> void:
+	var root = get_tree().current_scene
+	_confirm_recursive(root)
+
+func _confirm_recursive(node: Node) -> void:
+	if node.has_method("confirm_current_state"):
+		node.confirm_current_state()
+	
+	for child in node.get_children():
+		_confirm_recursive(child)
 #activate checkpoint visually without saving
 func activate_visual_only() -> void:
 	is_activated = true

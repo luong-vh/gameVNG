@@ -6,7 +6,8 @@ class_name EnemySpawnPoint
 func _enter_tree() -> void:
 	var t = enemy_scene.instantiate()
 	t.global_position = global_position
-	get_tree().current_scene.add_child(t)
+	#get_tree().current_scene.add_child(t)
+	get_tree().current_scene.call_deferred("add_child", t)
 
 func spawn_enemy():
 	if enemy_scene == null:

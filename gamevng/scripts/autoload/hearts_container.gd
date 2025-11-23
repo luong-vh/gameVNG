@@ -10,6 +10,9 @@ func _process(delta: float) -> void:
 	pass
 
 func set_max_heart(max: int):
+	var current_children = get_children()
+	for child in current_children:
+		child.queue_free()
 	for i in range(max):
 		var heart = _heartGUI.instantiate()
 		add_child(heart)
