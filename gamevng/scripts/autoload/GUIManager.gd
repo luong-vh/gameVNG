@@ -30,6 +30,7 @@ func _on_animation_finished(anim_name):
 func set_max_heart_gui(max :int):
 	if max > 10:
 		print("wtf max health = %d??" %max)
+		_heart_container.set_max_heart(5)
 		return
 	_heart_container.set_max_heart(max)
 
@@ -38,8 +39,8 @@ func update_heart_gui(health: int):
 	var hearts = _heart_container.get_children()
 	if hearts.size() == 0:
 		return
-		
 	for i in range(health):
+		if i >= hearts.size(): return
 		hearts[i].update(true)
 		
 	for i in range(health,hearts.size()):

@@ -61,16 +61,15 @@ func call_from_dialogic(msg:String = ""):
 	#Dialogic.VAR["PlayerScore"] = 30
 	print("Call from dialogic " + msg)
 
-
 #respawn at portal or door
 func respawn_at_portal() -> bool:
 	if not target_portal_name.is_empty():
 		var portal = current_stage.find_child(target_portal_name)
 		player.global_position = portal.global_position
+		main_camera.global_position = portal.global_position
 		GameManager.target_portal_name = ""
 		true
 	return false
-
 
 # Checkpoint system functions
 func save_checkpoint(checkpoint_id: String) -> void:
@@ -120,6 +119,7 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
+		main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
 		return
 	else:

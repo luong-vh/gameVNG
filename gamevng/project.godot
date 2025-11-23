@@ -151,6 +151,8 @@ load_game={
 2d_physics/layer_5="enemy hurtbox"
 2d_physics/layer_6="item"
 2d_physics/layer_7="pushable object"
+2d_physics/layer_8="camera stop zone"
+2d_physics/layer_9="climbable"
 
 [rendering]
 

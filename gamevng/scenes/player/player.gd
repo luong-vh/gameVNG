@@ -5,43 +5,55 @@ extends BaseCharacter
 var lock_input_timer: Timer
 var light_source: Light2D
 
-## For invulnerable
+# --- INVULNERABILITY ---
+@export_category("Invulnerability")
 var is_invulnerable: bool = false
-@onready var invulnerable_timer = $InvulnerableTimer
-var blink_speed: int = 3
+@onready var invulnerable_timer: Timer = $InvulnerableTimer
+@export var blink_speed: int = 3
 
-## For attack
+# --- ATTACK ---
+@export_category("Attack")
 enum AttackDir { FORWARD, UP, DOWN }
 var attack_direction: AttackDir = AttackDir.FORWARD
-@export var throwing_speed: float = 300
 @export var has_blade: bool = false
+@export var throwing_speed: float = 300
 @onready var blade_factory = $Direction/BladeFactory
 var hit_area_collision
 var pogo_hit_area_collision
 @export var attack_knockback_force: float = 100
 @export var pogo_bounce_force: float = 200.0
 
-## For wall jump and cling
-var wall_checker: RayCast2D
+# --- WALL JUMP & CLING ---
+@export_category("Wall Jump & Cling")
+@export var can_wall_cling: bool = false
 @export var wall_friction: float = 300.0
 @export var wall_jump_force: float = 120.0
 @export var wall_slide_speed: float = 200.0
+var wall_checker: RayCast2D
 
-## For double jump
+# --- DOUBLE JUMP ---
+@export_category("Double Jump")
+@export var can_double_jump: bool = false
+@export var max_jump_amount: int = 1
 var jump_count = 1
-@export var max_jump_amount = 1
-@onready var jump_particle = $Particle/JumpParticle
-@export var normal_jump_cost:float = 1
-@export var  double_jump_cost:float = 2
+@onready var jump_particle = $Direction/Particles/JumpParticle
+@export var normal_jump_cost: float = 1
+@export var double_jump_cost: float = 2
 
-## For dash
-@export var dash_time: float = 0.2
-@export var dash_speed := 600.0
+# --- DASH ---
+@export_category("Dash")
+@export var can_dash: bool = false
+@export var dash_length: float = 0.2
+@export var dash_speed: float = 600.0
 @export var dash_amount: int = 1
-var dash_count:int = 0
-@onready var dash_particle: GPUParticles2D = $Particle/DashParticle
+@export var between_dash_cd: float = 0.1
+@export var dash_cd: float = 0.4
+var dash_count: int = 0
+@onready var dash_particle: GPUParticles2D = $Direction/Particles/DashParticle
 @onready var dash_timer: Timer = $DashCoolDownTimer
 
+# --- RAYCASTS ---
+@export_category("Raycasts")
 var raycast_pushable: RayCast2D
 
 func _ready() -> void:
@@ -148,7 +160,7 @@ func is_near_wall() -> bool:
 		return false
 
 func reset_jump_count():
-	jump_count = max_jump_amount
+	jump_count = 0
 
 func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
@@ -162,7 +174,10 @@ func is_input_lock() -> bool:
 
 func start_dash_cd() -> bool:
 	if dash_timer:
-		dash_timer.start()
+		if dash_count < dash_amount:
+			dash_timer.start(between_dash_cd)
+		else:
+			dash_timer.start(dash_cd)
 		return true
 	return false
 
@@ -236,7 +251,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
 	if Input.is_action_just_pressed("switch_day_night"):
-		DayNightManager.switch_state()
+		DayNightManager.switch_day_night_state()
 	
 	handle_invulnerable()
 
