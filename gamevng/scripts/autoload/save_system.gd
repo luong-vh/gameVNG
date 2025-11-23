@@ -50,3 +50,42 @@ func delete_save_file() -> void:
 	if has_save_file():
 		DirAccess.remove_absolute(SAVE_FILE)
 		print("Save file deleted")
+
+
+func collect_object_states(root_node: Node = null) -> Dictionary:
+	if root_node == null:
+		root_node = get_tree().current_scene
+
+	var states := {}
+	_collect_recursive(root_node, states)
+	return states
+
+func _collect_recursive(node: Node, states: Dictionary) -> void:
+	if node is SaveableObject and node.save_enabled:
+		var obj = node as SaveableObject
+		states[obj.object_id] = obj.get_state()
+
+	for child in node.get_children():
+		_collect_recursive(child, states)
+
+
+func restore_object_states(states: Dictionary, root_node: Node = null) -> void:
+	if root_node == null:
+		root_node = get_tree().current_scene
+	
+	await get_tree().process_frame
+	await get_tree().process_frame  
+	
+	_restore_recursive(root_node, states)
+	print("[SaveSystem] Restored %d object states" % states.size())
+
+func _restore_recursive(node: Node, states: Dictionary) -> void:
+	if node is SaveableObject and node.save_enabled:
+		var obj = node as SaveableObject
+		if states.has(obj.object_id):
+			obj.set_state(states[obj.object_id])
+		else:
+			obj.reset_to_initial()
+
+	for child in node.get_children():
+		_restore_recursive(child, states)

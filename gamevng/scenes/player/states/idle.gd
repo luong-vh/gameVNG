@@ -17,3 +17,6 @@ func _update(_delta: float) -> void:
 	#If not on floor change to fall
 	if not obj.is_on_floor():
 		change_state(fsm.states.fall)
+	
+	if Input.is_action_pressed("die"):
+		change_state(fsm.states.dead)
