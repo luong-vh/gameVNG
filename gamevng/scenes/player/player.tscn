@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bsg5c3c2gvjxh"]
+[gd_scene load_steps=67 format=3 uid="uid://bsg5c3c2gvjxh"]
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
@@ -50,8 +50,9 @@
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://bsej8x3x778bq" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
-[ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
+[ext_resource type="Script" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
+[ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="54_0ncpa"]
 [ext_resource type="Script" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
@@ -475,3 +476,5 @@ color = Color(1, 0.52549, 0.258824, 1)
 shadow_enabled = true
 texture = ExtResource("40_u3hyo")
 texture_scale = 1.5
+
+[node name="MainCamera" parent="." instance=ExtResource("54_0ncpa")]
