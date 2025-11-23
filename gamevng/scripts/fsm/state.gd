@@ -4,7 +4,7 @@ class_name FSMState
 ## Base state class for Finite State Machine states
 
 var fsm: FSM = null
-var obj: BaseCharacter = null
+var obj: Node = null
 var timer: float = 0.0
 
 func _enter() -> void:

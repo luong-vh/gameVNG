@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://danrg15a8qg2f"]
+[gd_scene load_steps=7 format=3 uid="uid://danrg15a8qg2f"]
 
-[ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/scene_transition.gd" id="1_fjg1d"]
+[ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/GUIManager.gd" id="1_r74x5"]
+[ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("FadeController/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +23,7 @@ resource_name = "fade_from_black"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("FadeController/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,7 +38,7 @@ resource_name = "fade_to_black"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("FadeController/ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,10 +55,25 @@ _data = {
 &"fade_to_black": SubResource("Animation_rjgod")
 }
 
-[node name="SceneTransition" type="CanvasLayer"]
-script = ExtResource("1_fjg1d")
+[node name="GUIManager" type="CanvasLayer"]
+script = ExtResource("1_r74x5")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="HeartsContainer" type="HBoxContainer" parent="."]
+offset_right = 80.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+script = ExtResource("2_j1isl")
+
+[node name="FadeController" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="FadeController"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -65,7 +81,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeController"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_tlbx8")
 }

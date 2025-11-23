@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfvqtomdqrgni"]
+
+[ext_resource type="Script" uid="uid://tledtwarj5qy" path="res://scenes/gui/player_heart_gui.gd" id="1_pavj3"]
+[ext_resource type="Texture2D" uid="uid://4spgms0grpq0" path="res://assets/gui/heart/fox_2.png" id="3_ye60k"]
+
+[node name="PlayerHeartGui" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(27, 24)
+script = ExtResource("1_pavj3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13.5, 12)
+texture = ExtResource("3_ye60k")
+hframes = 2

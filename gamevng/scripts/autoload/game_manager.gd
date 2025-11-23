@@ -1,6 +1,5 @@
 extends Node
 
-
 # Checkpoint system variables
 var current_checkpoint_id: String = ""
 var checkpoint_data: Dictionary = {}
@@ -22,9 +21,15 @@ signal earthquake_triggered(strength, duration)
 func _ready() -> void:
 	# Load checkpoint data when game starts
 	load_checkpoint_data()
-	SceneTransition.fade_to_black_finished.connect(teleport)
-	SceneTransition.fade_from_black_finished.connect(able_to_control_player)
+	GUIManager.fade_to_black_finished.connect(teleport)
+	GUIManager.fade_from_black_finished.connect(able_to_control_player)
 	
+func set_player(_player: Player):
+	player = _player
+	player.healthChanged.connect(on_player_health_changed)
+
+func on_player_health_changed():
+	GUIManager.update_heart_gui(player.health)
 
 func able_to_control_player():
 	player.set_physics_process(true)
@@ -42,11 +47,11 @@ func teleport() -> void:
 		emit_signal("stage_changed", stage_path)
 	else:
 		respawn_at_portal()
-	SceneTransition.fade_from_black()
+	GUIManager.fade_from_black()
 
 #change stage by path and target portal name
 func change_stage(_stage_path: String, __target_portal_name: String = "") -> void:
-	SceneTransition.fade_to_black()
+	GUIManager.fade_to_black()
 	stage_path = _stage_path
 	_target_portal_name = __target_portal_name
 	player.set_physics_process(false)
@@ -56,16 +61,15 @@ func call_from_dialogic(msg:String = ""):
 	#Dialogic.VAR["PlayerScore"] = 30
 	print("Call from dialogic " + msg)
 
-
 #respawn at portal or door
 func respawn_at_portal() -> bool:
 	if not target_portal_name.is_empty():
 		var portal = current_stage.find_child(target_portal_name)
 		player.global_position = portal.global_position
+		main_camera.global_position = portal.global_position
 		GameManager.target_portal_name = ""
 		true
 	return false
-
 
 # Checkpoint system functions
 func save_checkpoint(checkpoint_id: String) -> void:
@@ -80,20 +84,10 @@ func save_checkpoint(checkpoint_id: String) -> void:
 	}
 	print("Checkpoint saved: ", checkpoint_id)
 
-
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
 	return {}
-
-func respawn_at_ground_checkpoint():
-	if not _last_ground_checkpoint:
-		return
-	if player.health <= 0 :
-		return
-	SceneTransition.fade_from_black()
-	player.lock_input(0.3)
-	player.global_position = _last_ground_checkpoint.global_position
 
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
@@ -125,10 +119,12 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
+		main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
 		return
 	else:
 		print("Player not found for respawn")
+
 #check if there is a checkpoint
 func has_checkpoint() -> bool:
 	return not current_checkpoint_id.is_empty()
@@ -169,9 +165,16 @@ func clear_checkpoint_data() -> void:
 	SaveSystem.delete_save_file()
 	print("All checkpoint data cleared")
 
+func respawn_at_ground_checkpoint():
+	if not _last_ground_checkpoint:
+		player.global_position = Vector2(0,0)
+		return
+	
+	if player.health <= 0 :
+		return
+	GUIManager.fade_from_black()
+	player.lock_input(0.3)
+	player.global_position = _last_ground_checkpoint.global_position
+
 func reload_current_scene() -> void:
 	current_stage.reload()
-
-func collect_blade() -> void:
-	player.collected_blade()
-	Dialogic.VAR["PlayerHasBlade"] = true

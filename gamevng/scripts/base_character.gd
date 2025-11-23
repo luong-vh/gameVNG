@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var direction: int = 1
 
 @export var attack_damage: int = 1
-@export var max_health: int = 3
+@export var max_health: int = 5
 @onready var health: int = max_health
 
 
@@ -72,6 +72,7 @@ func stop_move() -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
+	healthChanged.emit()
 
 # Change the animation of the character on the next frame
 func change_animation(new_animation: String) -> void:

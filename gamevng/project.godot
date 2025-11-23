@@ -21,7 +21,7 @@ GameManager="*res://scripts/autoload/game_manager.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 SaveSystem="*res://scripts/autoload/save_system.gd"
 DayNightManager="*res://scripts/autoload/day_night_manager.gd"
-SceneTransition="*res://scripts/autoload/SceneTransition.tscn"
+GUIManager="*res://scripts/autoload/GUIManager.tscn"
 EnemyManager="*res://scripts/autoload/enemy_manager.gd"
 SaveSystemEnemy="*res://scripts/autoload/save_load_enemy.gd"
 
@@ -62,6 +62,8 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 Player=""
 Enemy=""
 enemy_spawn_points=""
+"Enemy Spawn Points"=""
+"Saved Object"=""
 
 [input]
 
@@ -154,6 +156,8 @@ die={
 2d_physics/layer_5="enemy hurtbox"
 2d_physics/layer_6="item"
 2d_physics/layer_7="pushable object"
+2d_physics/layer_8="camera stop zone"
+2d_physics/layer_9="climbable"
 
 [rendering]
 

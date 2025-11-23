@@ -10,13 +10,10 @@ func _update(delta: float)->void:
 	if update_timer(delta):
 		match phase:
 			1:
-				
 				_attack()
 				phase += 1
 				timer = 0.3
 			2:
-				
-				obj.turn_around() 
 				phase += 1
 				timer = 0.3
 			3:
@@ -25,7 +22,6 @@ func _update(delta: float)->void:
 				phase += 1
 				timer = 0.3
 			_:
-				
 				change_state(fsm.states.idle)
 func _attack()->void:
 	obj.fire()
