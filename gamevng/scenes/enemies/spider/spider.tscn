@@ -110,7 +110,7 @@ collision_mask = 65
 
 [node name="PullDetector" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
-target_position = Vector2(-1, 174)
+target_position = Vector2(1, 359)
 collision_mask = 2
 
 [node name="WebLine" type="Line2D" parent="."]
