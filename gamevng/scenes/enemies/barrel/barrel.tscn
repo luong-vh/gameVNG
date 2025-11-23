@@ -53,7 +53,7 @@ size = Vector2(20, 18.8235)
 
 [node name="Barrel" type="CharacterBody2D"]
 scale = Vector2(1.7, 1.7)
-collision_layer = 64
+collision_layer = 65
 script = ExtResource("1_t8iir")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
