@@ -36,7 +36,7 @@ func is_day() -> bool:
 
 func switch_day_night_state():
 	if _switch_limit_count <= 0:
-		print("[DayNightManager] Reach switch day night limt")
+		#print("[DayNightManager] Reach switch day night limt")
 		return
 	else:
 		_switch_limit_count -= 1
@@ -74,7 +74,7 @@ func set_limit_count(value: int):
 	_switch_limit_count = value
 
 func _apply_state(state : DayNightState) -> void:	
-	print("[DayNightManager] Applying state:", state)
+	#print("[DayNightManager] Applying state:", state)
 	if not day_bg or not night_bg or not canvas_modulate:
 		return
 	
@@ -85,7 +85,7 @@ func _apply_state(state : DayNightState) -> void:
 			canvas_modulate.color = day_color
 			if shader_canva:
 				shader_canva.turn_off_darkness()
-			print("Switched to DAY mode")
+			#print("Switched to DAY mode")
 		DayNightState.NIGHT:
 			day_bg.visible = false
 			night_bg.visible = true

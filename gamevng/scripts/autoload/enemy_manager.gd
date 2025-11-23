@@ -19,7 +19,7 @@ func add_enemy(enemy, type_name: String):
 	if not enemies_by_type.has(type_name):
 		enemies_by_type[type_name] = []
 	enemies_by_type[type_name].append(enemy)
-	print("[EnemyManager] ➕ Added enemy: %s (type: %s)" % [enemy.name, type_name])
+	#print("[EnemyManager] ➕ Added enemy: %s (type: %s)" % [enemy.name, type_name])
 	print_current_status()
 
 func remove_enemy(enemy, type_name: String):
@@ -56,7 +56,7 @@ func _clean_freed_enemies():
 			enemies_by_type[type_name] = valid_enemies
 
 func _day_night_changed(new_state):
-	print("\n[EnemyManager] 🌗 Day/Night state changed to: %s" % str(new_state))
+	#print("\n[EnemyManager] 🌗 Day/Night state changed to: %s" % str(new_state))
 	
 	if new_state == DayNightManager.DayNightState.DAY:
 		var to_remove = []
@@ -71,7 +71,7 @@ func _day_night_changed(new_state):
 					enemy.queue_free()
 					to_remove.append([enemy, type_name])
 				else:
-					print("   → Changing %s (%s) to DAY mode" % [enemy.name, type_name])
+					#print("   → Changing %s (%s) to DAY mode" % [enemy.name, type_name])
 					enemy.change_to_day_behavior()
 		
 		for pair in to_remove:
@@ -79,7 +79,7 @@ func _day_night_changed(new_state):
 	else:
 		# Spawn night enemies
 		for sp in night_spawn_points:
-			print("[SpawnPoint] -> ", sp)
+			#print("[SpawnPoint] -> ", sp)
 			var e = sp.spawn_enemy()
 			if e and e.spawn_only_at_night:
 				#add_enemy(e, e.type)
@@ -89,12 +89,13 @@ func _day_night_changed(new_state):
 		for type_name in enemies_by_type.keys():
 			for enemy in enemies_by_type[type_name]:
 				if is_instance_valid(enemy):
-					print("   → Changing %s (%s) to NIGHT mode" % [enemy.name, type_name])
+					#print("   → Changing %s (%s) to NIGHT mode" % [enemy.name, type_name])
 					enemy.change_to_night_behavior()
 	
 	print_current_status()
 
 func print_current_status():
+	return
 	print("[EnemyManager] 🧩 Current enemies:")
 	for type_name in enemies_by_type.keys():
 		var names = []
