@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dhwtuudiaviff"]
+[gd_scene load_steps=19 format=4 uid="uid://dhwtuudiaviff"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_gwceb"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_l53as"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_aerfg"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_nmsli"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="8_hyp3v"]
+[ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="13_1ow6f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_la5aw"]
 
@@ -157,5 +158,9 @@ visible = false
 
 [node name="SubViewportContainer" parent="ShaderCanvasLayer" index="2"]
 stretch = false
+
+[node name="Barrel" parent="." instance=ExtResource("13_1ow6f")]
+position = Vector2(548, 164)
+_next_direction = -1
 
 [editable path="ShaderCanvasLayer"]

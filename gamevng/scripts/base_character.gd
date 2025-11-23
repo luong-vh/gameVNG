@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 @export var movement_speed: float = 200.0
 @export var gravity: float = 700.0
-@export var direction: int = 1
+var direction: int = 1
 
 @export var attack_damage: int = 1
 @export var max_health: int = 5
@@ -18,7 +18,7 @@ var current_animation = null
 var animated_sprite: AnimatedSprite2D = null
 
 var _next_animation = null
-var _next_direction: int = 1
+@export var _next_direction: int = 1
 var _next_animated_sprite: AnimatedSprite2D = null
 
 signal died
