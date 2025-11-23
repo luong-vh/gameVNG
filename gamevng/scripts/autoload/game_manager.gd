@@ -189,9 +189,7 @@ func respawn_at_ground_checkpoint():
 	GUIManager.fade_from_black()
 	player.lock_input(0.3)
 	player.global_position = _last_ground_checkpoint.global_position
-
-func reload_current_scene() -> void:
-	current_stage.reload()
+	main_camera.global_position = player.global_position
 	
 func set_current_stage(stage: Stage, level_id: String):
 	current_stage = stage

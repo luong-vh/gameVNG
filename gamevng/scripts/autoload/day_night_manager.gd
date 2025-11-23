@@ -24,7 +24,7 @@ var current_shader_state: ShaderState:
 	get: return _current_shader_state
 
 
-signal state_changed(new_state : DayNightState)
+signal day_night_state_changed(new_state : DayNightState)
 signal shader_stage_changed(new_state: ShaderState)
 
 func _ready():
@@ -103,10 +103,10 @@ func _apply_state(state : DayNightState) -> void:
 			print("Switched to NIGHT mode")
 		_:
 			print("[DayNightManager] Background or modulate node not set yet!")
-	emit_signal("state_changed", _current_day_night_state)
+	emit_signal("day_night_state_changed", _current_day_night_state)
 
 func resend_state():
-	emit_signal("state_changed", _current_day_night_state)
+	emit_signal("day_night_state_changed", _current_day_night_state)
 
 # ---------- SHADER STAGE CONTROL ----------
 func set_shader_state(state: ShaderState):
