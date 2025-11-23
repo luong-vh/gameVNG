@@ -37,11 +37,20 @@ func set_max_heart_gui(max :int):
 func update_heart_gui(health: int):
 	if (health <=0): return
 	var hearts = _heart_container.get_children()
-	if hearts.size() == 0:
-		return
+	if hearts.size() == 0: return
+		
 	for i in range(health):
 		if i >= hearts.size(): return
 		hearts[i].update(true)
 		
 	for i in range(health,hearts.size()):
 		hearts[i].update(false)
+		
+func play_SFX(name: String):
+	match name:
+		"coin":
+			$SFX/Coin.play()
+		"jump":
+			$SFX/Jump.play()
+		_:
+			return
