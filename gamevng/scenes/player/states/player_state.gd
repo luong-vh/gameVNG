@@ -39,7 +39,7 @@ func control_jump() -> bool:
 	var jumpInput = Input.is_action_just_pressed("jump")
 	if jumpInput:
 		#Wall jump
-		if obj.is_near_wall() and not obj.is_on_floor():
+		if obj.can_wall_cling and obj.is_near_wall() and not obj.is_on_floor():
 			obj.lock_input()
 			var collision = obj.wall_checker.get_collision_normal()
 			var wall_dir = int(collision.x)
@@ -70,6 +70,9 @@ func control_jump() -> bool:
 	return false
 
 func control_wall_cling(delta: float) -> bool:
+	if not obj.can_wall_cling:
+		return false
+	
 	var collision = obj.wall_checker.get_collision_normal()
 	var wall_dir = int(collision.x)
 	

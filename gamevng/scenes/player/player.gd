@@ -25,6 +25,7 @@ var pogo_hit_area_collision
 
 # --- WALL JUMP & CLING ---
 @export_category("Wall Jump & Cling")
+@export var can_wall_cling: bool = false
 @export var wall_friction: float = 300.0
 @export var wall_jump_force: float = 120.0
 @export var wall_slide_speed: float = 200.0
