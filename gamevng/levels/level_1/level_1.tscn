@@ -38,6 +38,7 @@ b = Vector2(3400, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_gwceb")
+can_switch_day_night = false
 level_id = "level_1"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
@@ -89,10 +90,6 @@ message = "Left Mouse Click to attack enemy."
 [node name="WoodenSign6" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
 position = Vector2(2552, 241)
 message = "Press S and attack while in the air to downward clash on spike."
-
-[node name="WoodenSign7" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
-position = Vector2(3563, 305)
-message = "Press P to switch between day and night."
 
 [node name="Checkpoints" type="Node2D" parent="Objects"]
 
@@ -169,7 +166,7 @@ position = Vector2(2083, 236)
 position = Vector2(2029, 337)
 
 [node name="Pelican" parent="Enemies" instance=ExtResource("11_ov0dm")]
-position = Vector2(3524, 186)
+position = Vector2(3530, 69)
 
 [node name="Door" parent="Enemies" instance=ExtResource("12_lwxes")]
 position = Vector2(4019, 80)
@@ -218,8 +215,3 @@ shape = SubResource("WorldBoundaryShape2D_la5aw")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("7_nmsli")]
-
-[node name="SubViewportContainer" parent="ShaderCanvasLayer" index="2"]
-stretch = false
-
-[editable path="ShaderCanvasLayer"]

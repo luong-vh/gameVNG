@@ -5,19 +5,19 @@ class_name Stage
 @export var default_day_night_state: DayNightManager.DayNightState
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
-
 @export var level_id: String = "0"
 
 func _enter_tree() -> void:
 	GameManager.set_current_stage(self, level_id)
 	if level_id == "0":
 		assert(false,"Chưa khai báo level_id cho scene này!")
+
 func _ready() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
 	GUIManager.on_stage_scene()
-	
+
 func _init_day_night():
 	if has_node("DayParallaxBackground"):
 		DayNightManager.day_bg = get_node("DayParallaxBackground")
