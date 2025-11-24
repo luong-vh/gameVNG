@@ -62,12 +62,6 @@ _data = {
 [node name="GUIManager" type="CanvasLayer"]
 script = ExtResource("1_r74x5")
 
-[node name="HeartsContainer" type="HBoxContainer" parent="."]
-offset_right = 80.0
-offset_bottom = 40.0
-theme_override_constants/separation = 4
-script = ExtResource("2_j1isl")
-
 [node name="SFX" type="Node" parent="."]
 
 [node name="Coin" type="AudioStreamPlayer" parent="SFX"]
@@ -104,11 +98,19 @@ autoplay = "RESET"
 
 [node name="Music" type="AudioStreamPlayer" parent="FadeController"]
 stream = ExtResource("4_xdjlx")
-autoplay = true
 bus = &"Music"
+parameters/looping = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
+[node name="HeartsContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 80.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+script = ExtResource("2_j1isl")
+
+[node name="SettingInStage" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
 offset_bottom = 52.0
+
+[editable path="CanvasLayer/SettingInStage"]

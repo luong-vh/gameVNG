@@ -52,7 +52,7 @@
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
-[ext_resource type="Script" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
+[ext_resource type="Script" uid="uid://cgso7g684x3o6" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 9.0

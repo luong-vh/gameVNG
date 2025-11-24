@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="7_pxeid"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
 [ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
-[ext_resource type="PackedScene" uid="uid://2s7si80yuq10" path="res://levels/objects/platforms/Boat.tscn" id="10_ek7wy"]
+[ext_resource type="PackedScene" uid="uid://bs443mpop7gwr" path="res://levels/objects/platforms/Boat.tscn" id="10_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://scenes/objects/pistol/pistol.tscn" id="10_tsaj6"]
 [ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://b36sp70tti65" path="res://scenes/puzzle/buttons/color_buttons.tscn" id="11_m8cxc"]
 [ext_resource type="PackedScene" uid="uid://crcq4c8hqnmt" path="res://scenes/enemies/native/native.tscn" id="11_wjdv0"]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage2" type="Node2D"]
 script = ExtResource("1_5jyel")
 
 [node name="SaveLoadUI" type="Control" parent="."]

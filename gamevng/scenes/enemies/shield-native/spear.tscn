@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://de5jc85hnt3us"]
+[gd_scene load_steps=26 format=3 uid="uid://de5jc85hnt3us"]
 
 [ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield-native/spear.gd" id="1_h56nw"]
 [ext_resource type="Texture2D" uid="uid://baax8m15uhp0d" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
