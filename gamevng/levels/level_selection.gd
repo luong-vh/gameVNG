@@ -5,7 +5,7 @@ var buttons: Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_up_buttons()
-	
+	GUIManager.on_level_selection_scene()
 
 func set_up_buttons():
 	buttons = $Setting/LevelButtons.get_children()

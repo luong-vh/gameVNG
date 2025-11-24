@@ -212,6 +212,12 @@ func set_current_stage(stage: Stage, level_id: String):
 	current_stage = stage
 	current_level_id = level_id
 
+func stage_clear():
+	if unlocked_level == current_level:
+		unlocked_level += 1
+		save_level_data()
+	GUIManager.open_stage_clear_popup()
+	
 func load_level_data():
 	var data = SaveSystem.load_level_data()
 	max_level = data["max_level"]
@@ -222,9 +228,17 @@ func save_level_data():
 		"max_level":max_level,
 		"unlocked_level":unlocked_level
 	}
+	SaveSystem.save_level_data(data)
 
 func level_selected(level: int):
 	current_level = level
 	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
+	print("Load scene: %s" %scene_path)
+	get_tree().change_scene_to_file(scene_path)
+	
+
+func next_level():
+	current_level += 1
+	var scene_path = "res://levels/level_%d/level_%d.tscn"%[current_level,current_level]
 	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)
