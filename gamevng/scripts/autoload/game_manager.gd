@@ -21,6 +21,10 @@ signal earthquake_triggered(strength, duration)
 
 var current_level_id : String =""
 
+var max_level : int = 0
+var unlocked_level = 0
+var current_level = 0
+
 func _ready() -> void:
 	# Load checkpoint data when game starts
 	load_checkpoint_data()
@@ -40,6 +44,20 @@ func collect_blade():
 func able_to_control_player():
 	player.set_physics_process(true)
 
+func reset_level():
+	var prefix: String = current_level_id
+	var all_keys: Array = current_checkpoint_ids.keys()
+	for key in all_keys:
+		if key.begins_with(prefix):
+			checkpoint_data.erase(current_checkpoint_ids[key])
+			current_checkpoint_ids.erase(key)
+	var save_data = {
+		"current_checkpoint_ids": current_checkpoint_ids,
+		"checkpoint_data": checkpoint_data
+	}
+	SaveSystem.save_checkpoint_data(save_data)
+	get_tree().reload_current_scene()
+	
 func teleport() -> void:
 	if _target_portal_name == null:
 		return
@@ -97,14 +115,11 @@ func get_current_checkpoint_id() -> String:
 	
 # Save checkpoint data to persistent storage
 func save_checkpoint_data() -> void:
-	var objects_data = SaveSystem.collect_object_states()
-	
 	var save_data = {
 		"current_checkpoint_ids": current_checkpoint_ids,
 		"checkpoint_data": checkpoint_data
 	}
 	SaveSystem.save_checkpoint_data(save_data)
-	print("✅ Checkpoint saved with %d objects" % objects_data.size())
 	
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
@@ -113,6 +128,7 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
+	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
 	if current_checkpoint_id.is_empty():
 		print("No checkpoint available")
 		return
@@ -141,6 +157,7 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
+		player.healthChanged.emit()
 		if main_camera !=null:
 			main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
@@ -163,7 +180,7 @@ func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
 	if not save_data.is_empty():
 		current_checkpoint_ids = save_data.get("current_checkpoint_ids", "")
-		current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
+		
 		checkpoint_data = save_data.get("checkpoint_data", {})
 		print("Checkpoint data loaded from save file")
 	
@@ -194,4 +211,20 @@ func respawn_at_ground_checkpoint():
 func set_current_stage(stage: Stage, level_id: String):
 	current_stage = stage
 	current_level_id = level_id
-	
+
+func load_level_data():
+	var data = SaveSystem.load_level_data()
+	max_level = data["max_level"]
+	unlocked_level = data["unlocked_level"]
+
+func save_level_data():
+	var data = {
+		"max_level":max_level,
+		"unlocked_level":unlocked_level
+	}
+
+func level_selected(level: int):
+	current_level = level
+	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
+	print("Load scene: %s" %scene_path)
+	get_tree().change_scene_to_file(scene_path)
