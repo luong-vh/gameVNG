@@ -72,3 +72,4 @@ func open_chest():
 		
 	# In ra thông báo
 	print("Chest opened! Spawning ", coin_reward, " coins!")
+	GameManager.stage_clear()

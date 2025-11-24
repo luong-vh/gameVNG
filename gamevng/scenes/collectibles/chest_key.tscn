@@ -1,21 +1,21 @@
 [gd_scene load_steps=16 format=3 uid="uid://bcopa1hwh3rob"]
 
 [ext_resource type="Script" uid="uid://bs1wmxj2lxfdo" path="res://scenes/collectibles/chest_key.gd" id="1_n0bmc"]
-[ext_resource type="Texture2D" uid="uid://cdqoyptcl2to3" path="res://assets/items/effect_key/1.png" id="2_n0bmc"]
-[ext_resource type="Texture2D" uid="uid://dyecd0mk401hf" path="res://assets/items/effect_key/2.png" id="3_dmu0g"]
-[ext_resource type="Texture2D" uid="uid://cvgi4c0qaqk5l" path="res://assets/items/effect_key/3.png" id="4_gu3o2"]
-[ext_resource type="Texture2D" uid="uid://1vx1hri751li" path="res://assets/items/key.png" id="5_l4h5v"]
-[ext_resource type="Texture2D" uid="uid://bu1taabc0xvwd" path="res://assets/items/effect_key/4.png" id="5_qvqb2"]
-[ext_resource type="Texture2D" uid="uid://b8cmyb3ws5o0m" path="res://assets/items/effect_key/5.png" id="6_mi68n"]
-[ext_resource type="Texture2D" uid="uid://bp1tcwap3lcnk" path="res://assets/items/effect_key/6.png" id="7_rlk1s"]
-[ext_resource type="Texture2D" uid="uid://bjjki67boygyj" path="res://assets/items/effect_key/7.png" id="8_p86ra"]
-[ext_resource type="Texture2D" uid="uid://dl7oq211a06y" path="res://assets/items/effect_key/8.png" id="9_i20cm"]
-[ext_resource type="Texture2D" uid="uid://1mhntap8nrxf" path="res://assets/items/effect_key/9.png" id="10_ckoad"]
-[ext_resource type="Texture2D" uid="uid://bg1si1f61nk3g" path="res://assets/items/effect_key/10.png" id="11_in5vo"]
-[ext_resource type="Texture2D" uid="uid://d2r558ku2q0n2" path="res://assets/items/effect_key/11.png" id="12_1gaae"]
+[ext_resource type="Texture2D" uid="uid://b5mn4l0u7sa41" path="res://assets/items/effect_key/1.png" id="2_n0bmc"]
+[ext_resource type="Texture2D" uid="uid://v6to6hocc7xx" path="res://assets/items/effect_key/2.png" id="3_dmu0g"]
+[ext_resource type="Texture2D" uid="uid://dxduoirk7updh" path="res://assets/items/effect_key/3.png" id="4_gu3o2"]
+[ext_resource type="Texture2D" uid="uid://2vhg1o0dccmj" path="res://assets/items/key.png" id="5_l4h5v"]
+[ext_resource type="Texture2D" uid="uid://c5bcpwo8dsmkn" path="res://assets/items/effect_key/4.png" id="5_qvqb2"]
+[ext_resource type="Texture2D" uid="uid://b5uf6jgykfsp2" path="res://assets/items/effect_key/5.png" id="6_mi68n"]
+[ext_resource type="Texture2D" uid="uid://cuj5ryjq430my" path="res://assets/items/effect_key/6.png" id="7_rlk1s"]
+[ext_resource type="Texture2D" uid="uid://b7m3541mhot3d" path="res://assets/items/effect_key/7.png" id="8_p86ra"]
+[ext_resource type="Texture2D" uid="uid://fv7cj6ppxlg6" path="res://assets/items/effect_key/8.png" id="9_i20cm"]
+[ext_resource type="Texture2D" uid="uid://lt8yboluv0ga" path="res://assets/items/effect_key/9.png" id="10_ckoad"]
+[ext_resource type="Texture2D" uid="uid://dq41s25gd43n0" path="res://assets/items/effect_key/10.png" id="11_in5vo"]
+[ext_resource type="Texture2D" uid="uid://cinwcujijfrn0" path="res://assets/items/effect_key/11.png" id="12_1gaae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ais5i"]
-radius = 10.198039
+radius = 10.198
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_64ecx"]
 animations = [{
@@ -76,4 +76,5 @@ shape = SubResource("CircleShape2D_ais5i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_64ecx")
+animation = &"collected"
 autoplay = "default"

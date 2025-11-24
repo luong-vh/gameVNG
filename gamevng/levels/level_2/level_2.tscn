@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://804w82x1ukk4"]
+[gd_scene load_steps=36 format=4 uid="uid://804w82x1ukk4"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_ep78u"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_dfjjl"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="11_cp47v"]
 [ext_resource type="PackedScene" uid="uid://3aur1qlygih6" path="res://levels/objects/door/iron_door.tscn" id="12_1vf62"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="13_5ts7o"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="16_yiikh"]
 [ext_resource type="PackedScene" uid="uid://bl4qkm7jaq7pp" path="res://levels/control_nodes/mini_boss_control.tscn" id="17_5ts7o"]
+[ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="21_fq0us"]
 
 [sub_resource type="Resource" id="Resource_fq0us"]
 script = ExtResource("10_yiikh")
@@ -380,6 +382,16 @@ type = "RedCrab"
 movement_speed = 160.0
 max_health = 30
 
+[node name="RedCrab6" parent="Enemies" instance=ExtResource("13_5ts7o")]
+modulate = Color(0.984314, 0, 0.156863, 1)
+position = Vector2(4565, -525)
+type = "RedCrab"
+movement_speed = 160.0
+max_health = 30
+
+[node name="Chest" parent="Enemies" instance=ExtResource("16_yiikh")]
+position = Vector2(830, -247)
+
 [node name="Bullets" type="Node" parent="."]
 
 [node name="Blade" type="Node" parent="."]
@@ -410,6 +422,9 @@ shape = SubResource("WorldBoundaryShape2D_0butd")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("7_wcjpl")]
+
+[node name="ChestKey" parent="." instance=ExtResource("21_fq0us")]
+position = Vector2(5697, -733)
 
 [editable path="Objects/MiniBossControl"]
 [editable path="Objects/MiniBossControl/Doors/IronDoor"]

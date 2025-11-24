@@ -126,7 +126,7 @@ func save_checkpoint_data() -> void:
 		"checkpoint_data": checkpoint_data
 	}
 	SaveSystem.save_checkpoint_data(save_data)
-	
+
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
@@ -174,8 +174,6 @@ func respawn_at_checkpoint() -> void:
 #check if there is a checkpoint
 func has_checkpoint() -> bool:
 	return not current_checkpoint_id.is_empty()
-
-
 
 func activate_checkpoint():
 	#player.health = player.max_health
@@ -241,7 +239,7 @@ func level_selected(level: int):
 	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
 	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)
-	
+
 
 func next_level():
 	current_level += 1

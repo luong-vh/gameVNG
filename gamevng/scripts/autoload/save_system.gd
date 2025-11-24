@@ -17,7 +17,6 @@ func save_checkpoint_data(data: Dictionary) -> void:
 	file.close()
 	print("Saved data to file: ", SAVE_FILE)
 
-
 # Load checkpoint data from file
 func load_checkpoint_data() -> Dictionary:
 	# 1. Kiểm tra xem file có tồn tại không
