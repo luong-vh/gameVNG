@@ -228,7 +228,6 @@ func load_state(data: Dictionary) -> void:
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)
-		healthChanged.emit()
 	fsm.change_state(fsm.states.idle)
 
 func _on_take_damge(_direction: Variant, _damage: Variant) -> void:

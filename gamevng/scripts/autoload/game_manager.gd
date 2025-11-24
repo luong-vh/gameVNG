@@ -163,7 +163,6 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
-		player.healthChanged.emit()
 		if main_camera !=null:
 			main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
