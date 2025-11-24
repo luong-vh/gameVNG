@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/boat.gd" id="14_g40me"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="15_fhms7"]
 [ext_resource type="Texture2D" uid="uid://crflavbexmqg2" path="res://assets/init_assets/images/boat/boat_body.png" id="16_cryio"]
-[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="17_7up71"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/interactive_area_2d.gd" id="17_7up71"]
 [ext_resource type="Texture2D" uid="uid://bnyyso8r3xy7h" path="res://assets/init_assets/images/boat/boat_sail_1.png" id="18_oidk6"]
 [ext_resource type="Texture2D" uid="uid://vtdtt6qgcrpm" path="res://assets/init_assets/images/boat/boat_sail_2.png" id="19_yigdc"]
 [ext_resource type="Texture2D" uid="uid://y8tmjcm0d6ki" path="res://assets/init_assets/images/boat/boat_sail_3.png" id="20_icc8w"]
