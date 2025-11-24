@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://de5jc85hnt3us"]
+[gd_scene load_steps=26 format=3 uid="uid://de5jc85hnt3us"]
 
 [ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield-native/spear.gd" id="1_h56nw"]
 [ext_resource type="Texture2D" uid="uid://baax8m15uhp0d" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
@@ -98,17 +98,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sj6bk"]
-radius = 20.0
-height = 44.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lt2gd"]
-radius = 21.0
-height = 42.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ew65"]
-radius = 21.0
-height = 42.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dtt5"]
+size = Vector2(41.25, 28)
 
 [node name="Spear" type="CharacterBody2D"]
 collision_layer = 8
@@ -122,13 +113,14 @@ sprite_frames = SubResource("SpriteFrames_4yvhb")
 animation = &"attack"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
-collision_layer = 0
-collision_mask = 16
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("17_yae7c")
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
-shape = SubResource("CapsuleShape2D_sj6bk")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
 collision_layer = 0
@@ -137,7 +129,8 @@ script = ExtResource("18_eaiw7")
 metadata/_custom_type_script = "uid://cskdv6tj5dtso"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
-shape = SubResource("CapsuleShape2D_lt2gd")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
 position = Vector2(27, 0)
@@ -163,8 +156,8 @@ script = ExtResource("20_m1jvq")
 script = ExtResource("22_6dtt5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_3ew65")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 65)
@@ -175,3 +168,5 @@ offset_left = -35.0
 offset_top = -36.0
 offset_right = 35.0
 offset_bottom = -28.0
+texture_under = null
+texture_progress = null

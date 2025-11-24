@@ -80,7 +80,7 @@ func _ready() -> void:
 	GameManager.set_player(self)
 	GUIManager.set_max_heart_gui(max_health)
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
-	DayNightManager.state_changed.connect(_day_night_changed)
+	DayNightManager.day_night_state_changed.connect(_day_night_changed)
 	DayNightManager.shader_stage_changed.connect(_shader_changed)
 
 func _init_wall_cling():

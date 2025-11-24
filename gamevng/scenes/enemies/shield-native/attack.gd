@@ -29,7 +29,6 @@ func _update(delta: float) -> void:
 	if phase == 2 and front_raycast.is_colliding():
 		# Trigger the earthquake only once.
 		if not has_triggered_wall_hit:
-			print("Spear impacted wall! Triggering earthquake.")
 			GameManager.emit_signal("earthquake_triggered", 15.0, 0.4)
 			has_triggered_wall_hit = true
 		obj.velocity = Vector2.ZERO

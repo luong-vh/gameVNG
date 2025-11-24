@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ualr5ifl4nv5"]
 
-[ext_resource type="Texture2D" uid="uid://col1ep71qyvvy" path="res://assets/gui/healthbarUnder.png" id="1_1nbod"]
-[ext_resource type="Texture2D" uid="uid://b8cp1xp7nu4w7" path="res://assets/gui/healthbarProgress.png" id="2_mxjo6"]
+[ext_resource type="Texture2D" uid="uid://bwfhxofyn3xke" path="res://assets/gui/healthbarUnder.png" id="1_1nbod"]
+[ext_resource type="Texture2D" uid="uid://dceg4734uijio" path="res://assets/gui/healthbarProgress.png" id="2_mxjo6"]
 [ext_resource type="Script" uid="uid://d0pbciv2gsc67" path="res://scenes/gui/enemy_health_bar.gd" id="3_e0tni"]
 
 [node name="EnemyHealthBar" type="TextureProgressBar"]

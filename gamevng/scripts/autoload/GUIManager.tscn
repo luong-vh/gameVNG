@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://danrg15a8qg2f"]
+[gd_scene load_steps=11 format=3 uid="uid://danrg15a8qg2f"]
 
 [ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/GUIManager.gd" id="1_r74x5"]
 [ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
+[ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
+[ext_resource type="AudioStream" uid="uid://8ig7y4yrrv5e" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
+[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
+[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="6_ito21"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
@@ -58,11 +62,15 @@ _data = {
 [node name="GUIManager" type="CanvasLayer"]
 script = ExtResource("1_r74x5")
 
-[node name="HeartsContainer" type="HBoxContainer" parent="."]
-offset_right = 80.0
-offset_bottom = 40.0
-theme_override_constants/separation = 4
-script = ExtResource("2_j1isl")
+[node name="SFX" type="Node" parent="."]
+
+[node name="Coin" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_ghc5l")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_ito21")
+bus = &"SFX"
 
 [node name="FadeController" type="Control" parent="."]
 layout_mode = 3
@@ -87,3 +95,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_tlbx8")
 }
 autoplay = "RESET"
+
+[node name="Music" type="AudioStreamPlayer" parent="FadeController"]
+stream = ExtResource("4_xdjlx")
+bus = &"Music"
+parameters/looping = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HeartsContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 80.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+script = ExtResource("2_j1isl")
+
+[node name="SettingInStage" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
+offset_bottom = 52.0
+
+[editable path="CanvasLayer/SettingInStage"]

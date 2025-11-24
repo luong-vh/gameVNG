@@ -1,0 +1,152 @@
+[gd_scene load_steps=15 format=3 uid="uid://ww5ptygxtt2r"]
+
+[ext_resource type="Texture2D" uid="uid://cxhp6kvidyh6s" path="res://assets/island/objects/spider/spider.png" id="1_8rk4d"]
+[ext_resource type="Script" uid="uid://cl2usfpk80r6b" path="res://scenes/enemies/spider/spider.gd" id="1_1072l"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_iuc6c"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="4_qljqk"]
+[ext_resource type="Script" uid="uid://c021dhu3h8lvn" path="res://scenes/enemies/spider/run.gd" id="5_3v4i1"]
+[ext_resource type="Script" uid="uid://byvwiabdu7rgu" path="res://scenes/enemies/spider/hurt.gd" id="6_cfybg"]
+[ext_resource type="Script" uid="uid://dasivmfkvpip6" path="res://scenes/enemies/spider/dead.gd" id="7_1072l"]
+[ext_resource type="Script" uid="uid://5kmupfllrmk0" path="res://scenes/enemies/spider/hang.gd" id="8_hang"]
+[ext_resource type="Script" uid="uid://dx75jn41bbnji" path="res://scenes/enemies/spider/fall.gd" id="9_fall"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn2pf"]
+atlas = ExtResource("1_8rk4d")
+region = Rect2(0, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6cqp"]
+atlas = ExtResource("1_8rk4d")
+region = Rect2(13, 0, 12, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1gfm"]
+atlas = ExtResource("1_8rk4d")
+region = Rect2(26, 0, 12, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kq1kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn2pf")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn2pf")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn2pf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn2pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6cqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1gfm")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rk4d"]
+size = Vector2(13, 9.5)
+
+[node name="Spider" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_1072l")
+metadata/_custom_type_script = "uid://s4xx82espxdt"
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_kq1kd")
+animation = &"run"
+frame_progress = 0.45171484
+
+[node name="HitArea2D" type="Area2D" parent="Direction"]
+collision_layer = 0
+collision_mask = 20
+script = ExtResource("2_iuc6c")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_8rk4d")
+
+[node name="HurtArea2D" type="Area2D" parent="Direction"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_qljqk")
+metadata/_custom_type_script = "uid://csu2b21cwchqw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_8rk4d")
+
+[node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
+position = Vector2(10, 7)
+target_position = Vector2(0, 16)
+
+[node name="FrontRayCast2D" type="RayCast2D" parent="Direction"]
+position = Vector2(1, 10)
+target_position = Vector2(12, 0)
+collision_mask = 65
+
+[node name="PullDetector" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(1, 359)
+collision_mask = 2
+
+[node name="WebLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 4.5)
+width = 1.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="GrabArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="GrabShape" type="CollisionShape2D" parent="GrabArea2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_8rk4d")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Run" type="Node" parent="States"]
+script = ExtResource("5_3v4i1")
+
+[node name="Hurt" type="Node" parent="States"]
+script = ExtResource("6_cfybg")
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("7_1072l")
+
+[node name="Hang" type="Node" parent="States"]
+script = ExtResource("8_hang")
+
+[node name="Fall" type="Node" parent="States"]
+script = ExtResource("9_fall")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_8rk4d")

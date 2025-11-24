@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://p5lm84j0yyqu"]
+[gd_scene load_steps=12 format=3 uid="uid://p5lm84j0yyqu"]
 
+[ext_resource type="Texture2D" uid="uid://doc71lvntnsrs" path="res://assets/island/objects/torch/fire_animation_turn_off.png" id="1_gnvd1"]
 [ext_resource type="Texture2D" uid="uid://bn8bgpygxxqo7" path="res://assets/island/objects/torch/fire_animation_fix.png" id="1_wt6eg"]
 [ext_resource type="Texture2D" uid="uid://cwhw5ainaheeg" path="res://assets/day_night/light.png" id="2_wt6eg"]
 
@@ -7,8 +8,25 @@
 resource_name = "torch"
 script/source = "extends Node2D
 
+@onready var light_source = $PointLight2D
+
 func _ready() -> void:
-	$AnimatedSprite2D.play(\"default\")
+	DayNightManager.day_night_state_changed.connect(_day_night_changed)
+	
+	if DayNightManager.current_day_night_state == DayNightManager.DayNightState.DAY:
+		light_source.enabled = false
+		$AnimatedSprite2D.play(\"turn_off\")
+	else:
+		light_source.enabled = true
+		$AnimatedSprite2D.play(\"turn_on\")
+
+func _day_night_changed(new_state):
+	if new_state == DayNightManager.DayNightState.DAY:
+		light_source.enabled = false
+		$AnimatedSprite2D.play(\"turn_off\")
+	else:
+		light_source.enabled = true
+		$AnimatedSprite2D.play(\"turn_on\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnvd1"]
@@ -39,6 +57,14 @@ region = Rect2(118, 275, 59, 55)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("1_gnvd1")
+}],
+"loop": true,
+"name": &"turn_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gnvd1")
 }, {
 "duration": 1.0,
@@ -57,7 +83,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_iwxcy")
 }],
 "loop": true,
-"name": &"default",
+"name": &"turn_on",
 "speed": 5.0
 }]
 
@@ -66,10 +92,10 @@ script = SubResource("GDScript_wt6eg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -25)
+position = Vector2(0, -21)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_f7fg4")
-frame_progress = 0.108769
+animation = &"turn_on"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.52549, 0.258824, 1)
