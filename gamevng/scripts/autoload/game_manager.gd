@@ -40,6 +40,7 @@ func _ready() -> void:
 func set_player(_player: Player):
 	player = _player
 	player.healthChanged.connect(on_player_health_changed)
+	GUIManager.update_heart_gui(player.health)
 
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)

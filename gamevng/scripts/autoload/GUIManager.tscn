@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://danrg15a8qg2f"]
 
-[ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/gui_manager.gd" id="1_r74x5"]
+[ext_resource type="Script" path="res://scripts/autoload/gui_manager.gd" id="1_ghc5l"]
 [ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
 [ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
-[ext_resource type="AudioStream" uid="uid://bfiklllx8yfif" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
-[ext_resource type="AudioStream" uid="uid://bb4qx52br8htf" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
-[ext_resource type="AudioStream" uid="uid://b7q4bdun7c8co" path="res://assets/sounds/jump.mp3" id="6_ito21"]
+[ext_resource type="AudioStream" uid="uid://8ig7y4yrrv5e" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
+[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
+[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="6_ito21"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
@@ -60,7 +60,7 @@ _data = {
 }
 
 [node name="GUIManager" type="CanvasLayer"]
-script = ExtResource("1_r74x5")
+script = ExtResource("1_ghc5l")
 
 [node name="SFX" type="Node" parent="."]
 
