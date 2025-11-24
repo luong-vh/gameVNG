@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dngmise7lvsrg"]
+
+[ext_resource type="Script" uid="uid://drvo43bltd3tc" path="res://scenes/collectibles/magnet.gd" id="1_magnet_script"]
+[ext_resource type="Texture2D" uid="uid://bmd77x85tmtfr" path="res://assets/items/magnet.png" id="2_xq4km"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_magnet"]
+radius = 8.246211
+
+[node name="Magnet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_magnet_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xq4km")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_magnet")
