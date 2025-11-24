@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://db82ftu2sobir"]
+[gd_scene load_steps=11 format=3 uid="uid://db82ftu2sobir"]
 
 [ext_resource type="Script" uid="uid://lbowyt8ahq50" path="res://scenes/gui/game_screen/settings_popup.gd" id="1_a4it1"]
 [ext_resource type="Texture2D" uid="uid://bm66ag0j7y3qi" path="res://assets/ui/popup.png" id="1_ry1hr"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bvxx77qm55k1l" path="res://assets/ui/off_button.png" id="5_ovj3y"]
 [ext_resource type="Texture2D" uid="uid://bbwko1pk05md0" path="res://assets/ui/restarts_button.png" id="7_cgyxv"]
 [ext_resource type="Texture2D" uid="uid://6ofqtl3pvwcu" path="res://assets/ui/levelSelection_button.png" id="8_t4nly"]
-[ext_resource type="Texture2D" uid="uid://c5tc3j2kycr8k" path="res://assets/ui/howToPlay_button.png" id="9_3dwc2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rbs2k"]
 font = ExtResource("2_a4it1")
@@ -100,7 +99,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -50.0
 offset_top = -37.0
-offset_right = 50.0
+offset_right = 46.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -112,13 +111,9 @@ texture_normal = ExtResource("7_cgyxv")
 
 [node name="LevelSelectionButton" type="TextureButton" parent="Setting/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 10
+size_flags_vertical = 0
 texture_normal = ExtResource("8_t4nly")
-
-[node name="HowToPlayButton" type="TextureButton" parent="Setting/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-texture_normal = ExtResource("9_3dwc2")
 
 [connection signal="gui_input" from="OverlayColorRect" to="." method="_on_overlay_color_rect_gui_input"]
 [connection signal="pressed" from="Setting/CloseTextureButton" to="." method="_on_close_texture_button_pressed"]
