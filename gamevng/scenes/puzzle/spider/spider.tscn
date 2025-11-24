@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ww5ptygxtt2r"]
 
-[ext_resource type="Texture2D" uid="uid://cx5p1p0jj35jt" path="res://assets/island/objects/spider/spider.png" id="1_8rk4d"]
+[ext_resource type="Texture2D" uid="uid://bxi06lxspxcpu" path="res://assets/island/objects/spider/spider.png" id="1_8rk4d"]
 [ext_resource type="Script" uid="uid://cl2usfpk80r6b" path="res://scenes/puzzle/spider/spider.gd" id="1_iuc6c"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_iuc6c"]
 

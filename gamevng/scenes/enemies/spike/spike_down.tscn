@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvis2yatbsdt8"]
+
+[ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_6stid"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_xsoh8"]
+[ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="3_6b7lh"]
+[ext_resource type="Script" path="res://scripts/areas/pogo_area_2d.gd" id="4_ttsqw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo1o"]
+size = Vector2(29.5, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ch3oq"]
+size = Vector2(30, 1)
+
+[node name="Spike" type="Node2D"]
+script = ExtResource("1_6stid")
+
+[node name="HitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_xsoh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+position = Vector2(-1, -11)
+shape = SubResource("RectangleShape2D_fpo1o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_6b7lh")
+flip_v = true
+
+[node name="PogoArea2D" type="Area2D" parent="."]
+position = Vector2(0, -32)
+collision_mask = 0
+script = ExtResource("4_ttsqw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PogoArea2D"]
+position = Vector2(-1, 15.5)
+shape = SubResource("RectangleShape2D_ch3oq")
+
+[connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]

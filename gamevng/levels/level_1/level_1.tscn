@@ -6,11 +6,11 @@
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="4_08mmt"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_j48du"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_5ot28"]
-[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="5_8jbay"]
+[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="5_8jbay"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="5_la5aw"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="5_qbdb0"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_aerfg"]
-[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_nmsli"]
+[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="7_nmsli"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="8_hyp3v"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_la5aw"]
@@ -81,7 +81,6 @@ rotation = 1.5708
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/LeftCameraStopZone"]
 shape = SubResource("WorldBoundaryShape2D_la5aw")
@@ -91,7 +90,6 @@ position = Vector2(0, 330)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/DownCameraStopZone1"]
 shape = SubResource("SegmentShape2D_la5aw")
@@ -101,7 +99,6 @@ position = Vector2(728, 379)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/DownCameraStopZone2"]
 shape = SubResource("SegmentShape2D_hyp3v")
@@ -111,7 +108,6 @@ position = Vector2(578, 323)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone1"]
 shape = SubResource("SegmentShape2D_qbdb0")
