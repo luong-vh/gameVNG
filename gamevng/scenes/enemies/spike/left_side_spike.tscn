@@ -23,4 +23,23 @@ shape = SubResource("RectangleShape2D_fpo1o")
 rotation = 1.5708
 texture = ExtResource("3_y4x1h")
 
+[node name="PlayerHitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_5tus5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerHitArea2D"]
+position = Vector2(-10, 0)
+shape = SubResource("RectangleShape2D_fpo1o")
+
+[node name="EnemyHitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("2_5tus5")
+damage = 100
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyHitArea2D"]
+position = Vector2(-10, 0)
+shape = SubResource("RectangleShape2D_fpo1o")
+
 [connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]
