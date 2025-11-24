@@ -1,4 +1,4 @@
-extends Node2D
+extends SaveableObject
 
 @export var enemy_data: Array[EnemySpawnData] = []
 @export var completed: bool = false
@@ -9,6 +9,7 @@ extends Node2D
 var all_enemies_dead: bool = false
 
 func _ready():
+	super._ready()
 	interactive_area.interaction_available.connect(_on_interactive)
 	if completed:
 		# If already completed, open doors immediately
@@ -103,3 +104,20 @@ func open_doors():
 		if door.has_method("open"):
 			door.open()
 	print("All enemies defeated! Opening doors...")
+
+func close_doors():
+	# Open all doors in the doors_node
+	for door in doors_node.get_children():
+		if door.has_method("close"):
+			door.close()
+
+func get_state() -> Dictionary:
+	return {
+		"completed": completed,
+	}
+
+func set_state(state: Dictionary) -> void:
+	if state.has("completed"):
+		completed = state.completed
+		if completed:
+			open_doors()
