@@ -198,7 +198,7 @@ func start_dash_cd() -> bool:
 func is_dash_on_cd() -> bool:
 	return dash_timer.time_left > 0
 
-func invulnerable()->void:
+func set_invulnerable()->void:
 	is_invulnerable = true
 	invulnerable_timer.start()
 
