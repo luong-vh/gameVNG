@@ -183,7 +183,7 @@ func activate_checkpoint():
 func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
 	if not save_data.is_empty():
-		current_checkpoint_ids = save_data.get("current_checkpoint_ids", "")
+		current_checkpoint_ids = save_data.get("current_checkpoint_ids", {})
 		
 		checkpoint_data = save_data.get("checkpoint_data", {})
 		print("Checkpoint data loaded from save file")

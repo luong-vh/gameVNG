@@ -5,7 +5,7 @@ class_name Stage
 @export var default_day_night_state: DayNightManager.DayNightState
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
-@export var level_id: String = "0"
+@export var level_id: String = "5"
 
 func _enter_tree() -> void:
 	GameManager.set_current_stage(self, level_id)
