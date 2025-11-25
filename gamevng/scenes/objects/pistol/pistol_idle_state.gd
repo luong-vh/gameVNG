@@ -8,6 +8,19 @@ func _enter() -> void:
 func _on_player_entered(player) -> void:
 	var pistol = obj as Pistol
 
-	if player is CharacterBody2D and player.velocity.y >= 0:
+	if not player is CharacterBody2D:
+		return
+
+	# Check trigger condition
+	var should_trigger = false
+	match pistol.trigger_condition:
+		0:  ## Always
+			should_trigger = true
+		1:  ## Falling Only (velocity.y >= 0)
+			should_trigger = player.velocity.y >= 0
+		2:  ## Rising Only (velocity.y < 0)
+			should_trigger = player.velocity.y < 0
+
+	if should_trigger:
 		pistol.push_player(player)
 		change_state(fsm.states.extended)

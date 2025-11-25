@@ -4,7 +4,11 @@ extends EnemyCharacter
 const SPEED = 30.0
 const JUMP_VELOCITY = -400.0
 
+@export_group("Flying")
+@export var patrol_distance: float = 200.0
+@export var pause_time: float = 0.5
 
+@export_group("Attack")
 @export var bullet_speed : float = 30
 @onready var bullet_factory = $Direction/BulletFactory
 func _ready()->void:

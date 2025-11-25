@@ -1,6 +1,9 @@
 class_name EnemyCharacter
 extends BaseCharacter
 
+@export var has_key: bool = false
+@export var key_scene: PackedScene 
+
 # Raycast check wall and fall
 var front_ray_cast: RayCast2D;
 var down_ray_cast: RayCast2D;

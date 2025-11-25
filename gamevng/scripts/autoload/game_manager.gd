@@ -42,6 +42,8 @@ func set_player(_player: Player):
 	player.healthChanged.connect(on_player_health_changed)
 	GUIManager.update_heart_gui(player.health)
 
+func get_player() -> Player:
+	return player
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)
 

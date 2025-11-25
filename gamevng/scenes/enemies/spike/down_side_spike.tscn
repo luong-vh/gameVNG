@@ -1,23 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://de2ep26bq1t6f"]
+[gd_scene load_steps=5 format=3 uid="uid://g5d31lnkmebo"]
 
-[ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_elbx2"]
-[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_bnt57"]
-[ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="3_3ci3c"]
+[ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_xyibj"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_626rf"]
+[ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="3_r3gj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo1o"]
 size = Vector2(12, 29)
 
-[node name="RightSideSpike" type="Node2D"]
-script = ExtResource("1_elbx2")
+[node name="DownSideSpike" type="Node2D"]
+rotation = -1.5708
+script = ExtResource("1_xyibj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
-texture = ExtResource("3_3ci3c")
+texture = ExtResource("3_r3gj6")
 
 [node name="PlayerHitArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("2_bnt57")
+script = ExtResource("2_626rf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerHitArea2D"]
 position = Vector2(10, 0)
@@ -26,7 +27,7 @@ shape = SubResource("RectangleShape2D_fpo1o")
 [node name="EnemyHitArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
-script = ExtResource("2_bnt57")
+script = ExtResource("2_626rf")
 damage = 100
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyHitArea2D"]

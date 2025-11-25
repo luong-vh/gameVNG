@@ -415,6 +415,7 @@ resource_name = "Trap"
 scenes/1/scene = ExtResource("2_6gm7o")
 scenes/2/scene = ExtResource("3_8e75p")
 scenes/3/scene = ExtResource("4_wlw37")
+scenes/8/scene = ExtResource("5_wlw37")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_k86ad"]
 resource_name = "Tree"

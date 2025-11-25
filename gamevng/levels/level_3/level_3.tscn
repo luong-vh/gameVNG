@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_wj73x"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_0unm6"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="6_ddhri"]
-[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_q42ux"]
+[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="7_q42ux"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="8_xgkfy"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="9_8t4gc"]
 [ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="10_dq2kg"]
