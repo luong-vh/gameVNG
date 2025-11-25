@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var direction: int = 1
 
 @export var attack_damage: int = 1
-@export var max_health: int = 3
+@export var max_health: int = 5
 @onready var health: int = max_health
 
 

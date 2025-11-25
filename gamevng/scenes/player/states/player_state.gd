@@ -33,13 +33,16 @@ func control_moving() -> bool:
 #Control jumping
 #Return true if jumping
 func control_jump() -> bool:
+	if obj.is_input_lock():
+		return false
+
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.reset_jump_count()
-	
+
 	var jumpInput = Input.is_action_just_pressed("jump")
 	if jumpInput:
 		#Wall jump
-		if obj.is_near_wall() and not obj.is_on_floor():
+		if obj.can_wall_cling and obj.is_near_wall() and not obj.is_on_floor():
 			obj.lock_input()
 			var collision = obj.wall_checker.get_collision_normal()
 			var wall_dir = int(collision.x)
@@ -51,19 +54,28 @@ func control_jump() -> bool:
 			return true
 		
 		#Normal jump
-		if obj.jump_count > 0:
+		if obj.jump_count < obj.max_jump_amount:
+			if not obj.is_on_floor() and obj.is_near_wall():
+				return false
+			
+			if obj.jump_count >= obj.normal_jump_cost and not obj.can_double_jump:
+				return false
+			
 			obj.jump_particle.restart()
 			obj.jump_particle.emitting = true
 			obj.jump()
 			if obj.is_on_floor() or obj.is_near_wall():
-				obj.jump_count -= obj.normal_jump_cost
+				obj.jump_count += obj.normal_jump_cost
 			else:
-				obj.jump_count -= obj.double_jump_cost
+				obj.jump_count += obj.double_jump_cost
 			change_state(fsm.states.jump)
 			return true
 	return false
 
 func control_wall_cling(delta: float) -> bool:
+	if not obj.can_wall_cling:
+		return false
+	
 	var collision = obj.wall_checker.get_collision_normal()
 	var wall_dir = int(collision.x)
 	
@@ -79,12 +91,18 @@ func control_wall_cling(delta: float) -> bool:
 	return true
 
 func control_dash() -> bool:
-	if obj.is_on_floor() or obj.is_near_wall():
-		obj.dash_count = 0
-	
-	if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
+	if obj.is_input_lock():
+		return false
+
+	if not obj.can_dash:
 		return false
 	
+	if obj.is_on_floor() or obj.is_near_wall():
+		obj.dash_count = 0
+
+	if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
+		return false
+
 	var dash_input = Input.is_action_just_pressed("dash")
 	if dash_input:
 		fsm.change_state(fsm.states.dash)
@@ -93,7 +111,10 @@ func control_dash() -> bool:
 	return false
 
 func control_attack() -> bool:
-	if (Input.is_action_pressed("down") 
+	if obj.is_input_lock():
+		return false
+
+	if (Input.is_action_pressed("down")
 		and Input.is_action_just_pressed("attack")
 		and not obj.is_on_floor()
 	):

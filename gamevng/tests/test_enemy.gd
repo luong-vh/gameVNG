@@ -1,6 +1,5 @@
 extends Stage
 
-
 func _enter_tree() -> void:
 	# Handle portal spawning first
 	GameManager.current_stage = self

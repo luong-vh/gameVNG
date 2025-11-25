@@ -31,6 +31,9 @@ func set_player(_player: Player):
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)
 
+func collect_blade():
+	player.collect_blade()
+
 func able_to_control_player():
 	player.set_physics_process(true)
 
@@ -61,25 +64,25 @@ func call_from_dialogic(msg:String = ""):
 	#Dialogic.VAR["PlayerScore"] = 30
 	print("Call from dialogic " + msg)
 
-
 #respawn at portal or door
 func respawn_at_portal() -> bool:
 	if not target_portal_name.is_empty():
 		var portal = current_stage.find_child(target_portal_name)
 		player.global_position = portal.global_position
+		main_camera.global_position = portal.global_position
 		GameManager.target_portal_name = ""
 		true
 	return false
-
 
 # Checkpoint system functions
 func save_checkpoint(checkpoint_id: String) -> void:
 	current_checkpoint_id = checkpoint_id
 	var player_state_dict: Dictionary = player.save_state()
-	var stage_state_dict = current_stage.save_stage()
+	var objects_data = SaveSystem.collect_object_states()
 	checkpoint_data[checkpoint_id] = {
 		"player_state":player_state_dict,
-		"stage_state": stage_state_dict,
+		"stage_path": current_stage.scene_file_path,
+		"objects": objects_data
 		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", checkpoint_id)
@@ -94,32 +97,32 @@ func respawn_at_checkpoint() -> void:
 	if current_checkpoint_id.is_empty():
 		print("No checkpoint available")
 		return
-	
+
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
 	if checkpoint_info.is_empty():
 		print("Checkpoint data not found")
 		return
-	
-	# Load the stage and handle different file path
-	var stage_state = checkpoint_info.get("stage_state")
-	if stage_state and not stage_state["stage_path"].is_empty():
-		if current_stage.scene_file_path != stage_state["stage_path"]:
-			change_stage(stage_state["stage_path"])
-			# Wait for scene to load
-			await get_tree().process_frame
-		
-		if not current_stage.load_state(stage_state):
-			print("Fail to load stage")
-			return
-	else:
-		print("Fail to load stage")
+	# Load the stage if different
+	var checkpoint_stage = checkpoint_info.get("stage_path", "")
+	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
 		return
-	
+
+	# Can change stage if different but not implemented yet to test
+	#	change_stage(checkpoint_stage, "")
+	#	# Wait for scene to load
+	#	await get_tree().process_frame
+
+	# Restore object states từ checkpoint
+	if checkpoint_info.has("objects"):
+		SaveSystem.restore_object_states(checkpoint_info.objects)
+		print("✅ Restored %d objects from checkpoint" % checkpoint_info.objects.size())
+
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")
 		if player_state == null:
 			return
 		player.load_state(player_state)
+		main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
 		return
 	else:
@@ -131,11 +134,15 @@ func has_checkpoint() -> bool:
 
 # Save checkpoint data to persistent storage
 func save_checkpoint_data() -> void:
+	var objects_data = SaveSystem.collect_object_states()
+	
 	var save_data = {
 		"current_checkpoint_id": current_checkpoint_id,
-		"checkpoint_data": checkpoint_data
+		"checkpoint_data": checkpoint_data,
+		"objects": objects_data
 	}
 	SaveSystem.save_checkpoint_data(save_data)
+	print("✅ Checkpoint saved with %d objects" % objects_data.size())
 
 func activate_checkpoint():
 	#player.health = player.max_health
@@ -148,6 +155,11 @@ func load_checkpoint_data() -> void:
 		current_checkpoint_id = save_data.get("current_checkpoint_id", "")
 		checkpoint_data = save_data.get("checkpoint_data", {})
 		print("Checkpoint data loaded from save file")
+	
+	if save_data.has("objects"):
+		SaveSystem.restore_object_states(save_data.objects)
+		print("✅ Restored %d objects" % save_data.objects.size())
+	print("Checkpoint data loaded from save file")
 
 # Clear all checkpoint data
 func clear_checkpoint_data() -> void:

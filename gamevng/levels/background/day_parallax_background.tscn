@@ -39,57 +39,49 @@ func _process(delta: float) -> void:
 
 [node name="DayParallaxBackground" type="ParallaxBackground"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+[node name="ParallaxLayerMain" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.001, 0.8)
 motion_mirroring = Vector2(767, 0)
 
-[node name="SkySprite2D" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(417, -11)
-scale = Vector2(26.125, 20.531)
-texture = ExtResource("1_jiyjy")
-
-[node name="SkySprite2D2" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(417, -666)
-scale = Vector2(26.125, 20.531)
-texture = ExtResource("1_jiyjy")
-
-[node name="SkySprite2D3" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(417, -1318)
-scale = Vector2(26.125, 20.531)
-texture = ExtResource("1_jiyjy")
-
-[node name="SeaSkySprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="SeaSkySprite2D" type="Sprite2D" parent="ParallaxLayerMain"]
 position = Vector2(0, 57)
 scale = Vector2(2, 2)
 texture = ExtResource("2_wpyic")
 centered = false
 
-[node name="WaterSprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="WaterSprite2D" type="Sprite2D" parent="ParallaxLayerMain"]
+z_index = -9
 position = Vector2(384.5, 404.5)
 scale = Vector2(23.969, 5.969)
 texture = ExtResource("3_424y5")
 
-[node name="WaterSprite2D2" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(384, 589)
+[node name="WaterSprite2D2" type="Sprite2D" parent="ParallaxLayerMain"]
+z_index = -9
+position = Vector2(384.5, 580)
 scale = Vector2(23.969, 5.969)
 texture = ExtResource("3_424y5")
 
-[node name="WaterSprite2D3" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(384, 780)
-scale = Vector2(23.969, 5.969)
-texture = ExtResource("3_424y5")
-
-[node name="WaterReflectBig" parent="ParallaxLayer" instance=ExtResource("4_8oehi")]
-position = Vector2(288, 240)
-scale = Vector2(2, 2)
-
-[node name="WaterReflectMedium" parent="ParallaxLayer" instance=ExtResource("5_45ccg")]
+[node name="WaterReflectMedium" parent="ParallaxLayerMain" instance=ExtResource("5_45ccg")]
 position = Vector2(541, 235)
 scale = Vector2(2, 2)
 
-[node name="WaterReflectSmall" parent="ParallaxLayer" instance=ExtResource("6_dcij2")]
-position = Vector2(94, 249)
+[node name="WaterReflectSmall" parent="ParallaxLayerMain" instance=ExtResource("6_dcij2")]
+position = Vector2(61, 256)
 scale = Vector2(2, 2)
+
+[node name="WaterReflectBig" parent="ParallaxLayerMain" instance=ExtResource("4_8oehi")]
+position = Vector2(244, 244)
+scale = Vector2(2, 2)
+
+[node name="ParallaxLayerSky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(767, 0)
+
+[node name="SkySprite2D" type="Sprite2D" parent="ParallaxLayerSky"]
+z_index = -10
+position = Vector2(417, -11)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("1_jiyjy")
 
 [node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="."]
 position = Vector2(60, -2)
@@ -135,11 +127,12 @@ texture = ExtResource("10_eryh4")
 
 [node name="TreeParallaxLayer" type="ParallaxLayer" parent="."]
 modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(4, -6)
+position = Vector2(4, -10)
 motion_scale = Vector2(0.8, 0.9)
+motion_mirroring = Vector2(800, 0)
 
 [node name="DecorativePalmTree1" parent="TreeParallaxLayer" instance=ExtResource("11_vlspt")]
-position = Vector2(765, 283)
+position = Vector2(71, 287)
 
 [node name="DecorativePalmTree2" parent="TreeParallaxLayer" instance=ExtResource("11_vlspt")]
 position = Vector2(316, 281)
