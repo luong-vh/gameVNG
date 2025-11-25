@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="9_5ptf1"]
 [ext_resource type="Script" uid="uid://bn0oogftm4uv7" path="res://levels/control_nodes/enemy_spawn_data.gd" id="10_yiikh"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="11_cp47v"]
-[ext_resource type="PackedScene" uid="uid://d4e7g1oq7iuw1" path="res://levels/objects/door/iron_door.tscn" id="12_1vf62"]
+[ext_resource type="PackedScene" uid="uid://3aur1qlygih6" path="res://levels/objects/door/iron_door.tscn" id="12_1vf62"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="13_5ts7o"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="16_yiikh"]
 [ext_resource type="PackedScene" uid="uid://bl4qkm7jaq7pp" path="res://levels/control_nodes/mini_boss_control.tscn" id="17_5ts7o"]

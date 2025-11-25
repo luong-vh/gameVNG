@@ -185,7 +185,7 @@ func activate_checkpoint():
 func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
 	if not save_data.is_empty():
-		current_checkpoint_ids = save_data.get("current_checkpoint_ids", "")
+		current_checkpoint_ids = save_data.get("current_checkpoint_ids", {})
 		
 		checkpoint_data = save_data.get("checkpoint_data", {})
 		print("Checkpoint data loaded from save file")
@@ -203,13 +203,14 @@ func clear_checkpoint_data() -> void:
 	print("All checkpoint data cleared")
 
 func respawn_at_ground_checkpoint():
+	GUIManager.fade_from_black()
 	if not _last_ground_checkpoint:
-		player.global_position = Vector2(0,0)
+		get_tree().reload_current_scene()
 		return
 	
 	if player.health <= 0 :
 		return
-	GUIManager.fade_from_black()
+	
 	player.lock_input(0.3)
 	player.global_position = _last_ground_checkpoint.global_position
 	main_camera.global_position = player.global_position

@@ -5,7 +5,6 @@ func _enter() -> void:
 	obj.velocity.x = 0
 	obj.jump()
 	timer = 0.5
-	obj.invulnerable()
 
 func _update(delta: float) -> void:
 	if update_timer(delta):
