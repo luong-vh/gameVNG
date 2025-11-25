@@ -170,4 +170,25 @@ func apply_serialized(data: Dictionary) -> void:
 			fsm.change_state(state_obj)
 		else:
 			push_warning("⚠ FSM state not found: " + state_name)
-	
+
+func drop_key() -> void:
+	if not has_key or key_scene == null:
+		return
+	var key_instance = key_scene.instantiate()
+	get_parent().add_child(key_instance)
+	key_instance.global_position = global_position
+
+	var tween = create_tween()
+
+	var up_position = global_position + Vector2(0, -50) 
+	tween.tween_property(key_instance, "global_position", up_position, 0.3)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_QUAD)
+
+
+	var down_position = global_position + Vector2(0, 10)  # Xuống vị trí ban đầu + 10px
+	tween.tween_property(key_instance, "global_position", down_position, 0.5)\
+			.set_ease(Tween.EASE_IN)\
+			.set_trans(Tween.TRANS_BOUNCE)
+
+	has_key = false 
