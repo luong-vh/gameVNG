@@ -16,7 +16,7 @@ else:
 	Foxy: Chào ngài Nấm. Có chuyện gì vậy?
 	Mushroom: Ta thấy cậu đang đi về phía khu rừng... nhưng cậu không mang theo vũ khí nào cả!
 	Foxy: Ờ... Vâng, tôi đang hơi vội.
-	Mushroom: Vội cũng không được! Cậu có biết khu rừng đó nguy hiểm thế nào không? Đi tay không là tự sát đấy!
+	Mushroom: Cậu có biết khu rừng đó nguy hiểm thế nào không? Đi tay không là tự sát đấy!
 	Mushroom: Ta có thứ này. Nó là một thanh kiếm cũ của ta, nhưng vẫn còn tốt chán.
 	Mushroom: Nó sẽ giúp cậu an toàn hơn. Cậu có muốn nhận nó không?
 	
@@ -34,6 +34,3 @@ else:
 		Mushroom: Thật là một cậu cáo liều lĩnh. Thôi được, ta đã cố khuyên rồi.
 		Mushroom: Chúc may mắn... cậu sẽ cần đấy.
 		Foxy: Tạm biệt ngài.
-end
-
-# --- KẾT THÚC HỘI THOẠI ---

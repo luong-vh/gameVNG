@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt8fe145l5mol"]
 
-[ext_resource type="Texture2D" uid="uid://ctnkur8hhwia0" path="res://assets/more/wooden_sign.png" id="1_4aho2"]
+[ext_resource type="Texture2D" uid="uid://c8vpnqe7jsgbl" path="res://assets/more/wooden_sign.png" id="1_4aho2"]
 [ext_resource type="Script" uid="uid://ct450jp1f0a6m" path="res://levels/objects/sign/wooden_sign.gd" id="1_mxyh3"]
 [ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="2_qoxdm"]
-[ext_resource type="Texture2D" uid="uid://qecivm0o1lbd" path="res://assets/more/msg_box_tail.png" id="3_m3tmx"]
-[ext_resource type="Texture2D" uid="uid://bheoigbruv7ok" path="res://assets/more/msg_box_body.png" id="4_mxyh3"]
-[ext_resource type="FontFile" uid="uid://citegqh2rb8mr" path="res://assets/fonts/WhitePeaberry.fnt (BMFont Text)/WhitePeaberry.fnt" id="5_mdruf"]
+[ext_resource type="Texture2D" uid="uid://5j4etqbo15x4" path="res://assets/more/msg_box_tail.png" id="3_m3tmx"]
+[ext_resource type="Texture2D" uid="uid://c5vk4kbqkiyrf" path="res://assets/more/msg_box_body.png" id="4_mxyh3"]
+[ext_resource type="FontFile" uid="uid://cq7oy52f67xep" path="res://assets/fonts/fs-pixel-sans-unicode-regular/fs-pixel-sans-unicode-regular.ttf" id="5_mdruf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3tmx"]
 size = Vector2(108, 32)

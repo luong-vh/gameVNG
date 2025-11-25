@@ -50,7 +50,7 @@ b = Vector2(-336, -39)
 a = Vector2(794, -25)
 b = Vector2(-186, -26)
 
-[node name="Stage" type="Node2D"]
+[node name="Stage2" type="Node2D"]
 script = ExtResource("1_wio3k")
 level_id = "4"
 
