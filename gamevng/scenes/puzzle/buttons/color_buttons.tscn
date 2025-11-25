@@ -88,6 +88,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_f1lmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rotmb")
 }],
 "loop": false,
 "name": &"green_activated",
@@ -166,6 +169,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("30_7c0ti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_c6qk3")
 }],
 "loop": false,
 "name": &"red_activated",
@@ -245,6 +251,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("48_66db2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_l5e03")
 }],
 "loop": false,
 "name": &"yellow_activated",
@@ -310,7 +319,7 @@ script = ExtResource("2_qtl1h")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ButtonManager/GreenButton"]
 scale = Vector2(0.303711, 0.283203)
 sprite_frames = SubResource("SpriteFrames_ilmr8")
-animation = &"green_activated"
+animation = &"green_idle"
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/GreenButton"]
 collision_layer = 0
@@ -330,7 +339,9 @@ button_color = 1
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(0.335938, 0.347656)
 sprite_frames = SubResource("SpriteFrames_ot3qc")
-animation = &"red_locked"
+animation = &"red_activated"
+frame = 9
+frame_progress = 1.0
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/RedButton"]
 collision_layer = 0
@@ -351,8 +362,9 @@ button_color = 2
 position = Vector2(0, -5.96046e-08)
 scale = Vector2(0.493164, 0.452148)
 sprite_frames = SubResource("SpriteFrames_p3ay5")
-animation = &"yellow_idle"
-frame_progress = 0.583928
+animation = &"yellow_activated"
+frame = 8
+frame_progress = 1.0
 
 [node name="InteractiveArea2D" type="Area2D" parent="ButtonManager/YellowButton"]
 collision_layer = 0

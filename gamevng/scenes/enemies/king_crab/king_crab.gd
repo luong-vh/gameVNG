@@ -3,13 +3,16 @@ extends EnemyCharacter
 
 @export var attack_cooldown: float = 0.5
 @export var speed = 100 
+@export var bullet_speed: float = 300
+
+@onready var bullet_factory = $Direction/BulletFactory
 
 var original_speed: float
 var original_player_raycast_length: float 
 
 func _ready() -> void:
 	super._ready()
-	type = "SPEAR"
+	type = "KINGCRAB"
 	fsm = FSM.new(self, $States, $States/Moving)
 	
 	#store default speed
@@ -43,3 +46,8 @@ func change_to_night_behavior():
 	var shape = $PlayerRayCast2D.get_child(0) as CollisionShape2D
 	if shape and shape.shape:
 		shape.shape.size.x = original_player_raycast_length * 0.5 # Reduce detection range by 50%
+
+func fire() -> void:
+	var bullet := bullet_factory.create() as RigidBody2D
+	var shooting_velocity := Vector2(bullet_speed * direction, 0.0)
+	bullet.apply_impulse(shooting_velocity)
