@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_fwftp"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_0pcc0"]
 [ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="7_2nx6g"]
-[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="7_oufxt"]
+[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_oufxt"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="8_a7g5w"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="9_2nx6g"]
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="9_utq3g"]

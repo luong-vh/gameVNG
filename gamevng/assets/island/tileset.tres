@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://gmsitsyww3ne"]
+[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://gmsitsyww3ne"]
 
 [ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ccufub3modpkh" path="res://levels/objects/tree/palm_tree_2.tscn" id="4_7a5rw"]
 [ext_resource type="PackedScene" uid="uid://cvosvspa7nfg3" path="res://scenes/enemies/spike/left_side_spike.tscn" id="4_wlw37"]
 [ext_resource type="PackedScene" uid="uid://cv4jotkxsk4xd" path="res://levels/objects/tree/palm_tree_3.tscn" id="5_6kw8m"]
+[ext_resource type="PackedScene" uid="uid://g5d31lnkmebo" path="res://scenes/enemies/spike/down_side_spike.tscn" id="5_wlw37"]
 [ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="7_6kw8m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x61fc"]
