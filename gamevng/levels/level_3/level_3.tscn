@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_wj73x"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_0unm6"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="6_ddhri"]
-[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_q42ux"]
+[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="7_q42ux"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="8_xgkfy"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="9_8t4gc"]
 [ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="10_dq2kg"]
@@ -112,25 +112,25 @@ position = Vector2(3907, -1353)
 position = Vector2(3353, -549)
 
 [node name="Barrel" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3702.9998, -991)
+position = Vector2(3703, -991)
 
 [node name="Barrel3" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3702.9998, -1112)
+position = Vector2(3703, -1112)
 
 [node name="Barrel4" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3703, -1242.9999)
+position = Vector2(3703, -1243)
 movement_speed = 300.0
 
 [node name="Barrel2" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3963, -919.99994)
+position = Vector2(3963, -920)
 _next_direction = -1
 
 [node name="Barrel5" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3962.9998, -1048.9999)
+position = Vector2(3963, -1049)
 _next_direction = -1
 
 [node name="Barrel6" parent="Enemies" instance=ExtResource("12_8655v")]
-position = Vector2(3962.9998, -1182.9999)
+position = Vector2(3963, -1183)
 _next_direction = -1
 
 [node name="Pelican" parent="Enemies" instance=ExtResource("13_md8fn")]

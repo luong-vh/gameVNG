@@ -38,7 +38,6 @@ b = Vector2(3400, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_gwceb")
-level_id = "level_1"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
@@ -136,7 +135,6 @@ position = Vector2(4135, 156)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone2"]
 shape = SubResource("SegmentShape2D_lwxes")
@@ -146,7 +144,6 @@ position = Vector2(728, 420)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_8jbay")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/DownCameraStopZone2"]
 shape = SubResource("SegmentShape2D_hyp3v")
