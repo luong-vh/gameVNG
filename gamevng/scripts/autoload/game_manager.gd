@@ -11,6 +11,8 @@ var stage_path
 var player: Player = null
 var main_camera: Camera2D = null
 
+var inventory_system: InventorySystem = null
+
 #target portal name is the name of the portal to which the player will be teleported
 var target_portal_name: String = ""
 var _target_portal_name
@@ -30,10 +32,15 @@ func _ready() -> void:
 	load_checkpoint_data()
 	GUIManager.fade_to_black_finished.connect(teleport)
 	GUIManager.fade_from_black_finished.connect(able_to_control_player)
+
+	# Initialize inventory system
+	inventory_system = InventorySystem.new()
+	add_child(inventory_system)
 	
 func set_player(_player: Player):
 	player = _player
 	player.healthChanged.connect(on_player_health_changed)
+	GUIManager.update_heart_gui(player.health)
 
 func get_player() -> Player:
 	return player
@@ -122,7 +129,7 @@ func save_checkpoint_data() -> void:
 		"checkpoint_data": checkpoint_data
 	}
 	SaveSystem.save_checkpoint_data(save_data)
-	
+
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
 		return checkpoint_data[checkpoint_id]
@@ -159,7 +166,6 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
-		player.healthChanged.emit()
 		if main_camera !=null:
 			main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
@@ -170,8 +176,6 @@ func respawn_at_checkpoint() -> void:
 #check if there is a checkpoint
 func has_checkpoint() -> bool:
 	return not current_checkpoint_id.is_empty()
-
-
 
 func activate_checkpoint():
 	#player.health = player.max_health
@@ -237,7 +241,7 @@ func level_selected(level: int):
 	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
 	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)
-	
+
 
 func next_level():
 	current_level += 1

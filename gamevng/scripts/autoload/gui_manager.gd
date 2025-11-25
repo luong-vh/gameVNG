@@ -3,10 +3,10 @@ extends CanvasLayer
 # 1. Định nghĩa các tín hiệu
 signal fade_to_black_finished
 signal fade_from_black_finished
+var setting_popup_scene
 
 @onready var _fade_animation_player = $FadeController/AnimationPlayer
 @onready var _heart_container = $CanvasLayer/HeartsContainer
-@onready var _setting_in_stage = $CanvasLayer/SettingInStage
 
 func _ready():
 	_fade_animation_player.animation_finished.connect(_on_animation_finished)
@@ -18,12 +18,12 @@ func fade_from_black():
 	_fade_animation_player.play("fade_from_black")
 
 func on_level_selection_scene():
-	_setting_in_stage.visible = false
 	_heart_container.visible = false
+	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_level_selection_popup.tscn")
 
 func on_stage_scene():
-	_setting_in_stage.visible = true
 	_heart_container.visible = true
+	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_popup.tscn")
 	
 func _on_animation_finished(anim_name):
 	if anim_name == "fade_to_black":
@@ -63,3 +63,8 @@ func open_stage_clear_popup():
 	var stage_clear_popup_preload = preload("res://scenes/gui/game_screen/finished_level_poppup.tscn")
 	var popup = stage_clear_popup_preload.instantiate()
 	$CanvasLayer.add_child(popup)
+
+
+func _on_settings_texture_button_pressed() -> void:
+	var popup_settings = setting_popup_scene.instantiate()
+	$CanvasLayer.add_child(popup_settings)

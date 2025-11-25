@@ -16,13 +16,13 @@
 [ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/boat.gd" id="14_g40me"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="15_fhms7"]
 [ext_resource type="Texture2D" uid="uid://crflavbexmqg2" path="res://assets/init_assets/images/boat/boat_body.png" id="16_cryio"]
-[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="17_7up71"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/interactive_area_2d.gd" id="17_7up71"]
 [ext_resource type="Texture2D" uid="uid://bnyyso8r3xy7h" path="res://assets/init_assets/images/boat/boat_sail_1.png" id="18_oidk6"]
 [ext_resource type="Texture2D" uid="uid://vtdtt6qgcrpm" path="res://assets/init_assets/images/boat/boat_sail_2.png" id="19_yigdc"]
 [ext_resource type="Texture2D" uid="uid://y8tmjcm0d6ki" path="res://assets/init_assets/images/boat/boat_sail_3.png" id="20_icc8w"]
 [ext_resource type="Texture2D" uid="uid://bv2po7d5rema6" path="res://assets/init_assets/images/boat/boat_sail_4.png" id="21_irjlf"]
 [ext_resource type="Texture2D" uid="uid://cbrqqsfiyiei0" path="res://assets/init_assets/images/boat/boat_sail_5.png" id="22_f15t1"]
-[ext_resource type="Texture2D" uid="uid://bkles8vi76hp2" path="res://assets/island/objects/door/iron_door.png" id="23_rfewq"]
+[ext_resource type="Texture2D" uid="uid://b3g02louyk867" path="res://assets/island/objects/door/iron_door.png" id="23_rfewq"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="24_mlfhm"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="25_4wx33"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="26_xuyyc"]
@@ -310,7 +310,7 @@ tile_set = ExtResource("2_dhiy7")
 position = Vector2(9315, 268)
 movement_speed = 150.0
 
-[node name="Light2D" parent="Player" index="6"]
+[node name="Light2D" parent="Player" index="7"]
 enabled = false
 
 [node name="MainCamera" parent="." instance=ExtResource("4_v2gem")]
@@ -510,7 +510,7 @@ script = ExtResource("15_fhms7")
 platform = NodePath("../AnimatableBody2D")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="IronDoor/PlatformPath2D"]
-rotation = -1.5707964
+rotation = -1.5708
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="IronDoor/PlatformPath2D/PathFollow2D"]
 remote_path = NodePath("../../EmptyNode")

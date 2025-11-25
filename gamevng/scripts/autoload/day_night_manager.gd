@@ -47,7 +47,6 @@ func switch_day_night_state():
 		return
 	else:
 		_switch_limit_count -= 1
-	
 	if _current_day_night_state == DayNightState.DAY:
 		_current_day_night_state = DayNightState.NIGHT
 	else:
@@ -58,9 +57,8 @@ func _init_state():
 	_apply_state(_current_day_night_state)
 
 func set_day_night_state(state: DayNightState):
-	if state != _current_day_night_state:
-		_current_day_night_state = state
-		_apply_state(_current_day_night_state)
+	_current_day_night_state = state
+	_apply_state(_current_day_night_state)
 
 func set_switch_limit(limit: int):
 	if limit <= 0:
@@ -103,17 +101,17 @@ func _apply_state(state : DayNightState) -> void:
 			print("Switched to NIGHT mode")
 		_:
 			print("[DayNightManager] Background or modulate node not set yet!")
-	emit_signal("day_night_state_changed", _current_day_night_state)
+	day_night_state_changed.emit(_current_day_night_state)
 
 func resend_state():
-	emit_signal("day_night_state_changed", _current_day_night_state)
+	day_night_state_changed.emit(_current_day_night_state)
 
 # ---------- SHADER STAGE CONTROL ----------
 func set_shader_state(state: ShaderState):
 	if state != _current_shader_state:
 		_current_shader_state = state
 		_apply_shader_state(state)
-		emit_signal("shader_stage_changed", state)
+		shader_stage_changed.emit(state)
 
 
 func _apply_shader_state(state: ShaderState):

@@ -18,7 +18,8 @@ func _update(_delta: float) -> void:
 	if update_timer(_delta):
 		obj.dash_particle.emitting = false
 		obj.start_dash_cd()
-		change_state(fsm.previous_state)
+		obj.velocity.x = 0
+		change_state(fsm.states.idle)
 
 func _exit():
 	obj.dash_particle.emitting = false

@@ -75,6 +75,7 @@ script = ExtResource("5_n3qvj")
 
 [node name="GlowLight" type="PointLight2D" parent="."]
 visible = false
+color = Color(0.623413, 0.00030717, 0.62895, 1)
 texture = ExtResource("6_1lu8u")
 texture_scale = 1.5
 

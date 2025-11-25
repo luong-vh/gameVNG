@@ -114,7 +114,7 @@ animation = &"attack"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("17_yae7c")
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 

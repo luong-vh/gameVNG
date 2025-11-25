@@ -6,7 +6,7 @@ var buttons: Array = []
 func _ready() -> void:
 	set_up_buttons()
 	GUIManager.on_level_selection_scene()
-
+	
 func set_up_buttons():
 	buttons = $Setting/LevelButtons.get_children()
 	GameManager.load_level_data()

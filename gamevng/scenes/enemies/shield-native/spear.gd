@@ -5,7 +5,7 @@ extends EnemyCharacter
 @export var speed = 100 
 
 var original_speed: float
-var original_player_raycast_length: float
+var original_player_raycast_length: float 
 
 func _ready() -> void:
 	super._ready()

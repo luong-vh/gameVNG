@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://3aur1qlygih6"]
+[gd_scene load_steps=9 format=3 uid="uid://3aur1qlygih6"]
 
-[ext_resource type="Texture2D" uid="uid://dtk2rfbnt2yay" path="res://assets/island/objects/door/iron_door.png" id="1_ri4sf"]
+[ext_resource type="Texture2D" uid="uid://b3g02louyk867" path="res://assets/island/objects/door/iron_door.png" id="1_ri4sf"]
+[ext_resource type="Script" uid="uid://uiahpqsvi1fw" path="res://levels/objects/door/iron_door.gd" id="1_vnn6m"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="2_lr1i5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr1i5"]
@@ -59,6 +60,7 @@ _data = {
 }
 
 [node name="IronDoor" type="Node2D"]
+script = ExtResource("1_vnn6m")
 
 [node name="PlatformPath2D" type="Path2D" parent="." node_paths=PackedStringArray("platform")]
 script = ExtResource("2_lr1i5")
@@ -90,4 +92,4 @@ texture = ExtResource("1_ri4sf")
 libraries = {
 &"": SubResource("AnimationLibrary_vnn6m")
 }
-autoplay = "RESET"
+autoplay = "close"

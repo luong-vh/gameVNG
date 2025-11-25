@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="18_lyvmt"]
 [ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="20_e7345"]
-[ext_resource type="PackedScene" uid="uid://ci0ucac7lo1ym" path="res://levels/objects/door/pressure_plate_door.tscn" id="20_nhw5b"]
+[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/KingCrab.tscn" id="20_nhw5b"]
 [ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield-native/spear.tscn" id="21_nhw5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
@@ -117,5 +117,5 @@ position = Vector2(528, 146)
 [node name="Spear" parent="." instance=ExtResource("21_nhw5b")]
 position = Vector2(753, 92)
 
-[node name="PressurePlateDoor" parent="." instance=ExtResource("20_nhw5b")]
-position = Vector2(347, 134)
+[node name="KingCrab" parent="." instance=ExtResource("20_nhw5b")]
+position = Vector2(-333, 207)
