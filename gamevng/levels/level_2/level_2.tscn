@@ -200,7 +200,7 @@ position = Vector2(4383, -320)
 curve = SubResource("Curve2D_1vf62")
 
 [node name="PathFollow2D" parent="Objects/MiniBossControl/Doors/IronDoor/PlatformPath2D" index="0"]
-rotation = -1.55492
+rotation = -1.5549246
 
 [node name="InteractiveArea2D" parent="Objects/MiniBossControl" index="2"]
 position = Vector2(62.6563, 110.637)
@@ -234,9 +234,11 @@ position = Vector2(998, 366)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone2"]
+shape = SubResource("SegmentShape2D_5ptf1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone2"]
 shape = SubResource("SegmentShape2D_5ptf1")
 
 [node name="CameraStopZone3" type="Area2D" parent="CameraBorders"]
@@ -244,9 +246,11 @@ position = Vector2(1484, 366)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone3"]
+shape = SubResource("SegmentShape2D_2smvo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone3"]
 shape = SubResource("SegmentShape2D_2smvo")
 
 [node name="CameraStopZone4" type="Area2D" parent="CameraBorders"]
@@ -254,9 +258,12 @@ position = Vector2(1605, -39)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone4"]
+position = Vector2(-122, -56)
+shape = SubResource("SegmentShape2D_cp47v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone4"]
 position = Vector2(-122, -56)
 shape = SubResource("SegmentShape2D_cp47v")
 
@@ -265,9 +272,12 @@ position = Vector2(1838.81, -103.168)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone5"]
+position = Vector2(208.192, 27.1681)
+shape = SubResource("SegmentShape2D_aq41y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone5"]
 position = Vector2(208.192, 27.1681)
 shape = SubResource("SegmentShape2D_aq41y")
 
@@ -276,9 +286,12 @@ position = Vector2(2831, -139)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone7"]
+position = Vector2(208.192, 27.1681)
+shape = SubResource("SegmentShape2D_aq41y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone7"]
 position = Vector2(208.192, 27.1681)
 shape = SubResource("SegmentShape2D_aq41y")
 
@@ -287,9 +300,12 @@ position = Vector2(2400, -473)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone6"]
+position = Vector2(-11.0806, 28.0127)
+shape = SubResource("SegmentShape2D_5ts7o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone6"]
 position = Vector2(-11.0806, 28.0127)
 shape = SubResource("SegmentShape2D_5ts7o")
 
@@ -298,9 +314,11 @@ position = Vector2(4272, 246)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone8"]
+shape = SubResource("SegmentShape2D_dj0pt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone8"]
 shape = SubResource("SegmentShape2D_dj0pt")
 
 [node name="CameraStopZone9" type="Area2D" parent="CameraBorders"]
@@ -308,9 +326,11 @@ position = Vector2(4272, 246)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone9"]
+shape = SubResource("SegmentShape2D_1vf62")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone9"]
 shape = SubResource("SegmentShape2D_1vf62")
 
 [node name="CameraStopZone10" type="Area2D" parent="CameraBorders"]
@@ -318,9 +338,12 @@ position = Vector2(5824, 245)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone10"]
+position = Vector2(0, -3)
+shape = SubResource("SegmentShape2D_dj0pt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone10"]
 position = Vector2(0, -3)
 shape = SubResource("SegmentShape2D_dj0pt")
 
@@ -329,115 +352,72 @@ position = Vector2(3947, -824)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/DownCameraStopZone1"]
-shape = SubResource("SegmentShape2D_un0ug")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone11"]
+shape = SubResource("SegmentShape2D_1vf62")
 
-[node name="CameraStopZone2" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone12" type="Area2D" parent="CameraBorders"]
 position = Vector2(998, 366)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone2"]
-shape = SubResource("SegmentShape2D_5ptf1")
-
-[node name="CameraStopZone3" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone13" type="Area2D" parent="CameraBorders"]
 position = Vector2(1484, 366)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone3"]
-shape = SubResource("SegmentShape2D_2smvo")
-
-[node name="CameraStopZone4" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone14" type="Area2D" parent="CameraBorders"]
 position = Vector2(1605, -39)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone4"]
-position = Vector2(-122, -56)
-shape = SubResource("SegmentShape2D_cp47v")
-
-[node name="CameraStopZone5" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone15" type="Area2D" parent="CameraBorders"]
 position = Vector2(1838.81, -103.168)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone5"]
-position = Vector2(208.192, 27.1681)
-shape = SubResource("SegmentShape2D_aq41y")
-
-[node name="CameraStopZone7" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone16" type="Area2D" parent="CameraBorders"]
 position = Vector2(2831, -139)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone7"]
-position = Vector2(208.192, 27.1681)
-shape = SubResource("SegmentShape2D_aq41y")
-
-[node name="CameraStopZone6" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone17" type="Area2D" parent="CameraBorders"]
 position = Vector2(2400, -473)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone6"]
-position = Vector2(-11.0806, 28.0127)
-shape = SubResource("SegmentShape2D_5ts7o")
-
-[node name="CameraStopZone8" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone18" type="Area2D" parent="CameraBorders"]
 position = Vector2(4272, 246)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone8"]
-shape = SubResource("SegmentShape2D_dj0pt")
-
-[node name="CameraStopZone9" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone19" type="Area2D" parent="CameraBorders"]
 position = Vector2(4272, 246)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone9"]
-shape = SubResource("SegmentShape2D_1vf62")
-
-[node name="CameraStopZone10" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone20" type="Area2D" parent="CameraBorders"]
 position = Vector2(5824, 245)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone10"]
-position = Vector2(0, -3)
-shape = SubResource("SegmentShape2D_dj0pt")
-
-[node name="CameraStopZone11" type="Area2D" parent="CameraBorders"]
+[node name="CameraStopZone21" type="Area2D" parent="CameraBorders"]
 position = Vector2(3947, -824)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("4_8y2in")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone11"]
-shape = SubResource("SegmentShape2D_1vf62")
+[node name="CameraBorders_DownCameraStopZone1#CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_un0ug")
 
 [node name="Enemies" type="Node2D" parent="."]
 

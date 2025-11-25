@@ -17,6 +17,7 @@ func _ready() -> void:
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
 	GUIManager.on_stage_scene()
+	
 
 func _init_day_night():
 	if has_node("DayParallaxBackground"):
