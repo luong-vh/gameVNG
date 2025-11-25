@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="10_abrmn"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="11_doihj"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="12_bfliu"]
-[ext_resource type="PackedScene" path="res://shaders/shader_canvas_layer.tscn" id="13_coq1r"]
+[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="13_coq1r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
 
