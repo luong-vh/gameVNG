@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="20_rip27"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="22_30x8f"]
 [ext_resource type="PackedScene" uid="uid://rth3ulbil1i3" path="res://scenes/collectibles/double_jump.tscn" id="23_a6bcn"]
-[ext_resource type="Texture2D" uid="uid://csujt8gmlacqy" path="res://assets/island/objects/door/iron_door.png" id="23_jok31"]
+[ext_resource type="Texture2D" uid="uid://dtk2rfbnt2yay" path="res://assets/island/objects/door/iron_door.png" id="23_jok31"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="24_1arbv"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="25_1arbv"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="26_cj7kt"]
