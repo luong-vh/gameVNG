@@ -51,12 +51,14 @@ func _on_body_entered(_body: Node2D) -> void:
 	# Only enable input if interact_input_action is set (for items like chests)
 	if not interact_input_action.is_empty():
 		set_process_unhandled_input(true)
-	interaction_available.emit()
+	# Use call_deferred to avoid "blocked during in/out signal" error
+	interaction_available.emit.call_deferred()
 
 
 func _on_body_exited(_body: Node2D) -> void:
 	set_process_unhandled_input(false)
-	interaction_unavailable.emit()
+	# Use call_deferred to avoid "blocked during in/out signal" error
+	interaction_unavailable.emit.call_deferred()
 
 
 func _on_collect() -> void:

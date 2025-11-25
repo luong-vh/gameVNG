@@ -17,6 +17,10 @@ class_name MainCamera
 @export var look_speed: float = 5.0
 @export var look_hold_time: float = 0.3  # Time to hold before looking
 
+@export_group("Zoom Settings")
+@export var zoom_speed: float = 3.0  # Speed of zoom transition
+@export var default_zoom: Vector2 = Vector2(1.0, 1.0)
+
 ## Camera shake state
 var _is_shaking: bool = false
 var _shake_strength: float = 0.0
@@ -29,6 +33,10 @@ var _target_look_offset: float = 0.0
 var _look_hold_timer: float = 0.0
 var _current_look_action: String = ""
 
+## Zoom state
+var _target_zoom: Vector2 = Vector2(1.0, 1.0)
+var _is_transitioning_zoom: bool = false
+
 ## Follow camera
 var stop_zone_checks: Dictionary = {}
 var camera_locked:bool = false
@@ -40,14 +48,18 @@ var _base_offset: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	GameManager.main_camera = self
 	_base_offset = offset
-	
+
+	# Initialize zoom
+	zoom = default_zoom
+	_target_zoom = default_zoom
+
 	# Connect to signals
 	if GameManager.earthquake_triggered.is_connected(start_shake):
 		GameManager.earthquake_triggered.disconnect(start_shake)
 	GameManager.earthquake_triggered.connect(start_shake)
-	
+
 	_init_stop_zone_check()
-	
+
 	if GameManager.player:
 		global_position = GameManager.player.global_position
 
@@ -68,6 +80,7 @@ func _physics_process(delta: float) -> void:
 	handle_follow_player(delta)
 	handle_look_offset(delta)
 	handle_shaking(delta)
+	handle_zoom(delta)
 	apply_camera_offset()
 
 func handle_follow_player(delta: float) -> void:
@@ -316,3 +329,52 @@ func stop_shake() -> void:
 	_shake_strength = 0.0
 	_shake_duration = 0.0
 	_shake_offset = Vector2.ZERO
+
+func handle_zoom(delta: float) -> void:
+	"""Smoothly transition camera zoom"""
+	if zoom != _target_zoom:
+		zoom = zoom.lerp(_target_zoom, zoom_speed * delta)
+
+		# Stop transitioning when close enough
+		if zoom.distance_to(_target_zoom) < 0.01:
+			zoom = _target_zoom
+			_is_transitioning_zoom = false
+
+func set_camera_zoom(new_zoom: Vector2, smooth: bool = true) -> void:
+	"""Set camera zoom level
+	Args:
+		new_zoom: Target zoom level (e.g., Vector2(0.8, 0.8) to zoom out)
+		smooth: If true, smoothly transition; if false, instant change
+	"""
+	_target_zoom = new_zoom
+	_is_transitioning_zoom = true
+
+	if not smooth:
+		zoom = new_zoom
+		_is_transitioning_zoom = false
+
+func camera_zoom_out(amount: float = 0.2, smooth: bool = true) -> void:
+	"""Zoom out camera by reducing zoom value
+	Args:
+		amount: How much to zoom out (0.2 = zoom to 80% of current)
+		smooth: If true, smoothly transition
+	"""
+	var new_zoom = zoom - Vector2(amount, amount)
+	new_zoom.x = max(new_zoom.x, 0.3)  # Minimum zoom 30%
+	new_zoom.y = max(new_zoom.y, 0.3)
+	set_camera_zoom(new_zoom, smooth)
+
+func camera_zoom_in(amount: float = 0.2, smooth: bool = true) -> void:
+	"""Zoom in camera by increasing zoom value
+	Args:
+		amount: How much to zoom in
+		smooth: If true, smoothly transition
+	"""
+	var new_zoom = zoom + Vector2(amount, amount)
+	new_zoom.x = min(new_zoom.x, 2.0)  # Maximum zoom 200%
+	new_zoom.y = min(new_zoom.y, 2.0)
+	set_camera_zoom(new_zoom, smooth)
+
+func reset_camera_zoom(smooth: bool = true) -> void:
+	"""Reset camera to default zoom level"""
+	set_camera_zoom(default_zoom, smooth)
