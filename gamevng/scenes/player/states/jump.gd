@@ -3,6 +3,7 @@ extends PlayerState
 func _enter() -> void:
 	#Change animation to jump
 	obj.change_animation("jump")
+	GUIManager.play_SFX("jump")
 	pass
 
 func _update(_delta: float):

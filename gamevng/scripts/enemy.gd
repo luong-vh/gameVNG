@@ -126,7 +126,6 @@ func detect_player() -> void:
 
 func _take_damage_from_dir(_damage_dir: Vector2, _damage: float):
 	fsm.current_state.take_damage(_damage_dir, _damage)
-	healthChanged.emit()
 
 func change_to_day_behavior():
 	push_error("%s must implement 'change_to_day_behavior()'!" % self)
@@ -143,7 +142,6 @@ func _add_into_enemy_manager():
 func _delete_from_enemy_manager():
 	push_error("%s must implement '_delete_from_enemy_manager()'!" % self)
 	assert(false, "Abstract method called")
-
 
 func serialize() -> Dictionary:
 	return {

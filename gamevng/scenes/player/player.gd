@@ -4,6 +4,7 @@ extends BaseCharacter
 
 var lock_input_timer: Timer
 var light_source: Light2D
+var decorator_manager: DecoratorManager = null
 
 # --- INVULNERABILITY ---
 @export_category("Invulnerability")
@@ -61,10 +62,15 @@ var raycast_pushable: RayCast2D
 func _ready() -> void:
 	super._ready()
 	set_animated_sprite($Direction/AnimatedSprite2D)
-	fsm = FSM.new(self, $States, $States/Idle)	
+	fsm = FSM.new(self, $States, $States/Idle)
 	_init_hit_hurt_area()
 	_init_wall_cling()
-	
+
+	# Initialize decorator manager for powerups
+	decorator_manager = DecoratorManager.new()
+	decorator_manager.initialize(self)
+	add_child(decorator_manager)
+
 	if has_blade:
 		collect_blade()
 	
@@ -80,7 +86,7 @@ func _ready() -> void:
 	GameManager.set_player(self)
 	GUIManager.set_max_heart_gui(max_health)
 	Dialogic.VAR["PlayerHasBlade"] = has_blade
-	DayNightManager.state_changed.connect(_day_night_changed)
+	DayNightManager.day_night_state_changed.connect(_day_night_changed)
 	DayNightManager.shader_stage_changed.connect(_shader_changed)
 
 func _init_wall_cling():
@@ -222,7 +228,6 @@ func load_state(data: Dictionary) -> void:
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)
-		healthChanged.emit()
 	fsm.change_state(fsm.states.idle)
 
 func _on_take_damge(_direction: Variant, _damage: Variant) -> void:
@@ -269,6 +274,34 @@ func handle_invulnerable():
 		animated_sprite.modulate.a = alpha
 	else:
 		animated_sprite.modulate.a = 1.0
-	
+
 	if invulnerable_timer.is_stopped():
 		is_invulnerable = false
+
+# --- POWERUP SYSTEM ---
+func get_movement_speed() -> float:
+	if decorator_manager != null:
+		return decorator_manager.get_effective_movement_speed()
+	return movement_speed
+
+func get_jump_speed() -> float:
+	if decorator_manager != null:
+		return decorator_manager.get_effective_jump_speed()
+	return jump_speed
+
+func get_max_jumps() -> int:
+	if decorator_manager != null:
+		return decorator_manager.get_effective_max_jumps()
+	return max_jump_amount
+
+func collect_powerup(powerup_id: String) -> void:
+	if decorator_manager != null:
+		decorator_manager.apply_powerup(powerup_id)
+		print("Applied powerup: ", powerup_id)
+	else:
+		print("ERROR: DecoratorManager not initialized!")
+
+func speed_up(multiplier: float, duration: float) -> void:
+	movement_speed = movement_speed * multiplier
+	await get_tree().create_timer(duration).timeout
+	movement_speed = movement_speed / multiplier

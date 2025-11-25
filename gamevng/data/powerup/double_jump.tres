@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PowerupDecoratorData" load_steps=2 format=3 uid="uid://brxmyil1ojewn"]
+
+[ext_resource type="Script" uid="uid://bi224x34bsap8" path="res://scripts/powerup/powerup_decorator_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+id = "double_jump"
+display_name = "Double Jump"
+description = "Allows the player to jump a second time in the air."
+priority = 5
+duration = 5.0
+grants_double_jump = true
+num_jumps = 2
+can_stack = false

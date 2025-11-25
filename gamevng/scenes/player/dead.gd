@@ -13,5 +13,3 @@ func _update(_delta: float) -> void:
 			GameManager.respawn_at_checkpoint()
 		else:
 			print("No checkpoint available")
-			print("Reload current scene")
-			GameManager.reload_current_scene()

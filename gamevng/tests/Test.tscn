@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://cse8m3ao6w5ao"]
 
-[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_1f3o5"]
+[ext_resource type="Script" uid="uid://cfjdtwim5kqj8" path="res://tests/test.gd" id="1_e7345"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="1_w3aqi"]
 [ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_np4on"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="3_pfwq7"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="15_yvf08"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="16_1bkwy"]
 [ext_resource type="PackedScene" uid="uid://bxvc68rg33rgc" path="res://scenes/puzzle/pressure_plate/pressure_plate.tscn" id="17_m1svg"]
-[ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/puzzle/spider/spider.tscn" id="18_lyvmt"]
+[ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="18_lyvmt"]
 [ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="20_e7345"]
 [ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/KingCrab.tscn" id="20_nhw5b"]
@@ -26,6 +26,7 @@ size = Vector2(84, 14)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_1f3o5")
+level_id = "test"
 
 [node name="Door" parent="." instance=ExtResource("10_43d8r")]
 position = Vector2(206, 244)
@@ -38,7 +39,7 @@ target_stage = "uid://cse8m3ao6w5ao"
 
 [node name="World" type="TileMapLayer" parent="."]
 position = Vector2(-22, -21)
-tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAMAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAAHAAcABAAAAAAAAQD9/wgAAAABAAQAAAD8/wgAAAABAAQAAAD7/wgAAAABAAQAAAD6/wgAAAABAAQAAAD5/wgAAAABAAQAAAD4/wgAAAABAAQAAAD3/wgAAAABAAQAAAD2/wgAAAABAAQAAAD1/wgAAAABAAQAAAD0/wgAAAABAAQAAADz/wgAAAABAAQAAADy/wgAAAABAAQAAADx/wgAAAABAAQAAADw/wgAAAABAAQAAADv/wgAAAABAAQAAADu/wgAAAABAAQAAADt/wgAAAABAAQAAADs/wgAAAABAAQAAADr/wgAAAABAAQAAADq/wgAAAABAAQAAADp/wgAAAABAAQAAADo/wgAAAABAAQAAADn/wgAAAAAAAQAAAA=")
+tile_map_data = PackedByteArray("AAADAAgAAAABAAQAAAAEAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAgAAAABAAQAAAAHAAgAAAABAAQAAAAIAAgAAAABAAQAAAAJAAgAAAABAAQAAAAKAAgAAAABAAQAAAALAAgAAAABAAQAAAAMAAgAAAABAAQAAAANAAgAAAABAAQAAAAOAAgAAAABAAQAAAAPAAgAAAABAAQAAAAUAAgAAAABAAQAAAATAAgAAAABAAQAAAASAAgAAAABAAQAAAARAAgAAAABAAQAAAAQAAgAAAABAAQAAAD//wIAAAACAAQAAAD+/wIAAAAPAAMAAAD+/wMAAAAEAAEAAAD+/wQAAAAEAAEAAAD+/wUAAAAEAAEAAAD+/wYAAAAEAAEAAAD+/wcAAAAEAAEAAAD+/wgAAAAMAAQAAAD//wgAAAABAAQAAAAAAAgAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAAVAAgAAAABAAQAAAAWAAgAAAABAAQAAAAXAAgAAAABAAQAAAAYAAgAAAABAAQAAAAZAAgAAAABAAQAAAAaAAgAAAABAAQAAAAbAAgAAAABAAQAAAAcAAgAAAABAAQAAAAdAAgAAAAQAAQAAAAdAP//AAAEAAAAAAAdAAAAAAAEAAEAAAAdAAEAAAAEAAEAAAAdAAIAAAAEAAEAAAAdAAMAAAAEAAEAAAAdAAQAAAANAAQAAAAdAAUAAAAEAAEAAAAdAAYAAAAEAAEAAAAdAAcAAAAEAAEAAAAJAAYAAAAAAAQAAAAKAAYAAAABAAQAAAALAAYAAAABAAQAAAAMAAYAAAABAAQAAAANAAYAAAACAAQAAAAYAAQAAAAAAAQAAAAZAAQAAAABAAQAAAAaAAQAAAABAAQAAAAbAAQAAAABAAQAAAAcAAQAAAABAAQAAAAHAAcABAAAAAAAAQD9/wgAAAABAAQAAAD8/wgAAAABAAQAAAD7/wgAAAABAAQAAAD6/wgAAAABAAQAAAD5/wgAAAABAAQAAAD4/wgAAAABAAQAAAD3/wgAAAABAAQAAAD2/wgAAAABAAQAAAD1/wgAAAABAAQAAAD0/wgAAAABAAQAAADz/wgAAAABAAQAAADy/wgAAAABAAQAAADx/wgAAAABAAQAAADw/wgAAAABAAQAAADv/wgAAAABAAQAAADu/wgAAAABAAQAAADt/wgAAAABAAQAAADs/wgAAAABAAQAAADr/wgAAAABAAQAAADq/wgAAAABAAQAAADp/wgAAAABAAQAAADo/wgAAAABAAQAAADn/wgAAAAAAAQAAAD3/wUAAAAAAAAAAAD4/wUAAAABAAAAAAD5/wUAAAACAAAAAAA=")
 tile_set = ExtResource("3_pfwq7")
 
 [node name="Platforms" type="Node2D" parent="."]
@@ -64,7 +65,6 @@ position = Vector2(603, 229)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("6_pupqp")]
 position = Vector2(686, 111)
-checkpoint_id = "2"
 
 [node name="ManualMovingPlatform" parent="." instance=ExtResource("8_lg0vp")]
 position = Vector2(54, 147)
@@ -95,13 +95,14 @@ position = Vector2(-1, 210)
 position = Vector2(120, 68)
 
 [node name="Starfish" parent="." instance=ExtResource("16_1bkwy")]
-position = Vector2(150, 229)
+position = Vector2(150, 218)
 
 [node name="PressurePlate" parent="." instance=ExtResource("17_m1svg")]
 position = Vector2(401, 166)
+activation_type = 0
 
 [node name="Spider" parent="." instance=ExtResource("18_lyvmt")]
-position = Vector2(891, 132)
+position = Vector2(-121, 101)
 
 [node name="Spider2" parent="." instance=ExtResource("18_lyvmt")]
 position = Vector2(827, -55)
@@ -114,7 +115,7 @@ max_rotation_angle = 20.0
 position = Vector2(528, 146)
 
 [node name="Spear" parent="." instance=ExtResource("21_nhw5b")]
-position = Vector2(75, 213)
+position = Vector2(753, 92)
 
 [node name="KingCrab" parent="." instance=ExtResource("20_nhw5b")]
 position = Vector2(-333, 207)

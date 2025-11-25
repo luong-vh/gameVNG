@@ -5,11 +5,14 @@ extends CharacterBody2D
 
 @export var movement_speed: float = 200.0
 @export var gravity: float = 700.0
-@export var direction: int = 1
+var direction: int = 1
 
 @export var attack_damage: int = 1
 @export var max_health: int = 5
-@onready var health: int = max_health
+@onready var health: int = max_health:
+	set(value):
+		health = value
+		healthChanged.emit()
 
 
 var jump_speed: float = 320.0
@@ -18,7 +21,7 @@ var current_animation = null
 var animated_sprite: AnimatedSprite2D = null
 
 var _next_animation = null
-var _next_direction: int = 1
+@export var _next_direction: int = 1
 var _next_animated_sprite: AnimatedSprite2D = null
 
 signal died
@@ -27,7 +30,6 @@ signal healthChanged
 func _ready() -> void:
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	health = max_health
-	healthChanged.emit()
 
 func _physics_process(delta: float) -> void:
 	# Animation
@@ -72,7 +74,6 @@ func stop_move() -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
-	healthChanged.emit()
 
 # Change the animation of the character on the next frame
 func change_animation(new_animation: String) -> void:

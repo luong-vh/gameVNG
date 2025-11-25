@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bqgmklofxv0qi" path="res://assets/monsters/mushroom/mushroom_02.png" id="3_wxeyp"]
 [ext_resource type="Texture2D" uid="uid://cghgcxg1pvwd6" path="res://assets/monsters/mushroom/mushroom_03.png" id="4_hxhl5"]
 [ext_resource type="Script" uid="uid://j2ic31mnax7" path="res://scenes/enemies/mushroom/run.gd" id="5_n3qvj"]
-[ext_resource type="Texture2D" uid="uid://cwhw5ainaheeg" path="res://assets/day_night/light.png" id="6_1lu8u"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="6_1lu8u"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="7_pdypp"]
 [ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="8_ysheg"]
 
@@ -75,7 +75,9 @@ script = ExtResource("5_n3qvj")
 
 [node name="GlowLight" type="PointLight2D" parent="."]
 visible = false
+color = Color(0.623413, 0.00030717, 0.62895, 1)
 texture = ExtResource("6_1lu8u")
+texture_scale = 1.5
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("8_ysheg")]
 offset_left = -20.0

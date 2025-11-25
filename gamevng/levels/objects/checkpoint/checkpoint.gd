@@ -9,7 +9,7 @@ class_name Checkpoint
 signal checkpoint_activated(checkpoint_id: String)
 
 
-@export var checkpoint_id: String = ""
+@onready var checkpoint_id: String = name
 
 
 var is_activated: bool = false
@@ -19,10 +19,7 @@ func _ready() -> void:
 	if checkpoint_id.is_empty():
 		checkpoint_id = str(get_path())
 	# Check if this checkpoint was already activated
-	if GameManager.current_checkpoint_id == checkpoint_id:
-		activate_visual_only()
-	else:
-		_animated_sprite.play("idle")
+	_animated_sprite.play("idle")
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -30,12 +27,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		activate()
 
-
 #activate checkpoint
 func activate() -> void:
-	if is_activated:
-		activate_visual_only()
-		return
 	is_activated = true
 	_play_active_animation()
 	_confirm_all_saveable_objects()
@@ -55,6 +48,7 @@ func _confirm_recursive(node: Node) -> void:
 	
 	for child in node.get_children():
 		_confirm_recursive(child)
+
 #activate checkpoint visually without saving
 func activate_visual_only() -> void:
 	is_activated = true

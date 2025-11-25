@@ -52,7 +52,7 @@
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
-[ext_resource type="Script" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
+[ext_resource type="Script" uid="uid://cgso7g684x3o6" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 9.0
@@ -251,7 +251,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pogo",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,6 +331,7 @@ z_index = 2
 collision_layer = 2
 collision_mask = 33
 script = ExtResource("1_wodsf")
+pogo_bounce_force = 300.0
 wall_friction = 500.0
 wall_slide_speed = 100.0
 max_jump_amount = 2
@@ -352,7 +353,7 @@ animation = &"wall_cling"
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ge24q")
-animation = &"attack"
+animation = &"pogo"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 4
@@ -476,6 +477,6 @@ one_shot = true
 light_mask = 2
 position = Vector2(0, -14)
 color = Color(1, 0.52549, 0.258824, 1)
-shadow_enabled = true
+blend_mode = 2
 texture = ExtResource("40_u3hyo")
-texture_scale = 1.5
+texture_scale = 0.65

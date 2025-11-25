@@ -9,10 +9,14 @@
 script = ExtResource("1_75wxb")
 
 [node name="FogOverlay" parent="." node_paths=PackedStringArray("light_capture") instance=ExtResource("1_8bxmg")]
+z_index = -1
+z_as_relative = false
 light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
 texture_visible = false
 
 [node name="DarknessOverlay" parent="." node_paths=PackedStringArray("light_capture") instance=ExtResource("2_75wxb")]
+z_index = -1
+z_as_relative = false
 light_capture = NodePath("../SubViewportContainer/LightCaptureViewport")
 texture_visible = false
 

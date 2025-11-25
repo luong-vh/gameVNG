@@ -61,6 +61,9 @@ func control_jump() -> bool:
 			if obj.jump_count >= obj.normal_jump_cost and not obj.can_double_jump:
 				return false
 			
+			if not obj.can_double_jump and not obj.is_on_floor():
+				return false
+			
 			obj.jump_particle.restart()
 			obj.jump_particle.emitting = true
 			obj.jump()
@@ -99,15 +102,13 @@ func control_dash() -> bool:
 	
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.dash_count = 0
-
-	if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
-		return false
-
-	var dash_input = Input.is_action_just_pressed("dash")
-	if dash_input:
+	
+	if Input.is_action_just_pressed("dash"):
+		if obj.is_dash_on_cd() or obj.dash_count >= obj.dash_amount:
+			return false
+		obj.velocity = Vector2.ZERO
 		fsm.change_state(fsm.states.dash)
 		return true
-	
 	return false
 
 func control_attack() -> bool:

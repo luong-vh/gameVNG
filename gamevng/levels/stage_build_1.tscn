@@ -16,13 +16,13 @@
 [ext_resource type="Script" uid="uid://c1yauia42efx5" path="res://levels/objects/platforms/boat.gd" id="14_g40me"]
 [ext_resource type="Script" uid="uid://crigosagrd07m" path="res://levels/objects/platforms/platform_path_2d.gd" id="15_fhms7"]
 [ext_resource type="Texture2D" uid="uid://crflavbexmqg2" path="res://assets/init_assets/images/boat/boat_body.png" id="16_cryio"]
-[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="17_7up71"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/interactive_area_2d.gd" id="17_7up71"]
 [ext_resource type="Texture2D" uid="uid://bnyyso8r3xy7h" path="res://assets/init_assets/images/boat/boat_sail_1.png" id="18_oidk6"]
 [ext_resource type="Texture2D" uid="uid://vtdtt6qgcrpm" path="res://assets/init_assets/images/boat/boat_sail_2.png" id="19_yigdc"]
 [ext_resource type="Texture2D" uid="uid://y8tmjcm0d6ki" path="res://assets/init_assets/images/boat/boat_sail_3.png" id="20_icc8w"]
 [ext_resource type="Texture2D" uid="uid://bv2po7d5rema6" path="res://assets/init_assets/images/boat/boat_sail_4.png" id="21_irjlf"]
 [ext_resource type="Texture2D" uid="uid://cbrqqsfiyiei0" path="res://assets/init_assets/images/boat/boat_sail_5.png" id="22_f15t1"]
-[ext_resource type="Texture2D" uid="uid://fra5j6wdivhq" path="res://assets/island/objects/door/iron_door.png" id="23_rfewq"]
+[ext_resource type="Texture2D" uid="uid://b3g02louyk867" path="res://assets/island/objects/door/iron_door.png" id="23_rfewq"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="24_mlfhm"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="25_4wx33"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="26_xuyyc"]
@@ -290,6 +290,7 @@ b = Vector2(30, -110)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_r5yqc")
+level_id = "build1"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
@@ -309,7 +310,7 @@ tile_set = ExtResource("2_dhiy7")
 position = Vector2(9315, 268)
 movement_speed = 150.0
 
-[node name="Light2D" parent="Player" index="6"]
+[node name="Light2D" parent="Player" index="7"]
 enabled = false
 
 [node name="MainCamera" parent="." instance=ExtResource("4_v2gem")]
@@ -336,7 +337,6 @@ position = Vector2(4334, 3)
 
 [node name="Barrel3" parent="Enemies" instance=ExtResource("6_yqcvc")]
 position = Vector2(4468, -60)
-direction = -1
 
 [node name="Crab2" parent="Enemies" instance=ExtResource("5_jsn1o")]
 position = Vector2(2436, 271)
@@ -407,23 +407,21 @@ position = Vector2(263, 274)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(1815, 178)
-checkpoint_id = "2"
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(5095, 274)
-checkpoint_id = "3"
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(10214, 274)
-checkpoint_id = "4"
+
+[node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("9_w4q74")]
+position = Vector2(9312, 274)
 
 [node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(7211, 51)
-checkpoint_id = "5"
 
 [node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("9_w4q74")]
 position = Vector2(7959, -429)
-checkpoint_id = "6"
 
 [node name="WorldBorder" type="Node" parent="."]
 
@@ -452,6 +450,7 @@ shape = SubResource("WorldBoundaryShape2D_66bjg")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("13_28odt")]
+visible = false
 
 [node name="Boat" type="Node2D" parent="." groups=["Saved Object"]]
 position = Vector2(9462, 307)
@@ -580,7 +579,7 @@ position = Vector2(10577, 276)
 position = Vector2(8026, 15)
 
 [node name="Torch2" parent="." instance=ExtResource("27_f05fu")]
-position = Vector2(8256, 14)
+position = Vector2(8266, 15)
 
 [node name="Torch3" parent="." instance=ExtResource("27_f05fu")]
 position = Vector2(9225, 274)

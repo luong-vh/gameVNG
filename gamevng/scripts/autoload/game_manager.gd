@@ -1,6 +1,7 @@
 extends Node
 
 # Checkpoint system variables
+var current_checkpoint_ids: Dictionary = {}
 var current_checkpoint_id: String = ""
 var checkpoint_data: Dictionary = {}
 
@@ -10,6 +11,8 @@ var stage_path
 var player: Player = null
 var main_camera: Camera2D = null
 
+var inventory_system: InventorySystem = null
+
 #target portal name is the name of the portal to which the player will be teleported
 var target_portal_name: String = ""
 var _target_portal_name
@@ -18,15 +21,26 @@ var _last_ground_checkpoint: GroundCheckPointArea = null
 signal stage_changed(new_stage_path)
 signal earthquake_triggered(strength, duration)
 
+var current_level_id : String =""
+
+var max_level : int = 0
+var unlocked_level = 0
+var current_level = 0
+
 func _ready() -> void:
 	# Load checkpoint data when game starts
 	load_checkpoint_data()
 	GUIManager.fade_to_black_finished.connect(teleport)
 	GUIManager.fade_from_black_finished.connect(able_to_control_player)
+
+	# Initialize inventory system
+	inventory_system = InventorySystem.new()
+	add_child(inventory_system)
 	
 func set_player(_player: Player):
 	player = _player
 	player.healthChanged.connect(on_player_health_changed)
+	GUIManager.update_heart_gui(player.health)
 
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)
@@ -37,6 +51,20 @@ func collect_blade():
 func able_to_control_player():
 	player.set_physics_process(true)
 
+func reset_level():
+	var prefix: String = current_level_id
+	var all_keys: Array = current_checkpoint_ids.keys()
+	for key in all_keys:
+		if key.begins_with(prefix):
+			checkpoint_data.erase(current_checkpoint_ids[key])
+			current_checkpoint_ids.erase(key)
+	var save_data = {
+		"current_checkpoint_ids": current_checkpoint_ids,
+		"checkpoint_data": checkpoint_data
+	}
+	SaveSystem.save_checkpoint_data(save_data)
+	get_tree().reload_current_scene()
+	
 func teleport() -> void:
 	if _target_portal_name == null:
 		return
@@ -76,16 +104,29 @@ func respawn_at_portal() -> bool:
 
 # Checkpoint system functions
 func save_checkpoint(checkpoint_id: String) -> void:
-	current_checkpoint_id = checkpoint_id
+	current_checkpoint_id = current_level_id + checkpoint_id
+	current_checkpoint_ids[current_level_id] = current_checkpoint_id
 	var player_state_dict: Dictionary = player.save_state()
 	var objects_data = SaveSystem.collect_object_states()
-	checkpoint_data[checkpoint_id] = {
+	checkpoint_data[current_checkpoint_id] = {
 		"player_state":player_state_dict,
 		"stage_path": current_stage.scene_file_path,
 		"objects": objects_data
 		#"enemies":EnemyManager.get_enemies_state()
 	}
-	print("Checkpoint saved: ", checkpoint_id)
+	print("Checkpoint saved: ", current_checkpoint_id)
+
+func get_current_checkpoint_id() -> String:
+	var index = current_level_id.length()
+	return current_checkpoint_id.substr(index)
+	
+# Save checkpoint data to persistent storage
+func save_checkpoint_data() -> void:
+	var save_data = {
+		"current_checkpoint_ids": current_checkpoint_ids,
+		"checkpoint_data": checkpoint_data
+	}
+	SaveSystem.save_checkpoint_data(save_data)
 
 func load_checkpoint(checkpoint_id: String) -> Dictionary:
 	if checkpoint_id in checkpoint_data:
@@ -94,6 +135,7 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
+	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
 	if current_checkpoint_id.is_empty():
 		print("No checkpoint available")
 		return
@@ -122,7 +164,8 @@ func respawn_at_checkpoint() -> void:
 		if player_state == null:
 			return
 		player.load_state(player_state)
-		main_camera.global_position = player.global_position
+		if main_camera !=null:
+			main_camera.global_position = player.global_position
 		print("Player respawned at checkpoint: ", current_checkpoint_id)
 		return
 	else:
@@ -132,18 +175,6 @@ func respawn_at_checkpoint() -> void:
 func has_checkpoint() -> bool:
 	return not current_checkpoint_id.is_empty()
 
-# Save checkpoint data to persistent storage
-func save_checkpoint_data() -> void:
-	var objects_data = SaveSystem.collect_object_states()
-	
-	var save_data = {
-		"current_checkpoint_id": current_checkpoint_id,
-		"checkpoint_data": checkpoint_data,
-		"objects": objects_data
-	}
-	SaveSystem.save_checkpoint_data(save_data)
-	print("✅ Checkpoint saved with %d objects" % objects_data.size())
-
 func activate_checkpoint():
 	#player.health = player.max_health
 	pass
@@ -152,7 +183,8 @@ func activate_checkpoint():
 func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
 	if not save_data.is_empty():
-		current_checkpoint_id = save_data.get("current_checkpoint_id", "")
+		current_checkpoint_ids = save_data.get("current_checkpoint_ids", "")
+		
 		checkpoint_data = save_data.get("checkpoint_data", {})
 		print("Checkpoint data loaded from save file")
 	
@@ -178,6 +210,39 @@ func respawn_at_ground_checkpoint():
 	GUIManager.fade_from_black()
 	player.lock_input(0.3)
 	player.global_position = _last_ground_checkpoint.global_position
+	main_camera.global_position = player.global_position
+	
+func set_current_stage(stage: Stage, level_id: String):
+	current_stage = stage
+	current_level_id = level_id
 
-func reload_current_scene() -> void:
-	current_stage.reload()
+func stage_clear():
+	if unlocked_level == current_level:
+		unlocked_level += 1
+		save_level_data()
+	GUIManager.open_stage_clear_popup()
+	
+func load_level_data():
+	var data = SaveSystem.load_level_data()
+	max_level = data["max_level"]
+	unlocked_level = data["unlocked_level"]
+
+func save_level_data():
+	var data = {
+		"max_level":max_level,
+		"unlocked_level":unlocked_level
+	}
+	SaveSystem.save_level_data(data)
+
+func level_selected(level: int):
+	current_level = level
+	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
+	print("Load scene: %s" %scene_path)
+	get_tree().change_scene_to_file(scene_path)
+
+
+func next_level():
+	current_level += 1
+	var scene_path = "res://levels/level_%d/level_%d.tscn"%[current_level,current_level]
+	print("Load scene: %s" %scene_path)
+	get_tree().change_scene_to_file(scene_path)

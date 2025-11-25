@@ -3,8 +3,6 @@ extends Node2D
 @onready var dialog = $DialogBox
 @onready var message_label: Label = $DialogBox/PanelContainer/MarginContainer/Label
 
-var is_showing = false
-
 @export_multiline var message: String = "Edit message text!"
 
 @export var fade_duration: float = 0.3
@@ -17,10 +15,6 @@ func _ready() -> void:
 
 
 func show_dialog():
-	if is_showing:
-		return
-	
-	is_showing = true
 	dialog.visible = true
 	
 	var tween = create_tween()
@@ -30,11 +24,6 @@ func show_dialog():
 	tween.parallel().tween_property(dialog, "scale", Vector2.ONE, fade_duration).from(Vector2(0.8, 0.8))
 
 func hide_dialog():
-	if not is_showing:
-		return
-	
-	is_showing = false
-	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_CUBIC)

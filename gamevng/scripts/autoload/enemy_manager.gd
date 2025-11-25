@@ -13,7 +13,7 @@ var enemy_scenes := {
 }
 
 func _ready() -> void:
-	DayNightManager.state_changed.connect(_day_night_changed)
+	DayNightManager.day_night_state_changed.connect(_day_night_changed)
 
 func add_enemy(enemy, type_name: String):
 	if not enemies_by_type.has(type_name):
