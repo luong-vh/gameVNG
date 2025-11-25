@@ -14,45 +14,60 @@
 [sub_resource type="Resource" id="Resource_8vm66"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("1_8vm66")
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_bfl7f"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("3_3eep4")
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_3eep4"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("4_naml3")
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_naml3"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("5_4irnu")
 overrides = {
 "box_size": "Vector2(400, 80)",
-"name_label_custom_size": "10.0",
+"custom_normal_font": "\"res://assets/fonts/fs-pixel-sans-unicode-regular/fs-pixel-sans-unicode-regular.ttf\"",
+"name_label_custom_size": "20.0",
+"name_label_customfont": "\"res://assets/fonts/fs-pixel-sans-unicode-regular/fs-pixel-sans-unicode-regular.ttf\"",
+"name_label_use_global_font": "false",
 "name_label_use_global_size": "false",
-"text_custom_size": "8.0",
-"text_use_global_size": "false"
+"text_custom_size": "18.0",
+"text_use_global_size": "false",
+"use_global_fonts": "false"
 }
 
 [sub_resource type="Resource" id="Resource_4irnu"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("6_if4yg")
+overrides = {
+"font_custom": "\"res://assets/fonts/fs-pixel-sans-unicode-regular/fs-pixel-sans-unicode-regular.ttf\"",
+"font_use_global": "false"
+}
 
 [sub_resource type="Resource" id="Resource_if4yg"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("7_notge")
 overrides = {
-"font_size_custom": "10.0",
-"font_size_use_global": "false"
+"font_custom": "\"res://assets/fonts/fs-pixel-sans-unicode-regular/fs-pixel-sans-unicode-regular.ttf\"",
+"font_size_custom": "18.0",
+"font_size_use_global": "false",
+"font_use_global": "false"
 }
 
 [sub_resource type="Resource" id="Resource_notge"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("8_lp1aj")
+overrides = {}
 
 [sub_resource type="Resource" id="Resource_lp1aj"]
 script = ExtResource("2_bfl7f")
 scene = ExtResource("9_81ov4")
+overrides = {}
 
 [resource]
 script = ExtResource("10_d65ij")
@@ -68,4 +83,6 @@ layer_info = {
 "15": SubResource("Resource_notge"),
 "16": SubResource("Resource_lp1aj")
 }
+base_overrides = {}
+layers = Array[ExtResource("2_bfl7f")]([])
 metadata/_latest_layer = "14"

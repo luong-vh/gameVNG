@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_ep78u"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_dfjjl"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="3_at1ld"]
-[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="4_8y2in"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="4_8y2in"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="4_sd18g"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_un0ug"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="5_5ptf1"]
@@ -200,7 +200,7 @@ position = Vector2(4383, -320)
 curve = SubResource("Curve2D_1vf62")
 
 [node name="PathFollow2D" parent="Objects/MiniBossControl/Doors/IronDoor/PlatformPath2D" index="0"]
-rotation = -1.5549246
+rotation = -1.55492
 
 [node name="InteractiveArea2D" parent="Objects/MiniBossControl" index="2"]
 position = Vector2(62.6563, 110.637)

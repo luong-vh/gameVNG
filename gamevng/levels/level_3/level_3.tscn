@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="15_txsvq"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="17_hs747"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="18_ddhri"]
-[ext_resource type="Texture2D" uid="uid://1vx1hri751li" path="res://assets/items/key.png" id="19_b8fed"]
+[ext_resource type="Texture2D" uid="uid://2vhg1o0dccmj" path="res://assets/items/key.png" id="19_b8fed"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
 
