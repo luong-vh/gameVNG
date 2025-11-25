@@ -200,7 +200,7 @@ position = Vector2(4383, -320)
 curve = SubResource("Curve2D_1vf62")
 
 [node name="PathFollow2D" parent="Objects/MiniBossControl/Doors/IronDoor/PlatformPath2D" index="0"]
-rotation = -1.5549246
+rotation = -1.55492
 
 [node name="InteractiveArea2D" parent="Objects/MiniBossControl" index="2"]
 position = Vector2(62.6563, 110.637)
