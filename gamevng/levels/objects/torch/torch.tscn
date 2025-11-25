@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://p5lm84j0yyqu"]
 
-[ext_resource type="Texture2D" uid="uid://doc71lvntnsrs" path="res://assets/island/objects/torch/fire_animation_turn_off.png" id="1_gnvd1"]
-[ext_resource type="Texture2D" uid="uid://bn8bgpygxxqo7" path="res://assets/island/objects/torch/fire_animation_fix.png" id="1_wt6eg"]
-[ext_resource type="Texture2D" uid="uid://cwhw5ainaheeg" path="res://assets/day_night/light.png" id="2_wt6eg"]
+[ext_resource type="Texture2D" uid="uid://cmb7tk1t5myt2" path="res://assets/island/objects/torch/fire_animation_turn_off.png" id="1_gnvd1"]
+[ext_resource type="Texture2D" uid="uid://ny2qb7icae7m" path="res://assets/island/objects/torch/fire_animation_fix.png" id="1_wt6eg"]
+[ext_resource type="Texture2D" uid="uid://bxh43o755kc26" path="res://assets/day_night/light.png" id="2_wt6eg"]
 
 [sub_resource type="GDScript" id="GDScript_wt6eg"]
 resource_name = "torch"
