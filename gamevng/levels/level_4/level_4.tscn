@@ -56,7 +56,7 @@ a = Vector2(787.39, -25)
 b = Vector2(-250, -25)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_oppti"]
-a = Vector2(-257, -265)
+a = Vector2(-260, -265)
 b = Vector2(-260, 200)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_q5wwa"]
@@ -257,7 +257,7 @@ position = Vector2(-19, 19)
 shape = SubResource("SegmentShape2D_pts6k")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorder/CameraStopZone8"]
-position = Vector2(-25, 15)
+position = Vector2(-12, 1)
 shape = SubResource("SegmentShape2D_oppti")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="WorldBorder/CameraStopZone8"]
@@ -290,12 +290,6 @@ shape = SubResource("SegmentShape2D_y7tt4")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("7_oufxt")]
-
-[node name="FogOverlay" parent="ShaderCanvasLayer" index="0"]
-visible = false
-
-[node name="DarknessOverlay" parent="ShaderCanvasLayer" index="1"]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("8_a7g5w")]
 position = Vector2(21, 299)
