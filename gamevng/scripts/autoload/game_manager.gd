@@ -98,8 +98,8 @@ func call_from_dialogic(msg:String = ""):
 func respawn_at_portal() -> bool:
 	if not target_portal_name.is_empty():
 		var portal = current_stage.find_child(target_portal_name)
-		player.global_position = portal.global_position
-		main_camera.global_position = portal.global_position
+		player.global_position = portal.spawn_position
+		main_camera.global_position = portal.spawn_position
 		GameManager.target_portal_name = ""
 		true
 	return false

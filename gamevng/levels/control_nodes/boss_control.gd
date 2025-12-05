@@ -5,12 +5,12 @@ extends SaveableObject
 
 @onready var enemies_node = $Enemies
 @onready var doors_node = $Doors
-@onready var interactive_area = $InteractiveArea2D
+@onready var activation_area = $ActivationArea2D
 var all_enemies_dead: bool = false
 
 func _ready():
 	super._ready()
-	interactive_area.interaction_available.connect(_on_interactive)
+	activation_area.interaction_available.connect(_on_interactive)
 	if completed:
 		# If already completed, open doors immediately
 		open_doors()

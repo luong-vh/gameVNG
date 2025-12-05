@@ -103,6 +103,9 @@ metadata/_custom_type_script = "uid://nvuabioddqmj"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
 shape = SubResource("RectangleShape2D_7l4jk")
 
+[node name="SpawnMarker2D" type="Marker2D" parent="."]
+position = Vector2(0, 15)
+
 [connection signal="interacted" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interacted"]
 [connection signal="interaction_available" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interaction_available"]
 [connection signal="interaction_unavailable" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interaction_unavailable"]

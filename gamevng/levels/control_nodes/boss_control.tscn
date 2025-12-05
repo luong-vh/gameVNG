@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl4qkm7jaq7pp"]
 
-[ext_resource type="Script" uid="uid://dyry8j53iiyle" path="res://levels/control_nodes/mini_boss_control.gd" id="1_bsxig"]
+[ext_resource type="Script" uid="uid://dyry8j53iiyle" path="res://levels/control_nodes/boss_control.gd" id="1_bsxig"]
 [ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="2_4x10k"]
 
-[node name="MiniBossControl" type="Node2D"]
+[node name="BossControl" type="Node2D"]
 script = ExtResource("1_bsxig")
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="InteractiveArea2D" type="Area2D" parent="."]
+[node name="ActivationArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("2_4x10k")
