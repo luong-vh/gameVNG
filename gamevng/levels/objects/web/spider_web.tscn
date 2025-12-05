@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnutvcjxxupmp"]
+
+[ext_resource type="Texture2D" uid="uid://de5njsl2qrokq" path="res://assets/monsters/spider/image_2025-12-05_185805468-removebg-preview.png" id="1_isv1i"]
+
+[node name="SpiderWeb" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(4, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_isv1i")

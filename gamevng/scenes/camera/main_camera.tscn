@@ -7,6 +7,10 @@ drag_top_margin = 0.5
 drag_bottom_margin = 0.5
 script = ExtResource("1_fckv4")
 camera_follow_speed = 400.0
+use_smooth_follow = true
+max_distance_horizontal = 260.0
+min_distance_horizontal = 20.0
+max_distance_vertical = 150.0
 look_offset = 60.0
 look_hold_time = 1.0
 

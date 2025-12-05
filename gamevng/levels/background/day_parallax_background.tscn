@@ -83,6 +83,12 @@ position = Vector2(417, -11)
 scale = Vector2(26.125, 20.531)
 texture = ExtResource("1_jiyjy")
 
+[node name="SkySprite2D2" type="Sprite2D" parent="ParallaxLayerSky"]
+z_index = -10
+position = Vector2(416, 571)
+scale = Vector2(26.125, 20.531)
+texture = ExtResource("1_jiyjy")
+
 [node name="ParallaxLayerBigCloud" type="ParallaxLayer" parent="."]
 position = Vector2(60, -2)
 motion_scale = Vector2(0.001, 0.8)
