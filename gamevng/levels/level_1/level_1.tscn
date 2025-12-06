@@ -71,7 +71,7 @@ message = "Press A and D to move."
 
 [node name="WoodenSign8" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
 position = Vector2(1024, 273)
-message = "Press A and D to move."
+message = "Press F to interact with NPC and object."
 
 [node name="WoodenSign2" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
 position = Vector2(328, 272)
@@ -95,7 +95,11 @@ message = "Press S and attack while in the air to downward clash on spike."
 
 [node name="WoodenSign7" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
 position = Vector2(3405, 240)
-message = "Press F to interact with object and NPC."
+message = "Collect the key to open the chest."
+
+[node name="WoodenSign9" parent="Objects/TutorialSigns" instance=ExtResource("5_qbdb0")]
+position = Vector2(3992, 81)
+message = "Open the chest to finish a level."
 
 [node name="Checkpoints" type="Node2D" parent="Objects"]
 

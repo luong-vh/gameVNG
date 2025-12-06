@@ -8,7 +8,7 @@
 [ext_resource type="FontFile" uid="uid://d3hu3i7je3joi" path="res://assets/fonts/WhitePeaberry.fnt (BMFont Text)/WhitePeaberry.fnt" id="5_mdruf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3tmx"]
-size = Vector2(108, 32)
+size = Vector2(52, 32)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ana1o"]
 texture = ExtResource("4_mxyh3")
