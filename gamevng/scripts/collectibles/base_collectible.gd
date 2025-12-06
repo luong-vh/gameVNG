@@ -15,6 +15,7 @@ signal interaction_unavailable
 
 @export var interact_input_action: String = ""  # Empty = auto-collect, set value = require input
 @export var is_attractable: bool = true
+var collected: bool
 
 
 func _ready() -> void:
@@ -31,12 +32,6 @@ func _ready() -> void:
 	# Connect interaction_available signal to a virtual method for collection
 	# This is suitable for items collected simply by touching/being in range
 	interaction_available.connect(_on_collect)
-
-	# Note: Collision layers/masks are typically set in the .tscn file for Area2D nodes.
-	# If a common collision setup is needed in code, it can be added here.
-	# For example:
-	# set_collision_layer_value(4, true) # Assuming layer 4 is for collectibles
-	# set_collision_mask_value(2, true)  # Assuming layer 2 is for the player
 
 
 func _unhandled_input(event):
@@ -62,9 +57,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_collect() -> void:
-	# This is a virtual method to be overridden by derived classes.
-	# Contains the specific logic for what happens when the item is collected.
-	pass
+	collected = true
 
 func _on_interacted_by_player() -> void:
 	# This is a virtual method to be overridden by derived classes.

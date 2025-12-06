@@ -8,6 +8,7 @@ func _ready() -> void:
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 
 func _on_collect():
+	super._on_collect()
 	monitoring = false
 	print("Đã thu thập " + str(coin_amount) + " coin!")
 	animated_sprite_2d.play("collected")
