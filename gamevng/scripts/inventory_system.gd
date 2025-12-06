@@ -43,3 +43,30 @@ func get_gold() -> int:
 
 func get_keys() -> int:
 	return keys
+
+
+# ==================== Save/Load System ====================
+
+func save_state() -> Dictionary:
+	return {
+		"coins": coins,
+		"keys": keys
+	}
+
+func load_state(state: Dictionary) -> void:
+	if state.has("coins"):
+		coins = state.coins
+		coin_changed.emit(coins)
+
+	if state.has("keys"):
+		keys = state.keys
+		key_changed.emit(keys)
+
+	print("[InventorySystem] Loaded state - Coins: %d, Keys: %d" % [coins, keys])
+
+func reset_inventory() -> void:
+	coins = 0
+	keys = 0
+	coin_changed.emit(coins)
+	key_changed.emit(keys)
+	print("[InventorySystem] Reset to zero")

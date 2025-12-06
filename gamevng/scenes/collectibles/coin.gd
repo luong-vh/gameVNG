@@ -8,13 +8,16 @@ func _ready() -> void:
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 
 func _on_collect():
-	super._on_collect()
-	monitoring = false
+	super._on_collect()  # This now sets collected=true, visible=false, monitoring=false
 	print("Đã thu thập " + str(coin_amount) + " coin!")
-	animated_sprite_2d.play("collected")
-	
+
 	GameManager.inventory_system.add_coin(coin_amount)
 
+	# Play collected animation if visible (first time collection)
+	if animated_sprite_2d.visible:
+		animated_sprite_2d.play("collected")
+
 func _on_animation_finished():
+	# Just hide after animation, don't queue_free() to preserve for save/load
 	if animated_sprite_2d.animation == "collected":
-		queue_free() # Tự hủy sau khi animation "collected" chạy xong
+		animated_sprite_2d.visible = false

@@ -109,10 +109,12 @@ func save_checkpoint(checkpoint_id: String) -> void:
 	current_checkpoint_ids[current_level_id] = current_checkpoint_id
 	var player_state_dict: Dictionary = player.save_state()
 	var objects_data = SaveSystem.collect_object_states()
+	var inventory_state = inventory_system.save_state()
 	checkpoint_data[current_checkpoint_id] = {
 		"player_state":player_state_dict,
 		"stage_path": current_stage.scene_file_path,
-		"objects": objects_data
+		"objects": objects_data,
+		"inventory": inventory_state
 		#"enemies":EnemyManager.get_enemies_state()
 	}
 	print("Checkpoint saved: ", current_checkpoint_id)
@@ -138,7 +140,10 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 func respawn_at_checkpoint() -> void:
 	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
 	if current_checkpoint_id.is_empty():
-		print("No checkpoint available")
+		print("No checkpoint available - resetting collectibles and inventory to initial state")
+		# No checkpoint exists, reset all collectibles to their initial state
+		SaveSystem.restore_object_states({})  # Empty dict = all objects reset to initial
+		inventory_system.reset_inventory()  # Reset inventory to zero
 		return
 
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
@@ -157,8 +162,13 @@ func respawn_at_checkpoint() -> void:
 
 	# Restore object states từ checkpoint
 	if checkpoint_info.has("objects"):
-		SaveSystem.restore_object_states(checkpoint_info.objects)
+		# Pass true to confirm_after_restore to update initial_state of restored objects
+		SaveSystem.restore_object_states(checkpoint_info.objects, null, true)
 		print("Restored %d objects from checkpoint" % checkpoint_info.objects.size())
+
+	# Restore inventory state từ checkpoint
+	if checkpoint_info.has("inventory"):
+		inventory_system.load_state(checkpoint_info.inventory)
 
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")

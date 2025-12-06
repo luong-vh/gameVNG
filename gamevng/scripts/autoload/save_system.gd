@@ -108,31 +108,50 @@ func collect_object_states(root_node: Node = null) -> Dictionary:
 	return states
 
 func _collect_recursive(node: Node, states: Dictionary) -> void:
+	# Check for SaveableObject first
 	if node is SaveableObject and node.save_enabled:
 		var obj = node as SaveableObject
+		states[obj.object_id] = obj.get_state()
+	# Also check for BaseCollectible (Area2D with save methods)
+	elif node is BaseCollectible and node.save_enabled:
+		var obj = node as BaseCollectible
 		states[obj.object_id] = obj.get_state()
 
 	for child in node.get_children():
 		_collect_recursive(child, states)
 
 
-func restore_object_states(states: Dictionary, root_node: Node = null) -> void:
+func restore_object_states(states: Dictionary, root_node: Node = null, confirm_after_restore: bool = false) -> void:
 	if root_node == null:
 		root_node = get_tree().current_scene
-	
+
 	await get_tree().process_frame
-	await get_tree().process_frame  
-	
-	_restore_recursive(root_node, states)
+	await get_tree().process_frame
+
+	_restore_recursive(root_node, states, confirm_after_restore)
 	print("[SaveSystem] Restored %d object states" % states.size())
 
-func _restore_recursive(node: Node, states: Dictionary) -> void:
+func _restore_recursive(node: Node, states: Dictionary, confirm_after_restore: bool) -> void:
+	# Check for SaveableObject first
 	if node is SaveableObject and node.save_enabled:
 		var obj = node as SaveableObject
 		if states.has(obj.object_id):
 			obj.set_state(states[obj.object_id])
+			# Confirm state after restore to update initial_state
+			if confirm_after_restore and obj.has_method("confirm_current_state"):
+				obj.confirm_current_state()
+		else:
+			obj.reset_to_initial()
+	# Also check for BaseCollectible (Area2D with save methods)
+	elif node is BaseCollectible and node.save_enabled:
+		var obj = node as BaseCollectible
+		if states.has(obj.object_id):
+			obj.set_state(states[obj.object_id])
+			# Confirm state after restore to update initial_state
+			if confirm_after_restore:
+				obj.confirm_current_state()
 		else:
 			obj.reset_to_initial()
 
 	for child in node.get_children():
-		_restore_recursive(child, states)
+		_restore_recursive(child, states, confirm_after_restore)

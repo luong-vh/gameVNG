@@ -1,8 +1,9 @@
-class_name BaseCollectible
 extends Area2D
+class_name BaseCollectible
 
 ## Base class for all collectible items.
 ## Handles common setup like interaction signals and provides a virtual method for collection logic.
+## Now supports save/load system to persist collected state across checkpoints.
 
 #signal when player interact with the area
 signal interacted
@@ -13,12 +14,26 @@ signal interaction_available
 #signal when player can't interact with the area
 signal interaction_unavailable
 
+@export_group("Save Settings")
+@export var object_id: String = ""
+@export var save_enabled: bool = true
+
+@export_group("Collectible Settings")
 @export var interact_input_action: String = ""  # Empty = auto-collect, set value = require input
 @export var is_attractable: bool = true
-var collected: bool
+
+var collected: bool = false
+var initial_state: Dictionary = {}
 
 
 func _ready() -> void:
+	# Setup object_id for save system
+	if object_id.is_empty():
+		object_id = "%s_%s" % [get_parent().name if get_parent() else "root", name]
+
+	# Save initial state IMMEDIATELY to capture scene defaults BEFORE any interaction
+	_save_initial_state()
+
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
@@ -57,9 +72,51 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_collect() -> void:
+	if collected:
+		return  # Already collected, prevent double collection
+
 	collected = true
+	visible = false  # Hide instead of queue_free to preserve for save/load
+	monitoring = false  # Disable collision detection
 
 func _on_interacted_by_player() -> void:
 	# This is a virtual method to be overridden by derived classes.
 	# Contains the specific logic for what happens when the item is interacted with (e.g., pressing 'interact' key).
 	pass
+
+
+# ==================== Save/Load System ====================
+
+func _save_initial_state() -> void:
+	initial_state = get_state()
+
+func get_state() -> Dictionary:
+	return {
+		"pos_x": position.x,
+		"pos_y": position.y,
+		"visible": visible,
+		"collected": collected,
+		"monitoring": monitoring
+	}
+
+func set_state(state: Dictionary) -> void:
+	if state.has("pos_x") and state.has("pos_y"):
+		position = Vector2(state.pos_x, state.pos_y)
+
+	if state.has("visible"):
+		visible = state.visible
+
+	if state.has("collected"):
+		collected = state.collected
+
+	if state.has("monitoring"):
+		monitoring = state.monitoring
+
+func reset_to_initial() -> void:
+	if not initial_state.is_empty():
+		set_state(initial_state)
+
+func confirm_current_state() -> void:
+	# Called when checkpoint is activated
+	# Update initial_state to current state (collected items stay collected)
+	initial_state = get_state()

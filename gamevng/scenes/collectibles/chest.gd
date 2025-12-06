@@ -38,30 +38,30 @@ func open_chest():
 	# Kiểm tra lại lần nữa (dù đã kiểm tra ở hàm trên)
 	if is_opened:
 		return
-		
+
 	# Đặt cờ là đã mở
-	is_opened = true 
-	
+	is_opened = true
+
 	# Sử dụng chìa khóa trong hệ thống tồn kho (Giả định GameManager có hàm use_key)
-	GameManager.inventory_system.use_key() 
-	
+	GameManager.inventory_system.use_key()
+
 	# Chạy animation "open" (mở)
-	animated_sprite.play("open") 
-	
+	animated_sprite.play("open")
+
 	# Đợi cho animation "open" chạy xong (chỉ dùng trong Godot 4 trở lên)
-	await animated_sprite.animation_finished 
-	
+	await animated_sprite.animation_finished
+
 	# Spawn coins
 	for i in range(coin_reward):
 		var coin_instance = coin_scene.instantiate()
 		get_parent().add_child(coin_instance)
 		coin_instance.global_position = global_position
-		
+
 		var tween = create_tween()
 		var random_x_offset = randf_range(-50, 50)
 		var random_y_offset = randf_range(-100, -50)
 		var target_position = global_position + Vector2(random_x_offset, random_y_offset)
-		
+
 		tween.tween_property(coin_instance, "global_position", target_position, 0.3)\
 			.set_ease(Tween.EASE_OUT)\
 			.set_trans(Tween.TRANS_QUAD)
@@ -69,7 +69,26 @@ func open_chest():
 			.set_delay(0.2)\
 			.set_ease(Tween.EASE_IN)\
 			.set_trans(Tween.TRANS_QUAD)
-		
+
 	# In ra thông báo
 	print("Chest opened! Spawning ", coin_reward, " coins!")
 	GameManager.stage_clear()
+
+
+# ==================== Save/Load System ====================
+
+func get_state() -> Dictionary:
+	var state = super.get_state()
+	state["is_opened"] = is_opened
+	return state
+
+func set_state(state: Dictionary) -> void:
+	super.set_state(state)
+
+	if state.has("is_opened"):
+		is_opened = state.is_opened
+
+		# If chest was opened, show it in opened state
+		if is_opened:
+			animated_sprite.play("open")
+			monitoring = false  # Disable interaction
