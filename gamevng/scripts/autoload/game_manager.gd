@@ -72,7 +72,6 @@ func teleport() -> void:
 		return
 	target_portal_name = _target_portal_name
 	var scene_id = ResourceUID.text_to_id(stage_path)
-		# 2. Lấy đường dẫn từ số ID đó
 	var scene_path = ResourceUID.get_id_path(scene_id)
 	
 	if scene_path != current_stage.scene_file_path:
@@ -159,7 +158,7 @@ func respawn_at_checkpoint() -> void:
 	# Restore object states từ checkpoint
 	if checkpoint_info.has("objects"):
 		SaveSystem.restore_object_states(checkpoint_info.objects)
-		print("✅ Restored %d objects from checkpoint" % checkpoint_info.objects.size())
+		print("Restored %d objects from checkpoint" % checkpoint_info.objects.size())
 
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")
@@ -192,7 +191,7 @@ func load_checkpoint_data() -> void:
 	
 	if save_data.has("objects"):
 		SaveSystem.restore_object_states(save_data.objects)
-		print("✅ Restored %d objects" % save_data.objects.size())
+		print("Restored %d objects" % save_data.objects.size())
 	print("Checkpoint data loaded from save file")
 
 # Clear all checkpoint data

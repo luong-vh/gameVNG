@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://qpai12qobmxt" path="res://assets/items/coin/03.png" id="4_clxuu"]
 [ext_resource type="Texture2D" uid="uid://dtk5n2k0ynk3j" path="res://assets/items/coin/04.png" id="5_yyguw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ais5i"]
-radius = 7.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_64ecx"]
 animations = [{
 "frames": [{
@@ -46,16 +43,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ais5i"]
+radius = 9.0
+
 [node name="Coin" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_ais5i")
 metadata/_custom_type_script = "uid://nvuabioddqmj"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ais5i")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
+scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_64ecx")
 autoplay = "default"
 frame_progress = 0.089352
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_ais5i")
