@@ -1,47 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjy683k0ahgxy"]
+[gd_scene load_steps=4 format=3 uid="uid://bjy683k0ahgxy"]
 
 [ext_resource type="Script" uid="uid://dx20d6g3xjd7y" path="res://scenes/collectibles/health_potion.gd" id="1_potion"]
-[ext_resource type="Texture2D" uid="uid://2pes1nx6fi6o" path="res://assets/items/effect/01.png" id="2_64ecx"]
-[ext_resource type="Texture2D" uid="uid://be84kghj732ug" path="res://assets/items/coin/01.png" id="2_ais5i"]
-[ext_resource type="Texture2D" uid="uid://cw1r806if1gj2" path="res://assets/items/coin/02.png" id="3_bo6c2"]
-[ext_resource type="Texture2D" uid="uid://dpjbvwlbcjnhb" path="res://assets/items/effect/02.png" id="3_bp5sd"]
-[ext_resource type="Texture2D" uid="uid://d07c5s5nnlnj0" path="res://assets/items/effect/03.png" id="4_6dm7w"]
-[ext_resource type="Texture2D" uid="uid://bemvksmfmf1nk" path="res://assets/items/coin/03.png" id="4_clxuu"]
-[ext_resource type="Texture2D" uid="uid://cqxo0vp3ycc3w" path="res://assets/items/coin/04.png" id="5_yyguw"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_64ecx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_64ecx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_bp5sd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_6dm7w")
-}],
-"loop": false,
-"name": &"collected",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ais5i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_bo6c2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_clxuu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_yyguw")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://cm7px40argofk" path="res://assets/items/potions/pt3.png" id="2_n1elp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ais5i"]
 radius = 9.0
@@ -49,14 +9,11 @@ radius = 9.0
 [node name="HealthPotion" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_potion")
-metadata/_custom_type_script = "uid://nvuabioddqmj"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.22536272, 0.8038258, 0.25353748, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(1.3, 1.3)
-sprite_frames = SubResource("SpriteFrames_64ecx")
-autoplay = "default"
+scale = Vector2(0.05366669, 0.04833333)
+texture = ExtResource("2_n1elp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)

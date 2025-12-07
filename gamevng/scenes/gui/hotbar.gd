@@ -19,28 +19,14 @@ func _ready() -> void:
 	print("[Hotbar] Hotbar ready with %d slots" % slot_count)
 	
 func _unhandled_input(event: InputEvent) -> void:
-	# Debug key to test hotbar
-	if event is InputEventKey and event.pressed and event.keycode == KEY_H:
-		print("[Hotbar] Debug: Adding test item...")
+	# Debug key to clear save data
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		print("[Hotbar] *** CLEARING ALL SAVE DATA ***")
+		SaveSystem.reset_data()
+		GameManager.clear_checkpoint_data()
 		if GameManager.inventory_system:
-			var test_texture = load("res://assets/items/coin/01.png")
-			if test_texture:
-				print("[Hotbar] Debug texture loaded: %s" % test_texture)
-				GameManager.inventory_system.add_item_to_hotbar("test_item", test_texture, 3)
-			else:
-				print("[Hotbar] ERROR: Could not load test texture!")
-		get_viewport().set_input_as_handled()
-		return
-	
-	# Debug key to damage player (for testing healing)
-	if event is InputEventKey and event.pressed and event.keycode == KEY_J:
-		print("[Hotbar] Debug: Damaging player...")
-		var player = GameManager.get_player()
-		if player and player.health > 1:
-			player.health -= 1
-			if player.has_signal("healthChanged"):
-				player.healthChanged.emit()
-			print("[Hotbar] Player health now: %d/%d" % [player.health, player.max_health])
+			GameManager.inventory_system.reset_inventory()
+		print("[Hotbar] Save data cleared! Restart level to see changes.")
 		get_viewport().set_input_as_handled()
 		return
 	
@@ -122,50 +108,72 @@ class HotbarSlot extends Control:
 	@onready var background: ColorRect
 	@onready var item_icon: TextureRect
 	@onready var count_label: Label
-	@onready var selection_border: ColorRect
+	# Remove selection_border since we don't need it anymore
 	
 	func setup(index: int, size: Vector2) -> void:
 		slot_index = index
 		custom_minimum_size = size
 		
-		# Create background using ColorRect for easier debugging
+		# Create individual slot background with border
 		background = ColorRect.new()
-		background.color = Color(0.2, 0.2, 0.2, 0.8)
+		background.color = Color(0.15, 0.15, 0.15, 0.9)  # Darker background
 		background.anchors_preset = Control.PRESET_FULL_RECT
 		add_child(background)
 		
-		# Create item icon BEFORE selection border so it's visible
+		# Create border for each slot
+		var border = ColorRect.new()
+		border.color = Color.TRANSPARENT
+		border.anchors_preset = Control.PRESET_FULL_RECT
+		# Create border effect using multiple ColorRects
+		var border_top = ColorRect.new()
+		border_top.color = Color(0.6, 0.6, 0.6, 1.0)
+		border_top.anchors_preset = Control.PRESET_TOP_WIDE
+		border_top.anchor_bottom = 0.0
+		border_top.offset_bottom = 2
+		add_child(border_top)
+		
+		var border_bottom = ColorRect.new()
+		border_bottom.color = Color(0.3, 0.3, 0.3, 1.0)
+		border_bottom.anchors_preset = Control.PRESET_BOTTOM_WIDE
+		border_bottom.anchor_top = 1.0
+		border_bottom.offset_top = -2
+		add_child(border_bottom)
+		
+		var border_left = ColorRect.new()
+		border_left.color = Color(0.5, 0.5, 0.5, 1.0)
+		border_left.anchors_preset = Control.PRESET_LEFT_WIDE
+		border_left.anchor_right = 0.0
+		border_left.offset_right = 2
+		add_child(border_left)
+		
+		var border_right = ColorRect.new()
+		border_right.color = Color(0.4, 0.4, 0.4, 1.0)
+		border_right.anchors_preset = Control.PRESET_RIGHT_WIDE
+		border_right.anchor_left = 1.0
+		border_right.offset_left = -2
+		add_child(border_right)
+		
+		# Create item icon with proper margins
 		item_icon = TextureRect.new()
 		item_icon.anchors_preset = Control.PRESET_FULL_RECT
-		item_icon.anchor_left = 0.1
-		item_icon.anchor_top = 0.1  
-		item_icon.anchor_right = 0.9
-		item_icon.anchor_bottom = 0.9
+		item_icon.anchor_left = 0.15
+		item_icon.anchor_top = 0.15  
+		item_icon.anchor_right = 0.85
+		item_icon.anchor_bottom = 0.85
 		item_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		item_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		add_child(item_icon)
 		
-		# Create selection border using ColorRect  
-		selection_border = ColorRect.new()
-		selection_border.color = Color(1.0, 1.0, 0.0, 0.8)  # More visible yellow
-		selection_border.anchors_preset = Control.PRESET_FULL_RECT
-		selection_border.anchor_left = -0.1
-		selection_border.anchor_top = -0.1
-		selection_border.anchor_right = 1.1
-		selection_border.anchor_bottom = 1.1
-		selection_border.visible = false
-		add_child(selection_border)
-		
-		# Create count label
+		# Create count label in bottom-right corner
 		count_label = Label.new()
 		count_label.anchors_preset = Control.PRESET_BOTTOM_RIGHT
-		count_label.anchor_left = 0.5
-		count_label.anchor_top = 0.5
+		count_label.anchor_left = 0.6
+		count_label.anchor_top = 0.6
 		count_label.anchor_right = 1.0
 		count_label.anchor_bottom = 1.0
 		count_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		count_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-		count_label.add_theme_font_size_override("font_size", 12)
+		count_label.add_theme_font_size_override("font_size", 10)
 		count_label.add_theme_color_override("font_color", Color.WHITE)
 		count_label.add_theme_color_override("font_shadow_color", Color.BLACK)
 		count_label.add_theme_constant_override("shadow_offset_x", 1)
@@ -176,21 +184,8 @@ class HotbarSlot extends Control:
 		# Setup hover effects only (no click)
 		mouse_entered.connect(_on_mouse_entered)
 		mouse_exited.connect(_on_mouse_exited)
-		# Remove gui_input connection to prevent click conflicts
 		
 		print("[HotbarSlot] Slot %d setup complete" % index)
-	
-	func create_slot_background() -> Texture2D:
-		# Use a simple placeholder texture for now - easier to debug
-		var placeholder = PlaceholderTexture2D.new()
-		placeholder.size = Vector2(32, 32)
-		return placeholder
-	
-	func create_selection_border() -> Texture2D:
-		# Use a simple placeholder texture for selection too
-		var placeholder = PlaceholderTexture2D.new()
-		placeholder.size = Vector2(32, 32)
-		return placeholder
 	
 	func set_item(texture: Texture2D, count: int = 1) -> void:
 		item_texture = texture
@@ -232,11 +227,11 @@ class HotbarSlot extends Control:
 	
 	func set_selected(selected: bool) -> void:
 		is_selected = selected
-		selection_border.visible = selected
+		# Remove selection border functionality since we don't use selection anymore
 	
 	func _on_mouse_entered() -> void:
-		if not is_selected:
-			background.modulate = Color(1.2, 1.2, 1.2, 1.0)  # Slightly brighter
+		# Subtle hover effect
+		background.color = Color(0.25, 0.25, 0.35, 0.9)  # Slightly blue tint on hover
 	
 	func _on_mouse_exited() -> void:
-		background.modulate = Color.WHITE
+		background.color = Color(0.15, 0.15, 0.15, 0.9)  # Back to normal

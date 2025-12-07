@@ -8,16 +8,36 @@ Hotbar system cho phép player nhặt và sử dụng items trong game. System b
 - **Item Manager**: Xử lý logic khi sử dụng items
 
 ## Controls
-- **Phím 1-5**: Chọn và SỬ DỤNG item ngay lập tức
-- **Mouse wheel**: Scroll qua các slots (chỉ để xem)
-- **Selected slot**: Slot được chọn có viền vàng
+- **Phím 1-5**: Sử dụng item ngay lập tức
+- **Mouse wheel**: Scroll qua các slots (để xem)
+- **Individual slots**: Mỗi ô có border riêng biệt
+
+## Visual Design
+**Improved Hotbar UI:**
+- ✅ Individual slot borders (3D effect)
+- ✅ Darker background with better contrast
+- ✅ Proper slot separation (4px spacing)
+- ✅ Removed selection border (không cần nữa)
+- ✅ Better hover effects
+- ✅ Clean professional look
 
 ## Item Usage
 **Health Potion**: 
 - Restores 1 HP to player
 - Cannot use when health is full
 - Makes coin sound effect when used
-- Shows debug messages in console
+
+**Speed Boost**:
+- Increases player movement speed temporarily
+- Uses existing powerup system
+- Duration and multiplier từ powerup database
+- Makes coin sound effect when used
+
+**Damage Boost**:
+- Increases player attack damage (visual effect for now)
+- Red flashing effect khi dùng
+- Makes coin sound effect when used
+- TODO: Actual damage boost when attack system available
 
 **How to use items:**
 1. Pick up item (automatically goes to hotbar)
@@ -26,8 +46,18 @@ Hotbar system cho phép player nhặt và sử dụng items trong game. System b
 4. Item removed from hotbar after use
 
 **Debug Controls:**
-- **H**: Add test item to hotbar
-- **J**: Damage player -1 HP (để test healing)
+- **R**: Clear ALL save data (để test item respawn)
+
+**Item Collection:**
+- Items spawn naturally trong level
+- Pick up để add vào hotbar
+- Pure gameplay experience!
+
+**Testing Workflow:**
+1. **Pick up items** → họ sẽ disappear và được save
+2. **Press R** → clear save data  
+3. **Restart level** → items respawn
+4. **Level 3 auto-clears** save data mỗi lần load!
 
 ## Components
 

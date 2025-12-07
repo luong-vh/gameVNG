@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://danrg15a8qg2f"]
+[gd_scene load_steps=12 format=3 uid="uid://ciqyxw1n24ngh"]
 
 [ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/gui_manager.gd" id="1_ghc5l"]
 [ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
 [ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
-[ext_resource type="PackedScene" uid="uid://bl8d4uvh5x7r4" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
-[ext_resource type="AudioStream" uid="uid://8ig7y4yrrv5e" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
-[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
-[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="6_ito21"]
+[ext_resource type="PackedScene" uid="uid://b2gy2wu8m41i1" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
+[ext_resource type="AudioStream" uid="uid://ulf2f0m2bcj2" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
+[ext_resource type="AudioStream" uid="uid://1a0fpdjm2hxu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
+[ext_resource type="AudioStream" uid="uid://cwbwxn66277jq" path="res://assets/sounds/jump.mp3" id="6_ito21"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
@@ -116,17 +116,11 @@ offset_bottom = 52.0
 script = null
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("3_hotbar")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -60.0
-offset_right = 80.0
-offset_bottom = -20.0
 z_index = 100
+offset_left = -78.0
+offset_top = -37.0
+offset_right = 82.0
+offset_bottom = 3.0
 
 [connection signal="pressed" from="CanvasLayer/SettingInStage/HBoxContainer/SettingsTextureButton" to="." method="_on_settings_texture_button_pressed"]
 
