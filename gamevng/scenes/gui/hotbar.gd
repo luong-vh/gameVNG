@@ -19,14 +19,10 @@ func _ready() -> void:
 	print("[Hotbar] Hotbar ready with %d slots" % slot_count)
 	
 func _unhandled_input(event: InputEvent) -> void:
-	# Debug key to clear save data
+	# Debug key to reset current level only
 	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
-		print("[Hotbar] *** CLEARING ALL SAVE DATA ***")
-		SaveSystem.reset_data()
-		GameManager.clear_checkpoint_data()
-		if GameManager.inventory_system:
-			GameManager.inventory_system.reset_inventory()
-		print("[Hotbar] Save data cleared! Restart level to see changes.")
+		print("[Hotbar] *** RESETTING CURRENT LEVEL ONLY ***")
+		GameManager.reset_level()
 		get_viewport().set_input_as_handled()
 		return
 	

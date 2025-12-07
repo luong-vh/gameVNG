@@ -46,7 +46,7 @@ Hotbar system cho phép player nhặt và sử dụng items trong game. System b
 4. Item removed from hotbar after use
 
 **Debug Controls:**
-- **R**: Clear ALL save data (để test item respawn)
+- **R**: Reset CURRENT level only (items respawn, progress kept for other levels)
 
 **Item Collection:**
 - Items spawn naturally trong level
@@ -54,10 +54,10 @@ Hotbar system cho phép player nhặt và sử dụng items trong game. System b
 - Pure gameplay experience!
 
 **Testing Workflow:**
-1. **Pick up items** → họ sẽ disappear và được save
-2. **Press R** → clear save data  
-3. **Restart level** → items respawn
-4. **Level 3 auto-clears** save data mỗi lần load!
+1. **Pick up items** → họ sẽ disappear và được saved
+2. **Press R** → reset current level only  
+3. **Items respawn** → other levels unchanged
+4. **Level 3 auto-resets** every time you enter!
 
 ## Components
 
