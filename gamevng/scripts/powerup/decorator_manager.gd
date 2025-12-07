@@ -33,6 +33,7 @@ func apply_powerup(powerup_id: String) -> bool:
 	_add_to_chain(decorator)
 	decorator.on_apply() # Sets is_active = true
 	active_decorators.append(decorator)
+	return true
 	
 	# Centralized visual update
 	_reapply_all_visuals()

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8eae0f1g2h3i"]
+
+[ext_resource type="Script" uid="uid://bbsb82qwppgbf" path="res://scenes/collectibles/damage_boost.gd" id="1_dmg"]
+[ext_resource type="Texture2D" uid="uid://d0xi6onyqna4m" path="res://assets/items/potions/pt1.png" id="2_pt1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmg"]
+radius = 9.0
+
+[node name="DamageBoost" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_dmg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.5, 0.3, 0.3, 1)
+position = Vector2(4.7683716e-07, -1.0000005)
+scale = Vector2(0.06666666, 0.058666665)
+texture = ExtResource("2_pt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_dmg")

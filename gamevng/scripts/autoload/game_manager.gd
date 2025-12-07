@@ -12,6 +12,7 @@ var player: Player = null
 var main_camera: Camera2D = null
 
 var inventory_system: InventorySystem = null
+var item_manager: ItemManager = null
 
 #target portal name is the name of the portal to which the player will be teleported
 var target_portal_name: String = ""
@@ -36,6 +37,10 @@ func _ready() -> void:
 	# Initialize inventory system
 	inventory_system = InventorySystem.new()
 	add_child(inventory_system)
+	
+	# Initialize item manager
+	item_manager = ItemManager.new()
+	add_child(item_manager)
 	
 func set_player(_player: Player):
 	player = _player
