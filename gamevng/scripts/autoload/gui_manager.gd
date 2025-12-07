@@ -7,9 +7,23 @@ var setting_popup_scene
 
 @onready var _fade_animation_player = $FadeController/AnimationPlayer
 @onready var _heart_container = $CanvasLayer/HeartsContainer
+@onready var _hotbar = $CanvasLayer/Hotbar
 
 func _ready():
+	print("[GUIManager] Starting GUIManager initialization...")
 	_fade_animation_player.animation_finished.connect(_on_animation_finished)
+	
+	# Check if hotbar exists
+	if _hotbar:
+		print("[GUIManager] Hotbar found and loaded successfully!")
+		_hotbar.slot_selected.connect(_on_hotbar_slot_selected)
+		_hotbar.item_used.connect(_on_hotbar_item_used)
+	else:
+		print("[GUIManager] WARNING: Hotbar not found in scene!")
+	
+	# Connect inventory signals when GameManager is ready
+	call_deferred("_connect_inventory_signals")
+	print("[GUIManager] Initialization complete")
 
 func fade_to_black():
 	_fade_animation_player.play("fade_to_black")
@@ -19,10 +33,16 @@ func fade_from_black():
 
 func on_level_selection_scene():
 	_heart_container.visible = false
+	if _hotbar:
+		_hotbar.visible = false  # Hide hotbar in level selection
 	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_level_selection_popup.tscn")
 
 func on_stage_scene():
+	print("[GUIManager] Setting up stage scene...")
 	_heart_container.visible = true
+	if _hotbar:
+		_hotbar.visible = true  # Show hotbar in game
+		print("[GUIManager] Hotbar set to visible, position: %s, size: %s" % [_hotbar.position, _hotbar.size])
 	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_popup.tscn")
 	
 func _on_animation_finished(anim_name):
@@ -68,3 +88,47 @@ func open_stage_clear_popup():
 func _on_settings_texture_button_pressed() -> void:
 	var popup_settings = setting_popup_scene.instantiate()
 	$CanvasLayer.add_child(popup_settings)
+
+# ==================== Hotbar System ====================
+
+func _connect_inventory_signals() -> void:
+	print("[GUI] Connecting inventory signals...")
+	if GameManager.inventory_system:
+		GameManager.inventory_system.hotbar_updated.connect(_on_hotbar_updated)
+		GameManager.inventory_system.hotbar_cleared.connect(_on_hotbar_cleared)
+		print("[GUI] Inventory signals connected successfully!")
+	else:
+		print("[GUI] WARNING: GameManager.inventory_system is null!")
+
+func _on_hotbar_slot_selected(slot_index: int) -> void:
+	print("[GUI] Hotbar slot %d selected" % slot_index)
+
+func _on_hotbar_item_used(slot_index: int) -> void:
+	print("[GUI] *** USING ITEM from slot %d ***" % slot_index)
+	if GameManager.inventory_system and GameManager.item_manager:
+		var item = GameManager.inventory_system.get_hotbar_item(slot_index)
+		if item and item.count > 0:
+			print("[GUI] Item found: '%s' (count: %d)" % [item.item_name, item.count])
+			# Try to use the item
+			var success = GameManager.item_manager.use_item(item.item_name)
+			if success:
+				print("[GUI] ✅ Item used successfully! Removing from hotbar...")
+				# Remove item from hotbar if use was successful
+				GameManager.inventory_system.use_item_from_hotbar(slot_index)
+			else:
+				print("[GUI] ❌ Item usage failed!")
+		else:
+			print("[GUI] ❌ No item in slot %d to use" % slot_index)
+
+func _on_hotbar_updated(slot_index: int, texture: Texture2D, count: int) -> void:
+	if _hotbar:
+		_hotbar.set_slot_item(slot_index, texture, count)
+
+func _on_hotbar_cleared(slot_index: int) -> void:
+	if _hotbar:
+		_hotbar.clear_slot(slot_index)
+
+func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -> bool:
+	if GameManager.inventory_system:
+		return GameManager.inventory_system.add_item_to_hotbar(item_name, texture, count)
+	return false
