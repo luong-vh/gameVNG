@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://x18ct0xrj08p"]
+[gd_scene load_steps=13 format=4 uid="uid://x18ct0xrj08p"]
 
 [ext_resource type="Script" uid="uid://oh5kkj3hp7vq" path="res://tests/test_enemy.gd" id="1_5jyel"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_i5bra"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="10_tsaj6"]
 [ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="11_wjdv0"]
+[ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://scenes/objects/spring/spring.tscn" id="12_wjdv0"]
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_5jyel")
@@ -51,3 +52,7 @@ enemy_scene = ExtResource("7_pxeid")
 position = Vector2(796, 208)
 
 [node name="MainCamera" parent="." instance=ExtResource("11_wjdv0")]
+
+[node name="Spring" parent="." instance=ExtResource("12_wjdv0")]
+position = Vector2(484, 220)
+push_force = 400.0
