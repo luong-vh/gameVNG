@@ -1,8 +1,5 @@
 extends EnemyState
 
-
-@export var pause_time: float = 1.0
-
 var _start_x: float
 var _is_paused: bool = false
 var _pause_timer: float = 0.0
@@ -22,7 +19,7 @@ func _update(delta : float) -> void:
 	obj.velocity.x = obj.direction * obj.movement_speed * 0.5
 	if _should_turn_around():
 		_start_pause()
-	
+
 	if obj._is_attack():
 		print("change to throw")
 		change_state(fsm.states.throw)
@@ -39,5 +36,5 @@ func _should_turn_around() -> bool:
 
 func _start_pause() -> void:
 	_is_paused = true
-	_pause_timer = pause_time
+	_pause_timer = obj.pause_time  # Sử dụng biến từ obj
 	obj.velocity.x = 0
