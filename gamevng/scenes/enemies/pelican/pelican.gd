@@ -1,21 +1,26 @@
 extends EnemyCharacter
 
-
-const SPEED = 30.0
-const JUMP_VELOCITY = -400.0
-
 @export_group("Flying")
 @export var patrol_distance: float = 200.0
-@export var pause_time: float = 0.5
+var patrol_start: Vector2
+var patrol_end: Vector2
+#@export var pause_time: float = 0.5
 
 @export_group("Attack")
+@export var attack_cool_down: float = 3
+@export var shot_amount: int = 1
 @export var bullet_speed : float = 30
 @onready var bullet_factory = $Direction/BulletFactory
+
 func _ready()->void:
 	super._ready()
 	type = "PELICAN"
 	fsm = FSM.new(self, $States, $States/Fly)
+	init_patrol_path()
 
+func init_patrol_path():
+	patrol_start = global_position
+	patrol_end = Vector2(patrol_start.x + patrol_distance * direction, patrol_start.y)
 
 func fire() -> void:
 	var bullet :=bullet_factory.create() as RigidBody2D

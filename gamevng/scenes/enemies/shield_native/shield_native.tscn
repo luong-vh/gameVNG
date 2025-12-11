@@ -1,14 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://de5jc85hnt3us"]
+[gd_scene load_steps=23 format=3 uid="uid://de5jc85hnt3us"]
 
 [ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield_native/shield_native.gd" id="1_h56nw"]
 [ext_resource type="Texture2D" uid="uid://caqiia2urwwr8" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
 [ext_resource type="Texture2D" uid="uid://07cln8dtuxw0" path="res://assets/monsters/spear/spear_10.png" id="3_m1jvq"]
 [ext_resource type="Texture2D" uid="uid://ct0jbnkptv3tc" path="res://assets/monsters/spear/spear_11.png" id="4_iggd0"]
 [ext_resource type="Texture2D" uid="uid://bvrykrxi72t4a" path="res://assets/monsters/spear/spear_12.png" id="5_6dtt5"]
-[ext_resource type="Texture2D" uid="uid://cvramnmmekrkm" path="res://assets/monsters/spear/spear_13.png" id="6_syvg3"]
-[ext_resource type="Texture2D" uid="uid://m8c417xuxnn1" path="res://assets/monsters/spear/spear_14.png" id="7_57d5w"]
 [ext_resource type="Texture2D" uid="uid://bq4eqvrl4ccfu" path="res://assets/monsters/spear/spear_16.png" id="8_piyiv"]
-[ext_resource type="Texture2D" uid="uid://cpr3vbk54b4gu" path="res://assets/monsters/spear/spear_15.png" id="9_dbucr"]
 [ext_resource type="Texture2D" uid="uid://bpplt0sv0x4c1" path="res://assets/monsters/spear/spear_18.png" id="10_mgpqy"]
 [ext_resource type="Texture2D" uid="uid://bd1vseojj5f2r" path="res://assets/monsters/spear/spear_1.png" id="11_fqfyp"]
 [ext_resource type="Texture2D" uid="uid://5hdybfrwg2a7" path="res://assets/monsters/spear/spear_2.png" id="12_540c7"]
@@ -38,18 +35,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_6dtt5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_syvg3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_57d5w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_piyiv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_dbucr")
 }],
 "loop": false,
 "name": &"attack",
@@ -99,11 +84,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dtt5"]
-size = Vector2(41.25, 28)
+size = Vector2(41.25, 31)
 
 [node name="ShieldNative" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_h56nw")
+attack_cooldown = 1.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="Direction" type="Node2D" parent="."]
@@ -148,6 +134,7 @@ script = ExtResource("19_6dtt5")
 
 [node name="Attack" type="Node" parent="States"]
 script = ExtResource("20_iggd0")
+attack_movement_speed = 300
 
 [node name="Moving" type="Node" parent="States"]
 script = ExtResource("20_m1jvq")
@@ -156,7 +143,7 @@ script = ExtResource("20_m1jvq")
 script = ExtResource("22_6dtt5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
