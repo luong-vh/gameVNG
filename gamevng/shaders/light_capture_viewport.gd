@@ -60,31 +60,44 @@ func create_light_circle(light: PointLight2D) -> Sprite2D:
 	return circle
 
 func _process(delta: float) -> void:
+	# Clean up invalid lights (freed objects)
+	var valid_lights: Array = []
 	for item in light_circles:
 		var light = item["light"]
 		var sprite = item["sprite"]
-		
+
+		# Check if light still exists (not freed)
+		if not is_instance_valid(light):
+			# Remove sprite and skip this light
+			sprite.queue_free()
+			continue
+
+		valid_lights.append(item)
+
 		# Update position
 		sprite.global_position = light.global_position
-		
+
 		var base_scale: float = light.texture_scale
 		var energy_scale: float = light.energy
 		var desired_scale: float = base_scale * energy_scale
 		var texture_size: float = 0.0
 		if sprite.texture:
 			texture_size = max(sprite.texture.get_width(), sprite.texture.get_height())
-		
+
 		var light_radius: float = light.radius if light.has_method("radius") else 500.0
 		if texture_size > 0:
 			var actual_radius: float = (texture_size / 2.0) * desired_scale
 			if actual_radius > light_radius:
 				desired_scale = (light_radius * 2.0) / texture_size
-		
+
 		sprite.scale = Vector2.ONE * desired_scale
-		
+
 		# Calculate per-light intensity (clamped between 0.0 and 1.0)
 		var intensity: float = clamp(light.energy * 0.7, 0.0, 5.0)
 		sprite.modulate = Color(1, 1, 1, intensity)
-		
+
 		# Update visibility
 		sprite.visible = light.enabled and light.visible
+
+	# Update array with only valid lights
+	light_circles = valid_lights
