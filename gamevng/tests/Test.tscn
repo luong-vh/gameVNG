@@ -18,8 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="18_lyvmt"]
 [ext_resource type="PackedScene" uid="uid://c6to373sloqm1" path="res://scenes/puzzle/seesaw/seesaw.tscn" id="18_u76d5"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="20_e7345"]
-[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/king_crab.tscn" id="20_nhw5b"]
-[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/spear.tscn" id="21_nhw5b"]
+[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/boss/king_crab/king_crab.tscn" id="20_nhw5b"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/shield_native.tscn" id="21_nhw5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pupqp"]
 size = Vector2(84, 14)

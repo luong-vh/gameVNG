@@ -1,23 +1,23 @@
 [gd_scene load_steps=22 format=3 uid="uid://crcq4c8hqnmt"]
 
-[ext_resource type="Script" uid="uid://tbbx1amj12me" path="res://scenes/enemies/native/native.gd" id="1_gs3wm"]
-[ext_resource type="Texture2D" uid="uid://7lh6tgqp556u" path="res://assets/monsters/native/native_6.png" id="3_u0koj"]
-[ext_resource type="Texture2D" uid="uid://caisa20irnf8b" path="res://assets/monsters/native/native_9.png" id="4_upl4r"]
-[ext_resource type="Texture2D" uid="uid://q54n330sb8eq" path="res://assets/monsters/native/native_10.png" id="5_jnoti"]
-[ext_resource type="Texture2D" uid="uid://clb0bjovp7t13" path="res://assets/monsters/native/native_11.png" id="6_pe3bm"]
-[ext_resource type="Texture2D" uid="uid://be7t7hl8y4sty" path="res://assets/monsters/native/native_4.png" id="7_1461y"]
-[ext_resource type="Texture2D" uid="uid://csi5qf3e4ombe" path="res://assets/monsters/native/native_1.png" id="8_d4u6i"]
-[ext_resource type="Texture2D" uid="uid://bqhv2mwnlev6k" path="res://assets/monsters/native/native_2.png" id="9_rpxsc"]
-[ext_resource type="Texture2D" uid="uid://c5r0ogtbdb3y3" path="res://assets/monsters/native/native_5.png" id="10_mflj3"]
-[ext_resource type="Texture2D" uid="uid://cvkdm6mr5nnjn" path="res://assets/monsters/native/native_3.png" id="11_o8aiu"]
-[ext_resource type="Texture2D" uid="uid://c2nya8pndev11" path="res://assets/monsters/native/native_8.png" id="12_i1fqc"]
+[ext_resource type="Script" uid="uid://tbbx1amj12me" path="res://scenes/enemies/coconut_native/coconut_native.gd" id="1_gs3wm"]
+[ext_resource type="Texture2D" uid="uid://c6nowt4hxtjd3" path="res://assets/monsters/native/native_6.png" id="3_u0koj"]
+[ext_resource type="Texture2D" uid="uid://dqp3uyrxpk3xe" path="res://assets/monsters/native/native_9.png" id="4_upl4r"]
+[ext_resource type="Texture2D" uid="uid://3ucxdjd7lewi" path="res://assets/monsters/native/native_10.png" id="5_jnoti"]
+[ext_resource type="Texture2D" uid="uid://b4mcbu1yjiqho" path="res://assets/monsters/native/native_11.png" id="6_pe3bm"]
+[ext_resource type="Texture2D" uid="uid://dl0ycfhxdvpka" path="res://assets/monsters/native/native_4.png" id="7_1461y"]
+[ext_resource type="Texture2D" uid="uid://br3kxve3rkv2q" path="res://assets/monsters/native/native_1.png" id="8_d4u6i"]
+[ext_resource type="Texture2D" uid="uid://cqkhe0cg3cc0u" path="res://assets/monsters/native/native_2.png" id="9_rpxsc"]
+[ext_resource type="Texture2D" uid="uid://djqhnf4f2d2xi" path="res://assets/monsters/native/native_5.png" id="10_mflj3"]
+[ext_resource type="Texture2D" uid="uid://ceat5rqrdedg3" path="res://assets/monsters/native/native_3.png" id="11_o8aiu"]
+[ext_resource type="Texture2D" uid="uid://w0roa36ltd2g" path="res://assets/monsters/native/native_8.png" id="12_i1fqc"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="13_4wv6r"]
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="13_u0koj"]
-[ext_resource type="Script" uid="uid://81a5frjfoovw" path="res://scenes/enemies/native/walk.gd" id="14_u0koj"]
-[ext_resource type="PackedScene" uid="uid://daebxh76prtom" path="res://scenes/enemies/native/coconut_native.tscn" id="14_upl4r"]
-[ext_resource type="Script" uid="uid://c1bcy3u2kr35q" path="res://scenes/enemies/native/throw.gd" id="16_pe3bm"]
-[ext_resource type="Script" uid="uid://chrwk70f61jab" path="res://scenes/enemies/native/hurt.gd" id="17_pe3bm"]
-[ext_resource type="Script" uid="uid://cpyfromrv43oi" path="res://scenes/enemies/native/dead.gd" id="18_1461y"]
+[ext_resource type="Script" uid="uid://81a5frjfoovw" path="res://scenes/enemies/coconut_native/walk.gd" id="14_u0koj"]
+[ext_resource type="PackedScene" uid="uid://daebxh76prtom" path="res://scenes/enemies/coconut_native/coconut_bullet.tscn" id="14_upl4r"]
+[ext_resource type="Script" uid="uid://c1bcy3u2kr35q" path="res://scenes/enemies/coconut_native/throw.gd" id="16_pe3bm"]
+[ext_resource type="Script" uid="uid://chrwk70f61jab" path="res://scenes/enemies/coconut_native/hurt.gd" id="17_pe3bm"]
+[ext_resource type="Script" uid="uid://cpyfromrv43oi" path="res://scenes/enemies/coconut_native/dead.gd" id="18_1461y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nraa6"]
 animations = [{
@@ -74,7 +74,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tglhi"]
 
-[node name="Native" type="CharacterBody2D"]
+[node name="CoconutNative" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_gs3wm")
 move_distance = 160.0
@@ -108,7 +108,7 @@ target_position = Vector2(0, 23)
 position = Vector2(17, -15)
 script = ExtResource("13_u0koj")
 product_packed_scene = ExtResource("14_upl4r")
-target_container_name = &"Coconuts"
+target_container_name = &"Bullets"
 metadata/_custom_type_script = "uid://b8m342bxc521g"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -119,19 +119,15 @@ shape = SubResource("CapsuleShape2D_tglhi")
 
 [node name="Walk" type="Node" parent="States"]
 script = ExtResource("14_u0koj")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Throw" type="Node" parent="States"]
 script = ExtResource("16_pe3bm")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Hurt" type="Node" parent="States"]
 script = ExtResource("17_pe3bm")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource("18_1461y")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 65)

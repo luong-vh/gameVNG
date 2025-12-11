@@ -331,6 +331,7 @@ z_index = 2
 collision_layer = 2
 collision_mask = 33
 script = ExtResource("1_wodsf")
+attack_cd_sec = 0.2
 pogo_bounce_force = 300.0
 wall_friction = 500.0
 wall_slide_speed = 100.0

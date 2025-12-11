@@ -1,7 +1,5 @@
 extends EnemyCharacter
 
-
-
 @export_category("Push Settings")
 @export var push_speed_multiplier: float = 0.7 
 
@@ -30,7 +28,6 @@ func try_to_push(velocity_x: float,delta: float) ->float:
 			return velocity_x * push_speed_multiplier
 	return 0
 
-
 func _add_into_enemy_manager():
 	EnemyManager.add_enemy(self , type)
 
@@ -41,8 +38,6 @@ func change_to_day_behavior():
 	print("[%s] → DAY: hide turtle" % name)
 	_delete_from_enemy_manager()
 	queue_free()
-
-
 
 func change_to_night_behavior():
 	print("[%s] → NIGHT: (spawn handled by manager)" % name)

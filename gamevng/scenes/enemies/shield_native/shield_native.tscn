@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://de5jc85hnt3us"]
 
-[ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield_native/spear.gd" id="1_h56nw"]
+[ext_resource type="Script" uid="uid://wi70dqorfb4l" path="res://scenes/enemies/shield_native/shield_native.gd" id="1_h56nw"]
 [ext_resource type="Texture2D" uid="uid://caqiia2urwwr8" path="res://assets/monsters/spear/spear_9.png" id="2_lt2gd"]
 [ext_resource type="Texture2D" uid="uid://07cln8dtuxw0" path="res://assets/monsters/spear/spear_10.png" id="3_m1jvq"]
 [ext_resource type="Texture2D" uid="uid://ct0jbnkptv3tc" path="res://assets/monsters/spear/spear_11.png" id="4_iggd0"]
@@ -101,7 +101,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dtt5"]
 size = Vector2(41.25, 28)
 
-[node name="Spear" type="CharacterBody2D"]
+[node name="ShieldNative" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_h56nw")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
