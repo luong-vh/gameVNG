@@ -238,7 +238,7 @@ func _on_area_hitted(area: Area2D) -> void:
 		return
 	
 	var knockback_vector: Vector2 = Vector2.ZERO
-	if area is HurtArea2D:
+	if area is HurtArea2D and area.have_knockback:
 		match attack_direction:
 			AttackDir.FORWARD:
 				# Push away from enemy
@@ -248,7 +248,7 @@ func _on_area_hitted(area: Area2D) -> void:
 				knockback_vector = Vector2(0, attack_knockback_force * 0.5)
 			AttackDir.DOWN:
 				knockback_vector = Vector2(0, -pogo_bounce_force)
-	elif area is PogoArea2D:
+	elif area is PogoArea2D and area.have_knockback:
 		knockback_vector = Vector2(0, -pogo_bounce_force)
 	
 	if knockback_vector != Vector2.ZERO:

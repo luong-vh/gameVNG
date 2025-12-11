@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxvc68rg33rgc"]
+
+[ext_resource type="Script" uid="uid://b3qmlk3upkffj" path="res://levels/objects/puzzle/pressure_plate/pressure_plate.gd" id="1_jgyea"]
+[ext_resource type="Texture2D" uid="uid://bth7bqeyk7mbj" path="res://assets/island/objects/metal/metal.png" id="2_jgyea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpglx"]
+size = Vector2(45, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgyea"]
+size = Vector2(44, 8.9375)
+
+[sub_resource type="Animation" id="Animation_t0eyx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_rpglx"]
+resource_name = "press"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 9)]
+}
+
+[sub_resource type="Animation" id="Animation_no6ws"]
+resource_name = "unpress"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 9), Vector2(0, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0eyx"]
+_data = {
+&"RESET": SubResource("Animation_t0eyx"),
+&"press": SubResource("Animation_rpglx"),
+&"unpress": SubResource("Animation_no6ws")
+}
+
+[node name="PressurePlate" type="StaticBody2D"]
+z_index = -1
+script = ExtResource("1_jgyea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rpglx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.26316, 2.31787)
+texture = ExtResource("2_jgyea")
+offset = Vector2(0, 2)
+region_enabled = true
+region_rect = Rect2(26.1242, 74.3219, 19.8017, 3.44012)
+
+[node name="DetectionArea2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+position = Vector2(-1, 0.53125)
+shape = SubResource("RectangleShape2D_jgyea")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t0eyx")
+}
+autoplay = "RESET"

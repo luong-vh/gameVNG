@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmqnrxkn6dxsh"]
+
+[ext_resource type="Script" uid="uid://c7wwcenw4vwne" path="res://levels/objects/puzzle/lever/lever_control.gd" id="1_idjd2"]
+
+[node name="LeverControl" type="Node2D"]
+script = ExtResource("1_idjd2")
+
+[node name="Levers" type="Node2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]

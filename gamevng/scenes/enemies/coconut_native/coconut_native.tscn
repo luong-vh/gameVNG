@@ -37,6 +37,12 @@ animations = [{
 "texture": ExtResource("5_jnoti")
 }, {
 "duration": 1.0,
+"texture": ExtResource("5_jnoti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pe3bm")
+}, {
+"duration": 1.0,
 "texture": ExtResource("6_pe3bm")
 }, {
 "duration": 1.0,
@@ -77,7 +83,6 @@ animations = [{
 [node name="CoconutNative" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_gs3wm")
-move_distance = 160.0
 detection_range = 300.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -86,6 +91,8 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_nraa6")
 animation = &"throw"
+frame = 5
+frame_progress = 1.0
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16

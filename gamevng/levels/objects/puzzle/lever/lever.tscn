@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpecowpo8p7jr"]
+
+[ext_resource type="Texture2D" uid="uid://de2sqtmts5mg6" path="res://assets/free-medieval-tileset-pixel-art-pack/PNG/Objects/lever1.png" id="1_p5her"]
+[ext_resource type="Script" uid="uid://d2b7wgatot8h2" path="res://levels/objects/puzzle/lever/lever.gd" id="1_qkmv8"]
+[ext_resource type="Texture2D" uid="uid://qf6ggxr3u6h5" path="res://assets/free-medieval-tileset-pixel-art-pack/PNG/Objects/lever2.png" id="2_qp6bf"]
+[ext_resource type="Texture2D" uid="uid://bpp1nitc7c2an" path="res://assets/free-medieval-tileset-pixel-art-pack/PNG/Objects/lever3.png" id="3_qkmv8"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="4_qp6bf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_170jl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p5her")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp6bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qkmv8")
+}],
+"loop": false,
+"name": &"activate",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qkmv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp6bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_p5her")
+}],
+"loop": false,
+"name": &"deactivate",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p5her")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkmv8"]
+size = Vector2(31, 20.5)
+
+[node name="Lever" type="Node2D"]
+z_index = -1
+script = ExtResource("1_qkmv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_170jl")
+animation = &"deactivate"
+frame = 2
+frame_progress = 1.0
+
+[node name="LeftHurtArea2D" type="Area2D" parent="."]
+position = Vector2(0, -3)
+collision_layer = 24
+collision_mask = 0
+script = ExtResource("4_qp6bf")
+have_knockback = false
+metadata/_custom_type_script = "uid://csu2b21cwchqw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHurtArea2D"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qkmv8")
+
+[connection signal="hurt" from="LeftHurtArea2D" to="." method="_on_hurt_area_2d_hurt"]
