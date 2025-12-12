@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
 [ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
 [ext_resource type="PackedScene" uid="uid://b2gy2wu8m41i1" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
+[ext_resource type="PackedScene" uid="uid://c8y3m6j4k1n2p" path="res://scenes/gui/inventory_screen.tscn" id="4_inventory"]
 [ext_resource type="AudioStream" uid="uid://ulf2f0m2bcj2" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
 [ext_resource type="AudioStream" uid="uid://1a0fpdjm2hxu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
 [ext_resource type="AudioStream" uid="uid://cwbwxn66277jq" path="res://assets/sounds/jump.mp3" id="6_ito21"]
@@ -121,6 +122,9 @@ offset_left = -78.0
 offset_top = -37.0
 offset_right = 82.0
 offset_bottom = 3.0
+
+[node name="InventoryScreen" parent="CanvasLayer" instance=ExtResource("4_inventory")]
+z_index = 200
 
 [connection signal="pressed" from="CanvasLayer/SettingInStage/HBoxContainer/SettingsTextureButton" to="." method="_on_settings_texture_button_pressed"]
 

@@ -183,6 +183,26 @@ func get_hotbar_item(slot_index: int) -> ItemData:
 		return hotbar_items[slot_index]
 	return null
 
+func set_hotbar_slot(slot_index: int, item_name: String, texture: Texture2D, count: int = 1) -> bool:
+	"""Force set item to specific hotbar slot, overwriting any existing item"""
+	if slot_index < 0 or slot_index >= hotbar_items.size():
+		print("[InventorySystem] Invalid slot index: %d" % slot_index)
+		return false
+
+	# Create new item data
+	var new_item = ItemData.new(item_name, texture, count)
+	hotbar_items[slot_index] = new_item
+	hotbar_updated.emit(slot_index, new_item.texture, new_item.count)
+
+	print("[InventorySystem] Set slot %d to '%s' (count: %d)" % [slot_index, item_name, count])
+	return true
+
+func clear_hotbar_slot(slot_index: int) -> void:
+	"""Clear a specific hotbar slot"""
+	if slot_index >= 0 and slot_index < hotbar_items.size():
+		hotbar_items[slot_index] = null
+		hotbar_cleared.emit(slot_index)
+
 func clear_hotbar() -> void:
 	for i in range(hotbar_items.size()):
 		hotbar_items[i] = null
