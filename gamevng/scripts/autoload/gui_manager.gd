@@ -8,6 +8,7 @@ var setting_popup_scene
 @onready var _fade_animation_player = $FadeController/AnimationPlayer
 @onready var _heart_container = $CanvasLayer/HeartsContainer
 @onready var _hotbar = $CanvasLayer/Hotbar
+@onready var _inventory_screen = $CanvasLayer/InventoryScreen
 
 func _ready():
 	print("[GUIManager] Starting GUIManager initialization...")
@@ -35,6 +36,8 @@ func on_level_selection_scene():
 	_heart_container.visible = false
 	if _hotbar:
 		_hotbar.visible = false  # Hide hotbar in level selection
+	if _inventory_screen:
+		_inventory_screen.visible = false  # Hide inventory in level selection
 	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_level_selection_popup.tscn")
 
 func on_stage_scene():
@@ -43,6 +46,9 @@ func on_stage_scene():
 	if _hotbar:
 		_hotbar.visible = true  # Show hotbar in game
 		print("[GUIManager] Hotbar set to visible, position: %s, size: %s" % [_hotbar.position, _hotbar.size])
+	if _inventory_screen:
+		# Inventory screen starts hidden, player opens with Tab
+		_inventory_screen.visible = false
 	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_popup.tscn")
 	
 func _on_animation_finished(anim_name):
@@ -112,9 +118,13 @@ func _on_hotbar_item_used(slot_index: int) -> void:
 			# Try to use the item
 			var success = GameManager.item_manager.use_item(item.item_name)
 			if success:
-				print("[GUI] ✅ Item used successfully! Removing from hotbar...")
-				# Remove item from hotbar if use was successful
-				GameManager.inventory_system.use_item_from_hotbar(slot_index)
+				print("[GUI] ✅ Item used successfully!")
+				# Check if item is consumable (blade is not consumable)
+				if item.item_name != "blade":
+					print("[GUI] Removing consumable item from hotbar...")
+					GameManager.inventory_system.use_item_from_hotbar(slot_index)
+				else:
+					print("[GUI] Blade is equipment - keeping in hotbar")
 			else:
 				print("[GUI] ❌ Item usage failed!")
 		else:

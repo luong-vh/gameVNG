@@ -72,7 +72,10 @@ func _ready() -> void:
 	add_child(decorator_manager)
 
 	if has_blade:
-		collect_blade()
+		# Player spawns with blade pre-equipped
+		collect_blade()  # Add to hotbar
+		equip_blade()    # Auto-equip at spawn
+		print("[Player] Spawned with blade equipped")
 	
 	if has_node("LockInputTimer"):
 		lock_input_timer = get_node("LockInputTimer")
@@ -149,23 +152,73 @@ func change_attack_direction(dir: AttackDir):
 		attack_direction = dir
 
 func collect_blade() -> void:
+	print("[Player] Collecting blade (adding to hotbar)...")
+
+	# Add blade icon to hotbar - find empty slot, don't overwrite
+	if GameManager.inventory_system:
+		var blade_texture = load("res://assets/items/blade.png")
+		if blade_texture:
+			var success = GameManager.inventory_system.add_item_to_hotbar("blade", blade_texture, 1)
+			if success:
+				print("[Player] ✅ Blade added to hotbar (press 1 to equip)")
+			else:
+				print("[Player] ⚠️ Hotbar full! Blade added to inventory")
+		else:
+			print("[Player] ❌ Failed to load blade texture")
+
+	# DON'T auto-equip - player must press 1 to equip
+	# has_blade stays false until player presses 1
+
+func equip_blade() -> void:
+	"""Equip blade when player uses it from hotbar (press 1)"""
+	print("[Player] Equipping blade...")
 	has_blade = true
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = true
-	
+	print("[Player] ✅ Blade equipped! (can now throw with attack button)")
+
 func drop_blade():
+	print("[Player] Dropping blade...")
 	has_blade = false
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = false
 
+	# Remove blade from hotbar slot 0
+	if GameManager.inventory_system:
+		GameManager.inventory_system.clear_hotbar_slot(0)
+	print("[Player] Blade dropped and removed from hotbar")
+
+func unequip_blade():
+	"""Unequip blade but keep in hotbar"""
+	print("[Player] Unequipping blade...")
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	Dialogic.VAR["PlayerHasBlade"] = false
+	print("[Player] Blade unequipped (still in hotbar)")
+
 func throw_blade():
+	print("[Player] Throwing blade...")
 	var blade := blade_factory.create() as RigidBody2D
 	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
 	blade.apply_impulse(throwing_velocity)
+
+	# Unequip and remove from inventory
 	has_blade = false
 	Dialogic.VAR["PlayerHasBlade"] = false
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	change_animation("idle")
+
+	# Remove blade from hotbar when thrown
+	if GameManager.inventory_system:
+		GameManager.inventory_system.clear_hotbar_slot(0)
+	print("[Player] Blade thrown and lost from inventory")
+
+func _has_blade_in_hotbar() -> bool:
+	"""Check if blade exists in hotbar slot 0"""
+	if not GameManager.inventory_system:
+		return false
+	var item = GameManager.inventory_system.get_hotbar_item(0)
+	return item != null and item.item_name == "blade"
 
 func is_near_wall() -> bool:
 	if wall_checker:
@@ -219,11 +272,17 @@ func load_state(data: Dictionary) -> void:
 	
 	if data.has("has_blade"):
 		print("loaded has_blade")
-		has_blade = data["has_blade"][0]
-		if has_blade:
-			collect_blade()
+		var saved_has_blade = data["has_blade"][0]
+		if saved_has_blade:
+			# Player had blade equipped when saved
+			# Inventory system already loaded blade from checkpoint
+			# Just equip it, don't collect again (avoid duplicate)
+			equip_blade()
+			print("Blade equipped (already in inventory from checkpoint)")
 		else:
-			drop_blade()
+			# Player didn't have blade
+			has_blade = false
+			print("Blade not equipped")
 	
 	if data.has("health"):
 		health = data["health"][0]
