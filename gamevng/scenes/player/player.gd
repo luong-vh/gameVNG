@@ -154,12 +154,15 @@ func change_attack_direction(dir: AttackDir):
 func collect_blade() -> void:
 	print("[Player] Collecting blade (adding to hotbar)...")
 
-	# Add blade icon to hotbar slot 0 - NOT equipped yet
+	# Add blade icon to hotbar - find empty slot, don't overwrite
 	if GameManager.inventory_system:
 		var blade_texture = load("res://assets/items/blade.png")
 		if blade_texture:
-			GameManager.inventory_system.set_hotbar_slot(0, "blade", blade_texture, 1)
-			print("[Player] ✅ Blade added to hotbar slot 0 (press 1 to equip)")
+			var success = GameManager.inventory_system.add_item_to_hotbar("blade", blade_texture, 1)
+			if success:
+				print("[Player] ✅ Blade added to hotbar (press 1 to equip)")
+			else:
+				print("[Player] ⚠️ Hotbar full! Blade added to inventory")
 		else:
 			print("[Player] ❌ Failed to load blade texture")
 
@@ -272,12 +275,14 @@ func load_state(data: Dictionary) -> void:
 		var saved_has_blade = data["has_blade"][0]
 		if saved_has_blade:
 			# Player had blade equipped when saved
-			collect_blade()  # Add to hotbar first
-			equip_blade()    # Then equip it
-			print("Blade restored to hotbar and equipped")
+			# Inventory system already loaded blade from checkpoint
+			# Just equip it, don't collect again (avoid duplicate)
+			equip_blade()
+			print("Blade equipped (already in inventory from checkpoint)")
 		else:
 			# Player didn't have blade
-			drop_blade()
+			has_blade = false
+			print("Blade not equipped")
 	
 	if data.has("health"):
 		health = data["health"][0]

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://qphq40p66nhf"]
+[gd_scene load_steps=4 format=3 uid="uid://qphq40p66nhf"]
 
 [ext_resource type="Script" uid="uid://clepa8hxukub7" path="res://scenes/gui/inventory_screen.gd" id="1_inventory"]
+[ext_resource type="Texture2D" uid="uid://dhphaqkkeqbp1" path="res://assets/ui/inventory/background.png" id="2_tanwo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmtof"]
+texture = ExtResource("2_tanwo")
+modulate_color = Color(1, 1, 1, 0.705882)
 
 [node name="InventoryScreen" type="Control"]
 layout_mode = 3
@@ -18,64 +23,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = -94.0
-offset_right = 133.0
-offset_bottom = 78.0
+offset_left = -119.0
+offset_top = -81.0
+offset_right = 481.0
+offset_bottom = 219.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Background" type="ColorRect" parent="Panel"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.1, 0.1, 0.15, 0.95)
+scale = Vector2(0.4, 0.4)
+theme_override_styles/panel = SubResource("StyleBoxTexture_hmtof")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
-
-[node name="TopBar" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "INVENTORY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CoinsLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TopBar"]
-layout_mode = 2
-text = "Coins: 0"
-vertical_alignment = 1
-
-[node name="KeysLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TopBar"]
-layout_mode = 2
-text = "Keys: 0"
-vertical_alignment = 1
-
-[node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TopBar"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-text = "X"
 
 [node name="SlotsGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
