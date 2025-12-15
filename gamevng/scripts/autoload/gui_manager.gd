@@ -108,15 +108,9 @@ func _connect_inventory_signals() -> void:
 	if GameManager.inventory_system:
 		GameManager.inventory_system.hotbar_updated.connect(_on_hotbar_updated)
 		GameManager.inventory_system.hotbar_cleared.connect(_on_hotbar_cleared)
-		GameManager.inventory_system.coin_changed.connect(_on_coin_changed)
-		GameManager.inventory_system.key_changed.connect(_on_key_changed)
+		GameManager.inventory_system.coin_changed.connect(update_coin)
+		GameManager.inventory_system.key_changed.connect(update_key)
 		print("[GUI] Inventory signals connected successfully!")
-
-		# Initialize HUD with current values (wait for next frame to ensure HUD is ready)
-		if _hud and _hud.has_method("update_coin_display"):
-			_hud.update_coin_display(GameManager.inventory_system.coins)
-			_hud.update_key_display(GameManager.inventory_system.keys)
-			print("[GUI] HUD initialized with coins: %d, keys: %d" % [GameManager.inventory_system.coins, GameManager.inventory_system.keys])
 	else:
 		print("[GUI] WARNING: GameManager.inventory_system is null!")
 

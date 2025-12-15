@@ -74,6 +74,10 @@ func load_state(state: Dictionary) -> Dictionary:
 				storage.hotbar_updated.emit(i, item.texture, item.count)
 			else:
 				storage.hotbar_items.append(null)
+				storage.hotbar_cleared.emit(i)  # Clear GUI when slot is empty
+	else:
+		# No hotbar data in checkpoint - clear everything
+		storage.clear_hotbar()
 
 	# Load inventory items
 	if state.has("inventory_items"):
@@ -97,6 +101,10 @@ func load_state(state: Dictionary) -> Dictionary:
 				storage.inventory_updated.emit(i, item.texture, item.count)
 			else:
 				storage.inventory_items.append(null)
+				storage.inventory_cleared.emit(i)  # Clear GUI when slot is empty
+	else:
+		# No inventory data in checkpoint - clear everything
+		storage.clear_inventory()
 
 	print("[InventoryPersistence] Loaded state - Coins: %d, Keys: %d" % [result.coins, result.keys])
 	return result
