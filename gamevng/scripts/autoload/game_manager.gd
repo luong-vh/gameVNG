@@ -77,12 +77,13 @@ func teleport() -> void:
 	if _target_portal_name == null:
 		return
 	target_portal_name = _target_portal_name
-	var scene_id = ResourceUID.text_to_id(stage_path)
-	var scene_path = ResourceUID.get_id_path(scene_id)
-	
-	if scene_path != current_stage.scene_file_path:
-		get_tree().change_scene_to_file(stage_path)
-		emit_signal("stage_changed", stage_path)
+	if stage_path!="":
+		var scene_id = ResourceUID.text_to_id(stage_path)
+		var scene_path = ResourceUID.get_id_path(scene_id)
+		
+		if scene_path != current_stage.scene_file_path:
+			get_tree().change_scene_to_file(stage_path)
+			emit_signal("stage_changed", stage_path)
 	else:
 		respawn_at_portal()
 	GUIManager.fade_from_black()

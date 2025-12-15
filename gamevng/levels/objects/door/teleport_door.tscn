@@ -104,7 +104,7 @@ metadata/_custom_type_script = "uid://nvuabioddqmj"
 shape = SubResource("RectangleShape2D_7l4jk")
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(0, 3)
 
 [connection signal="interacted" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interacted"]
 [connection signal="interaction_available" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interaction_available"]
