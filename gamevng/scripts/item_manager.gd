@@ -109,7 +109,7 @@ func use_speed_boost() -> bool:
 	player.collect_powerup("speed_up")
 
 	print("[ItemManager] Speed boost activated!")
-	GUIManager.play_SFX("coin")
+	#GUIManager.play_SFX("coin")
 
 	item_used.emit("speed_boost", true)
 	return true
@@ -125,7 +125,7 @@ func use_blade() -> bool:
 		# Equip blade for the first time
 		print("[ItemManager] Equipping blade...")
 		player.equip_blade()
-		GUIManager.play_SFX("coin")
+		#GUIManager.play_SFX("coin")
 		print("[ItemManager] ✅ Blade equipped! Use attack button to throw!")
 	else:
 		# Already equipped
