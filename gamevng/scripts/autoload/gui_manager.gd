@@ -81,15 +81,6 @@ func update_heart_gui(health: int):
 		
 	for i in range(health,hearts.size()):
 		hearts[i].update(false)
-		
-func play_SFX(name: String):
-	match name:
-		"coin":
-			$SFX/Coin.play()
-		"jump":
-			$SFX/Jump.play()
-		_:
-			return
 
 func open_stage_clear_popup():
 	var stage_clear_popup_preload = preload("res://scenes/gui/game_screen/finished_level_poppup.tscn")

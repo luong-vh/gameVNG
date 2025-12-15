@@ -4,7 +4,7 @@ func _enter():
 	timer = 0.3
 	obj.change_animation("attack")
 	obj.hit_area_collision.disabled = false
-
+	AudioManager.play_sound("sword_attack")
 func _exit() -> void:
 	obj.hit_area_collision.disabled = true
 

@@ -15,7 +15,7 @@ func _on_collect():
 	print("Đã thu thập " + str(coin_amount) + " coin!")
 
 	GameManager.inventory_system.add_coin(coin_amount)
-
+	AudioManager.play_sound("coin")
 	# Play collected animation if this was first time collection
 	if was_visible:
 		visible = true  # Temporarily show for animation
