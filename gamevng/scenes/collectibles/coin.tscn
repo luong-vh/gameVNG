@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://dx6xb8kuq1art"]
 
 [ext_resource type="Script" uid="uid://bfup6j0foo4hp" path="res://scenes/collectibles/coin.gd" id="1_ais5i"]
-[ext_resource type="Texture2D" uid="uid://bb1wlju511j5o" path="res://assets/items/effect/01.png" id="2_64ecx"]
-[ext_resource type="Texture2D" uid="uid://dota3d8e8wq11" path="res://assets/items/coin/01.png" id="2_ais5i"]
-[ext_resource type="Texture2D" uid="uid://dhd78qhfak4m" path="res://assets/items/coin/02.png" id="3_bo6c2"]
-[ext_resource type="Texture2D" uid="uid://uw8gki40drxh" path="res://assets/items/effect/02.png" id="3_bp5sd"]
-[ext_resource type="Texture2D" uid="uid://b0nyddmxx263p" path="res://assets/items/effect/03.png" id="4_6dm7w"]
-[ext_resource type="Texture2D" uid="uid://v2j2ifr5uv5s" path="res://assets/items/coin/03.png" id="4_clxuu"]
-[ext_resource type="Texture2D" uid="uid://c6qcw3h84frl7" path="res://assets/items/coin/04.png" id="5_yyguw"]
+[ext_resource type="Texture2D" uid="uid://ctygrx4f3sv6i" path="res://assets/items/effect/01.png" id="2_64ecx"]
+[ext_resource type="Texture2D" uid="uid://cuw4j33edyj1h" path="res://assets/items/coin/01.png" id="2_ais5i"]
+[ext_resource type="Texture2D" uid="uid://cic1wjfrhgc6v" path="res://assets/items/coin/02.png" id="3_bo6c2"]
+[ext_resource type="Texture2D" uid="uid://046tr2e3u211" path="res://assets/items/effect/02.png" id="3_bp5sd"]
+[ext_resource type="Texture2D" uid="uid://dm2r50gtk4bd6" path="res://assets/items/effect/03.png" id="4_6dm7w"]
+[ext_resource type="Texture2D" uid="uid://bwxhd1xvva3s" path="res://assets/items/coin/03.png" id="4_clxuu"]
+[ext_resource type="Texture2D" uid="uid://71v5fjtl4od5" path="res://assets/items/coin/04.png" id="5_yyguw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_64ecx"]
 animations = [{
