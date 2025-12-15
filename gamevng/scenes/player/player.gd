@@ -32,6 +32,7 @@ var pogo_hit_area_collision
 @export var wall_friction: float = 300.0
 @export var wall_jump_force: float = 120.0
 @export var wall_slide_speed: float = 200.0
+@export var wall_jump_lock_input_time: float = 0.2
 var wall_checker: RayCast2D
 
 # --- DOUBLE JUMP ---
@@ -229,13 +230,19 @@ func is_near_wall() -> bool:
 func reset_jump_count():
 	jump_count = 0
 
+func reset_dash():
+	dash_count = 0
+
 func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
 		lock_input_timer.start(length)
 		return true
 	else:
 		return false
-
+		
+func unlock_input():
+	lock_input_timer.stop()
+	
 func is_input_lock() -> bool:
 	return lock_input_timer.time_left > 0
 

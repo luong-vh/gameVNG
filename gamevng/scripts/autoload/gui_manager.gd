@@ -9,7 +9,8 @@ var setting_popup_scene
 @onready var _heart_container = $CanvasLayer/HeartsContainer
 @onready var _hotbar = $CanvasLayer/Hotbar
 @onready var _inventory_screen = $CanvasLayer/InventoryScreen
-@onready var _hud = $CanvasLayer/HUD
+@onready var _coin_HUD = $CanvasLayer/CoinHUD
+@onready var _key_HUD = $CanvasLayer/KeyHUD
 
 func _ready():
 	print("[GUIManager] Starting GUIManager initialization...")
@@ -34,6 +35,8 @@ func fade_from_black():
 	_fade_animation_player.play("fade_from_black")
 
 func on_level_selection_scene():
+	_coin_HUD.visible = false
+	_key_HUD.visible = false
 	_heart_container.visible = false
 	if _hotbar:
 		_hotbar.visible = false  # Hide hotbar in level selection
@@ -44,6 +47,8 @@ func on_level_selection_scene():
 func on_stage_scene():
 	print("[GUIManager] Setting up stage scene...")
 	_heart_container.visible = true
+	_coin_HUD.visible = true
+	
 	if _hotbar:
 		_hotbar.visible = true  # Show hotbar in game
 		print("[GUIManager] Hotbar set to visible, position: %s, size: %s" % [_hotbar.position, _hotbar.size])
@@ -152,14 +157,8 @@ func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -
 		return GameManager.inventory_system.add_item_to_hotbar(item_name, texture, count)
 	return false
 
-# ==================== Resource Display ====================
+func update_coin(value: int):
+	_coin_HUD.get_node("Label").text = str(value)
 
-func _on_coin_changed(new_amount: int) -> void:
-	if _hud and _hud.has_method("update_coin_display"):
-		_hud.update_coin_display(new_amount)
-		print("[GUI] Coin updated: %d" % new_amount)
-
-func _on_key_changed(new_amount: int) -> void:
-	if _hud and _hud.has_method("update_key_display"):
-		_hud.update_key_display(new_amount)
-		print("[GUI] Key updated: %d" % new_amount)
+func update_key(is_collected: bool):
+	_key_HUD.visible = is_collected

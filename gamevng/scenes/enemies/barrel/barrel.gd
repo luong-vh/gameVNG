@@ -6,6 +6,11 @@ const JUMP_VELOCITY = -400.0
 
 
 @export var bullet_speed : float = 300
+@export var cool_down: float = 5
+@export var day_shoot_count: int = 1
+@export var night_shoot_count: int = 2
+var shoot_timeout = 0.3
+
 @onready var bullet_factory = $Direction/BulletFactory
 
 @export var day_color = Color(1,1,1,1)

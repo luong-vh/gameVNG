@@ -3,7 +3,7 @@ extends EnemyState
 
 func _enter()->void:
 	obj.change_animation("idle")
-	timer = 1.5
+	timer = obj.cool_down
 func _update(delta: float)->void:
 	if update_timer(delta):
 		if obj.behavior == "DAY":

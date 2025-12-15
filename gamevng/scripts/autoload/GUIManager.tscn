@@ -1,13 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://ciqyxw1n24ngh"]
+[gd_scene load_steps=16 format=3 uid="uid://ciqyxw1n24ngh"]
 
 [ext_resource type="Script" uid="uid://buno7w1wo5pyi" path="res://scripts/autoload/gui_manager.gd" id="1_ghc5l"]
 [ext_resource type="Script" uid="uid://drouvv3p0yjyl" path="res://scripts/autoload/hearts_container.gd" id="2_j1isl"]
 [ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
-[ext_resource type="PackedScene" uid="uid://b2gy2wu8m41i1" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
-[ext_resource type="PackedScene" uid="uid://c8y3m6j4k1n2p" path="res://scenes/gui/inventory_screen.tscn" id="4_inventory"]
-[ext_resource type="AudioStream" uid="uid://ulf2f0m2bcj2" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
-[ext_resource type="AudioStream" uid="uid://1a0fpdjm2hxu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
-[ext_resource type="AudioStream" uid="uid://cwbwxn66277jq" path="res://assets/sounds/jump.mp3" id="6_ito21"]
+[ext_resource type="PackedScene" uid="uid://best4n5o5eoyi" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
+[ext_resource type="PackedScene" uid="uid://qphq40p66nhf" path="res://scenes/gui/inventory_screen.tscn" id="4_inventory"]
+[ext_resource type="AudioStream" uid="uid://8ig7y4yrrv5e" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
+[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
+[ext_resource type="Texture2D" uid="uid://cuw4j33edyj1h" path="res://assets/items/coin/01.png" id="6_ewnxp"]
+[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="6_ito21"]
+[ext_resource type="FontFile" uid="uid://bf742t4mxgd7l" path="res://assets/fonts/big_font.fnt" id="7_qv71w"]
+[ext_resource type="Texture2D" uid="uid://6uwe1tc5pmac" path="res://assets/items/key.png" id="7_sktmo"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
@@ -105,6 +108,24 @@ parameters/looping = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
+
+[node name="CoinHUD" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(12, 40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_ewnxp")
+
+[node name="Label" type="Label" parent="CanvasLayer/CoinHUD"]
+offset_left = 9.33333
+offset_top = -4.66667
+offset_right = 49.3333
+offset_bottom = 8.33333
+theme_override_fonts/font = ExtResource("7_qv71w")
+theme_override_font_sizes/font_size = 10
+text = "100"
+
+[node name="KeyHUD" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(100, 40)
+texture = ExtResource("7_sktmo")
 
 [node name="HeartsContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 80.0

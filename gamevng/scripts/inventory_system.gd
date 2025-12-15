@@ -11,8 +11,17 @@ signal inventory_updated(slot_index: int, texture: Texture2D, count: int)
 signal inventory_cleared(slot_index: int)
 
 # Currency
-var coins: int = 0
-var keys: int = 0
+var coins: int = 0:
+	set (value):
+		coins = value
+		coin_changed.emit(coins)
+		GUIManager.update_coin(coins)
+		
+var keys: int = 0:
+	set(value):
+		keys = value
+		key_changed.emit(keys)
+		GUIManager.update_key(value > 0)
 
 # Modules
 var storage: ItemStorage
@@ -56,7 +65,6 @@ func _ready() -> void:
 
 func add_coin(amount: int) -> void:
 	coins += amount
-	coin_changed.emit(coins)
 	item_collected.emit("coin", amount)
 	print("Collected ", amount, " coins. Total: ", coins)
 
