@@ -13,8 +13,15 @@ signal inventory_cleared(slot_index: int)
 # Currency
 var coins: int = 0:
 	set (value):
+		coins = value
 		coin_changed.emit(coins)
-var keys: int = 0
+		GUIManager.update_coin(coins)
+		
+var keys: int = 0:
+	set(value):
+		keys = value
+		key_changed.emit(keys)
+		GUIManager.update_key(value > 0)
 
 # Modules
 var storage: ItemStorage
