@@ -9,11 +9,12 @@ var setting_popup_scene
 @onready var _heart_container = $CanvasLayer/HeartsContainer
 @onready var _hotbar = $CanvasLayer/Hotbar
 @onready var _inventory_screen = $CanvasLayer/InventoryScreen
+@onready var _hud = $CanvasLayer/HUD
 
 func _ready():
 	print("[GUIManager] Starting GUIManager initialization...")
 	_fade_animation_player.animation_finished.connect(_on_animation_finished)
-	
+
 	# Check if hotbar exists
 	if _hotbar:
 		print("[GUIManager] Hotbar found and loaded successfully!")
@@ -21,7 +22,7 @@ func _ready():
 		_hotbar.item_used.connect(_on_hotbar_item_used)
 	else:
 		print("[GUIManager] WARNING: Hotbar not found in scene!")
-	
+
 	# Connect inventory signals when GameManager is ready
 	call_deferred("_connect_inventory_signals")
 	print("[GUIManager] Initialization complete")
@@ -102,7 +103,15 @@ func _connect_inventory_signals() -> void:
 	if GameManager.inventory_system:
 		GameManager.inventory_system.hotbar_updated.connect(_on_hotbar_updated)
 		GameManager.inventory_system.hotbar_cleared.connect(_on_hotbar_cleared)
+		GameManager.inventory_system.coin_changed.connect(_on_coin_changed)
+		GameManager.inventory_system.key_changed.connect(_on_key_changed)
 		print("[GUI] Inventory signals connected successfully!")
+
+		# Initialize HUD with current values (wait for next frame to ensure HUD is ready)
+		if _hud and _hud.has_method("update_coin_display"):
+			_hud.update_coin_display(GameManager.inventory_system.coins)
+			_hud.update_key_display(GameManager.inventory_system.keys)
+			print("[GUI] HUD initialized with coins: %d, keys: %d" % [GameManager.inventory_system.coins, GameManager.inventory_system.keys])
 	else:
 		print("[GUI] WARNING: GameManager.inventory_system is null!")
 
@@ -142,3 +151,15 @@ func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -
 	if GameManager.inventory_system:
 		return GameManager.inventory_system.add_item_to_hotbar(item_name, texture, count)
 	return false
+
+# ==================== Resource Display ====================
+
+func _on_coin_changed(new_amount: int) -> void:
+	if _hud and _hud.has_method("update_coin_display"):
+		_hud.update_coin_display(new_amount)
+		print("[GUI] Coin updated: %d" % new_amount)
+
+func _on_key_changed(new_amount: int) -> void:
+	if _hud and _hud.has_method("update_key_display"):
+		_hud.update_key_display(new_amount)
+		print("[GUI] Key updated: %d" % new_amount)
