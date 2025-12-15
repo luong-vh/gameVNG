@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AudioDatabase" load_steps=7 format=3 uid="uid://cxn0u7l7b30ec"]
+[gd_resource type="Resource" script_class="AudioDatabase" load_steps=8 format=3 uid="uid://cxn0u7l7b30ec"]
 
 [ext_resource type="Script" uid="uid://downijt7cqwea" path="res://scripts/audio/audio_clip.gd" id="1_x0dso"]
 [ext_resource type="Script" uid="uid://5loxfigskqua" path="res://scripts/audio/audio_database.gd" id="2_quhjw"]
@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://fu26yjssa54x" path="res://data/audio/player_jump.tres" id="3_xjxco"]
 [ext_resource type="Resource" uid="uid://gl7qhxxlbvuh" path="res://data/audio/sword_attack.tres" id="4_g1k8g"]
 [ext_resource type="Resource" uid="uid://l4jq8ht5d2eb" path="res://data/audio/sword_clash_spike.tres" id="5_ykssl"]
+[ext_resource type="Resource" uid="uid://cf6s7278p08lg" path="res://data/audio/menu.tres" id="6_xjxco"]
 
 [resource]
 script = ExtResource("2_quhjw")
-clips = Array[ExtResource("1_x0dso")]([ExtResource("2_wru05"), ExtResource("3_xjxco"), ExtResource("4_g1k8g"), ExtResource("5_ykssl")])
+clips = Array[ExtResource("1_x0dso")]([ExtResource("2_wru05"), ExtResource("3_xjxco"), ExtResource("4_g1k8g"), ExtResource("5_ykssl"), ExtResource("6_xjxco")])
 metadata/_custom_type_script = "uid://5loxfigskqua"

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AudioClip" load_steps=3 format=3 uid="uid://ct2p8puddmgla"]
 
 [ext_resource type="Script" uid="uid://downijt7cqwea" path="res://scripts/audio/audio_clip.gd" id="1_qmf2a"]
-[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="2_v8apq"]
+[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds_musics/coin.mp3" id="2_v8apq"]
 
 [resource]
 script = ExtResource("1_qmf2a")

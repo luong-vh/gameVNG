@@ -16,6 +16,7 @@ var music_player: AudioStreamPlayer = null
 const SFX_BUS: String = "SFX"
 const MUSIC_BUS: String = "Music"
 
+var last_music: String = ""
 
 var current_sfx_bus_name: String = SFX_BUS
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
 	music_player.name = "MusicPlayer"
 	music_player.bus = MUSIC_BUS
+	music_player.finished.connect(_loop_music)
 	add_child(music_player)
 	
 	# Initialize pool of SFX players
@@ -42,7 +44,10 @@ func _ready() -> void:
 	
 	print("AudioManager initialized with ", max_sfx_players, " SFX players")
 
-
+func _loop_music():
+	if last_music == null: return
+	play_music(last_music)
+	
 ## Play sound by ID from database
 func play_sound(sound_id: String, volume_db: float = 0.0) -> void:
 	if audio_database == null:
@@ -72,7 +77,7 @@ func play_sound_path(sound_path: String, volume_db: float = 0.0) -> void:
 
 
 ## Play music
-func play_music(music_id: String, volume_db: float = 0.0, fade_in: float = 0.0) -> void:
+func play_music(music_id: String, volume_db: float = 0.0, fade_in: float = 0.0, is_loop: bool = true) -> void:
 	if audio_database == null:
 		push_error("AudioDatabase not loaded!")
 		return
@@ -88,7 +93,9 @@ func play_music(music_id: String, volume_db: float = 0.0, fade_in: float = 0.0) 
 		music_player.stop()
 	
 	music_player.stream = audio_clip.stream
+	
 	music_player.volume_db = audio_clip.volume_db + volume_db
+	last_music = music_id if is_loop else ""
 	music_player.play()
 	
 	# Fade in if exists
