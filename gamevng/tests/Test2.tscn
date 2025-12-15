@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="8_25w68"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="9_btjcs"]
 [ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="9_olj2x"]
-[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_1ama6"]
+[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="10_1ama6"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="11_5bf0o"]
 [ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/shield_native.tscn" id="12_0hjcb"]
 

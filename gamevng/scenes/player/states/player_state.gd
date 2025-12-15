@@ -43,7 +43,7 @@ func control_jump() -> bool:
 	if jumpInput:
 		#Wall jump
 		if obj.can_wall_cling and obj.is_near_wall() and not obj.is_on_floor():
-			obj.lock_input()
+			obj.lock_input(obj.wall_jump_lock_input_time)
 			var collision = obj.wall_checker.get_collision_normal()
 			var wall_dir = int(collision.x)
 			
@@ -122,6 +122,7 @@ func control_attack() -> bool:
 		if obj.can_attack():
 			obj.change_attack_direction(obj.AttackDir.DOWN)
 			obj.reset_jump_count()
+			obj.reset_dash()
 			fsm.change_state(fsm.states.pogo)
 			return true
 	
