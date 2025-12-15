@@ -8,21 +8,12 @@ func _enter()->void:
 
 func _update(delta: float)->void:
 	if update_timer(delta):
-		match phase:
-			1:
-				_attack()
-				phase += 1
-				timer = 0.3
-			2:
-				phase += 1
-				timer = 0.3
-			3:
-				
-				_attack()
-				phase += 1
-				timer = 0.3
-			_:
-				change_state(fsm.states.idle)
+		if phase <= obj.night_shoot_count:
+			_attack()
+			phase += 1
+			timer =0.3
+		else: 
+			change_state(fsm.states.idle)
 func _attack()->void:
 	obj.fire()
 	
