@@ -104,7 +104,14 @@ func _check_changed_animation() -> void:
 		need_play = true
 	if need_play:
 		if animated_sprite != null and current_animation != null:
-			animated_sprite.play(current_animation)
+			# Check if animation exists before playing
+			if animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation(current_animation):
+				animated_sprite.play(current_animation)
+			else:
+				# Animation doesn't exist, try to play 'idle' as fallback
+				if animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("idle"):
+					animated_sprite.play("idle")
+					current_animation = "idle"
 
 # Check if the direction has changed and set the new direction
 func _check_changed_direction() -> void:

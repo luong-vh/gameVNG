@@ -62,7 +62,13 @@ var raycast_pushable: RayCast2D
 
 func _ready() -> void:
 	super._ready()
-	set_animated_sprite($Direction/AnimatedSprite2D)
+
+	# Reset blade state - always start unequipped
+	# Blade state will be managed by inventory system
+	# has_blade will be set when player uses blade from hotbar (press 1)
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)  # Ensure normal sprite
+
 	fsm = FSM.new(self, $States, $States/Idle)
 	_init_hit_hurt_area()
 	_init_wall_cling()
@@ -72,12 +78,6 @@ func _ready() -> void:
 	decorator_manager.initialize(self)
 	add_child(decorator_manager)
 
-	if has_blade:
-		# Player spawns with blade pre-equipped
-		collect_blade()  # Add to hotbar
-		equip_blade()    # Auto-equip at spawn
-		print("[Player] Spawned with blade equipped")
-	
 	if has_node("LockInputTimer"):
 		lock_input_timer = get_node("LockInputTimer")
 	
@@ -221,6 +221,19 @@ func _has_blade_in_hotbar() -> bool:
 	var item = GameManager.inventory_system.get_hotbar_item(0)
 	return item != null and item.item_name == "blade"
 
+func sync_blade_with_inventory() -> void:
+	"""Sync player's blade state with inventory system"""
+	if _has_blade_in_hotbar():
+		# Blade in inventory but not equipped
+		if not has_blade:
+			# Ensure sprite is normal (not blade sprite)
+			if animated_sprite != $Direction/AnimatedSprite2D:
+				set_animated_sprite($Direction/AnimatedSprite2D)
+	else:
+		# No blade in inventory but player has it equipped - unequip
+		if has_blade:
+			unequip_blade()
+
 func is_near_wall() -> bool:
 	if wall_checker:
 		return wall_checker.is_colliding()
@@ -276,21 +289,17 @@ func load_state(data: Dictionary) -> void:
 		print("loaded position")
 		var pos_array = data["position"]
 		global_position = Vector2(pos_array[0], pos_array[1])
-	
-	if data.has("has_blade"):
-		print("loaded has_blade")
-		var saved_has_blade = data["has_blade"][0]
-		if saved_has_blade:
-			# Player had blade equipped when saved
-			# Inventory system already loaded blade from checkpoint
-			# Just equip it, don't collect again (avoid duplicate)
-			equip_blade()
-			print("Blade equipped (already in inventory from checkpoint)")
-		else:
-			# Player didn't have blade
-			has_blade = false
-			print("Blade not equipped")
-	
+
+	# Always reset to normal sprite on respawn
+	# Player must manually re-equip blade from hotbar if they had it
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	Dialogic.VAR["PlayerHasBlade"] = false
+	print("[Player] Respawned with normal sprite - checking inventory...")
+
+	# Sync blade state with inventory
+	sync_blade_with_inventory()
+
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)

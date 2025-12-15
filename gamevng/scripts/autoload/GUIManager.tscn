@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://dytm3c86oshmd" path="res://scenes/gui/game_screen/hud.tscn" id="2_nvfsa"]
 [ext_resource type="PackedScene" uid="uid://best4n5o5eoyi" path="res://scenes/gui/hotbar.tscn" id="3_hotbar"]
 [ext_resource type="PackedScene" uid="uid://qphq40p66nhf" path="res://scenes/gui/inventory_screen.tscn" id="4_inventory"]
-[ext_resource type="AudioStream" uid="uid://8ig7y4yrrv5e" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
-[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
-[ext_resource type="Texture2D" uid="uid://cuw4j33edyj1h" path="res://assets/items/coin/01.png" id="6_ewnxp"]
-[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="6_ito21"]
-[ext_resource type="FontFile" uid="uid://bf742t4mxgd7l" path="res://assets/fonts/big_font.fnt" id="7_qv71w"]
-[ext_resource type="Texture2D" uid="uid://6uwe1tc5pmac" path="res://assets/items/key.png" id="7_sktmo"]
+[ext_resource type="AudioStream" uid="uid://bjh04mxcr32re" path="res://assets/sounds/music.mp3" id="4_xdjlx"]
+[ext_resource type="AudioStream" uid="uid://byv6ci5fbeeeq" path="res://assets/sounds/coin.mp3" id="5_ghc5l"]
+[ext_resource type="Texture2D" uid="uid://dota3d8e8wq11" path="res://assets/items/coin/01.png" id="6_ewnxp"]
+[ext_resource type="AudioStream" uid="uid://c4parv5nvojt7" path="res://assets/sounds/jump.mp3" id="6_ito21"]
+[ext_resource type="FontFile" uid="uid://rjwwxvp76l4s" path="res://assets/fonts/big_font.fnt" id="7_qv71w"]
+[ext_resource type="Texture2D" uid="uid://nx7a7xssdmbc" path="res://assets/items/key.png" id="7_sktmo"]
 
 [sub_resource type="Animation" id="Animation_0r2gv"]
 resource_name = "RESET"
@@ -133,9 +133,7 @@ offset_bottom = 40.0
 theme_override_constants/separation = 4
 script = ExtResource("2_j1isl")
 
-[node name="SettingInStage" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
-offset_bottom = 52.0
-script = null
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("3_hotbar")]
 z_index = 100
@@ -147,6 +145,6 @@ offset_bottom = 3.0
 [node name="InventoryScreen" parent="CanvasLayer" instance=ExtResource("4_inventory")]
 z_index = 200
 
-[connection signal="pressed" from="CanvasLayer/SettingInStage/HBoxContainer/SettingsTextureButton" to="." method="_on_settings_texture_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/HBoxContainer/SettingsTextureButton" to="." method="_on_settings_texture_button_pressed"]
 
-[editable path="CanvasLayer/SettingInStage"]
+[editable path="CanvasLayer/HUD"]
