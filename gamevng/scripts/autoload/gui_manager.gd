@@ -15,7 +15,7 @@ var setting_popup_scene
 func _ready():
 	print("[GUIManager] Starting GUIManager initialization...")
 	_fade_animation_player.animation_finished.connect(_on_animation_finished)
-	
+
 	# Check if hotbar exists
 	if _hotbar:
 		print("[GUIManager] Hotbar found and loaded successfully!")
@@ -23,7 +23,7 @@ func _ready():
 		_hotbar.item_used.connect(_on_hotbar_item_used)
 	else:
 		print("[GUIManager] WARNING: Hotbar not found in scene!")
-	
+
 	# Connect inventory signals when GameManager is ready
 	call_deferred("_connect_inventory_signals")
 	print("[GUIManager] Initialization complete")
@@ -99,6 +99,8 @@ func _connect_inventory_signals() -> void:
 	if GameManager.inventory_system:
 		GameManager.inventory_system.hotbar_updated.connect(_on_hotbar_updated)
 		GameManager.inventory_system.hotbar_cleared.connect(_on_hotbar_cleared)
+		GameManager.inventory_system.coin_changed.connect(update_coin)
+		GameManager.inventory_system.key_changed.connect(update_key)
 		print("[GUI] Inventory signals connected successfully!")
 	else:
 		print("[GUI] WARNING: GameManager.inventory_system is null!")

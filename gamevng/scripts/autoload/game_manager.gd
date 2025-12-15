@@ -1,7 +1,7 @@
 extends Node
 
 const DATA_VERSION = "1.1"
-# Checkpoint system variables
+
 var current_checkpoint_ids: Dictionary = {}
 var current_checkpoint_id: String = ""
 var checkpoint_data: Dictionary = {}
@@ -15,7 +15,6 @@ var main_camera: Camera2D = null
 var inventory_system: InventorySystem = null
 var item_manager: ItemManager = null
 
-#target portal name is the name of the portal to which the player will be teleported
 var target_portal_name: String = ""
 var _target_portal_name
 var _last_ground_checkpoint: GroundCheckPointArea = null
@@ -30,16 +29,13 @@ var unlocked_level = 0
 var current_level = 0
 
 func _ready() -> void:
-	# Load checkpoint data when game starts
 	load_checkpoint_data()
 	GUIManager.fade_to_black_finished.connect(teleport)
 	GUIManager.fade_from_black_finished.connect(able_to_control_player)
 
-	# Initialize inventory system
 	inventory_system = InventorySystem.new()
 	add_child(inventory_system)
-	
-	# Initialize item manager
+
 	item_manager = ItemManager.new()
 	add_child(item_manager)
 	
@@ -50,6 +46,28 @@ func set_player(_player: Player):
 
 func get_player() -> Player:
 	return player
+
+func _sync_player_blade() -> void:
+	if player and player.has_method("sync_blade_with_inventory"):
+		player.sync_blade_with_inventory()
+
+func _sync_collectibles_with_inventory() -> void:
+	if not current_stage:
+		return
+
+	var has_keys = inventory_system and inventory_system.has_key()
+	var collectibles = get_tree().get_nodes_in_group("collectibles")
+
+	for collectible in collectibles:
+		if collectible is BaseCollectible:
+			if collectible.get("is_key_collectible"):
+				if not has_keys and collectible.collected:
+					collectible.reset_to_scene_default()
+				elif has_keys and not collectible.collected:
+					collectible.collected = true
+					collectible.visible = false
+					collectible.monitoring = false
+
 func on_player_health_changed():
 	GUIManager.update_heart_gui(player.health)
 
@@ -107,7 +125,11 @@ func respawn_at_portal() -> bool:
 		player.global_position = portal.spawn_position
 		main_camera.global_position = portal.spawn_position
 		GameManager.target_portal_name = ""
-		true
+
+		# Sync blade state with inventory when teleporting
+		call_deferred("_sync_player_blade")
+
+		return true
 	return false
 
 # Checkpoint system functions
@@ -148,19 +170,34 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 func respawn_at_checkpoint() -> void:
 	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
 	if current_checkpoint_id.is_empty():
-		print("No checkpoint available - resetting collectibles and inventory to initial state")
-		# No checkpoint exists, reset all collectibles to their initial state
+		print("[GameManager] No checkpoint for this level - keeping inventory, resetting objects")
+		# No checkpoint exists for this level
+		# Reset collectibles/objects to initial state, but KEEP inventory
 		SaveSystem.restore_object_states({})  # Empty dict = all objects reset to initial
-		inventory_system.reset_inventory()  # Reset inventory to zero
+		# DON'T reset inventory - player keeps items when entering new levels
+
+		# Sync player blade state with current inventory (deferred to ensure player is ready)
+		call_deferred("_sync_player_blade")
+		# Sync collectibles with inventory
+		call_deferred("_sync_collectibles_with_inventory")
+
+		# Note: Player position stays where it is (not respawned)
+		# This is called on level load, not on death
 		return
 
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
 	if checkpoint_info.is_empty():
 		print("Checkpoint data not found")
+		# Sync player blade state in case of missing checkpoint
+		call_deferred("_sync_player_blade")
+		call_deferred("_sync_collectibles_with_inventory")
 		return
 	# Load the stage if different
 	var checkpoint_stage = checkpoint_info.get("stage_path", "")
 	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
+		# Different stage - sync player blade state
+		call_deferred("_sync_player_blade")
+		call_deferred("_sync_collectibles_with_inventory")
 		return
 
 	# Can change stage if different but not implemented yet to test
@@ -177,6 +214,9 @@ func respawn_at_checkpoint() -> void:
 	# Restore inventory state từ checkpoint
 	if checkpoint_info.has("inventory"):
 		inventory_system.load_state(checkpoint_info.inventory)
+
+	# Sync collectibles with inventory after restore
+	call_deferred("_sync_collectibles_with_inventory")
 
 	if player != null:
 		var player_state: Dictionary = checkpoint_info.get("player_state")
