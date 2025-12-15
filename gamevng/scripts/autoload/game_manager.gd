@@ -1,5 +1,6 @@
 extends Node
 
+const DATA_VERSION = "1.1"
 # Checkpoint system variables
 var current_checkpoint_ids: Dictionary = {}
 var current_checkpoint_id: String = ""
@@ -132,7 +133,8 @@ func get_current_checkpoint_id() -> String:
 func save_checkpoint_data() -> void:
 	var save_data = {
 		"current_checkpoint_ids": current_checkpoint_ids,
-		"checkpoint_data": checkpoint_data
+		"checkpoint_data": checkpoint_data,
+		"current_version": DATA_VERSION
 	}
 	SaveSystem.save_checkpoint_data(save_data)
 
@@ -199,6 +201,16 @@ func activate_checkpoint():
 func load_checkpoint_data() -> void:
 	var save_data = SaveSystem.load_checkpoint_data()
 	if not save_data.is_empty():
+		if save_data.has("current_version"):
+			var current_version = save_data.get("current_version")
+			if current_version != DATA_VERSION:
+				print("Checkpoint data is old version! Reseted data.")
+				SaveSystem.reset_data()
+				return
+		else:
+			print("Checkpoint data is old version! Reseted data.")
+			SaveSystem.reset_data()
+			return
 		current_checkpoint_ids = save_data.get("current_checkpoint_ids", {})
 		
 		checkpoint_data = save_data.get("checkpoint_data", {})
@@ -253,7 +265,7 @@ func save_level_data():
 
 func level_selected(level: int):
 	current_level = level
-	var scene_path = "res://levels/level_%d/level_%d.tscn"%[level,level]
+	var scene_path = "res://levels/level_%d.tscn"%level
 	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)
 
