@@ -239,7 +239,10 @@ func lock_input(length: float = 0.3) -> bool:
 		return true
 	else:
 		return false
-
+		
+func unlock_input():
+	lock_input_timer.stop()
+	
 func is_input_lock() -> bool:
 	return lock_input_timer.time_left > 0
 
