@@ -272,6 +272,6 @@ func level_selected(level: int):
 
 func next_level():
 	current_level += 1
-	var scene_path = "res://levels/level_%d/level_%d.tscn"%[current_level,current_level]
+	var scene_path = "res://levels/level_%d.tscn"%current_level
 	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)

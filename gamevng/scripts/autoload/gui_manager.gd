@@ -9,6 +9,8 @@ var setting_popup_scene
 @onready var _heart_container = $CanvasLayer/HeartsContainer
 @onready var _hotbar = $CanvasLayer/Hotbar
 @onready var _inventory_screen = $CanvasLayer/InventoryScreen
+@onready var _coin_HUD = $CanvasLayer/CoinHUD
+@onready var _key_HUD = $CanvasLayer/KeyHUD
 
 func _ready():
 	print("[GUIManager] Starting GUIManager initialization...")
@@ -33,6 +35,8 @@ func fade_from_black():
 	_fade_animation_player.play("fade_from_black")
 
 func on_level_selection_scene():
+	_coin_HUD.visible = false
+	_key_HUD.visible = false
 	_heart_container.visible = false
 	if _hotbar:
 		_hotbar.visible = false  # Hide hotbar in level selection
@@ -43,6 +47,8 @@ func on_level_selection_scene():
 func on_stage_scene():
 	print("[GUIManager] Setting up stage scene...")
 	_heart_container.visible = true
+	_coin_HUD.visible = true
+	
 	if _hotbar:
 		_hotbar.visible = true  # Show hotbar in game
 		print("[GUIManager] Hotbar set to visible, position: %s, size: %s" % [_hotbar.position, _hotbar.size])
@@ -142,3 +148,9 @@ func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -
 	if GameManager.inventory_system:
 		return GameManager.inventory_system.add_item_to_hotbar(item_name, texture, count)
 	return false
+
+func update_coin(value: int):
+	_coin_HUD.get_node("Label").text = str(value)
+
+func update_key(is_collected: bool):
+	_key_HUD.visible = is_collected
