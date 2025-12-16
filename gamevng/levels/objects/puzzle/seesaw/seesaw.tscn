@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6to373sloqm1"]
 
-[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="1_6qr1s"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="1_6qr1s"]
 [ext_resource type="Script" uid="uid://bj8qutdcevihs" path="res://levels/objects/puzzle/seesaw/seesaw.gd" id="1_q7njw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qr1s"]

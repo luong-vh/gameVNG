@@ -33,10 +33,14 @@ func _update_state(direction: Vector2):
 
 func get_state() -> Dictionary:
 	return {
-		"activated": activated
+		"activated": activated,
+		"can_be_deactivate": can_be_deactivate,
 	}
 
 func set_state(state: Dictionary) -> void:
 	if state.has("activated"):
 		activated = state.activated
 		_update_state(Vector2.ZERO)
+	
+	if state.has("can_be_deactivate"):
+		can_be_deactivate = state.can_be_deactivate

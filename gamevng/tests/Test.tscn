@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfjdtwim5kqj8" path="res://tests/test.gd" id="1_e7345"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="1_w3aqi"]
-[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_np4on"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="3_np4on"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="3_pfwq7"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="6_pupqp"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="7_1f3o5"]

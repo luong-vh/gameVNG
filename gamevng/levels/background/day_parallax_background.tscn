@@ -103,7 +103,7 @@ centered = false
 
 [node name="ParallaxLayerSmallCloud1" type="ParallaxLayer" parent="."]
 position = Vector2(-2, -8)
-motion_scale = Vector2(0.001, 1)
+motion_scale = Vector2(0.001, 0)
 motion_mirroring = Vector2(900, 0)
 script = SubResource("GDScript_j4ikx")
 
@@ -128,6 +128,99 @@ motion_mirroring = Vector2(800, 0)
 script = SubResource("GDScript_j4ikx")
 
 [node name="SmallClouds3" type="Sprite2D" parent="ParallaxLayerSmallCloud3"]
+position = Vector2(-170, 176)
+texture = ExtResource("10_eryh4")
+
+[node name="ParallaxLayerSmallCloud7" type="ParallaxLayer" parent="."]
+position = Vector2(-15, -664)
+motion_scale = Vector2(0.001, 0)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="ParallaxLayerSmallCloud7"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("8_sboln")
+
+[node name="ParallaxLayerSmallCloud8" type="ParallaxLayer" parent="."]
+position = Vector2(6, -700)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="ParallaxLayerSmallCloud8"]
+position = Vector2(82, 131)
+texture = ExtResource("9_rim76")
+
+[node name="ParallaxLayerSmallCloud9" type="ParallaxLayer" parent="."]
+position = Vector2(-13, -656)
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="ParallaxLayerSmallCloud9"]
+position = Vector2(-170, 176)
+texture = ExtResource("10_eryh4")
+
+[node name="ParallaxLayerSmallCloud10" type="ParallaxLayer" parent="."]
+position = Vector2(-237, -1002)
+motion_scale = Vector2(0.001, 0)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="ParallaxLayerSmallCloud10"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("8_sboln")
+
+[node name="ParallaxLayerSmallCloud11" type="ParallaxLayer" parent="."]
+position = Vector2(-216, -1038)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="ParallaxLayerSmallCloud11"]
+position = Vector2(82, 131)
+texture = ExtResource("9_rim76")
+
+[node name="ParallaxLayerSmallCloud12" type="ParallaxLayer" parent="."]
+position = Vector2(-235, -994)
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="ParallaxLayerSmallCloud12"]
+position = Vector2(-170, 176)
+texture = ExtResource("10_eryh4")
+
+[node name="ParallaxLayerSmallCloud4" type="ParallaxLayer" parent="."]
+position = Vector2(124, -328)
+motion_scale = Vector2(0.001, 0)
+motion_mirroring = Vector2(900, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds1" type="Sprite2D" parent="ParallaxLayerSmallCloud4"]
+position = Vector2(-170, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("8_sboln")
+
+[node name="ParallaxLayerSmallCloud5" type="ParallaxLayer" parent="."]
+position = Vector2(74, -261)
+motion_scale = Vector2(0.001, 0.85)
+motion_mirroring = Vector2(750, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds2" type="Sprite2D" parent="ParallaxLayerSmallCloud5"]
+position = Vector2(82, 131)
+texture = ExtResource("9_rim76")
+
+[node name="ParallaxLayerSmallCloud6" type="ParallaxLayer" parent="."]
+position = Vector2(483, -539)
+motion_scale = Vector2(0.001, 0.75)
+motion_mirroring = Vector2(800, 0)
+script = SubResource("GDScript_j4ikx")
+
+[node name="SmallClouds3" type="Sprite2D" parent="ParallaxLayerSmallCloud6"]
 position = Vector2(-170, 176)
 texture = ExtResource("10_eryh4")
 

@@ -16,6 +16,12 @@ animations = [{
 "texture": ExtResource("2_qp6bf")
 }, {
 "duration": 1.0,
+"texture": ExtResource("2_qp6bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp6bf")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_qkmv8")
 }],
 "loop": false,
@@ -25,6 +31,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_qkmv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp6bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qp6bf")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_qp6bf")
@@ -46,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkmv8"]
-size = Vector2(31, 20.5)
+size = Vector2(48, 23.25)
 
 [node name="Lever" type="Node2D"]
 z_index = -1
@@ -54,10 +66,10 @@ script = ExtResource("1_qkmv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_170jl")
-animation = &"deactivate"
-frame = 2
-frame_progress = 1.0
+animation = &"activate"
+speed_scale = 2.0
 
 [node name="LeftHurtArea2D" type="Area2D" parent="."]
 position = Vector2(0, -3)
@@ -68,7 +80,7 @@ have_knockback = false
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHurtArea2D"]
-position = Vector2(0, -4)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_qkmv8")
 
 [connection signal="hurt" from="LeftHurtArea2D" to="." method="_on_hurt_area_2d_hurt"]
