@@ -50,7 +50,7 @@ animations = [{
 "texture": ExtResource("4_hxhl5")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -72,8 +72,8 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_o81i0")
-animation = &"dead"
-autoplay = "idle"
+animation = &"run"
+autoplay = "run"
 
 [node name="FrontRayCast2D" type="RayCast2D" parent="Direction"]
 position = Vector2(8, -4)

@@ -9,11 +9,13 @@ func _ready():
 	super._ready()
 
 	for lever in levers_node.get_children():
-		if lever.has_signal("lever_hitted"):
-			lever.lever_hitted.connect(_on_lever_hitted)
+		if lever.has_signal("activated"):
+			lever.activated.connect(_on_activated)
+	
+	await get_tree().process_frame
 	_update_all()
 
-func _on_lever_hitted(_is_activate: bool):
+func _on_activated(_is_activate: bool):
 	_update_all()
 
 func _update_all():
@@ -24,7 +26,7 @@ func _update_all():
 func _count_active_levers() -> int:
 	var count := 0
 	for lever in levers_node.get_children():
-		if lever.get("activated") != null and lever.activated:
+		if lever.get("is_activated") != null and lever.is_activated:
 			count += 1
 	return count
 

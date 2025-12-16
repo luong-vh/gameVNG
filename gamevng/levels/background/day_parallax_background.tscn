@@ -61,6 +61,12 @@ position = Vector2(384.5, 580)
 scale = Vector2(23.969, 5.969)
 texture = ExtResource("3_424y5")
 
+[node name="WaterSprite2D3" type="Sprite2D" parent="ParallaxLayerMain"]
+z_index = -9
+position = Vector2(384.5, 771)
+scale = Vector2(23.969, 5.969)
+texture = ExtResource("3_424y5")
+
 [node name="WaterReflectMedium" parent="ParallaxLayerMain" instance=ExtResource("5_45ccg")]
 position = Vector2(541, 235)
 scale = Vector2(2, 2)
