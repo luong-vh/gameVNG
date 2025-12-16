@@ -22,6 +22,7 @@ extends EnemyCharacter
 
 var original_speed: float
 var original_player_raycast_length: float 
+var is_phase_2: bool = false
 
 func _ready() -> void:
 	super._ready()

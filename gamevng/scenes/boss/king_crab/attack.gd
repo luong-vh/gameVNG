@@ -7,7 +7,10 @@ var phase = 0
 var current_attack = 1
 
 func _enter() -> void:
-	current_attack = randi() % 4 + 1
+	if obj.health <= obj.max_health * 0.5:
+		current_attack = randi() % 4 + 1
+	else:
+		current_attack = randi() % 2 + 1
 	obj.change_animation("attack" + str(min(current_attack, 2)))
 	obj.get_node("Direction/HitArea2D/CollisionShape2D").disabled = false
 	phase = 1

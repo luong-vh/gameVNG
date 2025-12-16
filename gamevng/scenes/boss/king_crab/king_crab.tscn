@@ -1,6 +1,7 @@
-[gd_scene load_steps=51 format=3 uid="uid://bbmaq0rlehe8y"]
+[gd_scene load_steps=52 format=3 uid="uid://bbmaq0rlehe8y"]
 
 [ext_resource type="Script" uid="uid://b5ed44n2qfosq" path="res://scenes/boss/king_crab/king_crab.gd" id="1_m0qvb"]
+[ext_resource type="Script" uid="uid://53n8dqrg3hip" path="res://scenes/boss/king_crab/phase_transition.gd" id="1_phase"]
 [ext_resource type="Texture2D" uid="uid://tcjp0xr3f3kw" path="res://assets/monsters/King_Crab/King_Crab_33-sheet.png" id="2_sicmm"]
 [ext_resource type="Texture2D" uid="uid://dspbrluitryjd" path="res://assets/monsters/King_Crab/King_Crab_5.png" id="6_yqiib"]
 [ext_resource type="Texture2D" uid="uid://d3he512uxhbww" path="res://assets/monsters/King_Crab/King_Crab_6.png" id="7_4af0e"]
@@ -295,6 +296,9 @@ script = ExtResource("35_sumjm")
 
 [node name="Dead" type="Node" parent="States"]
 script = ExtResource("37_7o4ms")
+
+[node name="PhaseTransition" type="Node" parent="States"]
+script = ExtResource("1_phase")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 84)
