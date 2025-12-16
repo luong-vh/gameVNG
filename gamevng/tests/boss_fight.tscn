@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://fnlgwjv1os2e"]
+
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_2x7e0"]
+
+[node name="BossFight" type="Node"]
+script = ExtResource("1_2x7e0")
+metadata/_custom_type_script = "uid://btaxxiktfmkyr"

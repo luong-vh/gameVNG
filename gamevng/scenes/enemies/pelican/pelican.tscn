@@ -78,11 +78,9 @@ collision_mask = 193
 
 [node name="Attack" type="Node" parent="States"]
 script = ExtResource("12_2wr8p")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="Fly" type="Node" parent="States"]
 script = ExtResource("11_2wr8p")
-metadata/_custom_type_script = "uid://cixcna7yhn1hm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

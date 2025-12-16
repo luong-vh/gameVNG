@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_v5nnt"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="4_8hogu"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="5_f7y48"]
-[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="5_lbuq7"]
+[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="5_lbuq7"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_gk8em"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_rxhtx"]
 
@@ -43,7 +43,6 @@ can_double_jump = true
 can_dash = true
 
 [node name="MainCamera" parent="." instance=ExtResource("3_ktxfb")]
-use_smooth_follow = true
 
 [node name="CameraBorder" type="Node2D" parent="."]
 
@@ -51,7 +50,6 @@ use_smooth_follow = true
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_lbuq7")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone1"]
 position = Vector2(388, 215)
@@ -62,7 +60,6 @@ position = Vector2(741, -70)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_lbuq7")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone2"]
 position = Vector2(388, 215)
@@ -73,7 +70,6 @@ position = Vector2(398, 32)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_lbuq7")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone3"]
 shape = SubResource("SegmentShape2D_lbuq7")
@@ -83,7 +79,6 @@ position = Vector2(392, 230)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_lbuq7")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone4"]
 position = Vector2(-1.23663, 122.454)

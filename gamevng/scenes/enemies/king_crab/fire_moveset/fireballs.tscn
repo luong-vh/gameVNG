@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0qxcp0ovpvff"]
+
+[ext_resource type="Texture2D" uid="uid://cmyn3gdxts4nc" path="res://assets/skills/Napalm/export_files/start.png" id="1_fh76o"]
+[ext_resource type="Script" uid="uid://ddm4wxt1dmie2" path="res://scenes/enemies/king_crab/fire_moveset/fireballs.gd" id="1_m6qw8"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="3_4f2fj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh76o"]
+atlas = ExtResource("1_fh76o")
+region = Rect2(0, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6qw8"]
+atlas = ExtResource("1_fh76o")
+region = Rect2(128, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f2fj"]
+atlas = ExtResource("1_fh76o")
+region = Rect2(256, 0, 128, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ppn1"]
+atlas = ExtResource("1_fh76o")
+region = Rect2(384, 0, 128, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ic8jh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh76o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6qw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f2fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ppn1")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ppn1"]
+radius = 7.0
+height = 20.0
+
+[node name="Fireballs" type="Node2D"]
+script = ExtResource("1_m6qw8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(129, 26)
+scale = Vector2(2.32813, 2.92188)
+sprite_frames = SubResource("SpriteFrames_ic8jh")
+animation = &"new_animation"
+frame = 3
+frame_progress = 1.0
+
+[node name="HitArea2D" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("3_4f2fj")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+shape = SubResource("CapsuleShape2D_6ppn1")

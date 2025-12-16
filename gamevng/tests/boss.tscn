@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=4 uid="uid://74j46vwu1pgm"]
+
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_xjte1"]
+[ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_kkfw7"]
+[ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="3_c8mjg"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_m5o8d"]
+[ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="5_ktsgg"]
+[ext_resource type="PackedScene" uid="uid://wbbixurunqu6" path="res://scripts/areas/camera_stop_zone.tscn" id="6_fau7e"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="7_wn3ve"]
+[ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="8_m2rks"]
+[ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="9_6i5eu"]
+[ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="10_pv3up"]
+[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/king_crab.tscn" id="11_kkfw7"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qo6io"]
+a = Vector2(0, -500)
+b = Vector2(0, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n2lmv"]
+b = Vector2(500, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aov85"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rsxi7"]
+
+[node name="Stage" type="Node2D"]
+scale = Vector2(1.00218, 1.0045)
+script = ExtResource("1_xjte1")
+can_switch_day_night = false
+day_night_switch_limit = 0
+level_id = "base_stage"
+
+[node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(86, -34)
+
+[node name="World" type="TileMapLayer" parent="."]
+scale = Vector2(1.00341, 1.01009)
+tile_map_data = PackedByteArray("AAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAABAAAAAAAIAAkAAAABAAAAAAAJAAkAAAABAAAAAAAKAAkAAAABAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAACAAAAAAAOAAoAAAACAAEAAAANAAoAAAABAAEAAAAMAAoAAAABAAEAAAAKAAoAAAABAAEAAAALAAoAAAABAAEAAAAJAAoAAAABAAEAAAAIAAoAAAABAAEAAAAHAAoAAAABAAEAAAAGAAoAAAABAAEAAAAFAAoAAAABAAEAAAAEAAoAAAABAAEAAAADAAoAAAABAAEAAAACAAoAAAABAAEAAAABAAoAAAABAAEAAAAAAAoAAAABAAEAAAD//wkAAAABAAAAAAD//woAAAABAAEAAAD+/wkAAAABAAAAAAD+/woAAAABAAEAAAD+/wsAAAABAAEAAAAAAAsAAAABAAEAAAD//wsAAAABAAEAAAABAAsAAAABAAEAAAACAAsAAAABAAEAAAADAAsAAAABAAEAAAAEAAsAAAABAAEAAAAFAAsAAAABAAEAAAAGAAsAAAABAAEAAAAHAAsAAAABAAEAAAAIAAsAAAABAAEAAAAJAAsAAAABAAEAAAAKAAsAAAABAAEAAAALAAsAAAABAAEAAAAMAAsAAAABAAEAAAANAAsAAAABAAEAAAAOAAsAAAACAAEAAAAOAAwAAAACAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAIAAAAHAAwAAAABAAIAAAAGAAwAAAABAAIAAAAFAAwAAAABAAIAAAAEAAwAAAABAAIAAAADAAwAAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAAAAAwAAAABAAIAAAD//wwAAAABAAIAAAD+/wwAAAABAAIAAAD9/wwAAAABAAIAAAD9/wsAAAABAAEAAAD9/woAAAABAAEAAAD9/wkAAAABAAAAAAD8/wkAAAAAAAAAAAD8/woAAAAAAAEAAAD8/wsAAAAAAAEAAAD8/wwAAAAAAAIAAAADAAgAAwAAAAAABAAQAAkAAAAAAAAAAAAQAAoAAAAAAAEAAAAQAAsAAAAAAAEAAAAQAAwAAAAAAAIAAAARAAsAAAABAAEAAAASAAsAAAABAAEAAAATAAsAAAABAAEAAAAUAAsAAAABAAEAAAAVAAsAAAABAAEAAAAWAAsAAAABAAEAAAAXAAsAAAABAAEAAAAYAAsAAAABAAEAAAAZAAsAAAABAAEAAAAaAAsAAAABAAEAAAAbAAsAAAABAAEAAAARAAoAAAABAAEAAAASAAoAAAABAAEAAAATAAoAAAABAAEAAAAUAAoAAAABAAEAAAAVAAoAAAABAAEAAAAWAAoAAAABAAEAAAAXAAoAAAABAAEAAAAYAAoAAAABAAEAAAAZAAoAAAABAAEAAAAaAAoAAAABAAEAAAAbAAoAAAABAAEAAAARAAwAAAABAAIAAAASAAwAAAABAAIAAAATAAwAAAABAAIAAAAUAAwAAAABAAIAAAAVAAwAAAABAAIAAAAWAAwAAAABAAIAAAAXAAwAAAABAAIAAAAYAAwAAAABAAIAAAAZAAwAAAABAAIAAAAaAAwAAAABAAIAAAAbAAwAAAABAAIAAAAcAAwAAAABAAIAAAAdAAwAAAABAAIAAAAeAAwAAAABAAIAAAAcAAoAAAABAAEAAAAcAAsAAAABAAEAAAAdAAsAAAABAAEAAAAdAAoAAAABAAEAAAAeAAoAAAABAAEAAAAeAAsAAAABAAEAAAARAAkAAAABAAAAAAASAAkAAAABAAAAAAATAAkAAAABAAAAAAAUAAkAAAABAAAAAAAVAAkAAAABAAAAAAAWAAkAAAABAAAAAAAXAAkAAAABAAAAAAAYAAkAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAbAAkAAAABAAAAAAAcAAkAAAABAAAAAAAdAAkAAAABAAAAAAAeAAkAAAABAAAAAAAQAAgAAgAAAAAAAQAfAAoAAAABAAEAAAAgAAoAAAABAAEAAAAhAAoAAAABAAEAAAAiAAoAAAABAAEAAAAjAAoAAAABAAEAAAAkAAoAAAABAAEAAAAlAAoAAAABAAEAAAAmAAoAAAABAAEAAAAnAAoAAAABAAEAAAAfAAsAAAABAAEAAAAgAAsAAAABAAEAAAAhAAsAAAABAAEAAAAiAAsAAAABAAEAAAAjAAsAAAABAAEAAAAkAAsAAAABAAEAAAAlAAsAAAABAAEAAAAmAAsAAAABAAEAAAAnAAsAAAABAAEAAAAoAAoAAAACAAEAAAAoAAsAAAACAAEAAAAfAAwAAAABAAIAAAAgAAwAAAABAAIAAAAhAAwAAAABAAIAAAAiAAwAAAABAAIAAAAjAAwAAAABAAIAAAAkAAwAAAABAAIAAAAlAAwAAAABAAIAAAAmAAwAAAABAAIAAAAnAAwAAAABAAIAAAAoAAwAAAACAAIAAAAfAAkAAAABAAAAAAAgAAkAAAABAAAAAAAhAAkAAAABAAAAAAAiAAkAAAABAAAAAAAjAAkAAAABAAAAAAAkAAkAAAABAAAAAAAlAAkAAAABAAAAAAAmAAkAAAABAAAAAAAnAAkAAAABAAAAAAAoAAUAAAACAAAAAAAoAAYAAAACAAEAAAAoAAcAAAACAAEAAAAoAAgAAAACAAEAAAAoAAkAAAACAAEAAAA=")
+tile_set = ExtResource("2_kkfw7")
+
+[node name="Background" type="TileMapLayer" parent="."]
+modulate = Color(0.691357, 0.691357, 0.691357, 1)
+z_index = -10
+tile_set = ExtResource("2_kkfw7")
+
+[node name="MainCamera" parent="." instance=ExtResource("3_c8mjg")]
+max_distance_horizontal = 250.0
+min_distance_vertical = 20.0
+
+[node name="Player" parent="." instance=ExtResource("4_m5o8d")]
+position = Vector2(133, 264)
+has_blade = true
+can_double_jump = true
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="TutorialSigns" type="Node" parent="Objects"]
+
+[node name="Checkpoints" type="Node" parent="Objects"]
+
+[node name="Checkpoint" parent="Objects/Checkpoints" instance=ExtResource("5_ktsgg")]
+position = Vector2(126.951, 272.11)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="CameraBorders" type="Node" parent="."]
+
+[node name="CameraStopZone" parent="CameraBorders" instance=ExtResource("6_fau7e")]
+position = Vector2(0, 342)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorders/CameraStopZone"]
+shape = SubResource("SegmentShape2D_qo6io")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraBorders/CameraStopZone"]
+shape = SubResource("SegmentShape2D_n2lmv")
+
+[node name="WorldBorder" type="Node" parent="."]
+
+[node name="DownWorldBoder" type="Area2D" parent="WorldBorder"]
+position = Vector2(1, 414)
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("7_wn3ve")
+damage = 1000000000000
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/DownWorldBoder"]
+shape = SubResource("WorldBoundaryShape2D_aov85")
+
+[node name="LeftWorldBorder" type="StaticBody2D" parent="WorldBorder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder/LeftWorldBorder"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_rsxi7")
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="Blade" type="Node" parent="."]
+
+[node name="DayParallaxBackground" parent="." instance=ExtResource("8_m2rks")]
+
+[node name="NightParallaxBackground" parent="." instance=ExtResource("9_6i5eu")]
+visible = false
+
+[node name="ShaderCanvasLayer" parent="." instance=ExtResource("10_pv3up")]
+
+[node name="KingCrab" parent="." instance=ExtResource("11_kkfw7")]
+position = Vector2(1046.72, 263.813)
+
+[editable path="ShaderCanvasLayer"]

@@ -139,3 +139,4 @@ position = Vector2(562, 216)
 
 [node name="Spear" parent="." instance=ExtResource("12_0hjcb")]
 position = Vector2(726, 220)
+script = null
