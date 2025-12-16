@@ -14,7 +14,6 @@ config/name="gameVNG"
 run/main_scene="uid://d1fm5b4gw5t0o"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
-<<<<<<<HEADrun/main_scene="uid://x18ct0xrj08p"
 
 [autoload]
 
@@ -32,11 +31,13 @@ AudioManager="*res://scripts/audio/audio_manager.gd"
 
 directories/dch_directory={
 "Foxy": "res://dialog/characters/Foxy.dch",
+"KingCrab": "res://dialog/characters/KingCrab.dch",
 "Mushroom": "res://dialog/characters/Mushroom.dch"
 }
 directories/dtl_directory={
 "collect_blade": "res://dialog/timelines/collect_blade.dtl",
-"example": "res://dialog/timelines/example.dtl"
+"example": "res://dialog/timelines/example.dtl",
+"kingcrab_phase2": "res://dialog/timelines/kingcrab_phase2.dtl"
 }
 layout/style_directory={
 "": "res://dialog/custom/dialogic_style.tres",

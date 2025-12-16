@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwrxu2607x0tt"]
+
+[ext_resource type="Texture2D" uid="uid://cb255ugg6dryk" path="res://assets/monsters/war_lord_bullet/bullet_cannon.png" id="1_2p4jr"]
+[ext_resource type="Script" uid="uid://bp0xcy7qyit45" path="res://scenes/warlord_turtle/warlord_bullet/cannon.gd" id="1_cannon"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_hk0fg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk0fg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hi7r"]
+
+[node name="Cannon" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_cannon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2p4jr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hk0fg")
+
+[node name="HitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_hk0fg")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+shape = SubResource("RectangleShape2D_2hi7r")
+
+[connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]

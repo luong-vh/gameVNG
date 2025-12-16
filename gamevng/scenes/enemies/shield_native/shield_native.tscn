@@ -98,7 +98,6 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_4yvhb")
-animation = &"attack"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16

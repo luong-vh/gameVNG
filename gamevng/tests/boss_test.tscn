@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4k3v2ksp2k5v"]
+
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_cre4r"]
+[ext_resource type="Texture2D" uid="uid://cnfb5y7sdqkf4" path="res://icon.svg" id="2_y48gj"]
+[ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="8_i1s20"]
+[ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="9_3tphg"]
+[ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="10_tiktf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ok4yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh2fj"]
+size = Vector2(917, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_np4on"]
+size = Vector2(216, 20)
+
+[node name="Stage" type="Node2D"]
+script = ExtResource("1_cre4r")
+level_id = "test2"
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="World"]
+position = Vector2(422, 256)
+scale = Vector2(7.20313, 0.171875)
+texture = ExtResource("2_y48gj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon"]
+position = Vector2(-58.5856, -1489.45)
+scale = Vector2(0.138829, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon/StaticBody2D"]
+position = Vector2(421.5, 256)
+shape = SubResource("RectangleShape2D_kh2fj")
+
+[node name="Icon3" type="Sprite2D" parent="World"]
+position = Vector2(-28, 136)
+rotation = -1.57079
+scale = Vector2(1.70703, 0.171875)
+texture = ExtResource("2_y48gj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon3"]
+position = Vector2(-202.252, -1117.09)
+scale = Vector2(0.585813, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon3/StaticBody2D"]
+position = Vector2(345, 191)
+shape = SubResource("RectangleShape2D_np4on")
+
+[node name="Icon4" type="Sprite2D" parent="World"]
+position = Vector2(871, 137)
+rotation = -1.57079
+scale = Vector2(1.70703, 0.171875)
+texture = ExtResource("2_y48gj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Icon4"]
+position = Vector2(-202.252, -1117.09)
+scale = Vector2(0.585813, 5.81818)
+physics_material_override = SubResource("PhysicsMaterial_ok4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Icon4/StaticBody2D"]
+position = Vector2(345, 191)
+shape = SubResource("RectangleShape2D_np4on")
+
+[node name="Npcs" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="ManualMovingPlatform" parent="." instance=ExtResource("8_i1s20")]
+position = Vector2(54, 147)
+
+[node name="Player" parent="." instance=ExtResource("9_3tphg")]
+
+[node name="Blade" type="Node" parent="."]
+
+[node name="BladePickup" parent="." instance=ExtResource("10_tiktf")]
+position = Vector2(146, 228)
+
+[node name="Bullets" type="Node" parent="."]

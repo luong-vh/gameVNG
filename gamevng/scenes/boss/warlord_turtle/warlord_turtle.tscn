@@ -1,0 +1,208 @@
+[gd_scene load_steps=35 format=3 uid="uid://kp7ogmw4xicg"]
+
+[ext_resource type="Script" uid="uid://dqve2wmr1k7yt" path="res://scenes/boss/warlord_turtle/warlord_turtle.gd" id="1_8y881"]
+[ext_resource type="Texture2D" uid="uid://cu0j764wkuee" path="res://assets/monsters/war_lord/war_lord_turtle1.png" id="2_ecvgf"]
+[ext_resource type="Script" uid="uid://3tnw5cjwssut" path="res://scenes/boss/warlord_turtle/idle.gd" id="2_rxkrr"]
+[ext_resource type="Script" uid="uid://c71dtf62i1xh3" path="res://scenes/boss/warlord_turtle/attack.gd" id="3_lvnxq"]
+[ext_resource type="Texture2D" uid="uid://cfvuv3il41mav" path="res://assets/monsters/war_lord/war_lord_turtle2.png" id="3_txcth"]
+[ext_resource type="Script" uid="uid://cdvte10yjajtt" path="res://scenes/boss/warlord_turtle/hurt.gd" id="4_8y881"]
+[ext_resource type="Texture2D" uid="uid://f8ccag4c8wu3" path="res://assets/monsters/war_lord/war_lord_turtle3.png" id="4_cmwnf"]
+[ext_resource type="Script" uid="uid://4eyrt80vk52p" path="res://scenes/boss/warlord_turtle/dead.gd" id="5_8y881"]
+[ext_resource type="Texture2D" uid="uid://u1assd2muakb" path="res://assets/monsters/war_lord/war_lord_turtle4.png" id="5_bvuip"]
+[ext_resource type="Texture2D" uid="uid://cm31lt1a0iquw" path="res://assets/monsters/war_lord/war_lord_turtle5.png" id="6_rxkrr"]
+[ext_resource type="Texture2D" uid="uid://bko7lgteqraoa" path="res://assets/monsters/war_lord/war_lord_turtle6.png" id="7_lvnxq"]
+[ext_resource type="Texture2D" uid="uid://cd70ho128v6h" path="res://assets/monsters/war_lord/war_lord_turtle7.png" id="8_8y881"]
+[ext_resource type="Texture2D" uid="uid://dh6cvxlnhtta5" path="res://assets/monsters/war_lord/war_lord_turtle8.png" id="9_ve3kb"]
+[ext_resource type="Texture2D" uid="uid://drpnutplfh10h" path="res://assets/monsters/war_lord/war_lord_turtle9.png" id="10_s5d3o"]
+[ext_resource type="Texture2D" uid="uid://c5rn6neo7muvw" path="res://assets/monsters/war_lord/war_lord_turtle10.png" id="11_vk1j6"]
+[ext_resource type="Texture2D" uid="uid://iasati84t88x" path="res://assets/monsters/war_lord/war_lord_turtle11.png" id="12_pfch7"]
+[ext_resource type="Texture2D" uid="uid://bd6k766vx8e70" path="res://assets/monsters/war_lord/war_lord_turtle12.png" id="13_rq6g1"]
+[ext_resource type="Texture2D" uid="uid://b1fmb6bhxgyuc" path="res://assets/monsters/war_lord/war_lord_turtle13.png" id="14_hkag5"]
+[ext_resource type="Texture2D" uid="uid://dgrsjlpckblc5" path="res://assets/monsters/war_lord/war_lord_turtle14.png" id="15_7jure"]
+[ext_resource type="Texture2D" uid="uid://dn8e040pg3y11" path="res://assets/monsters/war_lord/war_lord_turtle16.png" id="16_ygbwr"]
+[ext_resource type="Texture2D" uid="uid://djmi0x1qneoby" path="res://assets/monsters/war_lord/war_lord_turtle15.png" id="17_8c1uj"]
+[ext_resource type="Texture2D" uid="uid://bvo15dpuyoxlj" path="res://assets/monsters/war_lord/war_lord_turtle17.png" id="18_pnrli"]
+[ext_resource type="Texture2D" uid="uid://dclatppikya1o" path="res://assets/monsters/war_lord/war_lord_turtle18.png" id="19_gmgiu"]
+[ext_resource type="Texture2D" uid="uid://cwifjovblto3b" path="res://assets/monsters/war_lord/war_lord_turtle20.png" id="20_d8tvb"]
+[ext_resource type="Texture2D" uid="uid://6kd7vgln8by2" path="res://assets/monsters/war_lord/war_lord_turtle19.png" id="21_i27i1"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="22_txcth"]
+[ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="23_cmwnf"]
+[ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="28_ve3kb"]
+[ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="28_vk1j6"]
+[ext_resource type="PackedScene" uid="uid://b24dy5s5uaynu" path="res://scenes/boss/warlord_turtle/warlord_bullet/turtle_bullet.tscn" id="29_s5d3o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2057"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ecvgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_txcth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cmwnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bvuip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rxkrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lvnxq")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8y881")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ve3kb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_s5d3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vk1j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pfch7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rq6g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hkag5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7jure")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ygbwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8c1uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_pnrli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gmgiu")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_d8tvb")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_i27i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_d8tvb")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ecvgf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmwnf"]
+radius = 33.0
+height = 72.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bvuip"]
+radius = 15.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ecvgf"]
+radius = 34.0
+height = 78.0
+
+[node name="WarlordTurtle" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_8y881")
+metadata/_custom_type_script = "uid://s4xx82espxdt"
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("2_rxkrr")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Attack" type="Node" parent="States"]
+script = ExtResource("3_lvnxq")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Hurt" type="Node" parent="States"]
+script = ExtResource("4_8y881")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("5_8y881")
+metadata/_custom_type_script = "uid://cixcna7yhn1hm"
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_y2057")
+animation = &"attack2"
+
+[node name="HitArea2D" type="Area2D" parent="Direction"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("22_txcth")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
+shape = SubResource("CapsuleShape2D_cmwnf")
+
+[node name="HurtArea2D" type="Area2D" parent="Direction"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("23_cmwnf")
+metadata/_custom_type_script = "uid://csu2b21cwchqw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
+position = Vector2(-29, 10)
+shape = SubResource("CapsuleShape2D_bvuip")
+
+[node name="BulletFactory" type="Marker2D" parent="Direction"]
+position = Vector2(48, 0)
+script = ExtResource("28_ve3kb")
+product_packed_scene = ExtResource("29_s5d3o")
+target_container_name = &"Bullets"
+metadata/_custom_type_script = "uid://b8m342bxc521g"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ecvgf")
+
+[node name="PlayerRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 2)
+target_position = Vector2(0, 90)
+collision_mask = 3
+
+[node name="EnemyHealthBar" parent="." instance=ExtResource("28_vk1j6")]
+offset_left = -35.0
+offset_top = -50.0
+offset_right = 34.0
+offset_bottom = -42.0

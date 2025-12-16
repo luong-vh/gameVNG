@@ -315,9 +315,7 @@ enabled = false
 
 [node name="MainCamera" parent="." instance=ExtResource("4_v2gem")]
 camera_follow_speed = 500.0
-use_smooth_follow = true
 max_distance_horizontal = 250.0
-min_distance_horizontal = 20.0
 min_distance_vertical = 20.0
 
 [node name="Bullets" type="Node" parent="."]
