@@ -1,6 +1,7 @@
-[gd_scene load_steps=46 format=3 uid="uid://bbmaq0rlehe8y"]
+[gd_scene load_steps=51 format=3 uid="uid://bbmaq0rlehe8y"]
 
 [ext_resource type="Script" uid="uid://b5ed44n2qfosq" path="res://scenes/boss/king_crab/king_crab.gd" id="1_m0qvb"]
+[ext_resource type="Texture2D" uid="uid://tcjp0xr3f3kw" path="res://assets/monsters/King_Crab/King_Crab_33-sheet.png" id="2_sicmm"]
 [ext_resource type="Texture2D" uid="uid://dspbrluitryjd" path="res://assets/monsters/King_Crab/King_Crab_5.png" id="6_yqiib"]
 [ext_resource type="Texture2D" uid="uid://d3he512uxhbww" path="res://assets/monsters/King_Crab/King_Crab_6.png" id="7_4af0e"]
 [ext_resource type="Texture2D" uid="uid://3q8b5nrq78s" path="res://assets/monsters/King_Crab/King_Crab_7.png" id="8_sdjwj"]
@@ -42,8 +43,41 @@
 [ext_resource type="PackedScene" uid="uid://c5gkj8qm2xmwl" path="res://scenes/boss/king_crab/crab_bullet.tscn" id="37_bullet"]
 [ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="40_kvqml"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwcx8"]
+atlas = ExtResource("2_sicmm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljwfq"]
+atlas = ExtResource("2_sicmm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btrw5"]
+atlas = ExtResource("2_sicmm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43xvf"]
+atlas = ExtResource("2_sicmm")
+region = Rect2(384, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_j2ggu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwcx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljwfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btrw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xvf")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_yqiib")
@@ -142,7 +176,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("25_3r0va")
+"texture": ExtResource("31_hpwn3")
 }],
 "loop": true,
 "name": &"dead",
@@ -210,7 +244,7 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_j2ggu")
-animation = &"idle"
+animation = &"dead"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16

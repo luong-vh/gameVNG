@@ -1,7 +1,10 @@
 extends EnemyState
 
 func _enter() -> void:
-	obj.change_animation("default")
+	if obj.health <= obj.max_health * 0.5:
+		obj.change_animation("angry")
+	else:
+		obj.change_animation("default")
 	
 func _update(_delta: float) -> void:
 	obj.velocity.x = obj.movement_speed * obj.direction
