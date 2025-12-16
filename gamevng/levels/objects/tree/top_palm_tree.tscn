@@ -34,6 +34,7 @@ animations = [{
 }]
 
 [node name="TopPalmTree" type="StaticBody2D"]
+collision_mask = 0
 script = SubResource("GDScript_44quf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -41,5 +42,5 @@ sprite_frames = SubResource("SpriteFrames_po20b")
 frame_progress = 0.993937
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-24, -9, -21, -14, -15, -19, 14, -19, 21, -14, 24, -9)
+polygon = PackedVector2Array(-24, -9, -22, -20, -15, -19, 14, -19, 23, -20, 24, -9)
 one_way_collision = true

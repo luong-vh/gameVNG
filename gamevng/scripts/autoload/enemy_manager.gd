@@ -9,7 +9,7 @@ var enemy_scenes := {
 	"STARFISH": preload("res://scenes/enemies/starfish/starfish.tscn"),
 	"MUSHROOM": preload("res://scenes/enemies/mushroom/mushroom.tscn"),
 	"TURTLE": preload("res://scenes/enemies/turtle/turtle.tscn"),
-	"SPEAR": preload("res://scenes/enemies/shield_native/spear.tscn")
+	"SHIELD_NATIVE": preload("res://scenes/enemies/shield_native/shield_native.tscn")
 }
 
 func _ready() -> void:

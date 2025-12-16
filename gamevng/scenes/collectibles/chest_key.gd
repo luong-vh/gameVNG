@@ -1,25 +1,33 @@
 extends BaseCollectible
 
-# Số lượng chìa khóa nhặt được (thường là 1)
-@export var key_amount: int = 1 
+@export var key_amount: int = 1
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+var is_key_collectible: bool = true
+
 func _ready() -> void:
-	super._ready() # Ensures the base class's _ready() is called, which connects interaction_available
+	super._ready()
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 
 func _on_collect():
-	# Ngắt tương tác ngay
-	monitoring = false 
+	if collected:
+		return
 
-	# GỌI HÀM THÊM CHÌA KHÓA VÀO HỆ THỐNG
-	GameManager.inventory_system.add_key(key_amount) 
-
-	print("Đã thu thập " + str(key_amount) + " chìa khóa!")
-
-	# BẮT ĐẦU CHẠY ANIMATION
+	collected = true
+	monitoring = false
+	GameManager.inventory_system.add_key(key_amount)
 	animated_sprite_2d.play("collected")
 
 func _on_animation_finished():
 	if animated_sprite_2d.animation == "collected":
-		queue_free() # Tự hủy sau khi animation "collected" chạy xong
+		visible = false
+
+func set_state(state: Dictionary) -> void:
+	super.set_state(state)
+
+	if state.has("collected") and state.collected == false:
+		if animated_sprite_2d.sprite_frames.has_animation("idle"):
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.stop()
+			animated_sprite_2d.frame = 0

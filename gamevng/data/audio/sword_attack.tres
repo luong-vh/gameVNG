@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioClip" load_steps=3 format=3 uid="uid://gl7qhxxlbvuh"]
+
+[ext_resource type="Script" uid="uid://downijt7cqwea" path="res://scripts/audio/audio_clip.gd" id="1_wegu0"]
+[ext_resource type="AudioStream" uid="uid://bjdtb2vtm8edh" path="res://assets/sounds_musics/sword_attack.wav" id="2_q0rqb"]
+
+[resource]
+script = ExtResource("1_wegu0")
+clip_id = "sword_attack"
+stream = ExtResource("2_q0rqb")
+volume_db = 0.0
+randomize_pitch = true
+pitch_min = 0.9
+pitch_max = 1.1
+description = ""
+metadata/_custom_type_script = "uid://downijt7cqwea"

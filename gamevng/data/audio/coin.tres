@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioClip" load_steps=3 format=3 uid="uid://ct2p8puddmgla"]
+
+[ext_resource type="Script" uid="uid://downijt7cqwea" path="res://scripts/audio/audio_clip.gd" id="1_qmf2a"]
+[ext_resource type="AudioStream" uid="uid://w5jqjknju6hu" path="res://assets/sounds_musics/coin.mp3" id="2_v8apq"]
+
+[resource]
+script = ExtResource("1_qmf2a")
+clip_id = "coin"
+stream = ExtResource("2_v8apq")
+volume_db = 0.0
+randomize_pitch = true
+pitch_min = 0.9
+pitch_max = 1.1
+description = ""
+metadata/_custom_type_script = "uid://downijt7cqwea"

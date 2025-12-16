@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://daebxh76prtom"]
+
+[ext_resource type="Script" uid="uid://clq8j2xsbbjnd" path="res://scenes/enemies/coconut_native/coconut_bullet.gd" id="1_f0voh"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="1_kj24m"]
+[ext_resource type="Texture2D" uid="uid://dgm4fld4hb0xb" path="res://assets/monsters/native/coconut.png" id="2_f0voh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wqsq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1c68v"]
+
+[node name="CoconutBullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_f0voh")
+
+[node name="HitArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 69
+script = ExtResource("1_kj24m")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+shape = SubResource("CircleShape2D_1wqsq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1c68v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f0voh")
+
+[connection signal="hitted" from="HitArea2D" to="." method="_on_hit_area_2d_hitted"]

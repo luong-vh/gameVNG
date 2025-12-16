@@ -1,18 +1,19 @@
 extends EnemyState
 
-var phase = 1
-func _enter()->void:
+@export var attack_delay: float = 0.3
+var attack_delay_timer: float = 0
+
+func _enter() -> void:
+	timer = 0.5
+	attack_delay_timer = 0
 	obj.change_animation("attack")
-	phase = 1
-	timer =0.6
-func _update(delta: float)->void:
-	if update_timer(delta):
-		if phase ==1:
-			_attack()
-			phase += 1
-			timer =0.3
-		else: 
-			change_state(fsm.states.fly)
-func _attack()->void:
-	obj.fire()
+
+func _update(delta: float) -> void:
+	super._update(delta)
+	attack_delay_timer += delta
+	if attack_delay_timer > attack_delay:
+		obj.fire()
+		attack_delay_timer = 0
 	
+	if update_timer(delta):
+		change_state(fsm.previous_state)

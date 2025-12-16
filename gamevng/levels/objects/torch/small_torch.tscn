@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://bg6mbbuwnrv5c"]
+
+[ext_resource type="Script" uid="uid://cvc4l3a6lup65" path="res://levels/objects/torch/torch.gd" id="1_2imr4"]
+[ext_resource type="Texture2D" uid="uid://c1hc2i55qnly4" path="res://assets/island/objects/torch/small fire off.png" id="1_3exux"]
+[ext_resource type="Texture2D" uid="uid://tmn2d5eysf7t" path="res://assets/island/objects/torch/small_fire-Sheet.png" id="2_3exux"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="3_tmhn4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3exux"]
+atlas = ExtResource("2_3exux")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2imr4"]
+atlas = ExtResource("2_3exux")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmhn4"]
+atlas = ExtResource("2_3exux")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mopm2"]
+atlas = ExtResource("2_3exux")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hscct"]
+atlas = ExtResource("2_3exux")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l266l"]
+atlas = ExtResource("2_3exux")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7fg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3exux")
+}],
+"loop": true,
+"name": &"turn_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3exux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2imr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmhn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mopm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hscct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l266l")
+}],
+"loop": true,
+"name": &"turn_on",
+"speed": 5.0
+}]
+
+[node name="SmallTorch" type="Node2D"]
+script = ExtResource("1_2imr4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -3)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f7fg4")
+animation = &"turn_on"
+frame_progress = 0.175654
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.52549, 0.258824, 1)
+texture = ExtResource("3_tmhn4")
+texture_scale = 0.5

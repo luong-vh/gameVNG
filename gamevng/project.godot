@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gameVNG"
-run/main_scene="res://levels/level_1.tscn"
+run/main_scene="uid://d1fm5b4gw5t0o"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://x18ct0xrj08p"
@@ -26,6 +26,7 @@ GUIManager="*res://scripts/autoload/GUIManager.tscn"
 EnemyManager="*res://scripts/autoload/enemy_manager.gd"
 SaveSystemEnemy="*res://scripts/autoload/save_load_enemy.gd"
 DebugLogger="*res://scripts/autoload/debug_logger.gd"
+AudioManager="*res://scripts/audio/audio_manager.gd"
 
 [dialogic]
 

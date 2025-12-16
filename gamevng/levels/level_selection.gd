@@ -6,6 +6,7 @@ var buttons: Array = []
 func _ready() -> void:
 	set_up_buttons()
 	GUIManager.on_level_selection_scene()
+	AudioManager.play_music("menu")
 	
 func set_up_buttons():
 	buttons = $Setting/LevelButtons.get_children()

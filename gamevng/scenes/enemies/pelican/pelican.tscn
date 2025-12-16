@@ -25,7 +25,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_6861i")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -48,12 +48,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsoae"]
-size = Vector2(21, 22)
+size = Vector2(30.5, 20)
 
 [node name="Pelican" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_2wr8p")
-movement_speed = 10.0
+attack_cool_down = 2.0
 gravity = 0.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
@@ -62,10 +62,9 @@ metadata/_custom_type_script = "uid://s4xx82espxdt"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_vpg65")
 animation = &"attack"
-frame_progress = 0.115591
 
 [node name="BulletFactory" type="Marker2D" parent="Direction"]
-position = Vector2(11, 2)
+position = Vector2(6, -8)
 script = ExtResource("9_4nlxy")
 product_packed_scene = ExtResource("10_vtu8k")
 target_container_name = &"Bullets"
@@ -83,5 +82,5 @@ script = ExtResource("12_2wr8p")
 script = ExtResource("11_2wr8p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(-4.75, -4)
 shape = SubResource("RectangleShape2D_nsoae")

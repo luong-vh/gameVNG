@@ -14,6 +14,8 @@ func use_item(item_name: String) -> bool:
 			return use_damage_boost()
 		"mana_potion":
 			return use_mana_potion()
+		"blade":
+			return use_blade()
 		_:
 			print("[ItemManager] Unknown item: %s" % item_name)
 			return false
@@ -100,14 +102,40 @@ func use_speed_boost() -> bool:
 	if not player:
 		print("[ItemManager] Player not found!")
 		return false
-	
+
 	print("[ItemManager] Using speed boost...")
-	
+
 	# Use the existing powerup system (should work now that player_state uses get_movement_speed())
 	player.collect_powerup("speed_up")
-	
+
 	print("[ItemManager] Speed boost activated!")
-	GUIManager.play_SFX("coin")
-	
+	#GUIManager.play_SFX("coin")
+
 	item_used.emit("speed_boost", true)
 	return true
+<<<<<<< HEAD
+=======
+
+func use_blade() -> bool:
+	var player = GameManager.get_player()
+	if not player:
+		print("[ItemManager] Player not found!")
+		return false
+
+	# Check if blade is already equipped
+	if not player.has_blade:
+		# Equip blade for the first time
+		print("[ItemManager] Equipping blade...")
+		player.equip_blade()
+		#GUIManager.play_SFX("coin")
+		print("[ItemManager] ✅ Blade equipped! Use attack button to throw!")
+	else:
+		# Already equipped
+		print("[ItemManager] Blade is already equipped!")
+		print("[ItemManager] 🗡️ Use attack button to throw blade!")
+
+	item_used.emit("blade", true)
+
+	# Return true but blade won't be consumed (handled in GUIManager)
+	return true
+>>>>>>> dev

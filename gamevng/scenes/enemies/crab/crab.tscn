@@ -71,7 +71,7 @@ shape = SubResource("RectangleShape2D_aatoi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 sprite_frames = SubResource("SpriteFrames_tgm84")
-animation = &"dead"
+animation = &"hurt"
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
 collision_layer = 0

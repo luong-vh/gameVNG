@@ -2,26 +2,26 @@ extends BaseCollectible
 
 ## Blade power-up item. Grants the player the ability to use a blade.
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
 	super._ready()
-	if animated_sprite:
-		animated_sprite.animation_finished.connect(_on_animation_finished)
+	print("[Blade] Blade collectible ready!")
 
 func _on_collect() -> void:
+	if collected:
+		return  # Already collected
+
+	print("[Blade] _on_collect() called!")
 	super._on_collect()  # This now sets collected=true, visible=false, monitoring=false
 
-	# Call the player's collected_blade function
-	GameManager.player.collect_powerup("blade")
+	# Call player's collect_blade() function
+	# This will add blade to hotbar slot 0 (not equipped yet)
+	print("[Blade] Calling player.collect_blade()...")
+	if GameManager.player:
+		GameManager.player.collect_blade()
+		print("[Blade] ✅ Blade collected! (Press 1 to equip)")
+	else:
+		print("[Blade] ❌ Player not found!")
 
-	print("Player collected blade!")
-
-	# If there's a collection animation and sprite is visible, play it
-	if animated_sprite and animated_sprite.sprite_frames.has_animation("collected") and animated_sprite.visible:
-		animated_sprite.play("collected")
-
-func _on_animation_finished() -> void:
-	# Just hide after animation, don't queue_free() to preserve for save/load
-	if animated_sprite.animation == "collected":
-		animated_sprite.visible = false
+	print("[Blade] Blade collection complete!")

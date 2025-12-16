@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6to373sloqm1"]
+
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="1_6qr1s"]
+[ext_resource type="Script" uid="uid://bj8qutdcevihs" path="res://levels/objects/puzzle/seesaw/seesaw.gd" id="1_q7njw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qr1s"]
+size = Vector2(296, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7njw"]
+size = Vector2(297, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vjk4"]
+size = Vector2(296, 16)
+
+[node name="Seesaw" type="Node2D"]
+position = Vector2(0, -7)
+script = ExtResource("1_q7njw")
+
+[node name="Plank" type="AnimatableBody2D" parent="."]
+collision_mask = 0
+
+[node name="PlankSprite" type="Sprite2D" parent="Plank"]
+position = Vector2(-0.500004, -19)
+scale = Vector2(3.54118, 0.625)
+texture = ExtResource("1_6qr1s")
+
+[node name="PlankColission" type="CollisionShape2D" parent="Plank"]
+position = Vector2(-1, -20)
+shape = SubResource("RectangleShape2D_6qr1s")
+
+[node name="LeftDetector" type="Area2D" parent="Plank"]
+collision_layer = 0
+collision_mask = 42
+
+[node name="LeftShape" type="CollisionShape2D" parent="Plank/LeftDetector"]
+position = Vector2(-0.5, -27.5)
+shape = SubResource("RectangleShape2D_q7njw")
+
+[node name="RightDetector" type="Area2D" parent="Plank"]
+collision_layer = 0
+collision_mask = 42
+
+[node name="RightShape" type="CollisionShape2D" parent="Plank/RightDetector"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_2vjk4")
+
+[node name="Pivot" type="Polygon2D" parent="."]
+z_index = -4
+position = Vector2(-31, -41)
+rotation = 0.0102604
+scale = Vector2(2.67543, 5.04531)
+texture = ExtResource("1_6qr1s")
+polygon = PackedVector2Array(12.2678, 2.3486, 6.17408, 14.348, 17.9297, 14.3919)
+uv = PackedVector2Array(12.5677, 2.04515, 6.17408, 14.348, 18.0894, 14.0574)

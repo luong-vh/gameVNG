@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="3_52a3b"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="4_3ff1r"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="5_cmohj"]
-[ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://scenes/objects/pistol/pistol.tscn" id="6_bv8dl"]
+[ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://levels/objects/spring/spring.tscn" id="6_bv8dl"]
 [ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="7_uhmd0"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="8_8c4vb"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="9_gu0mu"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="11_0bers"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="12_27cb5"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="13_kiqbd"]
-[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="15_nfoyp"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="16_3p5ss"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="17_8pvc7"]
@@ -111,10 +111,6 @@ can_dash = true
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="WoodenSign" parent="Objects" instance=ExtResource("4_3ff1r")]
-position = Vector2(243, 273)
-message = "Be careful with the spiders"
-
 [node name="WoodenSign4" parent="Objects" instance=ExtResource("4_3ff1r")]
 position = Vector2(243, 273)
 message = "You can double jump now!"
@@ -146,12 +142,12 @@ position = Vector2(1103, -444)
 [node name="Checkpoint4" parent="Objects/Checkpoints" instance=ExtResource("5_cmohj")]
 position = Vector2(2118, -667)
 
-[node name="Pistol" parent="Objects" instance=ExtResource("6_bv8dl")]
-position = Vector2(800, 36)
-push_force = 1000.0
+[node name="Spring" parent="Objects" instance=ExtResource("6_bv8dl")]
+position = Vector2(800, 28)
+push_force = 500.0
 
-[node name="Pistol2" parent="Objects" instance=ExtResource("6_bv8dl")]
-position = Vector2(895, -331)
+[node name="Spring2" parent="Objects" instance=ExtResource("6_bv8dl")]
+position = Vector2(895, -335)
 rotation = 3.14159
 push_force = 1000.0
 push_direction = 1

@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_y6gll"]
 [ext_resource type="Texture2D" uid="uid://cnfb5y7sdqkf4" path="res://icon.svg" id="2_xvtvn"]
-[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://assets/island/objects/moving_platform/moving_platform.png" id="3_4v8fn"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="3_4v8fn"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="6_1ama6"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="6_nikbb"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="7_sfuiw"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="8_25w68"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="9_btjcs"]
 [ext_resource type="PackedScene" uid="uid://g0juxlw4q3td" path="res://levels/objects/platforms/manual_moving_platform.tscn" id="9_olj2x"]
-[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="10_1ama6"]
+[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="10_1ama6"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="11_5bf0o"]
-[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/spear.tscn" id="12_0hjcb"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/shield_native.tscn" id="12_0hjcb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ok4yu"]
 

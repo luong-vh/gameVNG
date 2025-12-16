@@ -32,6 +32,7 @@ var pogo_hit_area_collision
 @export var wall_friction: float = 300.0
 @export var wall_jump_force: float = 120.0
 @export var wall_slide_speed: float = 200.0
+@export var wall_jump_lock_input_time: float = 0.2
 var wall_checker: RayCast2D
 
 # --- DOUBLE JUMP ---
@@ -61,7 +62,13 @@ var raycast_pushable: RayCast2D
 
 func _ready() -> void:
 	super._ready()
-	set_animated_sprite($Direction/AnimatedSprite2D)
+
+	# Reset blade state - always start unequipped
+	# Blade state will be managed by inventory system
+	# has_blade will be set when player uses blade from hotbar (press 1)
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)  # Ensure normal sprite
+
 	fsm = FSM.new(self, $States, $States/Idle)
 	_init_hit_hurt_area()
 	_init_wall_cling()
@@ -71,9 +78,6 @@ func _ready() -> void:
 	decorator_manager.initialize(self)
 	add_child(decorator_manager)
 
-	if has_blade:
-		collect_blade()
-	
 	if has_node("LockInputTimer"):
 		lock_input_timer = get_node("LockInputTimer")
 	
@@ -149,23 +153,86 @@ func change_attack_direction(dir: AttackDir):
 		attack_direction = dir
 
 func collect_blade() -> void:
+	print("[Player] Collecting blade (adding to hotbar)...")
+
+	# Add blade icon to hotbar - find empty slot, don't overwrite
+	if GameManager.inventory_system:
+		var blade_texture = load("res://assets/items/blade.png")
+		if blade_texture:
+			var success = GameManager.inventory_system.add_item_to_hotbar("blade", blade_texture, 1)
+			if success:
+				print("[Player] ✅ Blade added to hotbar (press 1 to equip)")
+			else:
+				print("[Player] ⚠️ Hotbar full! Blade added to inventory")
+		else:
+			print("[Player] ❌ Failed to load blade texture")
+
+	# DON'T auto-equip - player must press 1 to equip
+	# has_blade stays false until player presses 1
+
+func equip_blade() -> void:
+	"""Equip blade when player uses it from hotbar (press 1)"""
+	print("[Player] Equipping blade...")
 	has_blade = true
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = true
-	
+	print("[Player] ✅ Blade equipped! (can now throw with attack button)")
+
 func drop_blade():
+	print("[Player] Dropping blade...")
 	has_blade = false
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = false
 
+	# Remove blade from hotbar slot 0
+	if GameManager.inventory_system:
+		GameManager.inventory_system.clear_hotbar_slot(0)
+	print("[Player] Blade dropped and removed from hotbar")
+
+func unequip_blade():
+	"""Unequip blade but keep in hotbar"""
+	print("[Player] Unequipping blade...")
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	Dialogic.VAR["PlayerHasBlade"] = false
+	print("[Player] Blade unequipped (still in hotbar)")
+
 func throw_blade():
+	print("[Player] Throwing blade...")
 	var blade := blade_factory.create() as RigidBody2D
 	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
 	blade.apply_impulse(throwing_velocity)
+
+	# Unequip and remove from inventory
 	has_blade = false
 	Dialogic.VAR["PlayerHasBlade"] = false
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	change_animation("idle")
+
+	# Remove blade from hotbar when thrown
+	if GameManager.inventory_system:
+		GameManager.inventory_system.clear_hotbar_slot(0)
+	print("[Player] Blade thrown and lost from inventory")
+
+func _has_blade_in_hotbar() -> bool:
+	"""Check if blade exists in hotbar slot 0"""
+	if not GameManager.inventory_system:
+		return false
+	var item = GameManager.inventory_system.get_hotbar_item(0)
+	return item != null and item.item_name == "blade"
+
+func sync_blade_with_inventory() -> void:
+	"""Sync player's blade state with inventory system"""
+	if _has_blade_in_hotbar():
+		# Blade in inventory but not equipped
+		if not has_blade:
+			# Ensure sprite is normal (not blade sprite)
+			if animated_sprite != $Direction/AnimatedSprite2D:
+				set_animated_sprite($Direction/AnimatedSprite2D)
+	else:
+		# No blade in inventory but player has it equipped - unequip
+		if has_blade:
+			unequip_blade()
 
 func is_near_wall() -> bool:
 	if wall_checker:
@@ -176,13 +243,19 @@ func is_near_wall() -> bool:
 func reset_jump_count():
 	jump_count = 0
 
+func reset_dash():
+	dash_count = 0
+
 func lock_input(length: float = 0.3) -> bool:
 	if lock_input_timer:
 		lock_input_timer.start(length)
 		return true
 	else:
 		return false
-
+		
+func unlock_input():
+	lock_input_timer.stop()
+	
 func is_input_lock() -> bool:
 	return lock_input_timer.time_left > 0
 
@@ -216,15 +289,17 @@ func load_state(data: Dictionary) -> void:
 		print("loaded position")
 		var pos_array = data["position"]
 		global_position = Vector2(pos_array[0], pos_array[1])
-	
-	if data.has("has_blade"):
-		print("loaded has_blade")
-		has_blade = data["has_blade"][0]
-		if has_blade:
-			collect_blade()
-		else:
-			drop_blade()
-	
+
+	# Always reset to normal sprite on respawn
+	# Player must manually re-equip blade from hotbar if they had it
+	has_blade = false
+	set_animated_sprite($Direction/AnimatedSprite2D)
+	Dialogic.VAR["PlayerHasBlade"] = false
+	print("[Player] Respawned with normal sprite - checking inventory...")
+
+	# Sync blade state with inventory
+	sync_blade_with_inventory()
+
 	if data.has("health"):
 		health = data["health"][0]
 		print("loaded health %d" %health)
@@ -238,7 +313,7 @@ func _on_area_hitted(area: Area2D) -> void:
 		return
 	
 	var knockback_vector: Vector2 = Vector2.ZERO
-	if area is HurtArea2D:
+	if area is HurtArea2D and area.have_knockback:
 		match attack_direction:
 			AttackDir.FORWARD:
 				# Push away from enemy
@@ -248,7 +323,7 @@ func _on_area_hitted(area: Area2D) -> void:
 				knockback_vector = Vector2(0, attack_knockback_force * 0.5)
 			AttackDir.DOWN:
 				knockback_vector = Vector2(0, -pogo_bounce_force)
-	elif area is PogoArea2D:
+	elif area is PogoArea2D and area.have_knockback:
 		knockback_vector = Vector2(0, -pogo_bounce_force)
 	
 	if knockback_vector != Vector2.ZERO:

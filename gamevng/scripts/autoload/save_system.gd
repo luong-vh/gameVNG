@@ -4,6 +4,7 @@ extends Node
 
 const SAVE_FILE = "user://checkpoint_save.dat"
 const LEVEL_FILE = "user://level_save.dat"
+
 const MAX_LEVEL = 10
 # Save checkpoint data to file
 func save_checkpoint_data(data: Dictionary) -> void:
@@ -151,7 +152,11 @@ func _restore_recursive(node: Node, states: Dictionary, confirm_after_restore: b
 			if confirm_after_restore:
 				obj.confirm_current_state()
 		else:
-			obj.reset_to_initial()
+			# No saved state - reset to scene default (not checkpoint state)
+			if obj.has_method("reset_to_scene_default"):
+				obj.reset_to_scene_default()
+			else:
+				obj.reset_to_initial()
 
 	for child in node.get_children():
 		_restore_recursive(child, states, confirm_after_restore)

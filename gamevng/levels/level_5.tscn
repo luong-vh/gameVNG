@@ -1,6 +1,5 @@
-[gd_scene load_steps=48 format=4 uid="uid://dik634nketv45"]
+[gd_scene load_steps=47 format=4 uid="uid://dik634nketv45"]
 
-[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_aacai"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_pggb5"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_idjb0"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="4_8wqug"]
@@ -15,14 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://b3nrfp0dpb248" path="res://scripts/areas/day_switch_area_2d.tscn" id="13_vqvhr"]
 [ext_resource type="PackedScene" uid="uid://bl4qkm7jaq7pp" path="res://levels/control_nodes/boss_control.tscn" id="14_n48b1"]
 [ext_resource type="Script" uid="uid://bn0oogftm4uv7" path="res://levels/control_nodes/enemy_spawn_data.gd" id="15_l2jsg"]
-[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/king_crab.tscn" id="16_75mxt"]
+[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/boss/king_crab/king_crab.tscn" id="16_75mxt"]
 [ext_resource type="PackedScene" uid="uid://3aur1qlygih6" path="res://levels/objects/door/iron_door.tscn" id="17_vdvq7"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="18_0hqou"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="19_lyxhm"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="20_x04rt"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="21_4h45g"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="22_b514w"]
-[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/spear.tscn" id="23_gl1p1"]
+[ext_resource type="PackedScene" uid="uid://de5jc85hnt3us" path="res://scenes/enemies/shield_native/shield_native.tscn" id="23_gl1p1"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="24_3y4s7"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="25_b0qus"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="26_j8rdx"]
@@ -94,10 +93,7 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk1wx"]
 size = Vector2(140, 34)
 
-[node name="Stage" type="Node"]
-script = ExtResource("1_aacai")
-can_switch_day_night = false
-metadata/_custom_type_script = "uid://btaxxiktfmkyr"
+[node name="Stage" type="Node2D"]
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)

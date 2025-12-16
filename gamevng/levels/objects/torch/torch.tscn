@@ -1,33 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://p5lm84j0yyqu"]
 
-[ext_resource type="Texture2D" uid="uid://cmb7tk1t5myt2" path="res://assets/island/objects/torch/fire_animation_turn_off.png" id="1_gnvd1"]
-[ext_resource type="Texture2D" uid="uid://ny2qb7icae7m" path="res://assets/island/objects/torch/fire_animation_fix.png" id="1_wt6eg"]
-[ext_resource type="Texture2D" uid="uid://bxh43o755kc26" path="res://assets/day_night/light.png" id="2_wt6eg"]
-
-[sub_resource type="GDScript" id="GDScript_wt6eg"]
-resource_name = "torch"
-script/source = "extends Node2D
-
-@onready var light_source = $PointLight2D
-
-func _ready() -> void:
-	DayNightManager.day_night_state_changed.connect(_day_night_changed)
-	
-	if DayNightManager.current_day_night_state == DayNightManager.DayNightState.DAY:
-		light_source.enabled = false
-		$AnimatedSprite2D.play(\"turn_off\")
-	else:
-		light_source.enabled = true
-		$AnimatedSprite2D.play(\"turn_on\")
-
-func _day_night_changed(new_state):
-	if new_state == DayNightManager.DayNightState.DAY:
-		light_source.enabled = false
-		$AnimatedSprite2D.play(\"turn_off\")
-	else:
-		light_source.enabled = true
-		$AnimatedSprite2D.play(\"turn_on\")
-"
+[ext_resource type="Texture2D" uid="uid://br663dod8d8j1" path="res://assets/island/objects/torch/fire_animation_turn_off.png" id="1_gnvd1"]
+[ext_resource type="Script" uid="uid://cvc4l3a6lup65" path="res://levels/objects/torch/torch.gd" id="1_q7y5f"]
+[ext_resource type="Texture2D" uid="uid://0dhgt1psa4pw" path="res://assets/island/objects/torch/fire_animation_fix.png" id="1_wt6eg"]
+[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="2_wt6eg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnvd1"]
 atlas = ExtResource("1_wt6eg")
@@ -88,7 +64,7 @@ animations = [{
 }]
 
 [node name="Torch" type="Node2D"]
-script = SubResource("GDScript_wt6eg")
+script = ExtResource("1_q7y5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1

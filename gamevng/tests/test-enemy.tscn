@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_krcem"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="4_pa22l"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="5_5jyel"]
-[ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="7_pxeid"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="8_0i4qx"]
-[ext_resource type="Script" uid="uid://bscbu7r2b67wt" path="res://scripts/enemy_spawn_point.gd" id="9_jx3by"]
+[ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="10_ek7wy"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="10_tsaj6"]
 [ext_resource type="Script" uid="uid://dgvsfdcpklinc" path="res://tests/save_load_ui.gd" id="11_ek7wy"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="11_m8cxc"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="11_wjdv0"]
 [ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/king_crab.tscn" id="12_wjdv0"]
 
@@ -26,12 +26,15 @@ offset_bottom = 81.0
 script = ExtResource("11_ek7wy")
 
 [node name="World" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAEAAAABAAQAAAACAAEAAAABAAMAAAACAAEAAAABAAUAAAACAAEAAAABAAYAAAACAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAcAAAAAAAIAAAABAAcAAAAJAAQAAAACAAcAAAABAAQAAAADAAcAAAABAAQAAAAEAAcAAAABAAQAAAAFAAcAAAABAAQAAAAGAAcAAAABAAQAAAAHAAcAAAABAAQAAAAIAAcAAAABAAQAAAAJAAcAAAABAAQAAAAKAAcAAAABAAQAAAALAAcAAAABAAQAAAAMAAcAAAABAAQAAAANAAcAAAABAAQAAAAbAAcAAAAQAAQAAAAbAAYAAAAEAAEAAAAbAAUAAAAEAAEAAAAbAAQAAAAEAAEAAAAbAAMAAAAEAAEAAAAbAAIAAAAEAAEAAAAbAAEAAAAEAAEAAAAbAAAAAAAEAAAAAAAJAAUAAwAAAAAAAQAJAAQAAwAAAAAAAQAJAAMAAwAAAAAAAQAKAAMAAwAAAAAAAQAKAAQAAwAAAAAAAQAKAAUAAwAAAAAAAQALAAUAAwAAAAAAAQALAAQAAwAAAAAAAQALAAMAAwAAAAAAAQACAAMAAwAAAAAAAQACAAQAAwAAAAAAAQADAAQAAwAAAAAAAQAEAAQAAwAAAAAAAQAEAAMAAwAAAAAAAQADAAMAAwAAAAAAAQADAAUAAwAAAAAAAQACAAUAAwAAAAAAAQAEAAUAAwAAAAAAAQAOAAcAAAABAAQAAAAPAAcAAAABAAQAAAAQAAcAAAABAAQAAAARAAcAAAABAAQAAAASAAcAAAABAAQAAAATAAcAAAABAAQAAAAUAAcAAAABAAQAAAAVAAcAAAABAAQAAAAWAAcAAAABAAQAAAAXAAcAAAABAAQAAAAYAAcAAAABAAQAAAAZAAcAAAABAAQAAAAaAAcAAAABAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAEAAAABAAEAAAACAAEAAAABAAIAAAACAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAEAAAABAAQAAAACAAEAAAABAAMAAAACAAEAAAABAAUAAAACAAEAAAABAAYAAAACAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAcAAAAAAAIAAAABAAcAAAAJAAQAAAACAAcAAAABAAQAAAADAAcAAAABAAQAAAAEAAcAAAABAAQAAAAFAAcAAAABAAQAAAAGAAcAAAABAAQAAAAHAAcAAAABAAQAAAAIAAcAAAABAAQAAAAJAAcAAAABAAQAAAAKAAcAAAABAAQAAAALAAcAAAABAAQAAAAMAAcAAAABAAQAAAANAAcAAAABAAQAAAAbAAcAAAAQAAQAAAAbAAYAAAAEAAEAAAAbAAUAAAAEAAEAAAAbAAQAAAAEAAEAAAAbAAMAAAAEAAEAAAAbAAIAAAAEAAEAAAAbAAEAAAAEAAEAAAAbAAAAAAAEAAAAAAAOAAcAAAABAAQAAAAPAAcAAAABAAQAAAAQAAcAAAABAAQAAAARAAcAAAABAAQAAAASAAcAAAABAAQAAAATAAcAAAABAAQAAAAUAAcAAAABAAQAAAAVAAcAAAABAAQAAAAWAAcAAAABAAQAAAAXAAcAAAABAAQAAAAYAAcAAAABAAQAAAAZAAcAAAABAAQAAAAaAAcAAAABAAQAAAAAAAAAAAAAAAAAAAABAAAAAAACAAAAAAAGAAAAAAAAAAQAAAAHAAAAAAABAAQAAAAIAAAAAAABAAQAAAAJAAAAAAABAAQAAAAKAAAAAAABAAQAAAALAAAAAAABAAQAAAAMAAAAAAACAAQAAAAOAAIAAAAAAAQAAAAPAAIAAAABAAQAAAAQAAIAAAABAAQAAAARAAIAAAABAAQAAAASAAIAAAACAAQAAAAWAAMAAAAAAAQAAAAXAAMAAAABAAQAAAAYAAMAAAABAAQAAAAZAAMAAAACAAQAAAAHAAMAAAACAAQAAAAGAAMAAAABAAQAAAAFAAMAAAABAAQAAAAEAAMAAAAAAAQAAAALAAQAAwAAAAAAAQAMAAQAAwAAAAAAAQAMAAUAAwAAAAAAAQALAAUAAwAAAAAAAQAKAAUAAwAAAAAAAQAKAAQAAwAAAAAAAQANAAUAAwAAAAAAAQANAAQAAwAAAAAAAQAQAAYAAwAAAAAAAgASAAYAAwAAAAAAAgAUAAYAAwAAAAAAAgAWAAYAAwAAAAAAAgAYAAYAAwAAAAAAAgA=")
 tile_set = ExtResource("1_i5bra")
 
 [node name="Player" parent="." instance=ExtResource("3_krcem")]
 position = Vector2(199, 212)
 collision_mask = 41
+can_wall_cling = true
+can_double_jump = true
+can_dash = true
 
 [node name="DayParallaxBackground" parent="." instance=ExtResource("4_pa22l")]
 
@@ -43,17 +46,22 @@ visible = false
 [node name="BladePickup" parent="." instance=ExtResource("8_0i4qx")]
 position = Vector2(132, 217)
 
-[node name="EnemySpawnPoint" type="Node2D" parent="." groups=["Enemy Spawn Points"]]
-position = Vector2(571, 205)
-script = ExtResource("9_jx3by")
-enemy_scene = ExtResource("7_pxeid")
-
 [node name="Checkpoint" parent="." instance=ExtResource("10_tsaj6")]
-position = Vector2(796, 208)
+position = Vector2(167, 208)
 
 [node name="MainCamera" parent="." instance=ExtResource("11_wjdv0")]
 
+<<<<<<< HEAD
 [node name="Bullets" type="Node" parent="."]
 
 [node name="KingCrab" parent="." instance=ExtResource("12_wjdv0")]
 position = Vector2(448, 194)
+=======
+[node name="Blade" type="Node" parent="."]
+
+[node name="ChestKey" parent="." instance=ExtResource("10_ek7wy")]
+position = Vector2(506, 52)
+
+[node name="Chest" parent="." instance=ExtResource("11_m8cxc")]
+position = Vector2(763, 73)
+>>>>>>> dev

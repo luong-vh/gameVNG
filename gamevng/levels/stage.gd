@@ -2,7 +2,8 @@ extends Node
 class_name Stage
 
 @export var can_switch_day_night: bool = true
-@export var default_day_night_state: DayNightManager.DayNightState
+@export var default_day_night_state: DayNightManager.DayNightState = DayNightManager.DayNightState.DAY
+@export var default_shader_state: DayNightManager.ShaderState = DayNightManager.ShaderState.NONE
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
 @export var level_id: String = "5"
@@ -41,6 +42,7 @@ func _init_day_night():
 	DayNightManager.set_can_switch_day_night(can_switch_day_night)
 	DayNightManager.set_switch_limit(day_night_switch_limit)
 	DayNightManager.set_day_night_state(default_day_night_state)
+	DayNightManager.set_shader_state(default_shader_state)
 
 func save_stage() -> Dictionary:
 	var saved_node = get_tree().get_nodes_in_group("Saved Object")
