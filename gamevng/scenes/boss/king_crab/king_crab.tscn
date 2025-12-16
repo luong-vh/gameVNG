@@ -1,138 +1,148 @@
-[gd_scene load_steps=45 format=3 uid="uid://bbmaq0rlehe8y"]
+[gd_scene load_steps=46 format=3 uid="uid://bbmaq0rlehe8y"]
 
-[ext_resource type="Script" uid="uid://b5ed44n2qfosq" path="res://scenes/boss/king_crab/king_crab.gd" id="1_m0qvb"]
-[ext_resource type="Texture2D" uid="uid://rqtujack7snr" path="res://assets/monsters/King_Crab/King_Crab_4.png" id="2_y4exi"]
-[ext_resource type="Texture2D" uid="uid://c6x66rcn131xw" path="res://assets/monsters/King_Crab/King_Crab_5.png" id="3_ir0hk"]
-[ext_resource type="Texture2D" uid="uid://dvrxyj8r5rs8b" path="res://assets/monsters/King_Crab/King_Crab_6.png" id="4_rtcbf"]
-[ext_resource type="Texture2D" uid="uid://c64wmsygewggr" path="res://assets/monsters/King_Crab/King_Crab_7.png" id="5_m0qvb"]
-[ext_resource type="Texture2D" uid="uid://kdhsvrcpt3u4" path="res://assets/monsters/King_Crab/King_Crab_8.png" id="6_sumjm"]
-[ext_resource type="Texture2D" uid="uid://dsim1bqtvsdkv" path="res://assets/monsters/King_Crab/King_Crab_9.png" id="7_f4e7y"]
-[ext_resource type="Texture2D" uid="uid://drm3q48vy5mbe" path="res://assets/monsters/King_Crab/King_Crab_10.png" id="8_7o4ms"]
-[ext_resource type="Texture2D" uid="uid://qr02j4yfuw4v" path="res://assets/monsters/King_Crab/King_Crab_11.png" id="9_akvdk"]
-[ext_resource type="Texture2D" uid="uid://gaqt18hqstij" path="res://assets/monsters/King_Crab/King_Crab_12.png" id="10_svanc"]
-[ext_resource type="Texture2D" uid="uid://vh626mtldakf" path="res://assets/monsters/King_Crab/King_Crab_13.png" id="11_kvqml"]
-[ext_resource type="Texture2D" uid="uid://byqsa2lqxr66a" path="res://assets/monsters/King_Crab/King_Crab_14.png" id="12_fy0nw"]
-[ext_resource type="Texture2D" uid="uid://bq3bjleb1x6tx" path="res://assets/monsters/King_Crab/King_Crab_15.png" id="13_d3het"]
-[ext_resource type="Texture2D" uid="uid://1ao5paw8148h" path="res://assets/monsters/King_Crab/King_Crab_16.png" id="14_t8jun"]
-[ext_resource type="Texture2D" uid="uid://d2vitfbmp7u1r" path="res://assets/monsters/King_Crab/King_Crab_17.png" id="15_5nk7l"]
-[ext_resource type="Texture2D" uid="uid://36xsjn4i2d1y" path="res://assets/monsters/King_Crab/King_Crab_18.png" id="16_dgqab"]
-[ext_resource type="Texture2D" uid="uid://cue6504kaco01" path="res://assets/monsters/King_Crab/King_Crab_19.png" id="17_xhi03"]
-[ext_resource type="Texture2D" uid="uid://v0eg7wdsmjvq" path="res://assets/monsters/King_Crab/King_Crab_20.png" id="18_7ilng"]
-[ext_resource type="Texture2D" uid="uid://c2baagcd44c3a" path="res://assets/monsters/King_Crab/King_Crab_21.png" id="19_62jvf"]
-[ext_resource type="Texture2D" uid="uid://b1kg8hr6xv35j" path="res://assets/monsters/King_Crab/King_Crab_22.png" id="20_mv5wc"]
-[ext_resource type="Texture2D" uid="uid://dk64pf0m8efle" path="res://assets/monsters/King_Crab/King_Crab_23.png" id="21_dsooo"]
-[ext_resource type="Texture2D" uid="uid://cj4kyi3w2yay1" path="res://assets/monsters/King_Crab/King_Crab_24.png" id="22_nebfn"]
-[ext_resource type="Texture2D" uid="uid://dasru1vhasy0q" path="res://assets/monsters/King_Crab/King_Crab_25.png" id="23_3n6rc"]
-[ext_resource type="Texture2D" uid="uid://biutlsouiu5en" path="res://assets/monsters/King_Crab/King_Crab_26.png" id="24_i2f7v"]
-[ext_resource type="Texture2D" uid="uid://3hcmdrmpv268" path="res://assets/monsters/King_Crab/King_Crab_1.png" id="25_b8v5x"]
-[ext_resource type="Texture2D" uid="uid://bbe2ohfgtc7g5" path="res://assets/monsters/King_Crab/King_Crab_3.png" id="26_twoje"]
-[ext_resource type="Texture2D" uid="uid://dsm57qodxfgx6" path="res://assets/monsters/King_Crab/King_Crab_2.png" id="27_qa8nf"]
-[ext_resource type="Texture2D" uid="uid://dq8v0axi23te5" path="res://assets/monsters/King_Crab/King_Crab_27.png" id="28_a56r2"]
-[ext_resource type="Texture2D" uid="uid://dm14ctq0yi00o" path="res://assets/monsters/King_Crab/King_Crab_28.png" id="29_77ar3"]
-[ext_resource type="Texture2D" uid="uid://mvqfpu6p3052" path="res://assets/monsters/King_Crab/King_Crab_29.png" id="30_7qnan"]
-[ext_resource type="Texture2D" uid="uid://c3luhqyn0r2vo" path="res://assets/monsters/King_Crab/King_Crab_30.png" id="31_daqyf"]
+[ext_resource type="Script" uid="uid://b5ed44n2qfosq" path="res://scenes/enemies/king_crab/king_crab.gd" id="1_m0qvb"]
+[ext_resource type="Texture2D" uid="uid://dspbrluitryjd" path="res://assets/monsters/King_Crab/King_Crab_5.png" id="6_yqiib"]
+[ext_resource type="Texture2D" uid="uid://d3he512uxhbww" path="res://assets/monsters/King_Crab/King_Crab_6.png" id="7_4af0e"]
+[ext_resource type="Texture2D" uid="uid://3q8b5nrq78s" path="res://assets/monsters/King_Crab/King_Crab_7.png" id="8_sdjwj"]
+[ext_resource type="Texture2D" uid="uid://dt5qkhqirfnc1" path="res://assets/monsters/King_Crab/King_Crab_9.png" id="9_ju7pt"]
+[ext_resource type="Texture2D" uid="uid://cx1xso86v6txv" path="res://assets/monsters/King_Crab/King_Crab_13.png" id="10_122tb"]
+[ext_resource type="Texture2D" uid="uid://cfprxppkqrim5" path="res://assets/monsters/King_Crab/King_Crab_8.png" id="10_hj5qf"]
+[ext_resource type="Texture2D" uid="uid://ckvq21fpnvh10" path="res://assets/monsters/King_Crab/King_Crab_14.png" id="11_3r0va"]
+[ext_resource type="Texture2D" uid="uid://64mrdxwd5oth" path="res://assets/monsters/King_Crab/King_Crab_10.png" id="11_p2afr"]
+[ext_resource type="Texture2D" uid="uid://d35hrwh6p7xfs" path="res://assets/monsters/King_Crab/King_Crab_15.png" id="12_1hse0"]
+[ext_resource type="Texture2D" uid="uid://bqxcqhk7ty6c5" path="res://assets/monsters/King_Crab/King_Crab_11.png" id="12_634fi"]
+[ext_resource type="Texture2D" uid="uid://di188jsgyry7g" path="res://assets/monsters/King_Crab/King_Crab_12.png" id="13_00vm2"]
+[ext_resource type="Texture2D" uid="uid://cac5g7svwp0pr" path="res://assets/monsters/King_Crab/King_Crab_16.png" id="13_hblmm"]
+[ext_resource type="Texture2D" uid="uid://cj5go62qjkhla" path="res://assets/monsters/King_Crab/King_Crab_17.png" id="14_yqiib"]
+[ext_resource type="Texture2D" uid="uid://dutqes8cge4hc" path="res://assets/monsters/King_Crab/King_Crab_18.png" id="15_4af0e"]
+[ext_resource type="Texture2D" uid="uid://7nbjxmypyp82" path="res://assets/monsters/King_Crab/King_Crab_19.png" id="16_sdjwj"]
+[ext_resource type="Texture2D" uid="uid://4al45nb6b6j3" path="res://assets/monsters/King_Crab/King_Crab_20.png" id="17_ju7pt"]
+[ext_resource type="Texture2D" uid="uid://chl2yqatcyuel" path="res://assets/monsters/King_Crab/King_Crab_21.png" id="18_hj5qf"]
+[ext_resource type="Texture2D" uid="uid://bwwtc88ymo1we" path="res://assets/monsters/King_Crab/King_Crab_22.png" id="19_p2afr"]
+[ext_resource type="Texture2D" uid="uid://dtarrmrdqs1ua" path="res://assets/monsters/King_Crab/King_Crab_23.png" id="20_634fi"]
+[ext_resource type="Texture2D" uid="uid://blgs5hnqkswor" path="res://assets/monsters/King_Crab/King_Crab_24.png" id="21_00vm2"]
+[ext_resource type="Texture2D" uid="uid://da8yl8h6ekxay" path="res://assets/monsters/King_Crab/King_Crab_25.png" id="22_b8xal"]
+[ext_resource type="Texture2D" uid="uid://rfe2hucxt07l" path="res://assets/monsters/King_Crab/King_Crab_26.png" id="23_mb0wv"]
+[ext_resource type="Texture2D" uid="uid://cf1v882xyrqvc" path="res://assets/monsters/King_Crab/King_Crab_27.png" id="24_ax48g"]
+[ext_resource type="Texture2D" uid="uid://b5bbavnx37gtt" path="res://assets/monsters/King_Crab/King_Crab_1.png" id="25_3r0va"]
+[ext_resource type="Texture2D" uid="uid://d2sigwrqlyuf7" path="res://assets/monsters/King_Crab/King_Crab_28.png" id="29_i3wq1"]
+[ext_resource type="Texture2D" uid="uid://dn374trxt2w77" path="res://assets/monsters/King_Crab/King_Crab_2.png" id="29_sdjwj"]
+[ext_resource type="Texture2D" uid="uid://dh5pxnihk0hl2" path="res://assets/monsters/King_Crab/King_Crab_3.png" id="30_ju7pt"]
+[ext_resource type="Texture2D" uid="uid://dc5tef64otbsq" path="res://assets/monsters/King_Crab/King_Crab_29.png" id="30_thpbh"]
+[ext_resource type="Texture2D" uid="uid://cuf510n3fo2qm" path="res://assets/monsters/King_Crab/King_Crab_4.png" id="31_hj5qf"]
+[ext_resource type="Texture2D" uid="uid://mu5wuh1e6cxw" path="res://assets/monsters/King_Crab/King_Crab_30.png" id="31_hpwn3"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="32_m0qvb"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="33_sumjm"]
 [ext_resource type="Script" uid="uid://brr3232nslubb" path="res://scenes/boss/king_crab/hurt.gd" id="34_7o4ms"]
 [ext_resource type="Script" uid="uid://hs57b3kcxckr" path="res://scenes/boss/king_crab/attack.gd" id="35_f4e7y"]
 [ext_resource type="Script" uid="uid://bw5mqqevjf45q" path="res://scenes/boss/king_crab/moving.gd" id="35_sumjm"]
 [ext_resource type="Script" uid="uid://b8m342bxc521g" path="res://scripts/node2d_factory.gd" id="36_factory"]
-[ext_resource type="Script" uid="uid://blr7nks8qmfr0" path="res://scenes/boss/king_crab/dead.gd" id="37_7o4ms"]
-[ext_resource type="PackedScene" uid="uid://c5gkj8qm2xmwl" path="res://scenes/boss/king_crab/crab_bullet.tscn" id="37_bullet"]
+[ext_resource type="Script" uid="uid://b6pwqqngd20rl" path="res://scenes/enemies/king_crab/idle.gd" id="36_idle"]
+[ext_resource type="Script" uid="uid://blr7nks8qmfr0" path="res://scenes/enemies/king_crab/dead.gd" id="37_7o4ms"]
+[ext_resource type="PackedScene" uid="uid://c5gkj8qm2xmwl" path="res://scenes/enemies/king_crab/crab_bullet.tscn" id="37_bullet"]
 [ext_resource type="PackedScene" uid="uid://ualr5ifl4nv5" path="res://scenes/gui/enemy_health_bar.tscn" id="40_kvqml"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bo7o7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2ggu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_y4exi")
+"texture": ExtResource("6_yqiib")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ir0hk")
+"texture": ExtResource("7_4af0e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_rtcbf")
+"texture": ExtResource("8_sdjwj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_m0qvb")
+"texture": ExtResource("10_hj5qf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_sumjm")
+"texture": ExtResource("11_p2afr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_f4e7y")
+"texture": ExtResource("9_ju7pt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_7o4ms")
+"texture": ExtResource("12_634fi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_akvdk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_svanc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_kvqml")
+"texture": ExtResource("13_00vm2")
 }],
 "loop": true,
-"name": &"attack",
-"speed": 5.0
+"name": &"attack1",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_kvqml")
+"texture": ExtResource("10_122tb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_fy0nw")
+"texture": ExtResource("11_3r0va")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_d3het")
+"texture": ExtResource("12_1hse0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_t8jun")
+"texture": ExtResource("13_hblmm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_5nk7l")
+"texture": ExtResource("14_yqiib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4af0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_sdjwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ju7pt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_hj5qf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_p2afr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_634fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_00vm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_b8xal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_mb0wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ax48g")
 }],
 "loop": true,
 "name": &"attack2",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("16_dgqab")
+"texture": ExtResource("16_sdjwj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_xhi03")
+"texture": ExtResource("17_ju7pt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_7ilng")
+"texture": ExtResource("18_hj5qf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_62jvf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_mv5wc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_dsooo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_nebfn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_3n6rc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_i2f7v")
+"texture": ExtResource("19_p2afr")
 }],
 "loop": true,
 "name": &"attack3",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("25_b8v5x")
+"texture": ExtResource("25_3r0va")
 }],
 "loop": true,
 "name": &"dead",
@@ -140,16 +150,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("25_b8v5x")
+"texture": ExtResource("25_3r0va")
 }, {
 "duration": 1.0,
-"texture": ExtResource("26_twoje")
+"texture": ExtResource("29_sdjwj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_qa8nf")
+"texture": ExtResource("30_ju7pt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_y4exi")
+"texture": ExtResource("31_hj5qf")
 }],
 "loop": true,
 "name": &"default",
@@ -157,19 +167,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("28_a56r2")
+"texture": ExtResource("29_i3wq1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("29_77ar3")
+"texture": ExtResource("30_thpbh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("30_7qnan")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_daqyf")
+"texture": ExtResource("31_hpwn3")
 }],
 "loop": true,
 "name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_3r0va")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -188,13 +203,14 @@ height = 90.0
 [node name="KingCrab" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_m0qvb")
+meteor_count = 10
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="Direction" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
-sprite_frames = SubResource("SpriteFrames_bo7o7")
-animation = &"dead"
+sprite_frames = SubResource("SpriteFrames_j2ggu")
+animation = &"idle"
 
 [node name="HurtArea2D" type="Area2D" parent="Direction"]
 collision_layer = 16
@@ -216,19 +232,23 @@ position = Vector2(-2, -15)
 shape = SubResource("CapsuleShape2D_f4e7y")
 
 [node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
-position = Vector2(66, 1)
+position = Vector2(-62, 0)
+target_position = Vector2(-1, 35)
 
 [node name="FrontRayCast2D" type="RayCast2D" parent="Direction"]
-position = Vector2(43, 0)
-target_position = Vector2(57, 0)
+position = Vector2(-53, -1)
+target_position = Vector2(-34, 1)
 
 [node name="BulletFactory" type="Marker2D" parent="Direction"]
-position = Vector2(80, 0)
+position = Vector2(-99, 0)
 script = ExtResource("36_factory")
 product_packed_scene = ExtResource("37_bullet")
 target_container_name = &"Bullets"
 
 [node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("36_idle")
 
 [node name="Hurt" type="Node" parent="States"]
 script = ExtResource("34_7o4ms")

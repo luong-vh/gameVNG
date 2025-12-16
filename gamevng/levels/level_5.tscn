@@ -3,8 +3,8 @@
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_pggb5"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_idjb0"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="4_8wqug"]
-[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="5_1a4ff"]
-[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="6_5fr5s"]
+[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="5_1a4ff"]
+[ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/door.tscn" id="6_5fr5s"]
 [ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="7_ddx28"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="8_00dlp"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="9_pqyxy"]
@@ -134,7 +134,6 @@ position = Vector2(0, 370)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_1a4ff")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone1"]
 shape = SubResource("SegmentShape2D_nk1wx")
@@ -147,7 +146,6 @@ position = Vector2(1205, 400)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_1a4ff")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone2"]
 position = Vector2(-15, 8)
@@ -158,7 +156,6 @@ position = Vector2(1834, 355)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_1a4ff")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone3"]
 position = Vector2(0, 26)
@@ -169,7 +166,6 @@ position = Vector2(6875, 155)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_1a4ff")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone4"]
 position = Vector2(48, 3)
@@ -212,7 +208,6 @@ position = Vector2(9077, 324)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("5_1a4ff")
-metadata/_custom_type_script = "uid://baoky30abnb03"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraBorder/CameraStopZone5"]
 position = Vector2(-2, 28)
@@ -427,9 +422,11 @@ position = Vector2(6324, 83)
 
 [node name="Spear" parent="Enemies" instance=ExtResource("23_gl1p1")]
 position = Vector2(2872, 273)
+script = null
 
 [node name="Spear2" parent="Enemies" instance=ExtResource("23_gl1p1")]
 position = Vector2(7678, -432)
+script = null
 
 [node name="DayParallaxBackground" parent="." instance=ExtResource("24_3y4s7")]
 visible = false

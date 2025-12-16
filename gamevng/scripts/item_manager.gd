@@ -113,6 +113,8 @@ func use_speed_boost() -> bool:
 
 	item_used.emit("speed_boost", true)
 	return true
+<<<<<<< HEAD
+=======
 
 func use_blade() -> bool:
 	var player = GameManager.get_player()
@@ -136,3 +138,4 @@ func use_blade() -> bool:
 
 	# Return true but blade won't be consumed (handled in GUIManager)
 	return true
+>>>>>>> dev

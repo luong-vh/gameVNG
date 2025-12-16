@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://dckv65isqpukg"]
+
+[ext_resource type="Script" uid="uid://i37dlmsg3wjh" path="res://scenes/enemies/king_crab/fire_moveset/meteor_impact.gd" id="1_uwsdm"]
+[ext_resource type="Texture2D" uid="uid://cjirvm038mwjt" path="res://assets/skills/Meteors/Fire_Meteors_Large_A_32x32.png" id="2_gcaad"]
+[ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="3_ga5id"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7ebt"]
+atlas = ExtResource("2_gcaad")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38eqd"]
+atlas = ExtResource("2_gcaad")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3hik"]
+atlas = ExtResource("2_gcaad")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro2so"]
+atlas = ExtResource("2_gcaad")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8yyn"]
+atlas = ExtResource("2_gcaad")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jj10v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ebt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38eqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3hik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro2so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8yyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uwsdm"]
+radius = 13.1529
+
+[node name="MeteorImpact" type="Node2D"]
+script = ExtResource("1_uwsdm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_jj10v")
+frame_progress = 0.0955498
+
+[node name="HitArea2D" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("3_ga5id")
+metadata/_custom_type_script = "uid://cskdv6tj5dtso"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_uwsdm")
