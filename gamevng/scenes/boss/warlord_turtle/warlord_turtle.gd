@@ -5,8 +5,8 @@ extends EnemyCharacter
 @export var bullet_speed: float = 300
 
 var current_idle_time: float = 4.0
-@onready var cannon_scene = preload("res://scenes/enemies/warlord_turtle/warlord_bullet/cannon.tscn")
-@onready var rocket_scene = preload("res://scenes/enemies/warlord_turtle/warlord_bullet/rocket.tscn")
+@onready var cannon_scene = preload("res://scenes/boss/warlord_turtle/warlord_bullet/cannon.tscn")
+@onready var rocket_scene = preload("res://scenes/boss/warlord_turtle/warlord_bullet/rocket.tscn")
 @onready var bullet_spawn_point = $Direction/BulletFactory
 
 func _ready() -> void:

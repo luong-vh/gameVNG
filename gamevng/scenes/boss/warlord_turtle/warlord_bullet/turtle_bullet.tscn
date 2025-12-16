@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b24dy5s5uaynu"]
 
-[ext_resource type="Script" uid="uid://woscb1saqcx4" path="res://scenes/enemies/warlord_turtle/warlord_bullet/turtle_bullet.gd" id="1_2y0wp"]
+[ext_resource type="Script" uid="uid://woscb1saqcx4" path="res://scenes/warlord_turtle/warlord_bullet/turtle_bullet.gd" id="1_2y0wp"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="1_lm4f1"]
 [ext_resource type="Texture2D" uid="uid://cb255ugg6dryk" path="res://assets/monsters/war_lord_bullet/bullet_cannon.png" id="2_2y0wp"]
 [ext_resource type="Texture2D" uid="uid://b877dqwkc1kg" path="res://assets/monsters/war_lord_bullet/bullet_rocket.png" id="3_lktxd"]

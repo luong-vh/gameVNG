@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=38 format=3 uid="uid://gmsitsyww3ne"]
 
-[ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/init_assets/terrain/terrain_32x32.png" id="1_6gm7o"]
+[ext_resource type="Texture2D" uid="uid://v2dtejovry7r" path="res://assets/island/terrain/terrain_32x32.png" id="1_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://c2tvye30jubhg" path="res://scenes/enemies/spike/spike.tscn" id="2_6gm7o"]
 [ext_resource type="PackedScene" uid="uid://de2ep26bq1t6f" path="res://scenes/enemies/spike/right_side_spike.tscn" id="3_8e75p"]
 [ext_resource type="PackedScene" uid="uid://p6jehx3cdmtf" path="res://levels/objects/tree/palm_tree_1.tscn" id="3_fgag5"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://g5d31lnkmebo" path="res://scenes/enemies/spike/down_side_spike.tscn" id="5_wlw37"]
 [ext_resource type="PackedScene" uid="uid://1i6474n61uwt" path="res://levels/objects/checkpoint/ground_check_point_area.tscn" id="7_6kw8m"]
 [ext_resource type="PackedScene" uid="uid://dx6xb8kuq1art" path="res://scenes/collectibles/coin.tscn" id="9_wlw37"]
-[ext_resource type="PackedScene" uid="uid://bjy683k0ahgxy" path="res://scenes/collectibles/health_potion.tscn" id="10_vnuqa"]
+[ext_resource type="PackedScene" uid="uid://dnoy6re0nsmwx" path="res://scenes/collectibles/health_potion.tscn" id="10_vnuqa"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_wlw37"]
 tile_data = PackedInt32Array(65536, 3, 65536, 1, 3, 65536, 131073, 3, 65536, 65538, 3, 65536)

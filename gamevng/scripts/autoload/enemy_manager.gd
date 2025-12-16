@@ -4,12 +4,12 @@ var enemies_by_type: Dictionary = {}
 var night_spawn_points: Array = []
 
 var enemy_scenes := {
-	"": preload("res://scenes/enemies/crab/crab.tscn"),
+	"CRAB": preload("res://scenes/enemies/crab/crab.tscn"),
 	"BARREL": preload("res://scenes/enemies/barrel/barrel.tscn"),
 	"STARFISH": preload("res://scenes/enemies/starfish/starfish.tscn"),
 	"MUSHROOM": preload("res://scenes/enemies/mushroom/mushroom.tscn"),
 	"TURTLE": preload("res://scenes/enemies/turtle/turtle.tscn"),
-	"SHIELD_NATIVE": preload("res://scenes/enemies/shield_native/shield_native.tscn")
+#	"SHIELD_NATIVE": preload("res://scenes/enemies/shield_native/shield_native.tscn")
 }
 
 func _ready() -> void:

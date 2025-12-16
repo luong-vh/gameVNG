@@ -8,8 +8,8 @@ var velocity: Vector2
 var has_hit_ground: bool = false
 var start_y: float
 
-@onready var fire_spread_scene = preload("res://scenes/enemies/king_crab/fire_moveset/fire_spread.tscn")
-@onready var flame_scene = preload("res://scenes/enemies/king_crab/fire_moveset/flame.tscn")
+@onready var fire_spread_scene = preload("res://scenes/boss/king_crab/fire_moveset/fire_spread.tscn")
+@onready var flame_scene = preload("res://scenes/boss/king_crab/fire_moveset/flame.tscn")
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():

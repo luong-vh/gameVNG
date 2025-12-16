@@ -10,7 +10,7 @@ var has_hit_ground: bool = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var ground_raycast = $GroundRayCast2D
-@onready var impact_scene = preload("res://scenes/enemies/king_crab/fire_moveset/meteor_impact.tscn")
+@onready var impact_scene = preload("res://scenes/boss/king_crab/fire_moveset/meteor_impact.tscn")
 
 func _ready():
 	velocity = Vector2(0, fall_speed)

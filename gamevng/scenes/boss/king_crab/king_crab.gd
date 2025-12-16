@@ -17,8 +17,8 @@ extends EnemyCharacter
 
 @onready var bullet_factory = $Direction/BulletFactory
 @onready var fire_spawn_point: Marker2D = null
-@onready var fireball_scene = preload("res://scenes/enemies/king_crab/fire_moveset/fireballs.tscn")
-@onready var meteor_scene = preload("res://scenes/enemies/king_crab/fire_moveset/meteor.tscn")
+@onready var fireball_scene = preload("res://scenes/boss/king_crab/fire_moveset/fireballs.tscn")
+@onready var meteor_scene = preload("res://scenes/boss/king_crab/fire_moveset/meteor.tscn")
 
 var original_speed: float
 var original_player_raycast_length: float 

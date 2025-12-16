@@ -3,7 +3,7 @@ extends Node2D
 signal spread_finished
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var flame_scene = preload("res://scenes/enemies/king_crab/fire_moveset/flame.tscn")
+@onready var flame_scene = preload("res://scenes/boss/king_crab/fire_moveset/flame.tscn")
 
 func _ready():
 	if animated_sprite:
