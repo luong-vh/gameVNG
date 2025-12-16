@@ -49,7 +49,7 @@ b = Vector2(-500, 0)
 script = ExtResource("1_fpvgn")
 can_switch_day_night = false
 day_night_switch_limit = 0
-level_id = "base_stage"
+level_id = "level_6"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
