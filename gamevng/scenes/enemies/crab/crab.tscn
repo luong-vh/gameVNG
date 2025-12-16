@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b8hn315wfu1hr" path="res://scenes/enemies/crab/crab.gd" id="1_v3jfl"]
 [ext_resource type="Texture2D" uid="uid://div7bok06185o" path="res://assets/monsters/crab/crab_01.png" id="2_2p33d"]
 [ext_resource type="Texture2D" uid="uid://bheixrcxv5gb4" path="res://assets/monsters/crab/crab_hurt_01.png" id="2_aatoi"]
-[ext_resource type="PackedScene" uid="uid://qukhv8ls1hj0" path="res://scenes/collectibles/coin_drop.tscn" id="2_novun"]
+[ext_resource type="PackedScene" path="res://scenes/collectibles/coin_drop.tscn" id="2_novun"]
 [ext_resource type="Texture2D" uid="uid://boxmc12qq7a8a" path="res://assets/monsters/crab/crab_hurt_02.png" id="3_tgm84"]
 [ext_resource type="Texture2D" uid="uid://d24uce3wqmwe6" path="res://assets/monsters/crab/crab_02.png" id="3_u0osc"]
 [ext_resource type="Texture2D" uid="uid://dq122qahq1rm2" path="res://assets/monsters/crab/crab_03.png" id="4_stbuj"]

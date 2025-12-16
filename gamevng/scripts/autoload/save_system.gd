@@ -5,7 +5,7 @@ extends Node
 const SAVE_FILE = "user://checkpoint_save.dat"
 const LEVEL_FILE = "user://level_save.dat"
 
-const MAX_LEVEL = 10
+const MAX_LEVEL = 8
 # Save checkpoint data to file
 func save_checkpoint_data(data: Dictionary) -> void:
 	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)

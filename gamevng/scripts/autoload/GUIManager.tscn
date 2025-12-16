@@ -116,6 +116,7 @@ theme_override_constants/separation = 4
 script = ExtResource("2_j1isl")
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("2_nvfsa")]
+script = null
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("3_hotbar")]
 z_index = 100
