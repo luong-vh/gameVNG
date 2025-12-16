@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://74j46vwu1pgm"]
+[gd_scene load_steps=15 format=4 uid="uid://74j46vwu1pgm"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_xjte1"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_kkfw7"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="8_m2rks"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="9_6i5eu"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="10_pv3up"]
-[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/enemies/king_crab/king_crab.tscn" id="11_kkfw7"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qo6io"]
 a = Vector2(0, -500)
@@ -103,8 +102,5 @@ shape = SubResource("WorldBoundaryShape2D_rsxi7")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("10_pv3up")]
-
-[node name="KingCrab" parent="." instance=ExtResource("11_kkfw7")]
-position = Vector2(1046.72, 263.813)
 
 [editable path="ShaderCanvasLayer"]
