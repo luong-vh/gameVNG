@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ww5ptygxtt2r"]
+[gd_scene load_steps=16 format=3 uid="uid://ww5ptygxtt2r"]
 
-[ext_resource type="Texture2D" uid="uid://bxi06lxspxcpu" path="res://assets/island/objects/spider/spider.png" id="1_8rk4d"]
+[ext_resource type="Texture2D" uid="uid://cpfyuck3fm6o3" path="res://assets/island/objects/spider/spider.png" id="1_8rk4d"]
 [ext_resource type="Script" uid="uid://cl2usfpk80r6b" path="res://scenes/enemies/spider/spider.gd" id="1_1072l"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_iuc6c"]
+[ext_resource type="PackedScene" uid="uid://qukhv8ls1hj0" path="res://scenes/collectibles/coin_drop.tscn" id="2_yqokj"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="4_qljqk"]
 [ext_resource type="Script" uid="uid://c021dhu3h8lvn" path="res://scenes/enemies/spider/run.gd" id="5_3v4i1"]
 [ext_resource type="Script" uid="uid://byvwiabdu7rgu" path="res://scenes/enemies/spider/hurt.gd" id="6_cfybg"]
@@ -69,6 +70,7 @@ size = Vector2(13, 9.5)
 [node name="Spider" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_1072l")
+coin_scene = ExtResource("2_yqokj")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="Direction" type="Node2D" parent="."]

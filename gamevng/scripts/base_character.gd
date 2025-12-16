@@ -74,6 +74,8 @@ func stop_move() -> void:
 
 func take_damage(damage: int) -> void:
 	health -= damage
+	if health <= 0:
+		died.emit()
 
 # Change the animation of the character on the next frame
 func change_animation(new_animation: String) -> void:

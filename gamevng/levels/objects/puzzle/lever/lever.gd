@@ -1,12 +1,10 @@
 extends SaveableObject
-class_name Clever
+class_name Lever
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var left_hurt_area = $LeftHurtArea2D
-@onready var right_hurt_area = $RightHurtArea2D
 
 @export var can_be_deactivate: bool
-var activated: bool
+var activated: bool = false
 
 signal lever_hitted(is_activate: bool)
 

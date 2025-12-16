@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bl6utmk1aha7e"]
+[gd_scene load_steps=17 format=3 uid="uid://bl6utmk1aha7e"]
 
 [ext_resource type="Script" uid="uid://dbgiyl0026ew0" path="res://scenes/enemies/barrel/barrel.gd" id="1_t8iir"]
 [ext_resource type="Texture2D" uid="uid://de0p6wfv2rc7g" path="res://assets/monsters/barrel/barrel_atk_01.png" id="2_pdnpt"]
+[ext_resource type="PackedScene" uid="uid://qukhv8ls1hj0" path="res://scenes/collectibles/coin_drop.tscn" id="2_scbq0"]
 [ext_resource type="Texture2D" uid="uid://2igv4kkux8c6" path="res://assets/monsters/barrel/barrel_atk_02.png" id="3_td13d"]
 [ext_resource type="Texture2D" uid="uid://lxyxy6hj6rja" path="res://assets/monsters/barrel/barrel_atk_03.png" id="4_ac5fs"]
 [ext_resource type="Texture2D" uid="uid://c2c1sjpl4vgrq" path="res://assets/monsters/barrel/barrel_atk_04.png" id="5_scbq0"]
@@ -54,7 +55,9 @@ size = Vector2(20, 18.8235)
 [node name="Barrel" type="CharacterBody2D"]
 scale = Vector2(1.7, 1.7)
 collision_layer = 321
+collision_mask = 513
 script = ExtResource("1_t8iir")
+coin_scene = ExtResource("2_scbq0")
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 
 [node name="Direction" type="Node2D" parent="."]

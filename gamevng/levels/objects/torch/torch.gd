@@ -1,21 +1,58 @@
 extends Node2D
+class_name Torch
+
+@export var use_day_night := true
 
 @onready var light_source = $PointLight2D
+@onready var sprite = $AnimatedSprite2D
+
+var manual_override := false
+var desired_on := false
 
 func _ready() -> void:
-	DayNightManager.day_night_state_changed.connect(_day_night_changed)
-	
-	if DayNightManager.current_day_night_state == DayNightManager.DayNightState.DAY:
-		light_source.enabled = false
-		$AnimatedSprite2D.play("turn_off")
-	else:
-		light_source.enabled = true
-		$AnimatedSprite2D.play("turn_on")
+	if use_day_night:
+		DayNightManager.day_night_state_changed.connect(_update_light)
 
-func _day_night_changed(new_state):
-	if new_state == DayNightManager.DayNightState.DAY:
-		light_source.enabled = false
-		$AnimatedSprite2D.play("turn_off")
+	_update_light()
+
+# ---------------- PUBLIC API ----------------
+func turn_on():
+	manual_override = true
+	desired_on = true
+	_apply(true)
+
+func turn_off():
+	manual_override = true
+	desired_on = false
+	_apply(false)
+
+func set_active(active: bool):
+	# Controlled by LeverControl (no manual override)
+	manual_override = false
+	desired_on = active
+	_update_light()
+
+func clear_manual_override():
+	manual_override = false
+	_update_light()
+
+# ---------------- INTERNAL ----------------
+func _update_light():
+	if manual_override:
+		_apply(desired_on)
+		return
+
+	var should_be_on := desired_on
+
+	if use_day_night:
+		should_be_on = should_be_on \
+			and DayNightManager.current_day_night_state == DayNightManager.DayNightState.NIGHT
+
+	_apply(should_be_on)
+
+func _apply(on: bool):
+	light_source.enabled = on
+	if on:
+		sprite.play("turn_on")
 	else:
-		light_source.enabled = true
-		$AnimatedSprite2D.play("turn_on")
+		sprite.play("turn_off")
