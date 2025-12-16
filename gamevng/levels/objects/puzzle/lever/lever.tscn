@@ -71,7 +71,7 @@ sprite_frames = SubResource("SpriteFrames_170jl")
 animation = &"activate"
 speed_scale = 2.0
 
-[node name="LeftHurtArea2D" type="Area2D" parent="."]
+[node name="HurtArea2D" type="Area2D" parent="."]
 position = Vector2(0, -3)
 collision_layer = 24
 collision_mask = 0
@@ -79,8 +79,8 @@ script = ExtResource("4_qp6bf")
 have_knockback = false
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHurtArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_qkmv8")
 
-[connection signal="hurt" from="LeftHurtArea2D" to="." method="_on_hurt_area_2d_hurt"]
+[connection signal="hurt" from="HurtArea2D" to="." method="_on_hurt_area_2d_hurt"]

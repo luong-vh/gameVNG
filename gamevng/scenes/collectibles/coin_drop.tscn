@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://qukhv8ls1hj0"]
+
+[ext_resource type="Script" uid="uid://b1ik4d52pf6my" path="res://scenes/collectibles/coin_drop.gd" id="1_jsrpb"]
+[ext_resource type="Texture2D" uid="uid://b6tchptns8t4u" path="res://assets/items/effect/01.png" id="2_wm27w"]
+[ext_resource type="Texture2D" uid="uid://drym7bvjop5x0" path="res://assets/items/effect/02.png" id="3_ygpij"]
+[ext_resource type="Texture2D" uid="uid://dy3lp4bw1q7jm" path="res://assets/items/effect/03.png" id="4_ikooy"]
+[ext_resource type="Texture2D" uid="uid://m6n0ucb1yreh" path="res://assets/items/coin/01.png" id="5_brfnq"]
+[ext_resource type="Texture2D" uid="uid://dw3u1ia2tx2w2" path="res://assets/items/coin/02.png" id="6_mslto"]
+[ext_resource type="Texture2D" uid="uid://qpai12qobmxt" path="res://assets/items/coin/03.png" id="7_k0agi"]
+[ext_resource type="Texture2D" uid="uid://dtk5n2k0ynk3j" path="res://assets/items/coin/04.png" id="8_7dtyw"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="10_aoe7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6d2e1"]
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dm7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wm27w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ygpij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ikooy")
+}],
+"loop": false,
+"name": &"collected",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_brfnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mslto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k0agi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7dtyw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6jfl"]
+radius = 7.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 0
+lock_rotation = true
+script = ExtResource("1_jsrpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6d2e1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6dm7w")
+autoplay = "default"
+
+[node name="InteractiveArea2D" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("10_aoe7r")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+shape = SubResource("CircleShape2D_h6jfl")

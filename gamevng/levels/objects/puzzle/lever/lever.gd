@@ -1,14 +1,12 @@
 extends SaveableObject
-class_name Clever
+class_name Lever
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var left_hurt_area = $LeftHurtArea2D
-@onready var right_hurt_area = $RightHurtArea2D
 
-@export var can_be_deactivate: bool
-var activated: bool
+@export var can_be_deactivate: bool = false
+var is_activated: bool = false
 
-signal lever_hitted(is_activate: bool)
+signal activated(is_activate: bool)
 
 func _ready() -> void:
 	_update_state(Vector2.ZERO)
@@ -24,22 +22,22 @@ func _update_state(direction: Vector2):
 	
 	if activated and can_be_deactivate and direction.x <= 0:
 		animated_sprite.play("deactivate")
-		activated = false
-		lever_hitted.emit(false)
+		is_activated = false
+		activated.emit(false)
 	elif !activated and direction.x >= 0:
 		animated_sprite.play("activate")
-		activated = true
-		lever_hitted.emit(true)
+		is_activated = true
+		activated.emit(true)
 
 func get_state() -> Dictionary:
 	return {
-		"activated": activated,
+		"is_activated": is_activated,
 		"can_be_deactivate": can_be_deactivate,
 	}
 
 func set_state(state: Dictionary) -> void:
-	if state.has("activated"):
-		activated = state.activated
+	if state.has("is_activated"):
+		is_activated = state.is_activated
 		_update_state(Vector2.ZERO)
 	
 	if state.has("can_be_deactivate"):

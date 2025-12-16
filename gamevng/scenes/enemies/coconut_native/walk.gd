@@ -16,9 +16,10 @@ func _update(delta : float) -> void:
 			_start_x = obj.global_position.x
 			_is_paused = false
 		return
-	obj.velocity.x = obj.direction * obj.movement_speed * 0.5
 	if _should_turn_around():
 		_start_pause()
+	else:
+		obj.velocity.x = obj.direction * obj.movement_speed
 
 	if obj._is_attack():
 		print("change to throw")

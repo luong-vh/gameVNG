@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bn0oogftm4uv7" path="res://levels/control_nodes/enemy_spawn_data.gd" id="10_wgvos"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="11_m4706"]
 [ext_resource type="PackedScene" uid="uid://3aur1qlygih6" path="res://levels/objects/door/iron_door.tscn" id="12_4xp61"]
-[ext_resource type="Script" path="res://scripts/areas/camera_stop_zone.gd" id="13_4yoxl"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="13_4yoxl"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="14_6dcgf"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="15_ubuva"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="16_0nm7o"]
@@ -35,7 +35,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fq0us"]
-size = Vector2(88.09, 199)
+size = Vector2(120.09, 199)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ubkp0"]
 
@@ -156,9 +156,6 @@ position = Vector2(2409, -143)
 [node name="Torch10" parent="Objects/Torchs" instance=ExtResource("7_00pa0")]
 position = Vector2(4385, 99)
 
-[node name="Torch11" parent="Objects/Torchs" instance=ExtResource("7_00pa0")]
-position = Vector2(4542, -349)
-
 [node name="Torch12" parent="Objects/Torchs" instance=ExtResource("7_00pa0")]
 position = Vector2(5602, -723)
 
@@ -171,10 +168,10 @@ position = Vector2(1462, -176)
 position = Vector2(4454.18, -411.623)
 enemy_data = Array[ExtResource("10_wgvos")]([SubResource("Resource_fq0us")])
 
-[node name="SpawnPoint1" type="Marker2D" parent="Objects/BossControl/Enemies" index="0"]
+[node name="Objects_BossControl_Enemies#SpawnPoint1" type="Marker2D" parent="Objects/BossControl/EnemiesMarker" index="0"]
 position = Vector2(4576, -297)
 
-[node name="SpawnPoint2" type="Marker2D" parent="Objects/BossControl/Enemies" index="1"]
+[node name="Objects_BossControl_Enemies#SpawnPoint2" type="Marker2D" parent="Objects/BossControl/EnemiesMarker" index="1"]
 position = Vector2(4631, -296)
 
 [node name="IronDoor" parent="Objects/BossControl/Doors" index="0" instance=ExtResource("12_4xp61")]
@@ -186,8 +183,11 @@ curve = SubResource("Curve2D_1vf62")
 [node name="PathFollow2D" parent="Objects/BossControl/Doors/IronDoor/PlatformPath2D" index="0"]
 rotation = -1.55492
 
+[node name="Torch11" parent="Objects/BossControl/Torches" index="0" instance=ExtResource("7_00pa0")]
+position = Vector2(4542, -349)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/BossControl/ActivationArea2D" index="0"]
-position = Vector2(-17.2251, 60.123)
+position = Vector2(-1.2251, 60.123)
 shape = SubResource("RectangleShape2D_fq0us")
 
 [node name="CameraBorders" type="Node2D" parent="."]

@@ -6,9 +6,11 @@
 [node name="BossControl" type="Node2D"]
 script = ExtResource("1_bsxig")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="EnemiesMarker" type="Node" parent="."]
 
 [node name="Doors" type="Node" parent="."]
+
+[node name="Torches" type="Node" parent="."]
 
 [node name="ActivationArea2D" type="Area2D" parent="."]
 collision_layer = 0

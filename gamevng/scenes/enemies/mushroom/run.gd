@@ -1,7 +1,5 @@
 extends EnemyState
 
-@export var patrol_distance: float = 50.0
-@export var pause_time: float = 1.0
 var _start_x: float
 var _is_paused: bool = false
 var _pause_timer: float = 0.0
@@ -24,7 +22,7 @@ func _update(delta : float) -> void:
 
 func _should_turn_around() -> bool:
 	var current_x = obj.global_position.x
-	if abs(current_x - _start_x) >= patrol_distance:
+	if abs(current_x - _start_x) >= obj.patrol_distance:
 		return true
 	if obj.is_touch_wall():
 		return true
@@ -34,5 +32,5 @@ func _should_turn_around() -> bool:
 
 func _start_pause() -> void:
 	_is_paused = true
-	_pause_timer = pause_time
+	_pause_timer = obj.pause_time
 	obj.velocity.x = 0

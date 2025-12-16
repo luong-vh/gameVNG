@@ -17,7 +17,7 @@ signal deactivated(activator: Node2D)
 signal toggled(is_active: bool)
 
 ## State
-var is_active: bool = false
+var is_activated: bool = false
 var bodies_on_plate: Array[Node2D] = []
 var pending_activation: Node2D = null
 var pending_deactivation: Node2D = null
@@ -59,11 +59,11 @@ func _start_activation(activator: Node2D) -> void:
 	
 	match activation_type:
 		ActivationType.TOGGLE:
-			should_activate = !is_active
+			should_activate = !is_activated
 		ActivationType.HOLD:
-			should_activate = !is_active
+			should_activate = !is_activated
 		ActivationType.PERMANENT:
-			should_activate = !is_active  # Only activate once
+			should_activate = !is_activated  # Only activate once
 	
 	if should_activate and not is_animating:
 		is_animating = true
@@ -76,7 +76,7 @@ func _start_activation(activator: Node2D) -> void:
 
 func _start_deactivation(activator: Node2D) -> void:
 	# Only deactivate for HOLD type
-	if activation_type == ActivationType.HOLD and is_active and not is_animating:
+	if activation_type == ActivationType.HOLD and is_activated and not is_animating:
 		is_animating = true
 		pending_deactivation = activator
 		if animation_player and animation_player.has_animation("unpress"):
@@ -96,31 +96,31 @@ func _on_animation_finished(anim_name: String) -> void:
 func _finish_activation() -> void:
 	print("[PressurePlate] Activated")
 	if pending_activation:
-		is_active = true
+		is_activated = true
 		activated.emit(pending_activation)
-		toggled.emit(is_active)
+		toggled.emit(is_activated)
 		pending_activation = null
 
 func _finish_deactivation() -> void:
 	print("[PressurePlate] Deactivated")
 	if pending_deactivation:
-		is_active = false
+		is_activated = false
 		deactivated.emit(pending_deactivation)
-		toggled.emit(is_active)
+		toggled.emit(is_activated)
 		pending_deactivation = null
 
 ## Public methods để force activate/deactivate từ code
 func force_activate() -> void:
-	if not is_active and not is_animating:
+	if not is_activated and not is_animating:
 		_start_activation(self)
 
 func force_deactivate() -> void:
-	if is_active and activation_type != ActivationType.PERMANENT and not is_animating:
+	if is_activated and activation_type != ActivationType.PERMANENT and not is_animating:
 		_start_deactivation(self)
 
 func reset() -> void:
 	"""Reset về trạng thái ban đầu"""
-	is_active = false
+	is_activated = false
 	bodies_on_plate.clear()
 	pending_activation = null
 	pending_deactivation = null

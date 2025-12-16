@@ -8,3 +8,5 @@ script = ExtResource("1_idjd2")
 [node name="Levers" type="Node2D" parent="."]
 
 [node name="Doors" type="Node2D" parent="."]
+
+[node name="Torches" type="Node2D" parent="."]
