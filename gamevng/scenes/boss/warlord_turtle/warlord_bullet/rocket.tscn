@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://5h1nq44wk8b"]
 
 [ext_resource type="Texture2D" uid="uid://b877dqwkc1kg" path="res://assets/monsters/war_lord_bullet/bullet_rocket.png" id="1_6kyx2"]
-[ext_resource type="Script" uid="uid://du63nvppqevs2" path="res://scenes/warlord_turtle/warlord_bullet/rocket.gd" id="1_rocket"]
+[ext_resource type="Script" uid="uid://du63nvppqevs2" path="res://scenes/boss/warlord_turtle/warlord_bullet/rocket.gd" id="1_rocket"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_kmiik"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmiik"]
@@ -10,7 +10,7 @@
 
 [node name="Rocket" type="RigidBody2D"]
 collision_layer = 0
-collision_mask = 128
+collision_mask = 0
 script = ExtResource("1_rocket")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape2D_kmiik")
 
 [node name="HitArea2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 69
 script = ExtResource("2_kmiik")
 metadata/_custom_type_script = "uid://cskdv6tj5dtso"
 

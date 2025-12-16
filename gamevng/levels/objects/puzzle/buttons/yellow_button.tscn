@@ -1,0 +1,125 @@
+[gd_scene load_steps=23 format=3 uid="uid://dcvxnyklhsry7"]
+
+[ext_resource type="Script" uid="uid://b7anrkmon7man" path="res://levels/objects/puzzle/buttons/puzzle_button.gd" id="1_mkavc"]
+[ext_resource type="Texture2D" uid="uid://cg6uf8ldou42i" path="res://assets/Buttons/Bomb_Explosion_C_000.png" id="2_2bt2n"]
+[ext_resource type="Texture2D" uid="uid://dvl6u6fru1n52" path="res://assets/Buttons/Bomb_Explosion_C_002.png" id="3_vlxgy"]
+[ext_resource type="Texture2D" uid="uid://dqvr387xeu4fh" path="res://assets/Buttons/Bomb_Explosion_C_003.png" id="4_spd2i"]
+[ext_resource type="Texture2D" uid="uid://c1povav4bs3h7" path="res://assets/Buttons/Bomb_Explosion_C_004.png" id="5_xkmbl"]
+[ext_resource type="Texture2D" uid="uid://0bwumqudk1du" path="res://assets/Buttons/Bomb_Explosion_C_005.png" id="6_77vto"]
+[ext_resource type="Texture2D" uid="uid://xf8k3l23gewy" path="res://assets/Buttons/Bomb_Explosion_C_006.png" id="7_ibl10"]
+[ext_resource type="Texture2D" uid="uid://ccgycwjrumc0j" path="res://assets/Buttons/Bomb_Explosion_C_007.png" id="8_bddbf"]
+[ext_resource type="Texture2D" uid="uid://ccwkgctem35io" path="res://assets/Buttons/Bomb_Explosion_C_008.png" id="9_cmu3d"]
+[ext_resource type="Texture2D" uid="uid://cqhv816us544y" path="res://assets/Buttons/Bomb_Idle_C_000.png" id="10_rsrjt"]
+[ext_resource type="Texture2D" uid="uid://c68s23tfj6hb4" path="res://assets/Buttons/Bomb_Idle_C_001.png" id="11_g4pop"]
+[ext_resource type="Texture2D" uid="uid://cgqr480qgxog3" path="res://assets/Buttons/Bomb_Idle_C_002.png" id="12_uij8f"]
+[ext_resource type="Texture2D" uid="uid://b3dlel0wddxtd" path="res://assets/Buttons/Bomb_Idle_C_003.png" id="13_wbnga"]
+[ext_resource type="Texture2D" uid="uid://beat0hvqxtnk0" path="res://assets/Buttons/Bomb_Idle_C_004.png" id="14_a5ybq"]
+[ext_resource type="Texture2D" uid="uid://kmjrk3fhg1sl" path="res://assets/Buttons/Bomb_Idle_C_009.png" id="15_pwd6w"]
+[ext_resource type="Texture2D" uid="uid://crry4ajn7iuyc" path="res://assets/Buttons/Bomb_Idle_C_005.png" id="16_yxskd"]
+[ext_resource type="Texture2D" uid="uid://c5tjcj4tw5pyt" path="res://assets/Buttons/Bomb_Idle_C_006.png" id="17_s08kh"]
+[ext_resource type="Texture2D" uid="uid://cy1rots7cdrud" path="res://assets/Buttons/Bomb_Idle_C_007.png" id="18_jvgal"]
+[ext_resource type="Texture2D" uid="uid://d0fqfq1vj0xj1" path="res://assets/Buttons/Bomb_Idle_C_008.png" id="19_aeed6"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="20_p02v8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3ay5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2bt2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vlxgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_spd2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xkmbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_77vto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ibl10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bddbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cmu3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rsrjt")
+}],
+"loop": false,
+"name": &"yellow_activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rsrjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_g4pop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uij8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wbnga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_a5ybq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_pwd6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_yxskd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_s08kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jvgal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_aeed6")
+}],
+"loop": true,
+"name": &"yellow_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rsrjt")
+}],
+"loop": false,
+"name": &"yellow_locked",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kl1n6"]
+radius = 16.0
+height = 32.0
+
+[node name="YellowButton" type="Node2D"]
+script = ExtResource("1_mkavc")
+button_color = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(0.493164, 0.452148)
+sprite_frames = SubResource("SpriteFrames_p3ay5")
+animation = &"yellow_activated"
+frame = 8
+frame_progress = 1.0
+
+[node name="InteractiveArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("20_p02v8")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+shape = SubResource("CapsuleShape2D_kl1n6")

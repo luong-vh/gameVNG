@@ -19,14 +19,21 @@ var color_names: Dictionary = {
 }
 
 func _ready() -> void:
+	# Add to puzzle_buttons group for easy finding
+	add_to_group("puzzle_buttons")
+	
 	#connect interaction signal
 	if interactive_area:
 		interactive_area.interacted.connect(_on_interacted)
 		interactive_area.interaction_available.connect(_on_interaction_available)
 		interactive_area.interaction_unavailable.connect(_on_interaction_unavailable)
+	else:
+		push_error("[PuzzleButton] No InteractiveArea2D found! Button won't work.")
 	
 	#set initial animation based on color
 	_update_animation()
+	
+	print("[PuzzleButton] %s button ready at position %s" % [get_color_name(), global_position])
 
 func _on_interacted() -> void:
 	if current_state == ButtonState.LOCKED:
@@ -36,14 +43,18 @@ func _on_interacted() -> void:
 func activate() -> void:
 	"""Activate the button and emit signal"""
 	if current_state == ButtonState.ACTIVATED:
+		print("[PuzzleButton] %s button already activated, ignoring" % get_color_name())
 		return
 	
+	print("[PuzzleButton] %s button ACTIVATED!" % get_color_name())
 	current_state = ButtonState.ACTIVATED
 	_update_animation()
 
 	button_pressed.emit(get_color_name())
+	print("[PuzzleButton] Signal emitted for %s" % get_color_name())
 	 
 func reset() -> void:
+	print("[PuzzleButton] Resetting %s button to IDLE" % get_color_name())
 	current_state = ButtonState.IDLE
 	_update_animation()
 	
