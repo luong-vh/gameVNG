@@ -69,7 +69,6 @@ script = ExtResource("1_2imr4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 position = Vector2(0, -3)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_f7fg4")
 animation = &"turn_on"
 frame_progress = 0.175654

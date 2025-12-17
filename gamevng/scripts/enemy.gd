@@ -2,7 +2,11 @@ class_name EnemyCharacter
 extends BaseCharacter
 
 @export var has_key: bool = false
-@export var key_scene: PackedScene 
+@export var key_scene: PackedScene
+
+@export var coin_reward: int = 3
+var is_coin_droped: bool = false
+@export var coin_scene: PackedScene
 
 # Raycast check wall and fall
 var front_ray_cast: RayCast2D;
@@ -21,8 +25,6 @@ var detect_player_area: Area2D;
 var found_player: Player = null
 var player
 
-
-
 func _ready() -> void:
 	_init_ray_cast()
 	_init_detect_player_area()
@@ -30,6 +32,8 @@ func _ready() -> void:
 	_add_into_enemy_manager()
 	player = GameManager.player
 	spawn_point = global_position
+	
+	died.connect(_on_eneny_died)
 	super._ready()
 	pass
 
@@ -191,4 +195,25 @@ func drop_key() -> void:
 			.set_ease(Tween.EASE_IN)\
 			.set_trans(Tween.TRANS_BOUNCE)
 
-	has_key = false 
+	has_key = false
+
+func _on_eneny_died():
+	_spawn_coins(coin_reward)
+
+func _spawn_coins(amount: int):
+	if !coin_scene:
+		return
+	
+	if is_coin_droped:
+		return
+	is_coin_droped = true
+	
+	for i in amount:
+		var coin = coin_scene.instantiate()
+		coin.global_position = global_position
+		coin.set_gravity(true)
+		# Thêm vào world
+		get_tree().current_scene.add_child(coin)
+
+		# Bắn coin ra
+		coin.apply_impulse(Vector2(randf_range(-100, 100), -200))

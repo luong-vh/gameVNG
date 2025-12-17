@@ -2,7 +2,8 @@ extends EnemyCharacter
 
 
 @onready var glow_light: Light2D = $GlowLight
-
+@export var patrol_distance: float = 50.0
+@export var pause_time: float = 1.0
 
 func _ready() -> void:
 	fsm = FSM.new(self , $States , $States/Run)

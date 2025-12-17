@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://74j46vwu1pgm"]
+[gd_scene load_steps=21 format=4 uid="uid://74j46vwu1pgm"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_xjte1"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_kkfw7"]
@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="8_m2rks"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="9_6i5eu"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="10_pv3up"]
-[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/boss/king_crab/king_crab.tscn" id="11_kkfw7"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="12_c8mjg"]
+[ext_resource type="PackedScene" uid="uid://d3ku4aps4pgoy" path="res://levels/objects/puzzle/buttons/green_button.tscn" id="13_fau7e"]
+[ext_resource type="Script" uid="uid://c6wrnyav3mhbf" path="res://levels/objects/puzzle/buttons/button_manager.gd" id="13_m5o8d"]
+[ext_resource type="PackedScene" uid="uid://bmask7rjudmfo" path="res://levels/objects/puzzle/buttons/red_button.tscn" id="14_wn3ve"]
+[ext_resource type="PackedScene" uid="uid://dcvxnyklhsry7" path="res://levels/objects/puzzle/buttons/yellow_button.tscn" id="15_m2rks"]
+[ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_wn3ve"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qo6io"]
 a = Vector2(0, -500)
@@ -105,10 +109,23 @@ visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("10_pv3up")]
 
-[node name="KingCrab" parent="." instance=ExtResource("11_kkfw7")]
-position = Vector2(1106.59, 260.826)
-
 [node name="BladePickup" parent="." instance=ExtResource("12_c8mjg")]
 position = Vector2(200.563, 278.746)
+
+[node name="ButtonManager" type="Node2D" parent="."]
+script = ExtResource("13_m5o8d")
+metadata/_custom_type_script = "uid://c6wrnyav3mhbf"
+
+[node name="GreenButton" parent="." instance=ExtResource("13_fau7e")]
+position = Vector2(308.328, 276.755)
+
+[node name="RedButton" parent="." instance=ExtResource("14_wn3ve")]
+position = Vector2(357.221, 274.764)
+
+[node name="YellowButton" parent="." instance=ExtResource("15_m2rks")]
+position = Vector2(405.117, 273.768)
+
+[node name="WarlordTurtle" parent="." instance=ExtResource("16_wn3ve")]
+position = Vector2(1103.59, 255.849)
 
 [editable path="ShaderCanvasLayer"]

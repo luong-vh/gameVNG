@@ -2,114 +2,107 @@ extends SaveableObject
 
 @export var enemy_data: Array[EnemySpawnData] = []
 @export var completed: bool = false
-
-@onready var enemies_node = $Enemies
+@onready var enemies_node = $EnemiesMarker
 @onready var doors_node = $Doors
+@onready var torches_node = $Torches
 @onready var activation_area = $ActivationArea2D
+
 var all_enemies_dead: bool = false
+var activated: bool = false
 
-func _ready():
+func _ready() -> void:
 	super._ready()
-	activation_area.interaction_available.connect(_on_interactive)
+	activation_area.interaction_available.connect(_on_player_enter)
+	
+	# Initial setup - doors open by default
+	open_doors()
 	if completed:
-		# If already completed, open doors immediately
-		open_doors()
+		all_enemies_dead = true
+		clear_enemies()
+		_release_torches()
 
-func _on_interactive():
-	# Trigger enemy spawn from external event
+func _on_player_enter() -> void:
+	if activated or completed:
+		return
+	
+	activated = true
+	close_doors()
+	_force_torches_on()
 	spawn_enemies()
 
-func spawn_enemies():
-	# Don't spawn if already completed
-	if completed:
-		print("Room already completed, skipping enemy spawn")
-		return
-	
-	# Don't spawn if enemies already spawned
-	if enemies_node.get_child_count() > 0:
-		# Check if any are actual enemies (not just markers)
-		for child in enemies_node.get_children():
-			if child.has_signal("died"):
-				print("Enemies already spawned")
-				return
-	
-	var spawn_markers = enemies_node.get_children()
-	
-	if spawn_markers.is_empty():
-		push_error("No spawn markers found in Enemies node!")
-		return
-	
+func clear_enemies() -> void:
+	for child in enemies_node.get_children():
+		if child.has_signal("died") or child.get("health") != null:
+			child.queue_free()
+
+func spawn_enemies() -> void:
 	if enemy_data.is_empty():
 		push_error("No enemy data assigned!")
 		return
 	
-	var marker_index = 0
+	var spawn_markers = enemies_node.get_children()
+	if spawn_markers.is_empty():
+		push_error("No spawn markers found!")
+		return
 	
-	# Spawn each enemy type with its specified count
+	var marker_index := 0
 	for data in enemy_data:
 		if data == null or data.scene == null:
-			push_warning("Invalid enemy data entry!")
 			continue
 		
-		# Spawn 'count' number of this enemy type
 		for i in range(data.count):
 			if marker_index >= spawn_markers.size():
-				push_warning("Not enough spawn markers for all enemies!")
+				push_warning("Not enough spawn markers!")
 				return
 			
 			var marker = spawn_markers[marker_index]
-			var spawn_pos = marker.global_position
-			
-			# Spawn enemy and remove marker
-			spawn_enemy(data.scene, spawn_pos)
+			spawn_enemy(data.scene, marker.global_position)
 			marker.queue_free()
-			
 			marker_index += 1
 
-func spawn_enemy(enemy_scene: PackedScene, pos: Vector2):
-	if enemy_scene == null:
-		push_error("Enemy scene is null!")
-		return
-	
+func spawn_enemy(enemy_scene: PackedScene, pos: Vector2) -> void:
 	var enemy = enemy_scene.instantiate()
 	enemy.global_position = pos
 	enemies_node.add_child(enemy)
 	
-	# Connect to enemy's death signal
 	if enemy.has_signal("died"):
 		enemy.died.connect(_on_enemy_died)
 
-func _on_enemy_died():
-	# Check if all enemies are dead
+func _on_enemy_died() -> void:
 	check_all_enemies_dead()
 
-func check_all_enemies_dead():
+func check_all_enemies_dead() -> void:
 	if all_enemies_dead:
-		return  # Already processed
+		return
 	
-	var all_dead = true
 	for enemy in enemies_node.get_children():
-		if enemy.has_method("get") and enemy.health > 0:
-			all_dead = false
-			break
+		if enemy.get("health") != null and enemy.health > 0:
+			return
 	
-	if all_dead:
-		all_enemies_dead = true
-		completed = true
-		open_doors()
+	all_enemies_dead = true
+	completed = true
+	open_doors()
+	_release_torches()
 
-func open_doors():
-	# Open all doors in the doors_node
+func open_doors() -> void:
 	for door in doors_node.get_children():
 		if door.has_method("open"):
 			door.open()
-	print("All enemies defeated! Opening doors...")
 
-func close_doors():
-	# Open all doors in the doors_node
+func close_doors() -> void:
 	for door in doors_node.get_children():
 		if door.has_method("close"):
 			door.close()
+
+func _force_torches_on() -> void:
+	for torch in torches_node.get_children():
+		if torch.has_method("turn_on"):
+			torch.turn_on()
+
+func _release_torches() -> void:
+	for torch in torches_node.get_children():
+		if torch.has_method("clear_manual_override"):
+			torch.clear_manual_override()
 
 func get_state() -> Dictionary:
 	return {
@@ -117,7 +110,22 @@ func get_state() -> Dictionary:
 	}
 
 func set_state(state: Dictionary) -> void:
+	# This gets called every time player respawns
 	if state.has("completed"):
 		completed = state.completed
-		if completed:
-			open_doors()
+	
+	# CRITICAL: Reset room state on every load/respawn
+	if completed:
+		# Room was completed - keep it completed
+		all_enemies_dead = true
+		activated = true  # Prevent re-activation
+		clear_enemies()
+		open_doors()
+		_release_torches()
+	else:
+		# Room not completed - reset everything
+		all_enemies_dead = false
+		activated = false  # Allow re-activation
+		clear_enemies()
+		open_doors()
+		_release_torches()

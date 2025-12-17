@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bs0wvgy6jitmd"]
+[gd_scene load_steps=25 format=3 uid="uid://bs0wvgy6jitmd"]
 
 [ext_resource type="Script" uid="uid://bharob74octh0" path="res://scenes/enemies/starfish/starfish.gd" id="1_wmhok"]
 [ext_resource type="Texture2D" uid="uid://div7ykrnkcmbm" path="res://assets/monsters/starfish/starfish_atk_01.png" id="2_8anl2"]
+[ext_resource type="PackedScene" path="res://scenes/collectibles/coin_drop.tscn" id="2_t00wx"]
 [ext_resource type="Texture2D" uid="uid://b7fyajqfeium5" path="res://assets/monsters/starfish/starfish_atk_02.png" id="3_r5ogx"]
 [ext_resource type="Texture2D" uid="uid://kkpwv3jqgs40" path="res://assets/monsters/starfish/starfish_atk_03.png" id="4_wmhok"]
 [ext_resource type="Texture2D" uid="uid://brx56liv83bir" path="res://assets/monsters/starfish/starfish_atk_04.png" id="5_s8cle"]
@@ -90,6 +91,7 @@ height = 32.0
 [node name="Starfish" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_wmhok")
+coin_scene = ExtResource("2_t00wx")
 movement_speed = 50.0
 metadata/_custom_type_script = "uid://s4xx82espxdt"
 

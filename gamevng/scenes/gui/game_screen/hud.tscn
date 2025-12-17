@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://dytm3c86oshmd"]
 
-[ext_resource type="Script" uid="uid://cwokrdi6g2xij" path="res://scenes/gui/game_screen/hud.gd" id="1_4v5o6"]
 [ext_resource type="Texture2D" uid="uid://bak1dc8urb02c" path="res://assets/ui/settings_button.png" id="2_4v5o6"]
+
+[sub_resource type="GDScript" id="GDScript_7y7fa"]
 
 [node name="HUD" type="MarginContainer"]
 anchors_preset = 10
@@ -12,7 +13,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-script = ExtResource("1_4v5o6")
+script = SubResource("GDScript_7y7fa")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

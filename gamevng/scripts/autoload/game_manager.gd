@@ -1,6 +1,6 @@
 extends Node
 
-const DATA_VERSION = "1.1"
+const DATA_VERSION = "1.2"
 
 var current_checkpoint_ids: Dictionary = {}
 var current_checkpoint_id: String = ""

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pei1quwdpnlr" path="res://scenes/enemies/spike/spike.gd" id="1_fpo1o"]
 [ext_resource type="Texture2D" uid="uid://b1ipt3fe05v60" path="res://assets/monsters/spikes/spikes.png" id="1_yi430"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="2_sm0o0"]
-[ext_resource type="Script" path="res://scripts/areas/pogo_area_2d.gd" id="4_0xexh"]
+[ext_resource type="Script" uid="uid://bswmoa5oi1fp1" path="res://scripts/areas/pogo_area_2d.gd" id="4_0xexh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo1o"]
 size = Vector2(29.5, 12)

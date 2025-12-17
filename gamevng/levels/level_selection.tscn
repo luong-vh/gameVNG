@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://d1fm5b4gw5t0o"]
 
 [ext_resource type="Script" uid="uid://ddommyl8pwmbe" path="res://levels/level_selection.gd" id="1_atop0"]
-[ext_resource type="Texture2D" uid="uid://bo5ulo024vqgn" path="res://assets/ui/popup.png" id="1_xv63r"]
-[ext_resource type="FontFile" uid="uid://dqh6gqanw6xwl" path="res://assets/fonts/big_font.fnt" id="2_atop0"]
-[ext_resource type="Texture2D" uid="uid://cyj80mgs65u5k" path="res://assets/ui/level_button.png" id="3_lyjwq"]
-[ext_resource type="Texture2D" uid="uid://d4ng7jp3oefy6" path="res://assets/ui/level_button_locked.png" id="4_kbpsh"]
+[ext_resource type="Texture2D" uid="uid://bm66ag0j7y3qi" path="res://assets/ui/popup.png" id="1_xv63r"]
+[ext_resource type="FontFile" uid="uid://bf742t4mxgd7l" path="res://assets/fonts/big_font.fnt" id="2_atop0"]
+[ext_resource type="Texture2D" uid="uid://ble3lnthsot0g" path="res://assets/ui/level_button.png" id="3_lyjwq"]
+[ext_resource type="Texture2D" uid="uid://bt3asl3e3la1i" path="res://assets/ui/level_button_locked.png" id="4_kbpsh"]
 [ext_resource type="Script" uid="uid://cpy5inm7kjtw5" path="res://scenes/gui/game_screen/level_button.gd" id="5_ql2vb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nqkqy"]
@@ -78,8 +78,8 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton2" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 91.0
-offset_right = 178.0
+offset_left = 121.0
+offset_right = 208.0
 offset_bottom = 105.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
@@ -98,8 +98,8 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton3" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 183.0
-offset_right = 270.0
+offset_left = 242.0
+offset_right = 329.0
 offset_bottom = 105.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
@@ -118,8 +118,8 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton4" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 274.0
-offset_right = 361.0
+offset_left = 364.0
+offset_right = 451.0
 offset_bottom = 105.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
@@ -138,9 +138,9 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton5" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 364.0
-offset_right = 451.0
-offset_bottom = 105.0
+offset_top = 109.0
+offset_right = 87.0
+offset_bottom = 214.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
 texture_disabled = ExtResource("4_kbpsh")
@@ -158,8 +158,9 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton6" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
+offset_left = 121.0
 offset_top = 109.0
-offset_right = 87.0
+offset_right = 208.0
 offset_bottom = 214.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
@@ -178,9 +179,9 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton7" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 91.0
+offset_left = 242.0
 offset_top = 109.0
-offset_right = 178.0
+offset_right = 329.0
 offset_bottom = 214.0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_lyjwq")
@@ -199,48 +200,6 @@ label_settings = SubResource("LabelSettings_u23yi")
 [node name="LevelButton8" type="TextureButton" parent="Setting/LevelButtons"]
 layout_direction = 1
 layout_mode = 2
-offset_left = 183.0
-offset_top = 109.0
-offset_right = 270.0
-offset_bottom = 214.0
-scale = Vector2(2, 2)
-texture_normal = ExtResource("3_lyjwq")
-texture_disabled = ExtResource("4_kbpsh")
-script = ExtResource("5_ql2vb")
-
-[node name="Label" type="Label" parent="Setting/LevelButtons/LevelButton8"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 9.0
-offset_right = 45.0
-offset_bottom = 32.0
-text = "01"
-label_settings = SubResource("LabelSettings_u23yi")
-
-[node name="LevelButton9" type="TextureButton" parent="Setting/LevelButtons"]
-layout_direction = 1
-layout_mode = 2
-offset_left = 274.0
-offset_top = 109.0
-offset_right = 361.0
-offset_bottom = 214.0
-scale = Vector2(2, 2)
-texture_normal = ExtResource("3_lyjwq")
-texture_disabled = ExtResource("4_kbpsh")
-script = ExtResource("5_ql2vb")
-
-[node name="Label" type="Label" parent="Setting/LevelButtons/LevelButton9"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 9.0
-offset_right = 45.0
-offset_bottom = 32.0
-text = "01"
-label_settings = SubResource("LabelSettings_u23yi")
-
-[node name="LevelButton10" type="TextureButton" parent="Setting/LevelButtons"]
-layout_direction = 1
-layout_mode = 2
 offset_left = 364.0
 offset_top = 109.0
 offset_right = 451.0
@@ -250,7 +209,7 @@ texture_normal = ExtResource("3_lyjwq")
 texture_disabled = ExtResource("4_kbpsh")
 script = ExtResource("5_ql2vb")
 
-[node name="Label" type="Label" parent="Setting/LevelButtons/LevelButton10"]
+[node name="Label" type="Label" parent="Setting/LevelButtons/LevelButton8"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 9.0
@@ -267,5 +226,3 @@ label_settings = SubResource("LabelSettings_u23yi")
 [connection signal="pressed" from="Setting/LevelButtons/LevelButton6" to="Setting/LevelButtons/LevelButton6" method="_on_pressed"]
 [connection signal="pressed" from="Setting/LevelButtons/LevelButton7" to="Setting/LevelButtons/LevelButton7" method="_on_pressed"]
 [connection signal="pressed" from="Setting/LevelButtons/LevelButton8" to="Setting/LevelButtons/LevelButton8" method="_on_pressed"]
-[connection signal="pressed" from="Setting/LevelButtons/LevelButton9" to="Setting/LevelButtons/LevelButton9" method="_on_pressed"]
-[connection signal="pressed" from="Setting/LevelButtons/LevelButton10" to="Setting/LevelButtons/LevelButton10" method="_on_pressed"]

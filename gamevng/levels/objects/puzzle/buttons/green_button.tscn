@@ -1,0 +1,121 @@
+[gd_scene load_steps=23 format=3 uid="uid://d3ku4aps4pgoy"]
+
+[ext_resource type="Script" uid="uid://b7anrkmon7man" path="res://levels/objects/puzzle/buttons/puzzle_button.gd" id="1_ajnwa"]
+[ext_resource type="Texture2D" uid="uid://1w6mukjw5jub" path="res://assets/Buttons/Bomb_Explosion_B_000.png" id="2_s2ta1"]
+[ext_resource type="Texture2D" uid="uid://cyc0irm0guqyc" path="res://assets/Buttons/Bomb_Explosion_B_002.png" id="3_h1x2t"]
+[ext_resource type="Texture2D" uid="uid://df2iw6tvexwdm" path="res://assets/Buttons/Bomb_Explosion_B_001.png" id="4_7yjon"]
+[ext_resource type="Texture2D" uid="uid://bdh7cy4iob207" path="res://assets/Buttons/Bomb_Explosion_B_003.png" id="5_4rk08"]
+[ext_resource type="Texture2D" uid="uid://cnotsv2gk737f" path="res://assets/Buttons/Bomb_Explosion_B_004.png" id="6_7hrar"]
+[ext_resource type="Texture2D" uid="uid://d3x6jlpscyrdh" path="res://assets/Buttons/Bomb_Explosion_B_005.png" id="7_867lh"]
+[ext_resource type="Texture2D" uid="uid://cksofrmwms373" path="res://assets/Buttons/Bomb_Explosion_B_006.png" id="8_80dk5"]
+[ext_resource type="Texture2D" uid="uid://c3lxisq12wgfe" path="res://assets/Buttons/Bomb_Explosion_B_007.png" id="9_380kc"]
+[ext_resource type="Texture2D" uid="uid://ddlm0vswfgihy" path="res://assets/Buttons/Bomb_Explosion_B_008.png" id="10_5iob5"]
+[ext_resource type="Texture2D" uid="uid://bw1lom13tr3t0" path="res://assets/Buttons/Bomb_Idle_B_001.png" id="11_1su3u"]
+[ext_resource type="Texture2D" uid="uid://iq4ulye4qoxm" path="res://assets/Buttons/Bomb_Idle_B_002.png" id="12_ccx28"]
+[ext_resource type="Texture2D" uid="uid://dmehhplfharq3" path="res://assets/Buttons/Bomb_Idle_B_003.png" id="13_go6ua"]
+[ext_resource type="Texture2D" uid="uid://cmtif0b0ndsul" path="res://assets/Buttons/Bomb_Idle_B_004.png" id="14_mirwo"]
+[ext_resource type="Texture2D" uid="uid://qfqonn4t1vey" path="res://assets/Buttons/Bomb_Idle_B_005.png" id="15_kqgls"]
+[ext_resource type="Texture2D" uid="uid://ckqly7yicb834" path="res://assets/Buttons/Bomb_Idle_B_006.png" id="16_km4do"]
+[ext_resource type="Texture2D" uid="uid://cq65lupcj1wux" path="res://assets/Buttons/Bomb_Idle_B_007.png" id="17_7uoui"]
+[ext_resource type="Texture2D" uid="uid://db6hy0pxqx45q" path="res://assets/Buttons/Bomb_Idle_B_008.png" id="18_xd6w0"]
+[ext_resource type="Texture2D" uid="uid://dgb3kmhg0weou" path="res://assets/Buttons/Bomb_Idle_B_009.png" id="19_2swj7"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="20_lmmm2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ilmr8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s2ta1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h1x2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7yjon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4rk08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7hrar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_867lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_80dk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_380kc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5iob5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1su3u")
+}],
+"loop": false,
+"name": &"green_activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1su3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ccx28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_go6ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mirwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kqgls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_km4do")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_7uoui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xd6w0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2swj7")
+}],
+"loop": true,
+"name": &"green_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_2swj7")
+}],
+"loop": false,
+"name": &"green_locked",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rotmb"]
+radius = 15.0
+
+[node name="GreenButton" type="Node2D"]
+script = ExtResource("1_ajnwa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.303711, 0.283203)
+sprite_frames = SubResource("SpriteFrames_ilmr8")
+animation = &"green_idle"
+
+[node name="InteractiveArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("20_lmmm2")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+visibility_layer = 3
+shape = SubResource("CapsuleShape2D_rotmb")

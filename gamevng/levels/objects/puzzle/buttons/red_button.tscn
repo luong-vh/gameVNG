@@ -1,0 +1,130 @@
+[gd_scene load_steps=24 format=3 uid="uid://bmask7rjudmfo"]
+
+[ext_resource type="Script" uid="uid://b7anrkmon7man" path="res://levels/objects/puzzle/buttons/puzzle_button.gd" id="1_bvayc"]
+[ext_resource type="Texture2D" uid="uid://ca2l4tp5ykh3" path="res://assets/Buttons/Bomb_Explosion_A_000.png" id="2_f6og0"]
+[ext_resource type="Texture2D" uid="uid://dq6p6ruf7ek6p" path="res://assets/Buttons/Bomb_Explosion_A_001.png" id="3_46a6c"]
+[ext_resource type="Texture2D" uid="uid://4tmsoaaysue1" path="res://assets/Buttons/Bomb_Explosion_A_002.png" id="4_chuto"]
+[ext_resource type="Texture2D" uid="uid://b4y0n4fh01a0c" path="res://assets/Buttons/Bomb_Explosion_A_003.png" id="5_etwx3"]
+[ext_resource type="Texture2D" uid="uid://11mfcg2lxv7c" path="res://assets/Buttons/Bomb_Explosion_A_004.png" id="6_uxf8y"]
+[ext_resource type="Texture2D" uid="uid://dxirplen7s0df" path="res://assets/Buttons/Bomb_Explosion_A_005.png" id="7_jnr62"]
+[ext_resource type="Texture2D" uid="uid://ch5aagg1to6dw" path="res://assets/Buttons/Bomb_Explosion_A_006.png" id="8_mi8gd"]
+[ext_resource type="Texture2D" uid="uid://b153bdqif5goy" path="res://assets/Buttons/Bomb_Explosion_A_007.png" id="9_j2k28"]
+[ext_resource type="Texture2D" uid="uid://bib0bmdqobjb5" path="res://assets/Buttons/Bomb_Explosion_A_008.png" id="10_x4cxe"]
+[ext_resource type="Texture2D" uid="uid://cvehuklfs1qno" path="res://assets/Buttons/Bomb_Idle_A_001.png" id="11_ubp2b"]
+[ext_resource type="Texture2D" uid="uid://bnt304tqga4h5" path="res://assets/Buttons/Bomb_Idle_A_000.png" id="12_6hh28"]
+[ext_resource type="Texture2D" uid="uid://cp6dnh22ysah0" path="res://assets/Buttons/Bomb_Idle_A_002.png" id="13_idrl2"]
+[ext_resource type="Texture2D" uid="uid://uhcr77jviq2l" path="res://assets/Buttons/Bomb_Idle_A_003.png" id="14_v72fi"]
+[ext_resource type="Texture2D" uid="uid://c4v7yyassqex" path="res://assets/Buttons/Bomb_Idle_A_004.png" id="15_x3bcs"]
+[ext_resource type="Texture2D" uid="uid://b7mdf8scwui13" path="res://assets/Buttons/Bomb_Idle_A_005.png" id="16_4omvj"]
+[ext_resource type="Texture2D" uid="uid://boga2f4eg8x6e" path="res://assets/Buttons/Bomb_Idle_A_006.png" id="17_hf33f"]
+[ext_resource type="Texture2D" uid="uid://cdds23vtarrth" path="res://assets/Buttons/Bomb_Idle_A_007.png" id="18_1ho8g"]
+[ext_resource type="Texture2D" uid="uid://bkickbphrq8hy" path="res://assets/Buttons/Bomb_Idle_A_008.png" id="19_gkr2s"]
+[ext_resource type="Texture2D" uid="uid://c2d75vtnj3bf8" path="res://assets/Buttons/Bomb_Idle_A_009.png" id="20_m681d"]
+[ext_resource type="Script" uid="uid://nvuabioddqmj" path="res://scripts/areas/interactive_area_2d.gd" id="21_phj1s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ot3qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f6og0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_46a6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_chuto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_etwx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uxf8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jnr62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mi8gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j2k28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x4cxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ubp2b")
+}],
+"loop": false,
+"name": &"red_activated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_6hh28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ubp2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_idrl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_v72fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x3bcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4omvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hf33f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1ho8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gkr2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_m681d")
+}],
+"loop": true,
+"name": &"red_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_6hh28")
+}],
+"loop": false,
+"name": &"red_locked",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arjwv"]
+radius = 16.0
+height = 32.0
+
+[node name="RedButton" type="Node2D"]
+script = ExtResource("1_bvayc")
+button_color = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.335938, 0.347656)
+sprite_frames = SubResource("SpriteFrames_ot3qc")
+animation = &"red_activated"
+frame = 9
+frame_progress = 1.0
+
+[node name="InteractiveArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("21_phj1s")
+metadata/_custom_type_script = "uid://nvuabioddqmj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_arjwv")

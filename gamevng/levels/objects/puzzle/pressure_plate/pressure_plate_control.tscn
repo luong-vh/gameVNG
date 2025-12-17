@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgx23rllv3ykj"]
+
+[ext_resource type="Script" uid="uid://b3pcvog8u8ip7" path="res://levels/objects/puzzle/pressure_plate/pressure_plate_control.gd" id="1_ddlsn"]
+
+[node name="PressurePlateControl" type="Node2D"]
+script = ExtResource("1_ddlsn")
+
+[node name="PressurePlates" type="Node2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Torches" type="Node2D" parent="."]

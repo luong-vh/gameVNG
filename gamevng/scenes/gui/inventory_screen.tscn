@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://qphq40p66nhf"]
 
 [ext_resource type="Script" uid="uid://clepa8hxukub7" path="res://scenes/gui/inventory_screen.gd" id="1_inventory"]
-[ext_resource type="Texture2D" uid="uid://dhphaqkkeqbp1" path="res://assets/ui/inventory/background.png" id="2_tanwo"]
+[ext_resource type="Texture2D" uid="uid://wdpn0h0kl780" path="res://assets/ui/inventory/background.png" id="2_tanwo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmtof"]
 texture = ExtResource("2_tanwo")
