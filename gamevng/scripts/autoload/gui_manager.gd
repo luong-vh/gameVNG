@@ -118,6 +118,7 @@ func _on_hotbar_item_used(slot_index: int) -> void:
 			var success = GameManager.item_manager.use_item(item.item_name)
 			if success:
 				print("[GUI] ✅ Item used successfully!")
+				play_SFX("coin")
 				# Check if item is consumable (blade is not consumable)
 				if item.item_name != "blade":
 					print("[GUI] Removing consumable item from hotbar...")
@@ -147,3 +148,7 @@ func update_coin(value: int):
 
 func update_key(is_collected: bool):
 	_key_HUD.visible = is_collected
+
+func play_SFX(sound_name: String):
+	# TODO: Implement sound effects
+	pass

@@ -63,11 +63,21 @@ var raycast_pushable: RayCast2D
 func _ready() -> void:
 	super._ready()
 
+	# Check if player starts with blade (from export variable)
+	var start_with_blade = has_blade
+
 	# Reset blade state - always start unequipped
 	# Blade state will be managed by inventory system
 	# has_blade will be set when player uses blade from hotbar (press 1)
 	has_blade = false
 	set_animated_sprite($Direction/AnimatedSprite2D)  # Ensure normal sprite
+
+	# If player was marked to start with blade, add it to hotbar
+	if start_with_blade:
+		# Wait for inventory system to be ready
+		await get_tree().process_frame
+		collect_blade()
+		print("[Player] Started with blade - automatically added to hotbar")
 
 	fsm = FSM.new(self, $States, $States/Idle)
 	_init_hit_hurt_area()

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=4 uid="uid://b8ixtmeixu4n0"]
+
+[ext_resource type="Script" uid="uid://c0oq7vsuhyviw" path="res://levels/objects/platforms/toggleable_terrain_platform.gd" id="1_terrain"]
+[ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_terrain"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_terrain"]
+size = Vector2(32, 32)
+
+[node name="ToggleableTerrainPlatform" type="AnimatableBody2D"]
+script = ExtResource("1_terrain")
+inactive_modulate = Color(1, 1, 1, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(16, -17)
+tile_map_data = PackedByteArray(0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+tile_set = ExtResource("2_terrain")
+collision_enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_terrain")
+disabled = true

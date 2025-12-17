@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=4 uid="uid://cq3vt6h8n2wpo"]
+
+[ext_resource type="Script" path="res://levels/objects/platforms/toggleable_platform.gd" id="1_toggleable"]
+[ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="2_toggleable"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toggleable"]
+size = Vector2(85, 15)
+
+[node name="ToggleablePlatform" type="AnimatableBody2D"]
+script = ExtResource("1_toggleable")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_toggleable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_toggleable")

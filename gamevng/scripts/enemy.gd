@@ -8,6 +8,10 @@ extends BaseCharacter
 var is_coin_droped: bool = false
 @export var coin_scene: PackedScene
 
+@export_group("Item Drop")
+@export var drop_item_scene: PackedScene  # Scene của item sẽ drop (health_potion, etc)
+@export_range(0.0, 1.0) var drop_chance: float = 0.0  # Tỉ lệ drop (0 = không drop, 1 = luôn drop)
+
 # Raycast check wall and fall
 var front_ray_cast: RayCast2D;
 var down_ray_cast: RayCast2D;
@@ -199,21 +203,36 @@ func drop_key() -> void:
 
 func _on_eneny_died():
 	_spawn_coins(coin_reward)
+	_spawn_item()
 
 func _spawn_coins(amount: int):
 	if !coin_scene:
 		return
-	
+
 	if is_coin_droped:
 		return
 	is_coin_droped = true
-	
+
 	for i in amount:
 		var coin = coin_scene.instantiate()
 		coin.global_position = global_position
-		coin.set_gravity(true)
-		# Thêm vào world
-		get_tree().current_scene.add_child(coin)
+		# Thêm vào world với deferred
+		get_tree().current_scene.call_deferred("add_child", coin)
 
-		# Bắn coin ra
-		coin.apply_impulse(Vector2(randf_range(-100, 100), -200))
+		# Use deferred to avoid physics query error
+		coin.call_deferred("set_gravity", true)
+		coin.call_deferred("apply_impulse", Vector2(randf_range(-100, 100), -200))
+
+func _spawn_item():
+	if !drop_item_scene:
+		return
+
+	# Kiểm tra tỉ lệ drop
+	if randf() > drop_chance:
+		return
+
+	# Spawn item
+	var item = drop_item_scene.instantiate()
+	item.global_position = global_position
+	get_tree().current_scene.call_deferred("add_child", item)
+	print("[Enemy] Dropped item: ", item.name)

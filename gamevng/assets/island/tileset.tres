@@ -458,7 +458,7 @@ scenes/3/scene = ExtResource("5_6kw8m")
 resource_name = "Other"
 scenes/1/scene = ExtResource("9_wlw37")
 scenes/2/scene = ExtResource("10_vnuqa")
-scenes/4/scene = ExtResource("7_6kw8m")
+scenes/3/scene = ExtResource("7_6kw8m")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6kw8m"]
 resource_name = "bg"

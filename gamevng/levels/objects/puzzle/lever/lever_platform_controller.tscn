@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=4 uid="uid://bvxc8eah3n5rp"]
+
+[ext_resource type="Script" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="1_controller"]
+
+[node name="LeverPlatformController" type="Node2D"]
+script = ExtResource("1_controller")
+
+[node name="LeverNode" type="Node2D" parent="."]
+
+[node name="Platforms" type="Node2D" parent="."]

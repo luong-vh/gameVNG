@@ -41,7 +41,7 @@ func set_can_switch_day_night(value: bool):
 func switch_day_night_state():
 	if not _can_switch_day_night:
 		return
-	
+
 	if _switch_limit_count <= 0:
 		#print("[DayNightManager] Reach switch day night limt")
 		return
@@ -52,6 +52,15 @@ func switch_day_night_state():
 	else:
 		_current_day_night_state = DayNightState.DAY
 	_apply_day_night_state(_current_day_night_state)
+
+func force_toggle_day_night():
+	"""Toggle day/night bỏ qua limit và can_switch check"""
+	if _current_day_night_state == DayNightState.DAY:
+		_current_day_night_state = DayNightState.NIGHT
+	else:
+		_current_day_night_state = DayNightState.DAY
+	_apply_day_night_state(_current_day_night_state)
+	print("[DayNightManager] Force toggled to: ", _current_day_night_state)
 
 func _init_state():
 	_apply_day_night_state(_current_day_night_state)

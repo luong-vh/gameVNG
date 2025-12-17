@@ -68,7 +68,9 @@ script = ExtResource("1_qkmv8")
 position = Vector2(0, -5)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_170jl")
-animation = &"activate"
+animation = &"deactivate"
+frame = 4
+frame_progress = 1.0
 speed_scale = 2.0
 
 [node name="HurtArea2D" type="Area2D" parent="."]

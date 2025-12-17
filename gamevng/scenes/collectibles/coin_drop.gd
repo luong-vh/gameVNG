@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func collect_coin():
 	GameManager.inventory_system.add_coin(coin_amount)
-	interactive_area.monitoring = false
+	interactive_area.set_deferred("monitoring", false)
 	animated_sprite.play("collected")
 	await animated_sprite.animation_finished
 	queue_free()
