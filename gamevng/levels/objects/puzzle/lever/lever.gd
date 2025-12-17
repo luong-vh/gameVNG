@@ -4,15 +4,14 @@ class_name Lever
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var can_be_deactivate: bool
-@export var start_activated: bool = false  ## Trạng thái ban đầu của lever
+@export var start_activated: bool = false  
 var is_activated: bool = false
 
 signal activated(is_activate: bool)
 
 func _ready() -> void:
-	# Set trạng thái ban đầu mà không emit signal
-	activated = start_activated
-	if activated:
+	is_activated = start_activated
+	if is_activated:
 		animated_sprite.play("activate")
 	else:
 		animated_sprite.play("deactivate")
@@ -22,20 +21,16 @@ func _on_hurt_area_2d_hurt(direction: Vector2, damage: float) -> void:
 	pass
 
 func _update_state(direction: Vector2):
-	# Ignore attacks from below
 	if direction.y > 0:
 		return
-
-	# Ignore if no actual direction (happens during initialization)
 	if direction == Vector2.ZERO:
 		return
 
-	# Deactivate: đánh từ bên trái (direction.x < 0)
-	if activated and can_be_deactivate and direction.x < 0:
+	if is_activated and can_be_deactivate and direction.x < 0:
 		animated_sprite.play("deactivate")
 		is_activated = false
 		activated.emit(false)
-	elif !activated and direction.x >= 0:
+	elif !is_activated and direction.x >= 0:
 		animated_sprite.play("activate")
 		is_activated = true
 		activated.emit(true)
@@ -50,7 +45,7 @@ func set_state(state: Dictionary) -> void:
 	if state.has("is_activated"):
 		is_activated = state.is_activated
 		# Update visual without emitting signal
-		if activated:
+		if is_activated:
 			animated_sprite.play("activate")
 		else:
 			animated_sprite.play("deactivate")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://bg6mbbuwnrv5c"]
 
 [ext_resource type="Script" uid="uid://cvc4l3a6lup65" path="res://levels/objects/torch/torch.gd" id="1_2imr4"]
-[ext_resource type="Texture2D" uid="uid://c1hc2i55qnly4" path="res://assets/island/objects/torch/small fire off.png" id="1_3exux"]
-[ext_resource type="Texture2D" uid="uid://tmn2d5eysf7t" path="res://assets/island/objects/torch/small_fire-Sheet.png" id="2_3exux"]
-[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="3_tmhn4"]
+[ext_resource type="Texture2D" uid="uid://1rkvql534h8t" path="res://assets/island/objects/torch/small fire off.png" id="1_3exux"]
+[ext_resource type="Texture2D" uid="uid://ksna7duwpsg" path="res://assets/island/objects/torch/small_fire-Sheet.png" id="2_3exux"]
+[ext_resource type="Texture2D" uid="uid://bbswngbggrfi3" path="res://assets/day_night/light.png" id="3_tmhn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3exux"]
 atlas = ExtResource("2_3exux")

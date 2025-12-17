@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvxc8eah3n5rp"]
+[gd_scene load_steps=2 format=4 uid="uid://bvxc8eah3n5rp"]
 
 [ext_resource type="Script" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="1_controller"]
 

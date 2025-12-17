@@ -2,8 +2,14 @@ extends Node2D
 class_name EnemySpawnPoint
 
 @export var enemy_scene: PackedScene
+@export var spawn_only_at_night: bool = false
 
 func _enter_tree() -> void:
+	if spawn_only_at_night:
+		# Register for night spawning
+		EnemyManager.register_spawn_point(self)
+		return
+
 	var t = enemy_scene.instantiate()
 	t.global_position = global_position
 	#get_tree().current_scene.add_child(t)

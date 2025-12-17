@@ -170,11 +170,13 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 func respawn_at_checkpoint() -> void:
 	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
 	if current_checkpoint_id.is_empty():
-		print("[GameManager] No checkpoint for this level - keeping inventory, resetting objects")
+		print("[GameManager] No checkpoint for this level - keeping coins, resetting keys and objects")
 		# No checkpoint exists for this level
-		# Reset collectibles/objects to initial state, but KEEP inventory
+		# Reset collectibles/objects to initial state
 		SaveSystem.restore_object_states({})  # Empty dict = all objects reset to initial
-		# DON'T reset inventory - player keeps items when entering new levels
+		# Reset keys to 0 (each level has its own key), but keep coins
+		if inventory_system:
+			inventory_system.keys = 0
 
 		# Sync player blade state with current inventory (deferred to ensure player is ready)
 		call_deferred("_sync_player_blade")

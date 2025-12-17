@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq3vt6h8n2wpo"]
+[gd_scene load_steps=4 format=4 uid="uid://cq3vt6h8n2wpo"]
 
 [ext_resource type="Script" path="res://levels/objects/platforms/toggleable_platform.gd" id="1_toggleable"]
 [ext_resource type="Texture2D" uid="uid://bn23ps3jhu4ru" path="res://levels/objects/platforms/moving_platform.png" id="2_toggleable"]

@@ -2,7 +2,7 @@ extends Node2D
 class_name LeverPlatformController
 
 @export_group("References")
-@export var lever: Clever = null 
+@export var lever: Lever = null 
 @export var platforms: Array[ToggleableTerrainPlatform] = []  
 @export var auto_find_platforms: bool = true  
 
@@ -19,8 +19,8 @@ func _ready() -> void:
 	elif not platforms_node:
 		push_warning("[LeverPlatformController] platforms_node is null! Check node structure.")
 
-	if lever and lever.has_signal("lever_hitted"):
-		lever.lever_hitted.connect(_on_lever_hitted)
+	if lever and lever.has_signal("activated"):
+		lever.activated.connect(_on_lever_hitted)
 	else:
 		push_warning("[LeverPlatformController] No lever assigned or lever missing signal!")
 	print("[LeverPlatformController] Managing ", platforms.size(), " platforms")

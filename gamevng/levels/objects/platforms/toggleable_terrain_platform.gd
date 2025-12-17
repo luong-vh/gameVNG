@@ -85,7 +85,7 @@ func activate() -> void:
 
 	# Enable manual collision shape
 	if collision_shape:
-		collision_shape.disabled = false
+		collision_shape.set_deferred("disabled", false)
 		print("  - collision_shape.disabled = false (collision ENABLED)")
 	else:
 		print("  - WARNING: collision_shape is NULL!")
@@ -107,9 +107,8 @@ func deactivate() -> void:
 		print("  - tilemap.visible = false")
 
 	if collision_shape:
-		collision_shape.disabled = true
+		collision_shape.set_deferred("disabled", true)
 		print("  - collision_shape.disabled = true (collision DISABLED)")
-		print("  - Checking: collision_shape.disabled is now: ", collision_shape.disabled)
 	else:
 		print("  - WARNING: collision_shape is NULL!")
 
@@ -141,7 +140,7 @@ func _set_active_immediate(active: bool) -> void:
 		print("  - tilemap.visible set to: ", active)
 
 	if collision_shape:
-		collision_shape.disabled = not active
+		collision_shape.set_deferred("disabled", not active)
 		print("  - collision disabled set to: ", not active)
 
 
@@ -168,7 +167,7 @@ func _fade_out() -> void:
 	if not tilemap:
 		is_transitioning = false
 		if collision_shape:
-			collision_shape.disabled = true
+			collision_shape.set_deferred("disabled", true)
 		return
 
 	var tween = create_tween()
@@ -188,6 +187,6 @@ func _on_fade_in_finished() -> void:
 func _on_fade_out_finished() -> void:
 	# Disable collision after fade out complete
 	if collision_shape:
-		collision_shape.disabled = true
+		collision_shape.set_deferred("disabled", true)
 	is_transitioning = false
 	print("[ToggleableTerrainPlatform] Fade out complete: ", name)

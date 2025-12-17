@@ -16,15 +16,15 @@ func _ready() -> void:
 	await get_tree().process_frame
 	_update_light()
 
-func _update_light():
+func _update_light(_new_state = null):
 	if manual_override:
 		_apply(desired_on)
 		return
-	
+
 	var should_be_on := desired_on
 	if use_day_night:
 		should_be_on = should_be_on and !DayNightManager.is_day()
-	
+
 	_apply(should_be_on)
 
 func _apply(on: bool):
