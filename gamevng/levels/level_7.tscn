@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bjqaqnh4k4006"]
+[gd_scene load_steps=28 format=4 uid="uid://bnuupihbjd8w0"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_lpckt"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_1wdt6"]
@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_qyu3j"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="5_64gf8"]
 [ext_resource type="PackedScene" uid="uid://bpaokgwewa3r4" path="res://levels/objects/spring/spring.tscn" id="6_77myf"]
-[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="7_knwsw"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="7_knwsw"]
 [ext_resource type="PackedScene" uid="uid://bs443mpop7gwr" path="res://levels/objects/platforms/Boat.tscn" id="8_mlnjg"]
 [ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="9_kwr4u"]
 [ext_resource type="PackedScene" uid="uid://bg6mbbuwnrv5c" path="res://levels/objects/torch/small_torch.tscn" id="10_jy3g3"]
-[ext_resource type="PackedScene" uid="uid://dw8jy7g7r7n51" path="res://scenes/collectibles/steering_wheel.tscn" id="11_n5xq2"]
+[ext_resource type="PackedScene" uid="uid://dw8jy7g7r7n51" path="res://levels/objects/steering_wheel.tscn" id="11_n5xq2"]
 [ext_resource type="PackedScene" uid="uid://bs0wvgy6jitmd" path="res://scenes/enemies/starfish/starfish.tscn" id="12_xeyle"]
-[ext_resource type="PackedScene" uid="uid://dnoy6re0nsmwx" path="res://scenes/collectibles/health_potion.tscn" id="13_dhrws"]
+[ext_resource type="PackedScene" uid="uid://bjy683k0ahgxy" path="res://scenes/collectibles/health_potion.tscn" id="13_dhrws"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="14_s4tas"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="15_75k1x"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="16_i3l0g"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="20_c80kk"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="21_kjl5y"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="22_nyvdn"]
-[ext_resource type="Script" uid="uid://bokg0hymsvfpp" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="23_7fhva"]
+[ext_resource type="Script" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="23_7fhva"]
 [ext_resource type="PackedScene" uid="uid://cpecowpo8p7jr" path="res://levels/objects/puzzle/lever/lever.tscn" id="24_q5xva"]
 [ext_resource type="PackedScene" uid="uid://b8ixtmeixu4n0" path="res://levels/objects/platforms/toggleable_terrain_platform.tscn" id="25_pq1j6"]
 
@@ -231,7 +231,6 @@ inactive_modulate = Color(1, 1, 1, 0.3)
 script = ExtResource("23_7fhva")
 lever = NodePath("LeverNode/Lever")
 platforms = [NodePath("Platforms/ToggleableTerrainPlatform"), NodePath("Platforms/ToggleableTerrainPlatform2"), NodePath("Platforms/ToggleableTerrainPlatform3")]
-metadata/_custom_type_script = "uid://bokg0hymsvfpp"
 
 [node name="LeverNode" type="Node" parent="LeverPlatformController2"]
 

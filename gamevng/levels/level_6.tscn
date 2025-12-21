@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dmqnrxkn6dxsh" path="res://levels/objects/puzzle/lever/lever_control.tscn" id="7_g7b2g"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_m516p"]
 [ext_resource type="PackedScene" uid="uid://bg6mbbuwnrv5c" path="res://levels/objects/torch/small_torch.tscn" id="9_6s2qa"]
-[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="9_ny68a"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="9_ny68a"]
 [ext_resource type="PackedScene" uid="uid://crcq4c8hqnmt" path="res://scenes/enemies/coconut_native/coconut_native.tscn" id="11_kx1xp"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="14_f2ri3"]
 [ext_resource type="PackedScene" uid="uid://cpecowpo8p7jr" path="res://levels/objects/puzzle/lever/lever.tscn" id="14_l3m5x"]
@@ -70,7 +70,9 @@ min_distance_vertical = 20.0
 
 [node name="Player" parent="." instance=ExtResource("4_3t5n2")]
 position = Vector2(125, 271)
+has_blade = true
 can_wall_cling = true
+can_double_jump = true
 can_dash = true
 
 [node name="Objects" type="Node" parent="."]

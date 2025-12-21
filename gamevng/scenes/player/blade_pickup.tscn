@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8ghxmgekqw4a"]
+[gd_scene load_steps=14 format=3 uid="uid://8ghxmgekqw4a"]
 
 [ext_resource type="Script" uid="uid://cr0rdf7knk0sg" path="res://scenes/player/blade_pickup.gd" id="1_g3i0j"]
 [ext_resource type="Texture2D" uid="uid://d0s8rm2fj4wef" path="res://assets/foxy/blade/blade_anim_1.png" id="2_o0qmo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnmm6danq7olv" path="res://assets/init_assets/images/blade/blade_anim_4.png" id="7_ckoyu"]
 [ext_resource type="Texture2D" uid="uid://c8yavtqsutpff" path="res://assets/init_assets/images/blade/blade_anim_3.png" id="8_wyxcl"]
 [ext_resource type="Texture2D" uid="uid://7gky8kgre65u" path="res://assets/init_assets/images/blade/blade_anim_2.png" id="9_aiacq"]
+[ext_resource type="PackedScene" uid="uid://bqpj06nn7ioem" path="res://scripts/areas/interactive_area_2d.tscn" id="10_wyxcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhm7x"]
 animations = [{
@@ -45,7 +46,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36cyg"]
 size = Vector2(13, 13)
 
-[node name="BladePickup" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiacq"]
+radius = 8.0
+
+[node name="BladePickup" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_g3i0j")
@@ -59,4 +63,9 @@ frame_progress = 0.880749
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_36cyg")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="InteractiveArea2D" parent="." instance=ExtResource("10_wyxcl")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractiveArea2D"]
+shape = SubResource("CircleShape2D_aiacq")
+
+[connection signal="interaction_available" from="InteractiveArea2D" to="." method="_on_interactive_area_2d_interaction_available"]

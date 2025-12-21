@@ -1,18 +1,16 @@
 extends HBoxContainer
 
-@onready var _heartGUI = preload("res://scenes/gui/playerHeartGUI.tscn")
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+@onready var HeartGUI := preload("res://scenes/gui/playerHeartGUI.tscn")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func set_max_heart(max: int) -> void:
+	var current := get_child_count()
 
-func set_max_heart(max: int):
-	var current_children = get_children()
-	for child in current_children:
-		child.queue_free()
-	for i in range(max):
-		var heart = _heartGUI.instantiate()
-		add_child(heart)
+	# Add missing hearts
+	if max > current:
+		for i in range(max - current):
+			add_child(HeartGUI.instantiate())
+
+	# Remove extra hearts
+	elif max < current:
+		for i in range(current - max):
+			get_child(current - 1 - i).queue_free()

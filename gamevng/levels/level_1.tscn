@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="4_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://dt8fe145l5mol" path="res://levels/objects/sign/wooden_sign.tscn" id="5_w75he"]
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="6_udfhf"]
-[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="7_i6od7"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="7_i6od7"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="8_ryfpa"]
 [ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="9_ntdhj"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="10_0fu15"]

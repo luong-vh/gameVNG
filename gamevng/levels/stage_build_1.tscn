@@ -308,6 +308,7 @@ tile_set = ExtResource("2_dhiy7")
 
 [node name="Player" parent="." instance=ExtResource("3_2006p")]
 position = Vector2(9315, 268)
+has_blade = true
 movement_speed = 150.0
 
 [node name="Light2D" parent="Player" index="7"]

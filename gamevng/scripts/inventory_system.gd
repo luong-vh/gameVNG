@@ -59,7 +59,6 @@ func _ready() -> void:
 
 	# Initialize storage
 	storage.initialize()
-	print("[InventorySystem] Initialized with modular architecture")
 
 # ==================== Currency Management ====================
 

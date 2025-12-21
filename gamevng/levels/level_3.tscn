@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="7_e28pm"]
 [ext_resource type="PackedScene" uid="uid://cnutvcjxxupmp" path="res://levels/objects/web/spider_web.tscn" id="9_8nkwk"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="10_kyq6o"]
-[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="11_4gw27"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="11_4gw27"]
 [ext_resource type="PackedScene" uid="uid://clexgmnrid7m3" path="res://levels/objects/platforms/spike_platfrom.tscn" id="11_eg35p"]
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="12_mb3d3"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="13_q26s8"]

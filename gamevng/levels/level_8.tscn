@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://bxvc68rg33rgc" path="res://levels/objects/puzzle/pressure_plate/pressure_plate.tscn" id="13_ywh5v"]
 [ext_resource type="PackedScene" uid="uid://bl4qkm7jaq7pp" path="res://levels/control_nodes/boss_control.tscn" id="14_sw5xe"]
 [ext_resource type="Script" uid="uid://bn0oogftm4uv7" path="res://levels/control_nodes/enemy_spawn_data.gd" id="15_77h57"]
-[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/boss/king_crab/king_crab.tscn" id="16_ubbwv"]
+[ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_rln41"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="17_cl8ie"]
-[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://scenes/collectibles/chest.tscn" id="18_txll6"]
-[ext_resource type="Texture2D" uid="uid://nx7a7xssdmbc" path="res://assets/items/key.png" id="19_p4yax"]
+[ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="18_txll6"]
+[ext_resource type="Texture2D" uid="uid://2vhg1o0dccmj" path="res://assets/items/key.png" id="19_p4yax"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="20_dgo0k"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="21_mm8of"]
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="22_xkvr5"]
@@ -48,7 +48,7 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_4tj2f"]
 script = ExtResource("15_77h57")
-scene = ExtResource("16_ubbwv")
+scene = ExtResource("16_rln41")
 count = 1
 metadata/_custom_type_script = "uid://bn0oogftm4uv7"
 

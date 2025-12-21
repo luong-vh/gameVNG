@@ -47,10 +47,6 @@ func set_player(_player: Player):
 func get_player() -> Player:
 	return player
 
-func _sync_player_blade() -> void:
-	if player and player.has_method("sync_blade_with_inventory"):
-		player.sync_blade_with_inventory()
-
 func _sync_collectibles_with_inventory() -> void:
 	if not current_stage:
 		return
@@ -125,10 +121,6 @@ func respawn_at_portal() -> bool:
 		player.global_position = portal.spawn_position
 		main_camera.global_position = portal.spawn_position
 		GameManager.target_portal_name = ""
-
-		# Sync blade state with inventory when teleporting
-		call_deferred("_sync_player_blade")
-
 		return true
 	return false
 
@@ -177,14 +169,8 @@ func respawn_at_checkpoint() -> void:
 		# Reset keys to 0 (each level has its own key), but keep coins
 		if inventory_system:
 			inventory_system.keys = 0
-
-		# Sync player blade state with current inventory (deferred to ensure player is ready)
-		call_deferred("_sync_player_blade")
 		# Sync collectibles with inventory
 		call_deferred("_sync_collectibles_with_inventory")
-
-		# Note: Player position stays where it is (not respawned)
-		# This is called on level load, not on death
 		return
 
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
@@ -198,7 +184,6 @@ func respawn_at_checkpoint() -> void:
 	var checkpoint_stage = checkpoint_info.get("stage_path", "")
 	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
 		# Different stage - sync player blade state
-		call_deferred("_sync_player_blade")
 		call_deferred("_sync_collectibles_with_inventory")
 		return
 

@@ -12,10 +12,6 @@ func use_item(item_name: String) -> bool:
 			return use_speed_boost()
 		"damage_boost":
 			return use_damage_boost()
-		"mana_potion":
-			return use_mana_potion()
-		"blade":
-			return use_blade()
 		_:
 			print("[ItemManager] Unknown item: %s" % item_name)
 			return false
@@ -25,27 +21,14 @@ func use_health_potion() -> bool:
 	if not player:
 		print("[ItemManager] Player not found!")
 		return false
-	
-	print("[ItemManager] Current player health: %d/%d" % [player.health, player.max_health])
-	
-	if player.health >= player.max_health:
-		print("[ItemManager] Health already full!")
-		return false
+	print("[ItemManager] Current player health: %d/%d" % [player.health, player.get_max_health()])
 	
 	# Heal player by 1 point (adjust as needed)
 	var heal_amount = 1
-	var old_health = player.health
-	player.health = min(player.health + heal_amount, player.max_health)
-	
-	# Trigger UI update - check if signal exists first
-	if player.has_signal("healthChanged"):
-		player.healthChanged.emit()
-		print("[ItemManager] Health updated from %d to %d" % [old_health, player.health])
-	else:
-		print("[ItemManager] Warning: Player doesn't have healthChanged signal")
-	
-	print("[ItemManager] Used health potion! Healed %d HP" % heal_amount)
-	GUIManager.play_SFX("coin") # Play heal sound (reuse coin for now)
+	player.health += heal_amount
+	player.collect_powerup("health_potion")
+	player.healthChanged.emit()
+	AudioManager.play_sound("coin") # Play heal sound (reuse coin for now)
 	
 	item_used.emit("health_potion", true)
 	return true
@@ -69,7 +52,7 @@ func use_damage_boost() -> bool:
 	_apply_damage_boost_effect(player)
 	
 	print("[ItemManager] Damage boost activated!")
-	GUIManager.play_SFX("coin")
+	AudioManager.play_sound("coin")
 	
 	item_used.emit("damage_boost", true)
 	return true
@@ -92,11 +75,6 @@ func _apply_damage_boost_effect(player: Player) -> void:
 	# TODO: When attack system allows, increase damage multiplier
 	# player.damage_multiplier = 2.0 for X seconds
 
-func use_mana_potion() -> bool:
-	# TODO: Implement mana system first
-	print("[ItemManager] Mana potions not implemented yet!")
-	return false
-
 func use_speed_boost() -> bool:
 	var player = GameManager.get_player()
 	if not player:
@@ -112,27 +90,4 @@ func use_speed_boost() -> bool:
 	#GUIManager.play_SFX("coin")
 
 	item_used.emit("speed_boost", true)
-	return true
-
-func use_blade() -> bool:
-	var player = GameManager.get_player()
-	if not player:
-		print("[ItemManager] Player not found!")
-		return false
-
-	# Check if blade is already equipped
-	if not player.has_blade:
-		# Equip blade for the first time
-		print("[ItemManager] Equipping blade...")
-		player.equip_blade()
-		#GUIManager.play_SFX("coin")
-		print("[ItemManager] ✅ Blade equipped! Use attack button to throw!")
-	else:
-		# Already equipped
-		print("[ItemManager] Blade is already equipped!")
-		print("[ItemManager] 🗡️ Use attack button to throw blade!")
-
-	item_used.emit("blade", true)
-
-	# Return true but blade won't be consumed (handled in GUIManager)
 	return true
