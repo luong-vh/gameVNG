@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://c6wrnyav3mhbf" path="res://levels/objects/puzzle/buttons/button_manager.gd" id="13_m5o8d"]
 [ext_resource type="PackedScene" uid="uid://bmask7rjudmfo" path="res://levels/objects/puzzle/buttons/red_button.tscn" id="14_wn3ve"]
 [ext_resource type="PackedScene" uid="uid://dcvxnyklhsry7" path="res://levels/objects/puzzle/buttons/yellow_button.tscn" id="15_m2rks"]
-[ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_wn3ve"]
+[ext_resource type="PackedScene" uid="uid://bbmaq0rlehe8y" path="res://scenes/boss/king_crab/king_crab.tscn" id="16_wn3ve"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qo6io"]
 a = Vector2(0, -500)
@@ -125,7 +125,7 @@ position = Vector2(357.221, 274.764)
 [node name="YellowButton" parent="." instance=ExtResource("15_m2rks")]
 position = Vector2(405.117, 273.768)
 
-[node name="WarlordTurtle" parent="." instance=ExtResource("16_wn3ve")]
-position = Vector2(1103.59, 255.849)
+[node name="KingCrab" parent="." instance=ExtResource("16_wn3ve")]
+position = Vector2(1138.52, 261.822)
 
 [editable path="ShaderCanvasLayer"]
