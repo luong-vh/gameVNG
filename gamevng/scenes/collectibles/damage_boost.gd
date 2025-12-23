@@ -31,6 +31,3 @@ func _on_collect():
 	
 	# Add to hotbar
 	var success = GUIManager.add_item_to_hotbar("damage_boost", potion_texture, 1)
-	if success:
-		print("Damage boost potion added to hotbar!")
-		GUIManager.play_SFX("coin")

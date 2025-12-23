@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bi224x34bsap8" path="res://scripts/powerup/powerup_decorator_data.gd" id="1_a0jlh"]
 [ext_resource type="Script" uid="uid://o0rruy8og28w" path="res://scripts/powerup/powerup_database.gd" id="1_mt8vk"]
-[ext_resource type="Resource" uid="uid://0nxovonoldk6" path="res://data/powerup/blade.tres" id="2_a0jlh"]
 [ext_resource type="Resource" uid="uid://oamt0sj5rtop" path="res://data/powerup/speed_up.tres" id="3_clvwx"]
-[ext_resource type="Resource" uid="uid://d1e2f3g4h5i6" path="res://data/powerup/magnet.tres" id="4_magnet"]
-[ext_resource type="Resource" uid="uid://j6k7l8m9n0o1" path="res://data/powerup/double_jump.tres" id="5_djump"]
+[ext_resource type="Resource" uid="uid://0u6ylsc6tsyn" path="res://data/powerup/magnet.tres" id="4_magnet"]
+[ext_resource type="Resource" uid="uid://brxmyil1ojewn" path="res://data/powerup/double_jump.tres" id="5_djump"]
+[ext_resource type="Resource" uid="uid://bfeyt1h6bjo6q" path="res://data/powerup/health_potion.tres" id="5_plduk"]
 
 [resource]
 script = ExtResource("1_mt8vk")
-powerups = Array[ExtResource("1_a0jlh")]([ExtResource("2_a0jlh"), ExtResource("3_clvwx"), ExtResource("4_magnet"), ExtResource("5_djump")])
+powerups = Array[ExtResource("1_a0jlh")]([ExtResource("3_clvwx"), ExtResource("4_magnet"), ExtResource("5_djump"), ExtResource("5_plduk")])
 metadata/_custom_type_script = "uid://o0rruy8og28w"

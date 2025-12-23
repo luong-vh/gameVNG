@@ -179,6 +179,11 @@ func get_effective_jump_speed() -> float:
 		return decorator_chain_head.get_jump_speed()
 	return player.jump_speed
 
+func get_effective_health() -> int:
+	if decorator_chain_head:
+		return decorator_chain_head.get_max_health()
+	return player.max_health
+
 func get_effective_attack_damage() -> int:
 	if decorator_chain_head:
 		return decorator_chain_head.get_attack_damage()

@@ -21,14 +21,5 @@ func _on_collect():
 		potion_texture = load("res://assets/items/coin/01.png")
 		print("Fallback to coin texture")
 	
-	if not potion_texture:
-		print("ERROR: Could not load potion texture!")
-		return
-	
-	print("Health potion texture loaded: %s" % potion_texture)
-	
 	# Add to hotbar instead of using immediately
 	var success = GUIManager.add_item_to_hotbar("health_potion", potion_texture, 1)
-	if success:
-		print("Health potion added to hotbar!")
-		GUIManager.play_SFX("coin") # Reuse coin sound

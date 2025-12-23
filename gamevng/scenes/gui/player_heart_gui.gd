@@ -5,6 +5,5 @@ extends Panel
 func _ready() -> void:
 	_sprite.frame = 0
 
-
 func update(isAvailable: bool):
 	_sprite.frame = 0 if isAvailable else 1

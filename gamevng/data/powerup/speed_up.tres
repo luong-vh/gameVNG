@@ -5,7 +5,20 @@
 [resource]
 script = ExtResource("1_bjx6a")
 id = "speed_up"
+display_name = ""
+description = ""
+priority = 0
 duration = 5.0
 speed_multiplier = 5.0
+jump_multiplier = 1.0
+damage_multiplier = 1.0
+health_bonus = 0
+grants_blade_attack = false
+grants_double_jump = false
+num_jumps = 1
 sprite_override = "SpeedUpAnimatedSprite2D"
+color_modulate = Color(1, 1, 1, 1)
+conflicts_with = Array[String]([])
+replaces = Array[String]([])
+can_stack = true
 metadata/_custom_type_script = "uid://bi224x34bsap8"

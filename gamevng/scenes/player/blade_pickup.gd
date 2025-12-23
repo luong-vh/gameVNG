@@ -1,6 +1,9 @@
-extends Area2D
+extends RigidBody2D
 
-# Hàm này sẽ tự động được gọi khi có một PhysicsBody2D (như Player) đi vào
-func _on_body_entered(body):
-	body.call("collect_blade")
+func _ready() -> void:
+	pass
+
+func _on_interactive_area_2d_interaction_available() -> void:
+	GameManager.player.collect_powerup("blade")
 	queue_free()
+	pass

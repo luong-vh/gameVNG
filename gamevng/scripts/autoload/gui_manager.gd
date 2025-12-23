@@ -66,7 +66,7 @@ func _on_animation_finished(anim_name):
 func set_max_heart_gui(max :int):
 	if max > 10:
 		print("wtf max health = %d??" %max)
-		_heart_container.set_max_heart(5)
+		_heart_container.set_max_heart(10)
 		return
 	_heart_container.set_max_heart(max)
 
@@ -86,7 +86,6 @@ func open_stage_clear_popup():
 	var stage_clear_popup_preload = preload("res://scenes/gui/game_screen/finished_level_poppup.tscn")
 	var popup = stage_clear_popup_preload.instantiate()
 	$CanvasLayer.add_child(popup)
-
 
 func _on_settings_texture_button_pressed() -> void:
 	var popup_settings = setting_popup_scene.instantiate()
