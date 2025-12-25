@@ -36,13 +36,17 @@ var pogo_hit_area_collision
 var wall_checker: RayCast2D
 
 # --- DOUBLE JUMP ---
-@export_category("Double Jump")
+@export_category("Jump")
+@export var jump_cut_multiplier: float = 0.5
 @export var can_double_jump: bool = false
 @export var max_jump_amount: int = 1
 var jump_count = 1
 @onready var jump_particle = $Direction/Particles/JumpParticle
 @export var normal_jump_cost: float = 1
 @export var double_jump_cost: float = 2
+
+@onready var coyote_timer: Timer = $CoyoteTimer
+var coyote_time_activated: bool = false
 
 # --- DASH ---
 @export_category("Dash")
@@ -136,6 +140,16 @@ func _shader_changed(new_state):
 		else:
 			light_source.enabled = true
 	pass
+
+func take_damage(damage: int) -> void:
+	if decorator_manager != null:
+		if decorator_manager.can_absorb_damage():
+			print("Damage absorbed!")
+			return
+	super.take_damage(damage)
+
+func can_take_damage() -> bool:
+	return !is_invulnerable
 
 func start_attack_cd() -> bool:
 	if attack_timer:

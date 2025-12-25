@@ -12,7 +12,6 @@ func _on_collect() -> void:
 	if collected:
 		return  # Already collected
 
-	print("[Blade] _on_collect() called!")
 	super._on_collect()  # This now sets collected=true, visible=false, monitoring=false
 	if GameManager.player:
 		GameManager.player.collect_blade()

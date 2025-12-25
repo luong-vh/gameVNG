@@ -12,6 +12,8 @@ func use_item(item_name: String) -> bool:
 			return use_speed_boost()
 		"damage_boost":
 			return use_damage_boost()
+		"shield":
+			return use_shield()
 		_:
 			print("[ItemManager] Unknown item: %s" % item_name)
 			return false
@@ -40,40 +42,24 @@ func use_damage_boost() -> bool:
 		return false
 	
 	print("[ItemManager] Using damage boost...")
-	
-	# Check if player has attack system
-	if not player.has_method("get_attack_damage"):
-		print("[ItemManager] Player doesn't have attack system!")
-		# Apply temporary visual effect anyway
-		_apply_damage_boost_effect(player)
-		return true
-	
-	# Apply damage boost - increase attack power temporarily
-	_apply_damage_boost_effect(player)
-	
-	print("[ItemManager] Damage boost activated!")
+	player.collect_powerup("damage_boost")
 	AudioManager.play_sound("coin")
 	
 	item_used.emit("damage_boost", true)
 	return true
 
-func _apply_damage_boost_effect(player: Player) -> void:
-	# Create temporary visual effect
-	var tween = create_tween()
-	var original_modulate = player.modulate
+func use_shield() -> bool:
+	var player = GameManager.get_player()
+	if not player:
+		print("[ItemManager] Player not found!")
+		return false
 	
-	# Flash red effect
-	tween.tween_property(player, "modulate", Color(2.0, 0.5, 0.5, 1.0), 0.3)
-	tween.tween_property(player, "modulate", original_modulate, 0.2)
-	tween.tween_property(player, "modulate", Color(2.0, 0.5, 0.5, 1.0), 0.3)
-	tween.tween_property(player, "modulate", original_modulate, 0.2)
+	print("[ItemManager] Using shield...")
+	player.collect_powerup("shield")
+	AudioManager.play_sound("coin")
 	
-	# Apply temporary damage boost (conceptual for now)
-	print("[ItemManager] 🗡️ DAMAGE BOOST ACTIVE! Player glowing red!")
-	print("[ItemManager] Next attacks will deal extra damage!")
-	
-	# TODO: When attack system allows, increase damage multiplier
-	# player.damage_multiplier = 2.0 for X seconds
+	item_used.emit("shield", true)
+	return true
 
 func use_speed_boost() -> bool:
 	var player = GameManager.get_player()

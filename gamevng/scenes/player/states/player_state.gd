@@ -38,9 +38,14 @@ func control_jump() -> bool:
 
 	if obj.is_on_floor() or obj.is_near_wall():
 		obj.reset_jump_count()
-
-	var jumpInput = Input.is_action_just_pressed("jump")
-	if jumpInput:
+		obj.coyote_time_activated = false
+		obj.coyote_timer.stop()
+	else:
+		if not obj.coyote_time_activated:
+			obj.coyote_time_activated = true
+			obj.coyote_timer.start()
+	
+	if Input.is_action_just_pressed("jump"):
 		#Wall jump
 		if obj.can_wall_cling and obj.is_near_wall() and not obj.is_on_floor():
 			obj.lock_input(obj.wall_jump_lock_input_time)
@@ -55,13 +60,13 @@ func control_jump() -> bool:
 		
 		#Normal jump
 		if obj.jump_count < obj.max_jump_amount:
-			if not obj.is_on_floor() and obj.is_near_wall():
+			if not (obj.is_on_floor() or not obj.coyote_timer.is_stopped()) and obj.is_near_wall():
 				return false
 			
 			if obj.jump_count >= obj.normal_jump_cost and not obj.can_double_jump:
 				return false
 			
-			if not obj.can_double_jump and not obj.is_on_floor():
+			if not obj.can_double_jump and not (obj.is_on_floor() or not obj.coyote_timer.is_stopped()):
 				return false
 			
 			obj.jump_particle.restart()
@@ -74,6 +79,13 @@ func control_jump() -> bool:
 			change_state(fsm.states.jump)
 			return true
 	return false
+
+func control_variable_jump_height():
+	# Cut jump short if button released while moving upward
+	var is_wall_cling = obj.is_near_wall() and not obj.is_on_floor()
+	if (Input.is_action_just_released("jump") and obj.velocity.y < 0
+		and not is_wall_cling):
+		obj.velocity.y *= obj.jump_cut_multiplier
 
 func control_wall_cling(delta: float) -> bool:
 	if not obj.can_wall_cling:
@@ -141,7 +153,7 @@ func control_attack() -> bool:
 
 func take_damage(damage) -> void:
 	#obj take damage
-	if obj.is_invulnerable:
+	if !obj.can_take_damage():
 		return
 	
 	obj.take_damage(damage)

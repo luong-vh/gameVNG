@@ -8,6 +8,8 @@ class_name Stage
 @export var loading_time_sec: float = 5
 @export var level_id: String = "5"
 
+@export var total_coins := 25
+
 func _enter_tree() -> void:
 	GameManager.set_current_stage(self, level_id)
 	if level_id == "0":
@@ -54,6 +56,7 @@ func save_stage() -> Dictionary:
 		"day_night_state": DayNightManager.current_day_night_state,
 		"shader_state": DayNightManager.current_shader_state,
 		"cur_switch_limit": DayNightManager.switch_limit_count,
+		"total_coins": total_coins,
 	}
 
 func load_state(data: Dictionary) -> bool:
