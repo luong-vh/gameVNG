@@ -102,7 +102,6 @@ func _apply_day_night_state(state : DayNightState) -> void:
 			day_bg.visible = false
 			night_bg.visible = true
 			canvas_modulate.color = night_color
-			print("Switched to NIGHT mode")
 		_:
 			print("[DayNightManager] Background or modulate node not set yet!")
 	day_night_state_changed.emit(_current_day_night_state)
@@ -126,12 +125,10 @@ func _apply_shader_state(state: ShaderState):
 		ShaderState.DARKNESS:
 			shader_canva.call("turn_on_darkness")
 			shader_canva.call("turn_off_fog")
-			print("Shader switched to DARKNESS")
 
 		ShaderState.FOG:
 			shader_canva.call("turn_on_fog")
 			shader_canva.call("turn_off_darkness")
-			print("Shader switched to FOG")
 		
 		ShaderState.NONE:
 			shader_canva.call("turn_off_darkness")

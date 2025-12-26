@@ -13,5 +13,10 @@ func _on_collect() -> void:
 		return  # Already collected
 
 	super._on_collect()  # This now sets collected=true, visible=false, monitoring=false
+
+	# Add blade to player (this will also add to hotbar automatically)
 	if GameManager.player:
 		GameManager.player.collect_blade()
+		print("[Blade] Blade collected and added to player!")
+
+	AudioManager.play_sound("coin")

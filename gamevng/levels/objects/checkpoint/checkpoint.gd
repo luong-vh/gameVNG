@@ -36,7 +36,6 @@ func activate() -> void:
 	GameManager.save_checkpoint_data()  # Save to persistent storage
 	GameManager.activate_checkpoint()
 	checkpoint_activated.emit(checkpoint_id)
-	print("Checkpoint activated: ", checkpoint_id)
 	
 func _confirm_all_saveable_objects() -> void:
 	var root = get_tree().current_scene

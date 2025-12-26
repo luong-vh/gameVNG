@@ -106,5 +106,4 @@ func load_state(state: Dictionary) -> Dictionary:
 		# No inventory data in checkpoint - clear everything
 		storage.clear_inventory()
 
-	print("[InventoryPersistence] Loaded state - Coins: %d, Keys: %d" % [result.coins, result.keys])
 	return result

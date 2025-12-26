@@ -87,11 +87,9 @@ func _delete_from_enemy_manager():
 	EnemyManager.remove_enemy(self, type)
 
 func change_to_day_behavior():
-	print("[Spider] Changed behavior to DAY")
 	# Spider không thay đổi behavior theo ngày/đêm
 
 func change_to_night_behavior():
-	print("[Spider] Changed behavior to NIGHT")
 	# Spider không thay đổi behavior theo ngày/đêm
 
 
