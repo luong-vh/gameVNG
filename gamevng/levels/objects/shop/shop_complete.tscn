@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://dic373yvfl1jb"]
+
+[ext_resource type="Script" uid="uid://bbmg0n2cvuokk" path="res://levels/objects/shop/shop.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dgsh4tl33d3xd" path="res://assets/items/shop/shop_1.png" id="1_y6qag"]
+[ext_resource type="Texture2D" uid="uid://dq4127kwbj78h" path="res://assets/items/shop/shop_2.png" id="2_3pb1f"]
+[ext_resource type="Texture2D" uid="uid://i6ausqgkxmmr" path="res://assets/items/shop/shop_3.png" id="3_k0q8j"]
+[ext_resource type="Texture2D" uid="uid://ci231ct7l47de" path="res://assets/items/shop/shop_4.png" id="4_lbijy"]
+[ext_resource type="Texture2D" uid="uid://dffofie6fwx1l" path="res://assets/items/shop/shop_5.png" id="5_vrb3a"]
+[ext_resource type="Texture2D" uid="uid://buo3l2x2blxbc" path="res://assets/items/shop/shop_6.png" id="6_k1bas"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdhmk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y6qag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3pb1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_k0q8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lbijy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vrb3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k1bas")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shop"]
+size = Vector2(78, 62)
+
+[node name="ShopComplete" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_vdhmk")
+autoplay = "default"
+
+[node name="ShopTriggerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopTriggerArea"]
+position = Vector2(-1, 14)
+shape = SubResource("RectangleShape2D_shop")
+
+[node name="ShopUI" type="CanvasLayer" parent="."]
+script = ExtResource("1")
+
+[node name="ShopPanel" type="Panel" parent="ShopUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -130.0
+offset_right = 203.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopUI/ShopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="ShopUI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SHOP"
+horizontal_alignment = 1
+
+[node name="CoinDisplay" type="HBoxContainer" parent="ShopUI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CoinIcon" type="Label" parent="ShopUI/ShopPanel/VBoxContainer/CoinDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Coins:"
+
+[node name="CoinLabel" type="Label" parent="ShopUI/ShopPanel/VBoxContainer/CoinDisplay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopUI/ShopPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemsContainer" type="VBoxContainer" parent="ShopUI/ShopPanel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CloseButton" type="Button" parent="ShopUI/ShopPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Close (F)"
+
+[connection signal="body_entered" from="ShopTriggerArea" to="ShopUI" method="_on_player_entered_shop_area"]
+[connection signal="body_exited" from="ShopTriggerArea" to="ShopUI" method="_on_player_exited_shop_area"]
