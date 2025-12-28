@@ -7,16 +7,12 @@ func _ready() -> void:
 	interact_input_action = "" # Auto-collect, no need to press key
 
 func _on_collect():
-	super._on_collect()  # This sets collected=true, visible=false, monitoring=false	
-	# Use the sprite's texture from scene (should be coin texture now)
-	var potion_texture: Texture2D = null
+	super._on_collect()
+
+	var shield_texture: Texture2D = null
 	if sprite_2d and sprite_2d.texture:
-		potion_texture = sprite_2d.texture
-		print("Using sprite texture: %s" % potion_texture)
+		shield_texture = sprite_2d.texture
 	else:
-		# Fallback to coin texture for visibility
-		potion_texture = load("res://assets/items/coin/01.png")
-		print("Fallback to coin texture")
-	
-	# Add to hotbar instead of using immediately
-	var success = GUIManager.add_item_to_hotbar("shield", potion_texture, 1)
+		shield_texture = load("res://assets/items/shield.png")
+
+	GUIManager.add_item_to_hotbar("shield", shield_texture, 1)

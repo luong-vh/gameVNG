@@ -12,11 +12,8 @@ var player_in_range: bool = false
 # Shop items data [item_name, texture_path, price, item_type]
 var shop_items: Array = [
 	{"name": "health_potion", "texture": "res://assets/items/potions/pt1.png", "price": 10},
-	{"name": "health_potion", "texture": "res://assets/items/potions/pt2.png", "price": 15},
-	{"name": "health_potion", "texture": "res://assets/items/potions/pt3.png", "price": 20},
-	{"name": "health_potion", "texture": "res://assets/items/potions/pt4.png", "price": 25},
-	{"name": "shield", "texture": "res://assets/items/shield.png", "price": 30},
-	{"name": "speed_boost", "texture": "res://assets/items/speed_up.png", "price": 35}
+	{"name": "speed_boost", "texture": "res://assets/items/speed_up.png", "price": 15},
+	{"name": "shield", "texture": "res://assets/items/shield.png", "price": 20},
 ]
 
 # UI References

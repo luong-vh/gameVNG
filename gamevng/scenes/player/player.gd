@@ -142,10 +142,8 @@ func _shader_changed(new_state):
 	pass
 
 func take_damage(damage: int) -> void:
-	if decorator_manager != null:
-		if decorator_manager.can_absorb_damage():
-			print("Damage absorbed!")
-			return
+	if not can_take_damage():
+		return
 	super.take_damage(damage)
 
 func can_take_damage() -> bool:
@@ -301,13 +299,20 @@ func _physics_process(delta: float) -> void:
 	GUIManager.set_max_heart_gui(get_max_health())
 
 func handle_invulnerable():
+	var shield_active = false
+	if decorator_manager != null:
+		for decorator in decorator_manager.active_decorators:
+			if decorator.data.id == "shield":
+				shield_active = true
+				break
+
 	if invulnerable_timer.time_left > 0:
 		var alpha := 0.5 + 0.5 * sin(invulnerable_timer.time_left * TAU * blink_speed)
 		animated_sprite.modulate.a = alpha
 	else:
 		animated_sprite.modulate.a = 1.0
 
-	if invulnerable_timer.is_stopped():
+	if invulnerable_timer.is_stopped() and not shield_active:
 		is_invulnerable = false
 
 # --- POWERUP SYSTEM ---

@@ -34,7 +34,6 @@ func initialize_inventory() -> void:
 # ==================== Hotbar Operations ====================
 
 func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -> bool:
-	# Try to stack with existing item first
 	for i in range(hotbar_items.size()):
 		var item = hotbar_items[i]
 		if item != null and item.item_name == item_name:

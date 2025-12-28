@@ -96,6 +96,9 @@ func _connect_inventory_signals() -> void:
 		GameManager.inventory_system.coin_changed.connect(update_coin)
 		GameManager.inventory_system.key_changed.connect(update_key)
 
+		update_coin(GameManager.inventory_system.coins)
+		update_key(GameManager.inventory_system.has_key())
+
 func _on_hotbar_slot_selected(slot_index: int) -> void:
 	pass
 
@@ -103,11 +106,9 @@ func _on_hotbar_item_used(slot_index: int) -> void:
 	if GameManager.inventory_system and GameManager.item_manager:
 		var item = GameManager.inventory_system.get_hotbar_item(slot_index)
 		if item and item.count > 0:
-			# Try to use the item
 			var success = GameManager.item_manager.use_item(item.item_name)
 			if success:
 				play_SFX("coin")
-				# Check if item is consumable (blade is not consumable)
 				if item.item_name != "blade":
 					GameManager.inventory_system.use_item_from_hotbar(slot_index)
 

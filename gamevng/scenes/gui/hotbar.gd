@@ -30,7 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var key_code = KEY_1 + i
 		if event is InputEventKey and event.pressed and event.keycode == key_code:
 			select_slot(i)
-			# Immediately try to use item in this slot
 			item_used.emit(i)
 			get_viewport().set_input_as_handled()
 			return
