@@ -194,6 +194,11 @@ func get_effective_max_jumps() -> int:
 		return decorator_chain_head.get_max_jumps()
 	return 1
 
+func can_absorb_damage() -> bool:
+	if decorator_chain_head:
+		return decorator_chain_head.absorb_damage()
+	return false
+
 func can_blade_attack() -> bool:
 	if decorator_chain_head:
 		return decorator_chain_head.can_blade_attack()

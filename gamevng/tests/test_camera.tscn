@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cc5lkk61t68a0"]
+[gd_scene load_steps=16 format=4 uid="uid://cc5lkk61t68a0"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_xdcyl"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_gat1o"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="6_gk8em"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="7_rxhtx"]
 [ext_resource type="PackedScene" uid="uid://bjy683k0ahgxy" path="res://scenes/collectibles/health_potion.tscn" id="10_4h1at"]
+[ext_resource type="PackedScene" uid="uid://c8eae0f1g2h3i" path="res://scenes/collectibles/damage_boost.tscn" id="11_uhsoi"]
+[ext_resource type="PackedScene" uid="uid://dn8mejnv2x6s1" path="res://scenes/collectibles/shield.tscn" id="12_d3xn1"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4h1at"]
 a = Vector2(0, -452)
@@ -119,5 +121,11 @@ visible = false
 
 [node name="HealthPotion" parent="." instance=ExtResource("10_4h1at")]
 position = Vector2(757, 265)
+
+[node name="DamageBoost" parent="." instance=ExtResource("11_uhsoi")]
+position = Vector2(689, 257)
+
+[node name="Shield" parent="." instance=ExtResource("12_d3xn1")]
+position = Vector2(732, 263)
 
 [editable path="ShaderCanvasLayer"]

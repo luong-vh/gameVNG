@@ -11,6 +11,7 @@ func _update(_delta: float):
 	control_moving()
 	
 	control_jump()
+	control_variable_jump_height()
 	
 	control_dash()
 	

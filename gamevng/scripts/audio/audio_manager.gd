@@ -41,8 +41,6 @@ func _ready() -> void:
 	# Load audio database if not exists
 	if audio_database == null:
 		audio_database = load("res://data/audio/audio_database.tres") as AudioDatabase
-	
-	print("AudioManager initialized with ", max_sfx_players, " SFX players")
 
 func _loop_music():
 	if last_music == null: return

@@ -13,20 +13,17 @@ var setting_popup_scene
 @onready var _key_HUD = $CanvasLayer/KeyHUD
 
 func _ready():
-	print("[GUIManager] Starting GUIManager initialization...")
 	_fade_animation_player.animation_finished.connect(_on_animation_finished)
 
 	# Check if hotbar exists
 	if _hotbar:
-		print("[GUIManager] Hotbar found and loaded successfully!")
 		_hotbar.slot_selected.connect(_on_hotbar_slot_selected)
 		_hotbar.item_used.connect(_on_hotbar_item_used)
 	else:
-		print("[GUIManager] WARNING: Hotbar not found in scene!")
+		push_warning("[GUIManager] Hotbar not found!")
 
 	# Connect inventory signals when GameManager is ready
 	call_deferred("_connect_inventory_signals")
-	print("[GUIManager] Initialization complete")
 
 func fade_to_black():
 	_fade_animation_player.play("fade_to_black")
@@ -45,7 +42,6 @@ func on_level_selection_scene():
 	setting_popup_scene = preload("res://scenes/gui/game_screen/settings_level_selection_popup.tscn")
 
 func on_stage_scene():
-	print("[GUIManager] Setting up stage scene...")
 	_heart_container.visible = true
 	_coin_HUD.visible = true
 	
@@ -94,40 +90,27 @@ func _on_settings_texture_button_pressed() -> void:
 # ==================== Hotbar System ====================
 
 func _connect_inventory_signals() -> void:
-	print("[GUI] Connecting inventory signals...")
 	if GameManager.inventory_system:
 		GameManager.inventory_system.hotbar_updated.connect(_on_hotbar_updated)
 		GameManager.inventory_system.hotbar_cleared.connect(_on_hotbar_cleared)
 		GameManager.inventory_system.coin_changed.connect(update_coin)
 		GameManager.inventory_system.key_changed.connect(update_key)
-		print("[GUI] Inventory signals connected successfully!")
-	else:
-		print("[GUI] WARNING: GameManager.inventory_system is null!")
+
+		update_coin(GameManager.inventory_system.coins)
+		update_key(GameManager.inventory_system.has_key())
 
 func _on_hotbar_slot_selected(slot_index: int) -> void:
-	print("[GUI] Hotbar slot %d selected" % slot_index)
+	pass
 
 func _on_hotbar_item_used(slot_index: int) -> void:
-	print("[GUI] *** USING ITEM from slot %d ***" % slot_index)
 	if GameManager.inventory_system and GameManager.item_manager:
 		var item = GameManager.inventory_system.get_hotbar_item(slot_index)
 		if item and item.count > 0:
-			print("[GUI] Item found: '%s' (count: %d)" % [item.item_name, item.count])
-			# Try to use the item
 			var success = GameManager.item_manager.use_item(item.item_name)
 			if success:
-				print("[GUI] ✅ Item used successfully!")
 				play_SFX("coin")
-				# Check if item is consumable (blade is not consumable)
 				if item.item_name != "blade":
-					print("[GUI] Removing consumable item from hotbar...")
 					GameManager.inventory_system.use_item_from_hotbar(slot_index)
-				else:
-					print("[GUI] Blade is equipment - keeping in hotbar")
-			else:
-				print("[GUI] ❌ Item usage failed!")
-		else:
-			print("[GUI] ❌ No item in slot %d to use" % slot_index)
 
 func _on_hotbar_updated(slot_index: int, texture: Texture2D, count: int) -> void:
 	if _hotbar:

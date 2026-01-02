@@ -18,14 +18,12 @@ func _delete_from_enemy_manager():
 	EnemyManager.remove_enemy(self , type)
 
 func change_to_day_behavior():
-	print("[%s] Changed behavior to DAY" %self)
 	if glow_light:
 		glow_light.visible = false
 	self.scale = Vector2(1, 1)
 
 
 func change_to_night_behavior():
-	print("[%s] Changed behavior to NIGHT" % self)
 	if glow_light:
 		glow_light.visible = true
 		glow_light.energy = 0.8

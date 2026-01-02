@@ -4,12 +4,7 @@ extends BaseCollectible
 
 func _on_collect() -> void:
 	if collected:
-		return  # Already collected, prevent double collection
+		return
 
-	# Call base class to set collected = true, visible = false, monitoring = false
 	super._on_collect()
-
-	# Call the player's collect_powerup function
 	GameManager.player.collect_powerup("double_jump")
-
-	print("Player collected double jump!")
