@@ -16,15 +16,7 @@ var debug_frame_count: int = 0
 func _ready() -> void:
 	super._ready()
 	
-	# Debug activation area setup
-	print("=== BossControl _ready ===")
-	print("BossControl position: ", global_position)
-	print("ActivationArea2D exists: ", activation_area != null)
 	if activation_area:
-		print("ActivationArea2D monitoring: ", activation_area.monitoring)
-		print("ActivationArea2D collision_mask: ", activation_area.collision_mask)
-		print("ActivationArea2D position: ", activation_area.position)
-		print("ActivationArea2D global_position: ", activation_area.global_position)
 		var shapes = activation_area.get_children()
 		print("ActivationArea2D has ", shapes.size(), " collision shapes")
 		for shape in shapes:
@@ -60,27 +52,16 @@ func _physics_process(_delta: float) -> void:
 	if debug_frame_count >= 60:
 		debug_frame_count = 0
 		var player = get_tree().get_first_node_in_group("player")
-		if player and activation_area:
-			var distance = global_position.distance_to(player.global_position)
-			if distance < 600:  # Only print if player is somewhat close
-				print("Player distance from BossControl: ", distance)
-				print("Player position: ", player.global_position)
-				print("Activated: ", activated, ", Completed: ", completed)
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Body entered boss area: ", body.name)
 	# Check if it's the player
 	if body.is_in_group("player"):
-		print("Player detected! Triggering boss fight")
 		_on_player_enter()
 
 func _on_player_enter() -> void:
-	print("_on_player_enter called, activated=", activated, ", completed=", completed)
 	if activated:
-		print("ERROR: Boss fight already activated! Ignoring.")
 		return
 	if completed:
-		print("ERROR: Boss fight already completed! Ignoring.")
 		return
 	
 	print("Starting boss fight!")
