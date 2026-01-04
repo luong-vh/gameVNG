@@ -66,6 +66,7 @@ func _on_player_enter() -> void:
 	
 	print("Starting boss fight!")
 	activated = true
+	clear_enemies()  # Clear any existing enemies before spawning the boss
 	close_doors()
 	_force_torches_on()
 	spawn_enemies()
