@@ -88,7 +88,6 @@ can_wall_cling = true
 wall_jump_force = 186.0
 wall_slide_speed = 80.0
 can_dash = true
-movement_speed = 100.0
 
 [node name="CameraBorder" type="Node2D" parent="."]
 

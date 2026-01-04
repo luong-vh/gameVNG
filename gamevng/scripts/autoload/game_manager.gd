@@ -28,6 +28,9 @@ var max_level : int = 0
 var unlocked_level = 0
 var current_level = 0
 
+# Cutscene tracking
+var intro_cutscene_played: bool = false
+
 func _ready() -> void:
 	load_checkpoint_data()
 	GUIManager.fade_to_black_finished.connect(teleport)

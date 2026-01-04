@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_rln41"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="17_cl8ie"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="18_txll6"]
-[ext_resource type="Texture2D" uid="uid://2vhg1o0dccmj" path="res://assets/items/key.png" id="19_p4yax"]
+[ext_resource type="Texture2D" uid="uid://1h2gnvs5lbwp" path="res://assets/items/key.png" id="19_p4yax"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="20_dgo0k"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="21_mm8of"]
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="22_xkvr5"]
@@ -115,6 +115,7 @@ min_distance_vertical = 20.0
 
 [node name="Player" parent="." instance=ExtResource("4_foq16")]
 position = Vector2(133, 264)
+has_blade = true
 can_wall_cling = true
 can_double_jump = true
 can_dash = true
@@ -158,7 +159,7 @@ position = Vector2(624, 1571)
 position = Vector2(812, 1624)
 
 [node name="SmallTorch6" parent="Objects/Torches" instance=ExtResource("6_fhx8k")]
-position = Vector2(1007, 1656)
+position = Vector2(1043, 1655)
 
 [node name="SmallTorch7" parent="Objects/Torches" instance=ExtResource("6_fhx8k")]
 position = Vector2(1137, 1578)

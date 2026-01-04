@@ -310,3 +310,9 @@ func collect_powerup(powerup_id: String) -> void:
 		print("Applied powerup: ", powerup_id)
 	else:
 		print("ERROR: DecoratorManager not initialized!")
+
+func play_anim(animation_name) -> void:
+	change_animation("run")
+	
+func stop_anim() -> void:
+	change_animation("idle")

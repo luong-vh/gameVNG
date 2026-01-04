@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="20_c80kk"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="21_kjl5y"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="22_nyvdn"]
-[ext_resource type="Script" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="23_7fhva"]
+[ext_resource type="Script" uid="uid://bokg0hymsvfpp" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="23_7fhva"]
 [ext_resource type="PackedScene" uid="uid://cpecowpo8p7jr" path="res://levels/objects/puzzle/lever/lever.tscn" id="24_q5xva"]
 [ext_resource type="PackedScene" uid="uid://b8ixtmeixu4n0" path="res://levels/objects/platforms/toggleable_terrain_platform.tscn" id="25_pq1j6"]
 

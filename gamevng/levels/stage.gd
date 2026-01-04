@@ -7,6 +7,8 @@ class_name Stage
 @export_range(0, 100, 1) var day_night_switch_limit: int = 2
 @export var loading_time_sec: float = 5
 @export var level_id: String = "5"
+@export var has_intro_cutscene: bool = false  # Set to true for level 1
+@export var intro_cutscene_path: String = "res://scenes/cutscenes/story_1/opening.tscn"
 
 func _enter_tree() -> void:
 	GameManager.set_current_stage(self, level_id)
@@ -14,6 +16,23 @@ func _enter_tree() -> void:
 		assert(false,"Chưa khai báo level_id cho scene này!")
 
 func _ready() -> void:
+	# Check if this is the first time playing and has intro cutscene
+	if has_intro_cutscene and _should_play_intro_cutscene():
+		_play_intro_cutscene()
+		return  # Don't initialize the level yet
+	
+	_init_level()
+
+func _should_play_intro_cutscene() -> bool:
+	# Check if this is the first time playing level 1
+	return not GameManager.intro_cutscene_played
+
+func _play_intro_cutscene() -> void:
+	print("[Stage] Playing intro cutscene")
+	# The cutscene will handle transitioning back to level 1
+	get_tree().change_scene_to_file(intro_cutscene_path)
+
+func _init_level() -> void:
 	_init_day_night()
 	if not GameManager.respawn_at_portal():
 		GameManager.respawn_at_checkpoint()
@@ -21,6 +40,10 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	DayNightManager.resend_state()
+	
+	# If we just came from the cutscene, fade from black
+	if GameManager.intro_cutscene_played and has_intro_cutscene:
+		GUIManager.fade_from_black()
 
 func _init_day_night():
 	if has_node("DayParallaxBackground"):

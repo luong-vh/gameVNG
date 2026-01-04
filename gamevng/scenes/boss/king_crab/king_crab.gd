@@ -29,6 +29,22 @@ func _ready() -> void:
 	type = "KINGCRAB"
 	fsm = FSM.new(self, $States, $States/Idle)
 	
+	print("=== KingCrab _ready ===")
+	print("KingCrab position: ", global_position)
+	print("KingCrab visible: ", visible)
+	print("KingCrab is_inside_tree: ", is_inside_tree())
+	print("Direction node exists: ", $Direction != null)
+	if $Direction:
+		print("Direction visible: ", $Direction.visible)
+		var sprite = $Direction/AnimatedSprite2D
+		if sprite:
+			print("AnimatedSprite2D exists: true")
+			print("AnimatedSprite2D visible: ", sprite.visible)
+			print("AnimatedSprite2D animation: ", sprite.animation)
+			print("AnimatedSprite2D sprite_frames: ", sprite.sprite_frames)
+		else:
+			print("AnimatedSprite2D NOT FOUND!")
+	
 	#store default speed
 	original_speed = speed
 	var shape = $PlayerRayCast2D.get_child(0) as CollisionShape2D

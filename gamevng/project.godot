@@ -37,8 +37,10 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "collect_blade": "res://dialog/timelines/collect_blade.dtl",
+"ending_cutscene": "res://dialog/timelines/ending_cutscene.dtl",
 "example": "res://dialog/timelines/example.dtl",
-"kingcrab_phase2": "res://dialog/timelines/kingcrab_phase2.dtl"
+"kingcrab_phase2": "res://dialog/timelines/kingcrab_phase2.dtl",
+"opening_cutscene": "res://dialog/timelines/opening_cutscene.dtl"
 }
 layout/style_directory={
 "": "res://dialog/custom/dialogic_style.tres",
