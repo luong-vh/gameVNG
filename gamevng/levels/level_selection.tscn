@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://d1fm5b4gw5t0o"]
 
 [ext_resource type="Script" uid="uid://ddommyl8pwmbe" path="res://levels/level_selection.gd" id="1_atop0"]
-[ext_resource type="Texture2D" uid="uid://dgftdo4yk227x" path="res://assets/ui/popup.png" id="1_xv63r"]
-[ext_resource type="FontFile" uid="uid://cimr7nd8503ni" path="res://assets/fonts/big_font.fnt" id="2_atop0"]
-[ext_resource type="Texture2D" uid="uid://ddm4cs1jxpnlv" path="res://assets/ui/level_button.png" id="3_lyjwq"]
-[ext_resource type="Texture2D" uid="uid://bvrk1m11umxr5" path="res://assets/ui/level_button_locked.png" id="4_kbpsh"]
+[ext_resource type="Texture2D" uid="uid://bo5ulo024vqgn" path="res://assets/ui/popup.png" id="1_xv63r"]
+[ext_resource type="FontFile" uid="uid://dqh6gqanw6xwl" path="res://assets/fonts/big_font.fnt" id="2_atop0"]
+[ext_resource type="Texture2D" uid="uid://cyj80mgs65u5k" path="res://assets/ui/level_button.png" id="3_lyjwq"]
+[ext_resource type="Texture2D" uid="uid://d4ng7jp3oefy6" path="res://assets/ui/level_button_locked.png" id="4_kbpsh"]
 [ext_resource type="Script" uid="uid://cpy5inm7kjtw5" path="res://scenes/gui/game_screen/level_button.gd" id="5_ql2vb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nqkqy"]

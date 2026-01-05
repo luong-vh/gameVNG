@@ -18,21 +18,7 @@ func _enter_tree() -> void:
 		assert(false,"Chưa khai báo level_id cho scene này!")
 
 func _ready() -> void:
-	# Check if this is the first time playing and has intro cutscene
-	if has_intro_cutscene and _should_play_intro_cutscene():
-		_play_intro_cutscene()
-		return  # Don't initialize the level yet
-	
 	_init_level()
-
-func _should_play_intro_cutscene() -> bool:
-	# Check if this is the first time playing level 1
-	return not GameManager.intro_cutscene_played
-
-func _play_intro_cutscene() -> void:
-	print("[Stage] Playing intro cutscene")
-	# The cutscene will handle transitioning back to level 1
-	get_tree().change_scene_to_file(intro_cutscene_path)
 
 func _init_level() -> void:
 	_init_day_night()

@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_rln41"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="17_cl8ie"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="18_txll6"]
-[ext_resource type="Texture2D" uid="uid://nx7a7xssdmbc" path="res://assets/items/key.png" id="19_p4yax"]
+[ext_resource type="Texture2D" uid="uid://1h2gnvs5lbwp" path="res://assets/items/key.png" id="19_p4yax"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="20_dgo0k"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="21_mm8of"]
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="22_xkvr5"]

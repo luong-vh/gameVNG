@@ -85,5 +85,7 @@ func _on_fade_finished() -> void:
 	print("[Opening] Fade finished, changing scene to level 1")
 	# Mark intro cutscene as played
 	GameManager.intro_cutscene_played = true
+	# Save the flag so it persists
+	GameManager.save_level_data()
 	# After fade completes, change to level 1
 	get_tree().change_scene_to_file("res://levels/level_1.tscn")

@@ -33,6 +33,7 @@ var intro_cutscene_played: bool = false
 
 func _ready() -> void:
 	load_checkpoint_data()
+	load_level_data()  # Load level data including cutscene flag
 	GUIManager.fade_to_black_finished.connect(teleport)
 	GUIManager.fade_from_black_finished.connect(able_to_control_player)
 
@@ -334,16 +335,36 @@ func load_level_data():
 	var data = SaveSystem.load_level_data()
 	max_level = data["max_level"]
 	unlocked_level = data["unlocked_level"]
+	intro_cutscene_played = data.get("intro_cutscene_played", false)
 
 func save_level_data():
 	var data = {
 		"max_level":max_level,
-		"unlocked_level":unlocked_level
+		"unlocked_level":unlocked_level,
+		"intro_cutscene_played":intro_cutscene_played
 	}
 	SaveSystem.save_level_data(data)
 
 func level_selected(level: int):
 	current_level = level
+	
+	# Special handling for level 1 - check if intro cutscene should play
+	if level == 1:
+		# Check if this is the first time playing level 1
+		var has_checkpoint = current_checkpoint_ids.has("level_1")
+		var should_play_cutscene = not intro_cutscene_played and not has_checkpoint
+		
+		print("[GameManager] Level 1 selected")
+		print("  - intro_cutscene_played: ", intro_cutscene_played)
+		print("  - has_checkpoint: ", has_checkpoint)
+		print("  - should_play_cutscene: ", should_play_cutscene)
+		
+		if should_play_cutscene:
+			print("[GameManager] Playing intro cutscene first")
+			get_tree().change_scene_to_file("res://scenes/cutscenes/story_1/opening.tscn")
+			return
+	
+	# Normal level loading
 	var scene_path = "res://levels/level_%d.tscn"%level
 	get_tree().change_scene_to_file(scene_path)
 
