@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://cyjqjjvhodvb1"]
+[gd_scene load_steps=43 format=4 uid="uid://cyjqjjvhodvb1"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_rln41"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_m1bbe"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://kp7ogmw4xicg" path="res://scenes/boss/warlord_turtle/warlord_turtle.tscn" id="16_rln41"]
 [ext_resource type="PackedScene" uid="uid://8ghxmgekqw4a" path="res://scenes/player/blade_pickup.tscn" id="17_cl8ie"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="18_txll6"]
-[ext_resource type="Texture2D" uid="uid://2vhg1o0dccmj" path="res://assets/items/key.png" id="19_p4yax"]
+[ext_resource type="Texture2D" uid="uid://nx7a7xssdmbc" path="res://assets/items/key.png" id="19_p4yax"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="20_dgo0k"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="21_mm8of"]
 [ext_resource type="PackedScene" uid="uid://cdd6n7kn1pkao" path="res://scenes/enemies/turtle/turtle.tscn" id="22_xkvr5"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="25_3wr2q"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="26_e2bvp"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="27_g0boc"]
+[ext_resource type="PackedScene" uid="uid://dic373yvfl1jb" path="res://levels/objects/shop/shop_complete.tscn" id="28_m1bbe"]
 
 [sub_resource type="Curve2D" id="Curve2D_5r2q3"]
 _data = {
@@ -412,6 +413,9 @@ shape = SubResource("RectangleShape2D_yj50u")
 visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("27_g0boc")]
+
+[node name="ShopComplete" parent="." instance=ExtResource("28_m1bbe")]
+position = Vector2(2052, 1300)
 
 [editable path="Objects/Control/LeverControl"]
 [editable path="Objects/Control/LeverControl/Doors/IronDoor"]

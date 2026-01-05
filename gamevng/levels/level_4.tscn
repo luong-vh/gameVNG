@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://ht6mwusanow4"]
+[gd_scene load_steps=36 format=4 uid="uid://ht6mwusanow4"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_a7qdg"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_g1ha7"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="11_0bers"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="12_27cb5"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="13_kiqbd"]
-[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
+[ext_resource type="Script" uid="uid://dpp6vdx7fgy2l" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="15_nfoyp"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="16_3p5ss"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="17_8pvc7"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="18_3vxiy"]
+[ext_resource type="PackedScene" uid="uid://dic373yvfl1jb" path="res://levels/objects/shop/shop_complete.tscn" id="19_g1ha7"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_gsaxp"]
 a = Vector2(-65, 470)
@@ -298,5 +299,8 @@ visible = false
 
 [node name="ShaderCanvasLayer" parent="." instance=ExtResource("17_8pvc7")]
 visible = false
+
+[node name="ShopComplete" parent="." instance=ExtResource("19_g1ha7")]
+position = Vector2(1803, -1197)
 
 [editable path="ShaderCanvasLayer"]
