@@ -116,6 +116,7 @@ min_distance_vertical = 20.0
 
 [node name="Player" parent="." instance=ExtResource("4_foq16")]
 position = Vector2(133, 264)
+has_blade = true
 can_wall_cling = true
 can_double_jump = true
 can_dash = true
@@ -159,7 +160,7 @@ position = Vector2(624, 1571)
 position = Vector2(812, 1624)
 
 [node name="SmallTorch6" parent="Objects/Torches" instance=ExtResource("6_fhx8k")]
-position = Vector2(1007, 1656)
+position = Vector2(1043, 1655)
 
 [node name="SmallTorch7" parent="Objects/Torches" instance=ExtResource("6_fhx8k")]
 position = Vector2(1137, 1578)

@@ -92,12 +92,9 @@ _data = {
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk1wx"]
-size = Vector2(140, 34)
+size = Vector2(192.99, 38.6759)
 
 [node name="Stage" type="Node2D"]
-
-[node name="ControlNode_BossControl_Enemies#Marker2D" type="Marker2D" parent="."]
-position = Vector2(8277, 40)
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
@@ -115,7 +112,7 @@ tile_map_data = PackedByteArray("AADaAAAABAABAAEAAADbAAAABAABAAEAAADbAP//BAABAAE
 tile_set = ExtResource("2_pggb5")
 
 [node name="Player" parent="." instance=ExtResource("3_idjb0")]
-position = Vector2(356, 269)
+position = Vector2(7886, -240)
 has_blade = true
 can_wall_cling = true
 wall_jump_force = 150.0
@@ -251,12 +248,6 @@ target_door = "Door3"
 
 [node name="Torch" type="Node2D" parent="Object"]
 
-[node name="Torch" parent="Object/Torch" instance=ExtResource("7_ddx28")]
-position = Vector2(7898, 7)
-
-[node name="Torch2" parent="Object/Torch" instance=ExtResource("7_ddx28")]
-position = Vector2(8313, 9)
-
 [node name="Torch3" parent="Object/Torch" instance=ExtResource("7_ddx28")]
 position = Vector2(9227, 270)
 
@@ -373,6 +364,9 @@ shape = SubResource("RectangleShape2D_4fo43")
 position = Vector2(7899.01, -99.3241)
 enemy_data = Array[ExtResource("15_l2jsg")]([SubResource("Resource_c802k")])
 
+[node name="Object_Boss_Control" type="Marker2D" parent="ControlNode/BossControl/EnemiesMarker" index="0"]
+position = Vector2(8273, 23)
+
 [node name="IronDoor" parent="ControlNode/BossControl/Doors" index="0" instance=ExtResource("17_vdvq7")]
 position = Vector2(8387, -28)
 
@@ -382,9 +376,16 @@ curve = SubResource("Curve2D_nk1wx")
 [node name="PathFollow2D" parent="ControlNode/BossControl/Doors/IronDoor/PlatformPath2D" index="0"]
 rotation = -1.5708
 
+[node name="Torch" parent="ControlNode/BossControl/Torches" index="0" instance=ExtResource("7_ddx28")]
+position = Vector2(7898, 7)
+
+[node name="Torch2" parent="ControlNode/BossControl/Torches" index="1" instance=ExtResource("7_ddx28")]
+position = Vector2(8170, -4)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ControlNode/BossControl/ActivationArea2D" index="0"]
-position = Vector2(241.99, -265.676)
+position = Vector2(334.99, 178.324)
 shape = SubResource("RectangleShape2D_nk1wx")
+debug_color = Color(0.174312, 0.546389, 0.896604, 0.42)
 
 [node name="Enemies" type="Node" parent="."]
 

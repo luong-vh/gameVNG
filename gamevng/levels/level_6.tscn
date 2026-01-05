@@ -45,7 +45,7 @@ b = Vector2(-500, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rsxi7"]
 
-[node name="Stage" type="Node2D"]
+[node name="Stage2" type="Node2D"]
 script = ExtResource("1_fpvgn")
 can_switch_day_night = false
 day_night_switch_limit = 0
