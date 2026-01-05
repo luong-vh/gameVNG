@@ -12,8 +12,6 @@ func _update(_delta: float) -> void:
 	control_moving()
 	
 	control_dash()
-	if(Input.is_action_pressed("die")):
-		take_damage(3)
 	control_attack()
 	#If not on floor change to fall
 	if not obj.is_on_floor():
