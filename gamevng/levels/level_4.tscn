@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ww5ptygxtt2r" path="res://scenes/enemies/spider/spider.tscn" id="11_0bers"]
 [ext_resource type="PackedScene" uid="uid://bl6utmk1aha7e" path="res://scenes/enemies/barrel/barrel.tscn" id="12_27cb5"]
 [ext_resource type="PackedScene" uid="uid://ctenjy5al2hk7" path="res://scenes/enemies/pelican/pelican.tscn" id="13_kiqbd"]
-[ext_resource type="Script" uid="uid://dpp6vdx7fgy2l" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="14_0l8tu"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="15_nfoyp"]
 [ext_resource type="PackedScene" uid="uid://be5f4grcqhwu4" path="res://levels/background/night_parallax_background.tscn" id="16_3p5ss"]
 [ext_resource type="PackedScene" uid="uid://cp6og5wd5c52b" path="res://shaders/shader_canvas_layer.tscn" id="17_8pvc7"]
@@ -85,7 +85,7 @@ b = Vector2(1569.72, 0)
 
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_a7qdg")
-level_id = "4"
+level_id = "level_4"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)

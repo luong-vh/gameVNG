@@ -1,9 +1,10 @@
-[gd_scene load_steps=48 format=4 uid="uid://dik634nketv45"]
+[gd_scene load_steps=49 format=4 uid="uid://dik634nketv45"]
 
+[ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_pggb5"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_pggb5"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="3_idjb0"]
 [ext_resource type="PackedScene" uid="uid://dviu03dqxfhpa" path="res://scenes/camera/main_camera.tscn" id="4_8wqug"]
-[ext_resource type="Script" uid="uid://dpp6vdx7fgy2l" path="res://scripts/areas/camera_stop_zone.gd" id="5_1a4ff"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="5_1a4ff"]
 [ext_resource type="PackedScene" uid="uid://dubb5b1vjmsxd" path="res://levels/objects/door/teleport_door.tscn" id="6_5fr5s"]
 [ext_resource type="PackedScene" uid="uid://p5lm84j0yyqu" path="res://levels/objects/torch/torch.tscn" id="7_ddx28"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="8_00dlp"]
@@ -94,7 +95,12 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk1wx"]
 size = Vector2(192.99, 38.6759)
 
-[node name="Stage" type="Node2D"]
+[node name="Stage" type="Node"]
+script = ExtResource("1_pggb5")
+can_switch_day_night = false
+default_day_night_state = 1
+level_id = "level_5"
+metadata/_custom_type_script = "uid://btaxxiktfmkyr"
 
 [node name="DayNightCanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(86, -34)
