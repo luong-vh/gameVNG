@@ -34,9 +34,9 @@ func _delete_from_enemy_manager():
 	EnemyManager.remove_enemy(self,type)
 
 func change_to_day_behavior():
-	print("[%s] Changed behavior to DAY" %self)
 	#Todo: Implememt logic to change behavior
+	pass
 
 func change_to_night_behavior():
-	print("[%s] Changed behavior to Night" %self)
 	#Todo: Implememt logic to change behavior
+	pass

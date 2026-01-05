@@ -47,6 +47,17 @@ func can_blade_attack() -> bool:
 func can_double_jump() -> bool:
 	return data.grants_double_jump or _get_next_double_jump()
 
+func absorb_damage() -> bool:
+	# Check next in chain
+	if next_decorator:
+		return next_decorator.absorb_damage()
+	return false
+
+func can_take_damage() -> bool:
+	if next_decorator:
+		return next_decorator.can_take_damage()
+	return true
+
 # Visual properties from data
 func get_sprite_override() -> String:
 	if not data.sprite_override.is_empty():

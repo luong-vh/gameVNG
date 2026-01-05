@@ -59,12 +59,10 @@ func _delete_from_enemy_manager():
 	EnemyManager.remove_enemy(self,type)
 
 func change_to_day_behavior():
-	print("[%s] Changed behavior to DAY" %self)
 	behavior = "DAY"
 	$Direction/AnimatedSprite2D.modulate = day_color
 	fsm.change_state(fsm.states.idle)
 func change_to_night_behavior():
-	print("[%s] Changed behavior to Night" %self)
 	behavior = "NIGHT"
 	$Direction/AnimatedSprite2D.modulate = night_color
 	fsm.change_state(fsm.states.idle)

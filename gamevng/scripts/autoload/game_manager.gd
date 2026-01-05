@@ -141,7 +141,47 @@ func save_checkpoint(checkpoint_id: String) -> void:
 		"inventory": inventory_state
 		#"enemies":EnemyManager.get_enemies_state()
 	}
-	print("Checkpoint saved: ", current_checkpoint_id)
+
+# Lưu completion checkpoint - chỉ lưu coins và collectibles, không lưu player position và chest
+func save_completion_checkpoint() -> void:
+	var completion_checkpoint_id = current_level_id + "_completion"
+	current_checkpoint_ids[current_level_id] = completion_checkpoint_id
+
+	# Chỉ lấy collectibles (coins, keys, etc), filter ra chest, door, và objects lớn khác
+	var all_objects = SaveSystem.collect_object_states()
+	var collectibles_only = {}
+
+	for object_id in all_objects.keys():
+		# Filter: KHÔNG lưu chest, door, button, checkpoint, steering wheel, etc
+		var id_lower = object_id.to_lower()
+		if id_lower.contains("chest") or \
+		   id_lower.contains("door") or \
+		   id_lower.contains("button") or \
+		   id_lower.contains("checkpoint") or \
+		   id_lower.contains("wheel") or \
+		   id_lower.contains("lever") or \
+		   id_lower.contains("gate"):
+			continue  # Bỏ qua object này
+
+		# Giữ lại các collectibles nhỏ (coins, keys, potions, shield, etc)
+		collectibles_only[object_id] = all_objects[object_id]
+
+	var inventory_state = inventory_system.save_state()
+
+	# Lưu một phần player state (chỉ has_blade, health) - KHÔNG lưu position
+	var partial_player_state = {
+		"has_blade": player.has_blade if player else false,
+		"health": player.health if player else 3
+	}
+
+	checkpoint_data[completion_checkpoint_id] = {
+		# KHÔNG lưu full player_state - player sẽ spawn ở vị trí ban đầu
+		"stage_path": current_stage.scene_file_path,
+		"objects": collectibles_only,  # Chỉ coins và collectibles
+		"inventory": inventory_state,
+		"partial_player_state": partial_player_state,  # Chỉ has_blade và health
+		"is_completion": true  # Đánh dấu đây là completion checkpoint
+	}
 
 func get_current_checkpoint_id() -> String:
 	var index = current_level_id.length()
@@ -164,8 +204,9 @@ func load_checkpoint(checkpoint_id: String) -> Dictionary:
 #respawn at checkpoint
 func respawn_at_checkpoint() -> void:
 	current_checkpoint_id = current_checkpoint_ids.get(current_level_id,"")
+
 	if current_checkpoint_id.is_empty():
-		print("[GameManager] No checkpoint for this level - keeping coins, resetting keys and objects")
+		print("[GameManager] No checkpoint for level %s" % current_level_id)
 		# No checkpoint exists for this level
 		# Reset collectibles/objects to initial state
 		SaveSystem.restore_object_states({})  # Empty dict = all objects reset to initial
@@ -178,11 +219,14 @@ func respawn_at_checkpoint() -> void:
 
 	var checkpoint_info = checkpoint_data.get(current_checkpoint_id, {})
 	if checkpoint_info.is_empty():
-		print("Checkpoint data not found")
 		# Sync player blade state in case of missing checkpoint
 		call_deferred("_sync_player_blade")
 		call_deferred("_sync_collectibles_with_inventory")
 		return
+
+	# Kiểm tra xem đây có phải completion checkpoint không
+	var is_completion = checkpoint_info.get("is_completion", false)
+
 	# Load the stage if different
 	var checkpoint_stage = checkpoint_info.get("stage_path", "")
 	if current_stage.scene_file_path != checkpoint_stage and not checkpoint_stage.is_empty():
@@ -190,16 +234,10 @@ func respawn_at_checkpoint() -> void:
 		call_deferred("_sync_collectibles_with_inventory")
 		return
 
-	# Can change stage if different but not implemented yet to test
-	#	change_stage(checkpoint_stage, "")
-	#	# Wait for scene to load
-	#	await get_tree().process_frame
-
 	# Restore object states từ checkpoint
 	if checkpoint_info.has("objects"):
 		# Pass true to confirm_after_restore to update initial_state of restored objects
 		SaveSystem.restore_object_states(checkpoint_info.objects, null, true)
-		print("Restored %d objects from checkpoint" % checkpoint_info.objects.size())
 
 	# Restore inventory state từ checkpoint
 	if checkpoint_info.has("inventory"):
@@ -208,17 +246,27 @@ func respawn_at_checkpoint() -> void:
 	# Sync collectibles with inventory after restore
 	call_deferred("_sync_collectibles_with_inventory")
 
-	if player != null:
-		var player_state: Dictionary = checkpoint_info.get("player_state")
-		if player_state == null:
-			return
-		player.load_state(player_state)
-		if main_camera !=null:
-			main_camera.global_position = player.global_position
-		print("Player respawned at checkpoint: ", current_checkpoint_id)
-		return
+	# Chỉ load player state nếu KHÔNG phải completion checkpoint
+	if not is_completion:
+		if player != null:
+			var player_state: Dictionary = checkpoint_info.get("player_state")
+			if player_state != null:
+				player.load_state(player_state)
+				if main_camera != null:
+					main_camera.global_position = player.global_position
 	else:
-		print("Player not found for respawn")
+		# Completion checkpoint: restore chỉ has_blade và health, KHÔNG restore position
+		if player != null and checkpoint_info.has("partial_player_state"):
+			var partial_state = checkpoint_info.partial_player_state
+
+			if partial_state.has("has_blade"):
+				if partial_state.has_blade:
+					player.collect_blade()
+				else:
+					player.drop_blade()
+
+			if partial_state.has("health"):
+				player.health = partial_state.health
 
 #check if there is a checkpoint
 func has_checkpoint() -> bool:
@@ -245,19 +293,15 @@ func load_checkpoint_data() -> void:
 		current_checkpoint_ids = save_data.get("current_checkpoint_ids", {})
 		
 		checkpoint_data = save_data.get("checkpoint_data", {})
-		print("Checkpoint data loaded from save file")
-	
+
 	if save_data.has("objects"):
 		SaveSystem.restore_object_states(save_data.objects)
-		print("Restored %d objects" % save_data.objects.size())
-	print("Checkpoint data loaded from save file")
 
 # Clear all checkpoint data
 func clear_checkpoint_data() -> void:
 	current_checkpoint_id = ""
 	checkpoint_data.clear()
 	SaveSystem.delete_save_file()
-	print("All checkpoint data cleared")
 
 func respawn_at_ground_checkpoint():
 	GUIManager.fade_from_black()
@@ -277,6 +321,10 @@ func set_current_stage(stage: Stage, level_id: String):
 	current_level_id = level_id
 
 func stage_clear():
+	# Lưu completion checkpoint (chỉ coins, không lưu player position và chest)
+	save_completion_checkpoint()
+	save_checkpoint_data()
+
 	if unlocked_level == current_level:
 		unlocked_level += 1
 		save_level_data()
@@ -297,12 +345,10 @@ func save_level_data():
 func level_selected(level: int):
 	current_level = level
 	var scene_path = "res://levels/level_%d.tscn"%level
-	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)
 
 
 func next_level():
 	current_level += 1
 	var scene_path = "res://levels/level_%d.tscn"%current_level
-	print("Load scene: %s" %scene_path)
 	get_tree().change_scene_to_file(scene_path)

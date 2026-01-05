@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PowerupDecoratorData" load_steps=3 format=3 uid="uid://88g0dyjpypy8"]
+
+[ext_resource type="Script" uid="uid://b2s44q3padbkx" path="res://scripts/decorator/damge_boost_decorator.gd" id="1_lb8s8"]
+[ext_resource type="Script" uid="uid://bi224x34bsap8" path="res://scripts/powerup/powerup_decorator_data.gd" id="1_nleg2"]
+
+[resource]
+script = ExtResource("1_nleg2")
+id = "damage_boost"
+display_name = "Damage Boost"
+description = ""
+decorator_script = ExtResource("1_lb8s8")
+priority = 0
+duration = 10.0
+speed_multiplier = 1.0
+jump_multiplier = 1.0
+damage_multiplier = 2.0
+health_bonus = 0
+grants_blade_attack = false
+grants_double_jump = false
+num_jumps = 1
+sprite_override = ""
+color_modulate = Color(1, 1, 1, 1)
+conflicts_with = Array[String]([])
+replaces = Array[String]([])
+can_stack = true
+metadata/_custom_type_script = "uid://bi224x34bsap8"

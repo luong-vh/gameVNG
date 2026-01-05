@@ -32,7 +32,6 @@ func _ready() -> void:
 		GameManager.inventory_system.inventory_updated.connect(_on_inventory_updated)
 		GameManager.inventory_system.inventory_cleared.connect(_on_inventory_cleared)
 
-	print("[InventoryScreen] Inventory screen ready with %d slots" % total_slots)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Toggle inventory with Tab key
@@ -75,14 +74,11 @@ func toggle_inventory() -> void:
 func show_inventory() -> void:
 	visible = true
 	refresh_inventory_display()
-	print("[InventoryScreen] Inventory opened")
 
 func hide_inventory() -> void:
 	visible = false
-	print("[InventoryScreen] Inventory closed")
 
 func _on_slot_clicked(slot_index: int) -> void:
-	print("[InventoryScreen] Slot %d clicked" % slot_index)
 	var inv_sys = GameManager.inventory_system
 
 	# Check if dragging from hotbar
@@ -91,7 +87,6 @@ func _on_slot_clicked(slot_index: int) -> void:
 		inv_sys.move_item_hotbar_to_inventory(inv_sys.dragging_slot_index, slot_index)
 		inv_sys.dragging_from_hotbar = false
 		inv_sys.dragging_slot_index = -1
-		print("[InventoryScreen] Dropped from hotbar to inventory slot %d" % slot_index)
 		return
 
 	# Handle inventory drag & drop
@@ -103,7 +98,6 @@ func _on_slot_clicked(slot_index: int) -> void:
 			inv_sys.dragging_slot_index = slot_index
 			if slot_index < slots.size():
 				slots[slot_index].set_dragging(true)
-			print("[InventoryScreen] Started dragging from slot %d" % slot_index)
 	else:
 		# Drop within inventory
 		inv_sys.swap_inventory_slots(inv_sys.dragging_slot_index, slot_index)
@@ -113,7 +107,6 @@ func _on_slot_clicked(slot_index: int) -> void:
 			slots[inv_sys.dragging_slot_index].set_dragging(false)
 		inv_sys.dragging_from_inventory = false
 		inv_sys.dragging_slot_index = -1
-		print("[InventoryScreen] Dropped at inventory slot %d" % slot_index)
 
 	inventory_slot_clicked.emit(slot_index)
 
@@ -147,14 +140,11 @@ func refresh_inventory_display() -> void:
 		else:
 			clear_slot(i)
 
-	print("[InventoryScreen] Refreshed all inventory slots")
 
 func _on_inventory_updated(slot_index: int, texture: Texture2D, count: int) -> void:
 	"""Called when an inventory slot is updated in the system"""
 	set_slot_item(slot_index, texture, count)
-	print("[InventoryScreen] Updated slot %d with item (count: %d)" % [slot_index, count])
 
 func _on_inventory_cleared(slot_index: int) -> void:
 	"""Called when an inventory slot is cleared in the system"""
 	clear_slot(slot_index)
-	print("[InventoryScreen] Cleared slot %d" % slot_index)

@@ -16,13 +16,12 @@ func save_checkpoint_data(data: Dictionary) -> void:
 
 	file.store_var(data)
 	file.close()
-	print("Saved data to file: ", SAVE_FILE)
 
 # Load checkpoint data from file
 func load_checkpoint_data() -> Dictionary:
 	# 1. Kiểm tra xem file có tồn tại không
 	if not FileAccess.file_exists(SAVE_FILE):
-		print("Save file is not found.")
+		print("[SaveSystem] No save file found")
 		return {} # Trả về Dictionary rỗng nếu không có file
 
 	# 2. Mở file để đọc
@@ -51,12 +50,10 @@ func save_level_data(data: Dictionary):
 
 	file.store_var(data)
 	file.close()
-	print("Saved data to file: ", LEVEL_FILE)
 
 func load_level_data() -> Dictionary:
 	# 1. Kiểm tra xem file có tồn tại không
 	if not FileAccess.file_exists(LEVEL_FILE):
-		print("Save file is not found.")
 		var data = {
 			"max_level":MAX_LEVEL,
 			"unlocked_level":1
@@ -89,12 +86,10 @@ func has_save_file() -> bool:
 func delete_save_file() -> void:
 	if has_save_file():
 		DirAccess.remove_absolute(SAVE_FILE)
-		print("Save file deleted")
 		
 func delete_level_data():
 	if FileAccess.file_exists(LEVEL_FILE):
 		DirAccess.remove_absolute(LEVEL_FILE)
-		print("Level file deleted")
 		
 func reset_data():
 	delete_level_data()
@@ -130,7 +125,6 @@ func restore_object_states(states: Dictionary, root_node: Node = null, confirm_a
 	await get_tree().process_frame
 
 	_restore_recursive(root_node, states, confirm_after_restore)
-	print("[SaveSystem] Restored %d object states" % states.size())
 
 func _restore_recursive(node: Node, states: Dictionary, confirm_after_restore: bool) -> void:
 	# Check for SaveableObject first
@@ -147,7 +141,8 @@ func _restore_recursive(node: Node, states: Dictionary, confirm_after_restore: b
 	elif node is BaseCollectible and node.save_enabled:
 		var obj = node as BaseCollectible
 		if states.has(obj.object_id):
-			obj.set_state(states[obj.object_id])
+			var state = states[obj.object_id]
+			obj.set_state(state)
 			# Confirm state after restore to update initial_state
 			if confirm_after_restore:
 				obj.confirm_current_state()

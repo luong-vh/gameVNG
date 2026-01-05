@@ -16,7 +16,6 @@ var selected_slot: int = 0
 func _ready() -> void:
 	create_slots()
 	update_selected_slot()
-	print("[Hotbar] Hotbar ready with %d slots" % slot_count)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	# Debug key to reset current level only
@@ -31,7 +30,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var key_code = KEY_1 + i
 		if event is InputEventKey and event.pressed and event.keycode == key_code:
 			select_slot(i)
-			# Immediately try to use item in this slot
 			item_used.emit(i)
 			get_viewport().set_input_as_handled()
 			return
@@ -98,7 +96,6 @@ func _on_slot_clicked(slot_index: int) -> void:
 		inv_sys.move_item_inventory_to_hotbar(inv_sys.dragging_slot_index, slot_index)
 		inv_sys.dragging_from_inventory = false
 		inv_sys.dragging_slot_index = -1
-		print("[Hotbar] Dropped from inventory to hotbar slot %d" % slot_index)
 		return
 
 	# Handle hotbar drag & drop
@@ -110,7 +107,6 @@ func _on_slot_clicked(slot_index: int) -> void:
 			inv_sys.dragging_slot_index = slot_index
 			if slot_index < slots.size():
 				slots[slot_index].set_dragging(true)
-			print("[Hotbar] Started dragging from slot %d" % slot_index)
 	else:
 		# Drop within hotbar
 		inv_sys.swap_hotbar_slots(inv_sys.dragging_slot_index, slot_index)
@@ -120,4 +116,3 @@ func _on_slot_clicked(slot_index: int) -> void:
 			slots[inv_sys.dragging_slot_index].set_dragging(false)
 		inv_sys.dragging_from_hotbar = false
 		inv_sys.dragging_slot_index = -1
-		print("[Hotbar] Dropped at hotbar slot %d" % slot_index)

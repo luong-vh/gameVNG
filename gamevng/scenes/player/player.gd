@@ -36,13 +36,17 @@ var pogo_hit_area_collision
 var wall_checker: RayCast2D
 
 # --- DOUBLE JUMP ---
-@export_category("Double Jump")
+@export_category("Jump")
+@export var jump_cut_multiplier: float = 0.5
 @export var can_double_jump: bool = false
 @export var max_jump_amount: int = 1
 var jump_count = 1
 @onready var jump_particle = $Direction/Particles/JumpParticle
 @export var normal_jump_cost: float = 1
 @export var double_jump_cost: float = 2
+
+@onready var coyote_timer: Timer = $CoyoteTimer
+var coyote_time_activated: bool = false
 
 # --- DASH ---
 @export_category("Dash")
@@ -137,6 +141,14 @@ func _shader_changed(new_state):
 			light_source.enabled = true
 	pass
 
+func take_damage(damage: int) -> void:
+	if not can_take_damage():
+		return
+	super.take_damage(damage)
+
+func can_take_damage() -> bool:
+	return !is_invulnerable
+
 func start_attack_cd() -> bool:
 	if attack_timer:
 		attack_timer.start(attack_cd_sec)
@@ -155,13 +167,26 @@ func collect_blade() -> void:
 	set_animated_sprite($Direction/BladeAnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = true
 
+	# Add blade to hotbar only if not already present
+	if GameManager.inventory_system:
+		var blade_already_in_hotbar = false
+		for i in range(GameManager.inventory_system.hotbar_size):
+			var item = GameManager.inventory_system.get_hotbar_item(i)
+			if item != null and item.item_name == "blade":
+				blade_already_in_hotbar = true
+				print("[Player] Blade already in hotbar slot %d" % i)
+				break
+
+		if not blade_already_in_hotbar:
+			var blade_texture = preload("res://assets/items/blade.png")
+			GUIManager.add_item_to_hotbar("blade", blade_texture, 1)
+
 func drop_blade():
 	has_blade = false
 	set_animated_sprite($Direction/AnimatedSprite2D)
 	Dialogic.VAR["PlayerHasBlade"] = false
 
 func throw_blade():
-	print("[Player] Throwing blade...")
 	var blade := blade_factory.create() as RigidBody2D
 	var throwing_velocity := Vector2(throwing_speed * direction, 0.0)
 	blade.apply_impulse(throwing_velocity)
@@ -274,13 +299,20 @@ func _physics_process(delta: float) -> void:
 	GUIManager.set_max_heart_gui(get_max_health())
 
 func handle_invulnerable():
+	var shield_active = false
+	if decorator_manager != null:
+		for decorator in decorator_manager.active_decorators:
+			if decorator.data.id == "shield":
+				shield_active = true
+				break
+
 	if invulnerable_timer.time_left > 0:
 		var alpha := 0.5 + 0.5 * sin(invulnerable_timer.time_left * TAU * blink_speed)
 		animated_sprite.modulate.a = alpha
 	else:
 		animated_sprite.modulate.a = 1.0
 
-	if invulnerable_timer.is_stopped():
+	if invulnerable_timer.is_stopped() and not shield_active:
 		is_invulnerable = false
 
 # --- POWERUP SYSTEM ---

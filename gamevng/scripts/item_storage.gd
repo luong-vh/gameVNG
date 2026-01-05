@@ -30,12 +30,10 @@ func initialize_inventory() -> void:
 	inventory_items.clear()
 	for i in range(inventory_size):
 		inventory_items.append(null)
-	print("[ItemStorage] Initialized %d inventory slots" % inventory_size)
 
 # ==================== Hotbar Operations ====================
 
 func add_item_to_hotbar(item_name: String, texture: Texture2D, count: int = 1) -> bool:
-	# Try to stack with existing item first
 	for i in range(hotbar_items.size()):
 		var item = hotbar_items[i]
 		if item != null and item.item_name == item_name:
@@ -99,7 +97,6 @@ func use_item_from_hotbar(slot_index: int) -> bool:
 	else:
 		hotbar_updated.emit(slot_index, item.texture, item.count)
 
-	print("[ItemStorage] Used item: %s" % item.item_name)
 	return true
 
 # ==================== Inventory Operations ====================
@@ -115,7 +112,6 @@ func add_item_to_inventory(item_name: String, texture: Texture2D, count: int = 1
 				inventory_updated.emit(i, item.texture, item.count)
 				count -= can_add
 				if count <= 0:
-					print("[ItemStorage] Stacked %s in inventory slot %d" % [item_name, i])
 					return true
 
 	# Find empty slot
@@ -124,7 +120,6 @@ func add_item_to_inventory(item_name: String, texture: Texture2D, count: int = 1
 			var new_item = ItemData.new(item_name, texture, count)
 			inventory_items[i] = new_item
 			inventory_updated.emit(i, new_item.texture, new_item.count)
-			print("[ItemStorage] Added %s to inventory slot %d (count: %d)" % [item_name, i, count])
 			return true
 
 	print("[ItemStorage] Inventory is full!")
@@ -171,5 +166,4 @@ func use_item_from_inventory(slot_index: int) -> bool:
 	else:
 		inventory_updated.emit(slot_index, item.texture, item.count)
 
-	print("[ItemStorage] Used item from inventory: %s" % item.item_name)
 	return true

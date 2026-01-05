@@ -26,7 +26,6 @@ func _ready():
 	# Find ALL lights recursively in target_scene
 	if target_scene:
 		var all_lights = get_all_lights(target_scene)
-		print("Found ", all_lights.size(), " lights")
 		
 		for light in all_lights:
 			var circle = create_light_circle(light)

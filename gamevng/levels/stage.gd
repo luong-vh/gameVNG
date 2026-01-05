@@ -10,6 +10,8 @@ class_name Stage
 @export var has_intro_cutscene: bool = false  # Set to true for level 1
 @export var intro_cutscene_path: String = "res://scenes/cutscenes/story_1/opening.tscn"
 
+@export var total_coins := 25
+
 func _enter_tree() -> void:
 	GameManager.set_current_stage(self, level_id)
 	if level_id == "0":
@@ -77,6 +79,7 @@ func save_stage() -> Dictionary:
 		"day_night_state": DayNightManager.current_day_night_state,
 		"shader_state": DayNightManager.current_shader_state,
 		"cur_switch_limit": DayNightManager.switch_limit_count,
+		"total_coins": total_coins,
 	}
 
 func load_state(data: Dictionary) -> bool:

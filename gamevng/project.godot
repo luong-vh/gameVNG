@@ -25,7 +25,6 @@ DayNightManager="*res://scripts/autoload/day_night_manager.gd"
 GUIManager="*res://scripts/autoload/GUIManager.tscn"
 EnemyManager="*res://scripts/autoload/enemy_manager.gd"
 SaveSystemEnemy="*res://scripts/autoload/save_load_enemy.gd"
-DebugLogger="*res://scripts/autoload/debug_logger.gd"
 AudioManager="*res://scripts/audio/audio_manager.gd"
 
 [dialogic]

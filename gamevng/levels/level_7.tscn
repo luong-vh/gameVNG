@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bnuupihbjd8w0"]
+[gd_scene load_steps=29 format=4 uid="uid://bnuupihbjd8w0"]
 
 [ext_resource type="Script" uid="uid://btaxxiktfmkyr" path="res://levels/stage.gd" id="1_lpckt"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="2_1wdt6"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://bokg0hymsvfpp" path="res://levels/objects/puzzle/lever/lever_platform_controller.gd" id="23_7fhva"]
 [ext_resource type="PackedScene" uid="uid://cpecowpo8p7jr" path="res://levels/objects/puzzle/lever/lever.tscn" id="24_q5xva"]
 [ext_resource type="PackedScene" uid="uid://b8ixtmeixu4n0" path="res://levels/objects/platforms/toggleable_terrain_platform.tscn" id="25_pq1j6"]
+[ext_resource type="PackedScene" uid="uid://dic373yvfl1jb" path="res://levels/objects/shop/shop_complete.tscn" id="26_1wdt6"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qo6io"]
 a = Vector2(0, -500)
@@ -250,5 +251,8 @@ rotation = -1.5708
 [node name="ToggleableTerrainPlatform3" parent="LeverPlatformController2/Platforms" instance=ExtResource("25_pq1j6")]
 position = Vector2(2417, 593)
 rotation = -1.5708
+
+[node name="ShopComplete" parent="." instance=ExtResource("26_1wdt6")]
+position = Vector2(1786, 339)
 
 [editable path="ShaderCanvasLayer"]

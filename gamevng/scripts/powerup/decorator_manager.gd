@@ -44,8 +44,14 @@ func apply_powerup(powerup_id: String) -> bool:
 func _reapply_all_visuals():
 	# 1. Revert player to absolute default state
 	player.modulate = Color.WHITE
-	if player.get_node_or_null("Direction/AnimatedSprite2D"):
-		player.set_animated_sprite(player.get_node("Direction/AnimatedSprite2D"))
+
+	# Reset to correct base sprite based on player state (blade or no blade)
+	if player.has_blade:
+		if player.get_node_or_null("Direction/BladeAnimatedSprite2D"):
+			player.set_animated_sprite(player.get_node("Direction/BladeAnimatedSprite2D"))
+	else:
+		if player.get_node_or_null("Direction/AnimatedSprite2D"):
+			player.set_animated_sprite(player.get_node("Direction/AnimatedSprite2D"))
 
 	# 2. Get effective visuals from the current chain (if it exists)
 	if decorator_chain_head:
@@ -57,7 +63,7 @@ func _reapply_all_visuals():
 			var sprite_node = player.get_node_or_null("Direction/" + effective_sprite_path)
 			if sprite_node:
 				player.set_animated_sprite(sprite_node)
-		
+
 		if effective_color != Color.WHITE:
 			player.modulate = effective_color
 
@@ -193,6 +199,11 @@ func get_effective_max_jumps() -> int:
 	if decorator_chain_head:
 		return decorator_chain_head.get_max_jumps()
 	return 1
+
+func can_absorb_damage() -> bool:
+	if decorator_chain_head:
+		return decorator_chain_head.absorb_damage()
+	return false
 
 func can_blade_attack() -> bool:
 	if decorator_chain_head:
