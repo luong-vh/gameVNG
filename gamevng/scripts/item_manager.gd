@@ -23,9 +23,17 @@ func use_health_potion() -> bool:
 	if not player:
 		return false
 
-	var heal_amount = 1
-	player.health += heal_amount
-	player.collect_powerup("health_potion")
+	var current_health = player.health
+	var max_hp = player.get_max_health()
+
+	# If health is already at max, increase max health instead
+	if current_health >= max_hp:
+		player.collect_powerup("health_potion")
+	else:
+		# Otherwise, heal current health (up to max)
+		var heal_amount = 1
+		player.health = min(player.health + heal_amount, max_hp)
+
 	player.healthChanged.emit()
 	AudioManager.play_sound("coin")
 

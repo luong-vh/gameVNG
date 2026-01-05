@@ -106,7 +106,7 @@ script = ExtResource("17_yae7c")
 metadata/_custom_type_script = "uid://csu2b21cwchqw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HurtArea2D"]
-position = Vector2(0, 1)
+position = Vector2(-29, 2)
 shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="HitArea2D" type="Area2D" parent="Direction"]
@@ -116,7 +116,7 @@ script = ExtResource("18_eaiw7")
 metadata/_custom_type_script = "uid://cskdv6tj5dtso"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/HitArea2D"]
-position = Vector2(0, 1)
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="DownRayCast2D" type="RayCast2D" parent="Direction"]
@@ -144,7 +144,7 @@ script = ExtResource("20_m1jvq")
 script = ExtResource("22_6dtt5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_6dtt5")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]

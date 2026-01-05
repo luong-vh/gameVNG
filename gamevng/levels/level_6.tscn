@@ -139,26 +139,19 @@ position = Vector2(1441, -296)
 
 [node name="Door2" parent="Objects/Doors" instance=ExtResource("15_g7b2g")]
 position = Vector2(1280, -273)
-target_stage = "uid://c1wx6me3m1jmu"
 target_door = "Door1"
 
 [node name="Door3" parent="Objects/Doors" instance=ExtResource("15_g7b2g")]
 position = Vector2(7808, -912)
-target_stage = "uid://c1wx6me3m1jmu"
 target_door = "Door4"
 
 [node name="Door4" parent="Objects/Doors" instance=ExtResource("15_g7b2g")]
 position = Vector2(4111, -369)
-target_stage = "uid://c1wx6me3m1jmu"
 target_door = "Door1"
 
 [node name="Door5" parent="Objects/Doors" instance=ExtResource("15_g7b2g")]
 position = Vector2(6655, 304)
-target_stage = "uid://c1wx6me3m1jmu"
 target_door = "Door4"
-
-[node name="Chest" parent="Objects/Doors" instance=ExtResource("9_ny68a")]
-position = Vector2(1281, -406)
 
 [node name="LeverControl" parent="Objects" instance=ExtResource("7_g7b2g")]
 
@@ -176,7 +169,6 @@ can_be_deactivate = true
 
 [node name="Door1" parent="Objects/LeverControl/Doors" index="0" instance=ExtResource("15_g7b2g")]
 position = Vector2(1272, 272)
-target_stage = "uid://c1wx6me3m1jmu"
 target_door = "Door2"
 enable = false
 
@@ -212,6 +204,9 @@ position = Vector2(6554, -65)
 
 [node name="ChestKey" parent="Objects" instance=ExtResource("27_ra7rw")]
 position = Vector2(1281, -427)
+
+[node name="Chest" parent="Objects" instance=ExtResource("9_ny68a")]
+position = Vector2(1281, -406)
 
 [node name="Enemies" type="Node" parent="."]
 

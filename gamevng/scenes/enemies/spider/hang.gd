@@ -53,14 +53,19 @@ func _update(delta: float):
 func _exit():
 	print("[Spider/Hang] Exiting HANG state")
 
-	# Cleanup
-	if pull_tween and pull_tween.is_running():
-		pull_tween.kill()
-	if spider_tween and spider_tween.is_running():
-		spider_tween.kill()
+	# Cleanup tweens
+	if pull_tween:
+		if pull_tween.is_valid() and pull_tween.is_running():
+			pull_tween.kill()
+		pull_tween = null
+		
+	if spider_tween:
+		if spider_tween.is_valid() and spider_tween.is_running():
+			spider_tween.kill()
+		spider_tween = null
 
 	# Release player nếu đang giữ
-	if target_player:
+	if target_player and is_instance_valid(target_player):
 		_release_player()
 
 	# Disable pull detector
@@ -82,19 +87,23 @@ func _sub_state_idle(_delta: float) -> void:
 	if obj.pull_detector.is_colliding():
 		var collider = obj.pull_detector.get_collider()
 
-		# Check nếu là player
-		if collider is CharacterBody2D and collider.is_in_group("player"):
+		# Check nếu là player và còn valid
+		if collider and is_instance_valid(collider) and collider is CharacterBody2D and collider.is_in_group("player"):
 			print("[Spider/Hang] Detected player below! Starting pull...")
 			_start_pulling(collider)
 
 
 func _sub_state_pulling(_delta: float) -> void:
+	# Validate tweens trước khi check
+	var pull_running = pull_tween and pull_tween.is_valid() and pull_tween.is_running()
+	var spider_running = spider_tween and spider_tween.is_valid() and spider_tween.is_running()
+	
 	# Check nếu pull tween đang chạy
-	if pull_tween and pull_tween.is_running():
+	if pull_running:
 		return  # Vẫn đang kéo, chờ tiếp
 
 	# Check nếu spider tween đang chạy (nhện đang di chuyển)
-	if spider_tween and spider_tween.is_running():
+	if spider_running:
 		return  # Nhện đang di chuyển, chờ tiếp
 
 	# Cả 2 tween đều xong → Chuyển sang HOLDING
@@ -134,6 +143,12 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 	# QUAN TRỌNG: Chuyển sub-state NGAY để tránh trigger lại
 	_change_sub_state(HangSubState.PULLING)
 
+	# Validate player
+	if not target_player or not is_instance_valid(target_player):
+		print("[Spider/Hang] Invalid player, aborting pull")
+		_change_sub_state(HangSubState.COOLDOWN)
+		return
+
 	# LƯU VỊ TRÍ PLAYER NGAY TỪ ĐẦU
 	var player_start_position = target_player.global_position
 
@@ -146,8 +161,14 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 
 	# Tính vị trí nhện cần di chuyển tới (ngay phía trên VỊ TRÍ PLAYER BAN ĐẦU)
 	var spider_target_position = player_start_position - obj.pull_offset
-	# Convert về local position
-	var spider_local_target = obj.get_parent().to_local(spider_target_position) if obj.get_parent() else spider_target_position
+	
+	# Convert về local position - CHECK parent là Node2D
+	var spider_local_target: Vector2
+	if obj.get_parent() and obj.get_parent() is Node2D:
+		spider_local_target = (obj.get_parent() as Node2D).to_local(spider_target_position)
+	else:
+		# Fallback: tính offset từ global position của spider
+		spider_local_target = obj.position + (spider_target_position - obj.global_position)
 
 	print("[Spider/Hang] Player locked at: ", player_start_position)
 	print("[Spider/Hang] Moving spider to position above player: ", spider_local_target)
@@ -156,11 +177,11 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 	_animate_spider_to_position(spider_local_target)
 
 	# Play pull sprite (nếu có)
-	if obj.animated_sprite.sprite_frames.has_animation("pull"):
+	if obj.animated_sprite and obj.animated_sprite.sprite_frames and obj.animated_sprite.sprite_frames.has_animation("pull"):
 		obj.change_animation("pull")
 
 	# Đợi nhện di chuyển xong
-	if spider_tween:
+	if spider_tween and spider_tween.is_valid():
 		await spider_tween.finished
 
 	# Check target_player vẫn còn valid
@@ -179,6 +200,10 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 		# Đổi sprite về idle
 		obj.change_animation("idle")
 
+		# Re-enable player gravity
+		if target_player and is_instance_valid(target_player) and target_player.has_method("set_gravity_enabled"):
+			target_player.set_gravity_enabled(true)
+
 		target_player = null
 		_change_sub_state(HangSubState.COOLDOWN)
 		return
@@ -189,7 +214,13 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 	obj.player_pulled.emit(target_player)
 
 	# ANIMATION 2: Nhện quay lên VÀ kéo player CÙNG LÚC!
-	var pull_destination_global = obj.global_position if not obj.get_parent() else obj.get_parent().to_global(obj.initial_hang_position)
+	var pull_destination_global: Vector2
+	if obj.get_parent() and obj.get_parent() is Node2D:
+		pull_destination_global = (obj.get_parent() as Node2D).to_global(obj.initial_hang_position)
+	else:
+		# Fallback: tính từ global position của spider
+		pull_destination_global = obj.global_position - obj.position + obj.initial_hang_position
+	
 	# Offset xuống một tí để không chạm hitbox
 	pull_destination_global += Vector2(0, obj.pull_offset.y / 2)
 
@@ -204,13 +235,13 @@ func _start_pulling(player_body: CharacterBody2D) -> void:
 	_animate_pull_player_to(pull_destination_global)  # Player lên (parallel!)
 
 	# Đợi CẢ 2 tween xong
-	if spider_tween and pull_tween:
+	if spider_tween and spider_tween.is_valid() and pull_tween and pull_tween.is_valid():
 		await spider_tween.finished
 		if pull_tween.is_running():
 			await pull_tween.finished
-	elif pull_tween:
+	elif pull_tween and pull_tween.is_valid():
 		await pull_tween.finished
-	elif spider_tween:
+	elif spider_tween and spider_tween.is_valid():
 		await spider_tween.finished
 
 	# Check lại target_player
@@ -228,6 +259,9 @@ func _is_grabbing_player() -> bool:
 	if not obj.grab_area:
 		return true  # Fallback: nếu không có grab_area thì cứ kéo luôn
 
+	if not target_player or not is_instance_valid(target_player):
+		return false
+
 	var overlapping_bodies = obj.grab_area.get_overlapping_bodies()
 
 	for body in overlapping_bodies:
@@ -239,10 +273,15 @@ func _is_grabbing_player() -> bool:
 
 func _animate_spider_to_position(target_pos: Vector2) -> void:
 	"""Animation nhện di chuyển đến vị trí cụ thể"""
-	if spider_tween and spider_tween.is_running():
-		spider_tween.kill()
+	if spider_tween:
+		if spider_tween.is_valid() and spider_tween.is_running():
+			spider_tween.kill()
 
 	spider_tween = obj.create_tween()
+	if not spider_tween:
+		push_error("[Spider/Hang] Failed to create spider tween")
+		return
+		
 	spider_tween.set_ease(Tween.EASE_OUT)
 	spider_tween.set_trans(Tween.TRANS_CUBIC)
 	spider_tween.tween_property(obj, "position", target_pos, obj.descend_speed)
@@ -250,7 +289,7 @@ func _animate_spider_to_position(target_pos: Vector2) -> void:
 
 func _animate_pull_player_to(destination: Vector2) -> void:
 	"""Animation kéo player đến vị trí cụ thể"""
-	if not target_player:
+	if not target_player or not is_instance_valid(target_player):
 		return
 
 	var distance = target_player.global_position.distance_to(destination)
@@ -260,17 +299,23 @@ func _animate_pull_player_to(destination: Vector2) -> void:
 	if duration < 0.1:
 		duration = 0.1
 
-	if pull_tween and pull_tween.is_running():
-		pull_tween.kill()
+	if pull_tween:
+		if pull_tween.is_valid() and pull_tween.is_running():
+			pull_tween.kill()
 
 	pull_tween = obj.create_tween()
+	if not pull_tween:
+		push_error("[Spider/Hang] Failed to create pull tween")
+		return
+		
 	pull_tween.set_ease(Tween.EASE_IN_OUT)
 	pull_tween.set_trans(Tween.TRANS_CUBIC)
 	pull_tween.tween_property(target_player, "global_position", destination, duration)
 
 
 func _release_player() -> void:
-	if not target_player:
+	if not target_player or not is_instance_valid(target_player):
+		target_player = null
 		return
 
 	print("[Spider/Hang] Releasing player...")
@@ -293,10 +338,15 @@ func _release_player() -> void:
 
 func _animate_spider_ascend() -> void:
 	"""Animation nhện quay lên vị trí ban đầu"""
-	if spider_tween and spider_tween.is_running():
-		spider_tween.kill()
+	if spider_tween:
+		if spider_tween.is_valid() and spider_tween.is_running():
+			spider_tween.kill()
 
 	spider_tween = obj.create_tween()
+	if not spider_tween:
+		push_error("[Spider/Hang] Failed to create spider ascend tween")
+		return
+		
 	spider_tween.set_ease(Tween.EASE_IN)
 	spider_tween.set_trans(Tween.TRANS_CUBIC)
 	spider_tween.tween_property(obj, "position", obj.initial_hang_position, obj.descend_speed)

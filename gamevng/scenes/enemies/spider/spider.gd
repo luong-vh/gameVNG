@@ -88,9 +88,11 @@ func _delete_from_enemy_manager():
 
 func change_to_day_behavior():
 	# Spider không thay đổi behavior theo ngày/đêm
+	pass
 
 func change_to_night_behavior():
 	# Spider không thay đổi behavior theo ngày/đêm
+	pass
 
 
 ## Earthquake handler

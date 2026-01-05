@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxkd8yvl5fi5l" path="res://scenes/player/player.gd" id="1_wodsf"]
 [ext_resource type="Texture2D" uid="uid://dnt7n2db610ps" path="res://assets/foxy/fox_hat_blade/fox_atk_1.png" id="2_6cv16"]
-[ext_resource type="Texture2D" uid="uid://d034uuwdpqp00" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
+[ext_resource type="Texture2D" uid="uid://bhp4t3l270lv1" path="res://assets/foxy/fox_hat/fox_dash_1.png" id="2_niom3"]
 [ext_resource type="Texture2D" uid="uid://byd3g4nnxwfcq" path="res://assets/foxy/fox_hat_blade/fox_atk_3.png" id="4_28m0y"]
 [ext_resource type="Texture2D" uid="uid://dkd08e8lorvee" path="res://assets/foxy/fox_hat/fox_defeat_1.png" id="4_c35mf"]
 [ext_resource type="Texture2D" uid="uid://brlsobsd6xakk" path="res://assets/foxy/fox_hat/fox_defeat_2.png" id="5_65viv"]
@@ -27,17 +27,17 @@
 [ext_resource type="Texture2D" uid="uid://cr8a68nw3dww1" path="res://assets/foxy/fox_hat_blade/fox_run_2.png" id="16_4hvnv"]
 [ext_resource type="Texture2D" uid="uid://c3p546j150735" path="res://assets/foxy/fox_hat/fox_run_4.png" id="17_1s1yo"]
 [ext_resource type="Texture2D" uid="uid://d0jfmp24jrfcy" path="res://assets/foxy/fox_hat_blade/fox_run_3.png" id="17_bbmj2"]
-[ext_resource type="Texture2D" uid="uid://bas08v0c31mwq" path="res://assets/foxy/fox_hat_blade/fox_attack_extended_2.png" id="17_ttakn"]
+[ext_resource type="Texture2D" uid="uid://cn8tpdl86p70d" path="res://assets/foxy/fox_hat_blade/fox_attack_extended_2.png" id="17_ttakn"]
 [ext_resource type="Texture2D" uid="uid://ce35c6mn7dcok" path="res://assets/foxy/fox_hat_blade/fox_run_4.png" id="18_kxw46"]
-[ext_resource type="Texture2D" uid="uid://beacllmuax7nf" path="res://assets/foxy/fox_hat_blade/fox_dash_1.png" id="19_ttakn"]
+[ext_resource type="Texture2D" uid="uid://cj06471cwwb6m" path="res://assets/foxy/fox_hat_blade/fox_dash_1.png" id="19_ttakn"]
 [ext_resource type="Script" uid="uid://2kcb4amemhdj" path="res://scenes/player/states/hurt.gd" id="20_8ydkj"]
 [ext_resource type="Script" uid="uid://cskdv6tj5dtso" path="res://scripts/areas/hit_area_2d.gd" id="20_uniwh"]
 [ext_resource type="Script" uid="uid://csu2b21cwchqw" path="res://scripts/areas/hurt_area_2d.gd" id="21_3j4b4"]
 [ext_resource type="Script" uid="uid://bsfhjel8q274a" path="res://scenes/player/dead.gd" id="22_j4nxn"]
 [ext_resource type="Script" uid="uid://tguxunu8ufqc" path="res://scenes/player/states/attack.gd" id="26_6cv16"]
 [ext_resource type="Texture2D" uid="uid://bxt55w7idieg5" path="res://assets/init_assets/images/fox_hat_blade/fox_atk_1.png" id="28_upxxc"]
-[ext_resource type="Texture2D" uid="uid://bvk2imq3x67u1" path="res://assets/foxy/fox_hat_blade/fox_pogo.png" id="29_ln3h3"]
-[ext_resource type="Texture2D" uid="uid://dvo3xt7u0dc1j" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
+[ext_resource type="Texture2D" uid="uid://brcmr0ve34jce" path="res://assets/foxy/fox_hat_blade/fox_pogo.png" id="29_ln3h3"]
+[ext_resource type="Texture2D" uid="uid://dull827dwuf5u" path="res://assets/foxy/fox_hat_blade/fox_throw.png" id="32_jrbya"]
 [ext_resource type="Texture2D" uid="uid://8usoreyem8l6" path="res://assets/foxy/smoke/jump_smoke_1.png" id="35_ds1xl"]
 [ext_resource type="Texture2D" uid="uid://jtpy308mqnwi" path="res://assets/foxy/smoke/jump_smoke_2.png" id="36_1u1sw"]
 [ext_resource type="Texture2D" uid="uid://cbk136ktae42o" path="res://assets/foxy/smoke/jump_smoke_3.png" id="37_2t3bg"]
@@ -46,13 +46,13 @@
 [ext_resource type="Script" uid="uid://cvpxr6k5a44hb" path="res://scenes/player/states/idle.gd" id="39_art4l"]
 [ext_resource type="Script" uid="uid://dwgwlddhr721a" path="res://scenes/player/states/run.gd" id="40_fjxoa"]
 [ext_resource type="Script" uid="uid://b7yj1wwj62b3w" path="res://scenes/player/states/wall_cling.gd" id="40_genst"]
-[ext_resource type="Texture2D" uid="uid://ca02mbbyi5c7c" path="res://assets/day_night/light.png" id="40_u3hyo"]
+[ext_resource type="Texture2D" uid="uid://bxh43o755kc26" path="res://assets/day_night/light.png" id="40_u3hyo"]
 [ext_resource type="PackedScene" uid="uid://cejkt1laxfevg" path="res://scenes/player/blade_thrown.tscn" id="40_vo27k"]
 [ext_resource type="Script" uid="uid://bsej8x3x778bq" path="res://scenes/player/states/dash.gd" id="41_genst"]
 [ext_resource type="Script" uid="uid://71mb4rei2k0i" path="res://scenes/player/states/jump.gd" id="41_gswnw"]
 [ext_resource type="Script" uid="uid://c5opnth48llw4" path="res://scenes/player/throw.gd" id="42_ahqnk"]
 [ext_resource type="Script" uid="uid://dgsmyncyt5b00" path="res://scenes/player/states/fall.gd" id="42_xcnuv"]
-[ext_resource type="Script" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
+[ext_resource type="Script" uid="uid://cgso7g684x3o6" path="res://scenes/player/states/pogo.gd" id="54_uygh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 9.0
@@ -349,7 +349,7 @@ position = Vector2(0, 12)
 visible = false
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_wva7c")
-animation = &"hurt"
+animation = &"run"
 
 [node name="BladeAnimatedSprite2D" type="AnimatedSprite2D" parent="Direction"]
 visible = false
