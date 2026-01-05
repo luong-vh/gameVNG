@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cw41ooeg3pxq1" path="res://levels/objects/checkpoint/checkpoint.tscn" id="6_udfhf"]
 [ext_resource type="PackedScene" uid="uid://bsmvkgh4pu8cm" path="res://levels/objects/chest/chest.tscn" id="7_i6od7"]
 [ext_resource type="PackedScene" uid="uid://bcopa1hwh3rob" path="res://scenes/collectibles/chest_key.tscn" id="8_ryfpa"]
-[ext_resource type="Script" uid="uid://dpp6vdx7fgy2l" path="res://scripts/areas/camera_stop_zone.gd" id="9_ntdhj"]
+[ext_resource type="Script" uid="uid://baoky30abnb03" path="res://scripts/areas/camera_stop_zone.gd" id="9_ntdhj"]
 [ext_resource type="PackedScene" uid="uid://dctrtbmnbrt1j" path="res://scenes/npcs/mushroom.tscn" id="10_0fu15"]
 [ext_resource type="PackedScene" uid="uid://cf5x1gwia088r" path="res://scenes/enemies/mushroom/mushroom.tscn" id="11_4knja"]
 [ext_resource type="PackedScene" uid="uid://cqyowuq4myygc" path="res://scenes/enemies/crab/crab.tscn" id="12_voubc"]

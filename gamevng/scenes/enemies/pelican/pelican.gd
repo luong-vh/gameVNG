@@ -35,6 +35,8 @@ func _delete_from_enemy_manager():
 
 func change_to_day_behavior():
 	#Todo: Implememt logic to change behavior
+	pass
 
 func change_to_night_behavior():
 	#Todo: Implememt logic to change behavior
+	pass
