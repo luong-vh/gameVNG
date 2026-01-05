@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://d3qnd5esnojiw"]
+[gd_scene load_steps=9 format=4 uid="uid://d3qnd5esnojiw"]
 
 [ext_resource type="Script" uid="uid://ulqcihf87p7d" path="res://scenes/cutscenes/story_2/ending.gd" id="1_b5tit"]
 [ext_resource type="TileSet" uid="uid://gmsitsyww3ne" path="res://assets/island/tileset.tres" id="1_tob0b"]
 [ext_resource type="PackedScene" uid="uid://bsg5c3c2gvjxh" path="res://scenes/player/player.tscn" id="2_b5tit"]
 [ext_resource type="PackedScene" uid="uid://ba1codqkobgn1" path="res://levels/background/day_parallax_background.tscn" id="3_qj4qq"]
+[ext_resource type="PackedScene" uid="uid://bs443mpop7gwr" path="res://levels/objects/platforms/Boat.tscn" id="5_qj4qq"]
 
 [sub_resource type="Animation" id="Animation_b5tit"]
 length = 0.001
@@ -77,7 +78,7 @@ offset_right = 257.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_color = Color(0.950286, 0.88904, 0.633563, 0)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 4
@@ -87,3 +88,6 @@ theme_override_font_sizes/font_size = 80
 text = "END GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Boat" parent="." instance=ExtResource("5_qj4qq")]
+position = Vector2(631, 219)
